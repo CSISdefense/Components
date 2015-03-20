@@ -1,0 +1,350 @@
+---
+title: "ATLregime"
+author: "Greg Sanders"
+date: "Friday, March 20, 2015"
+output: html_document
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r, echo=FALSE}
+require(ggplot2)
+require(stringr)
+require(plyr)
+options(error=recover)
+setwd("K:\\Development\\Components")
+# setwd("C:\\Users\\Greg Sanders\\Documents\\Development\\Fixed-price")
+Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
+# Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
+source(paste(Path,"lookups.r",sep=""))
+```
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+FixedPriceRegime  <- read.csv(
+    paste("data\\Defense_Summary_SP_FundingMechanismHistoryBucketSubCustomerRegime.csv", sep = ""),
+    header = TRUE, sep = ",", dec = ".", strip.white = TRUE, 
+    na.strings = c("NULL","NA",""),
+    stringsAsFactors = TRUE
+    )
+
+FixedPriceRegime<-apply_lookups(Path,FixedPriceRegime)
+names(FixedPriceRegime)
+str(FixedPriceRegime)
+FixedPriceRegime$USDATL<-factor(FixedPriceRegime$USDATL,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","KENDALL" ),ordered=TRUE )
+FixedPriceRegime<-subset(FixedPriceRegime,USDATL %in% c("YOUNG","CARTER","KENDALL"))
+
+ggplot(
+    data = FixedPriceRegime,
+    aes_string(x = "Fiscal.Year"
+               ,fill="Pricing.Mechanism.sum"
+               ,weight="Obligation.2014"
+               ),
+    main = "Distribution by percent of dollars with fixed-price for mixed and unlabeled contracts."
+    )+geom_bar(binwidth=365.24)+facet_grid(SubCustomer.component~USDATL,scales="free_x",space="free_x")
+# +scale_x_continuous(limits = c(-0.25, 1.25))
+
+
+
+ATLregimeFYear<-aggregate(FixedPriceRegime$Obligation.2014
+                                        , by=list(FixedPriceRegime$Fiscal.Year,
+#                                                   FixedPriceRegime$SubCustomer.component,
+                                                  FixedPriceRegime$USDATL)
+                                        ,FUN = "sum"
+                                        ,na.rm =TRUE
+                )
+
+names(ATLregimeFYear)<-c("Fiscal.Year","USDATL","AnnualRegimeObligations")
+FixedPriceRegime>subset(FixedPriceRegime,join(FixedPriceRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
+
+as.Date(paste("09","30",start.year,sep="/"),format='%Y/%m/%d')
+
+
+  ATLregimeDetails<-data.frame(USDATL= 'GANSLER+',
+                               StartDate=as.Date('1997/11/10',format='%Y/%m/%d'))
+  ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'ALDRIDGE',
+                                                      StartDate=as.Date('2001/05/10',format='%Y/%m/%d')))
+  ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'WYNNE',
+                                                      StartDate=as.Date('2003/05/23' ,format='%Y/%m/%d') ))
+  ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KRIEG',
+                                                      StartDate=as.Date('2005/06/06' ,format='%Y/%m/%d') ))
+  ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'YOUNG',
+                                                      StartDate=as.Date('2007/07/20' ,format='%Y/%m/%d') ))
+  ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'CARTER',
+                                                      StartDate=as.Date('2009/04/27',format='%Y/%m/%d')))
+  ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
+                                                      StartDate=as.Date('2010/11/03',format='%Y/%m/%d')))
+
+  Coloration<-read.csv(
+                paste(Path,"Lookups\\","lookup_coloration.csv",sep=""),
+                header=TRUE, sep=",", na.strings="", dec=".", strip.white=TRUE, 
+                stringsAsFactors=FALSE
+        )
+        
+        Coloration<-ddply(Coloration
+                          , c(.(R), .(G), .(B))
+                          , transform
+                          , ColorRGB=as.character(
+                                  if(min(is.na(c(R,G,B)))) {NA} 
+                                  else {rgb(max(R),max(G),max(B),max=255)}
+                          )
+        )
+
+
+  
+        
+        png(
+                paste( paste("DoD_components"
+                        ,"Obligation_2014"
+                        ,"Pricing_Mechanism.sum"
+                        ,"SubCustomer_component"
+                                     ,"USDATL"
+                                      ,sep="_"
+                                )
+                      ,".png"
+                      , sep=""
+                )
+                , type="cairo"
+                , width=7.5
+                , height=10
+                , units='in'
+                , pointsize=12
+                , res=300
+        )
+
+ FixedGraph<-LatticePercentLineWrapper(
+                        "legend.title"
+                        ,"figure.title"
+                        ,"VAR.choice.figures$x.axis.title[VAR.which.figure]"
+                        ,"VAR.choice.figures$y.axis.title[VAR.which.figure]"
+                        ,Coloration
+                        ,0
+                        ,0
+                        ,FixedPriceRegime
+                        ,NULL
+                        ,"Fiscal.Year"
+                        ,"Obligation.2014"
+                        ,"Pricing.Mechanism.sum"
+
+#                         ,"SubCustomer.component"
+#                         ,"USDATL"
+                )
+
+    FixedGraph#+geom_vline(aes(xintercept=as.numeric(StartDate)),data=ATLregimeDetails)
+       FixedGraph+facet_grid(SubCustomer.component ~ USDATL
+                                              , scales="free_x"
+                                              , space="free_x"
+#                                               , labeller=Label_Wrap
+        )+theme(strip.text.y=element_text(size=axis.text.size,angle=0)
+        facet_wrap(~USDATL)
+
+      while(!(dev.cur()[[1]]==1)){
+                        dev.off()
+                }
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+```{r Doingitlocal}
+ 
+    if(is.na(VAR.y.series)) VAR.y.series<-VAR.facet.primary
+    
+    if(!("Graph" %in% names(VAR.long.DF))){
+        VAR.long.DF$Graph<-NA
+    }
+    
+    #Prepare labels for the category variable
+    labels.DF<-PrepareLabelsAndColors(VAR.Coloration
+                                      ,VAR.long.DF
+                                      ,VAR.y.series
+    )  
+    color.list<-c(as.character(labels.DF$ColorRGB))
+    names(color.list)<-c(labels.DF$variable)
+    
+    old.theme<-theme_set(theme_grey())
+    
+    
+    
+    #Reduce the number of rows by aggregating to one row per unique entry in the VAR.y.series column.
+    
+    if(is.na(VAR.facet.primary) ){
+        VAR.long.DF<-aggregate(VAR.long.DF[,VAR.y.variable]
+                               , by=list(VAR.long.DF[,VAR.x.variable]
+                                         ,VAR.long.DF[,VAR.y.series]
+                                         ,VAR.long.DF$Graph
+                               )
+                               ,FUN = "sum"
+                               ,na.rm =TRUE
+        )
+        names(VAR.long.DF)<-c("x.variable","category","Graph","y.variable")
+        #     
+        #     VAR.long.DF$category<-factor(laply(strwrap(as.character(VAR.long.DF$category), width=15, simplify=FALSE), 
+        #           paste, collapse="\n"))
+        #     
+        #     labels.DF$variable<-factor(laply(strwrap(as.character(labels.DF$variable), width=15, simplify=FALSE), 
+        #                                        paste, collapse="\n"))                   
+        
+        
+        VAR.long.DF<-ddply(VAR.long.DF, .(x.variable), transform, p=y.variable/sum(y.variable))
+        
+    } else {
+        
+        second.labels.DF<-PrepareLabelsAndColors(VAR.Coloration
+                                                 ,VAR.long.DF
+                                                 ,VAR.facet.primary
+                                                 
+        )  
+        if(is.na(VAR.facet.secondary)){
+            VAR.long.DF<-aggregate(VAR.long.DF[,VAR.y.variable]
+                                   , by=list(VAR.long.DF[,VAR.x.variable]
+                                             ,VAR.long.DF[,VAR.y.series]
+                                             ,VAR.long.DF[,VAR.facet.primary]
+                                             ,VAR.long.DF$Graph
+                                   )
+                                   ,FUN = "sum"
+                                   ,na.rm =TRUE
+            )
+            names(VAR.long.DF)<-c("x.variable","category","second","Graph","y.variable")
+            if(VAR.facet.primary==VAR.y.series){
+                VAR.long.DF<-ddply(VAR.long.DF, .(x.variable), transform, p=y.variable/sum(y.variable))
+            }
+            else{
+                VAR.long.DF<-ddply(VAR.long.DF, .(x.variable, second), transform, p=y.variable/sum(y.variable))
+            }
+        }
+        else {
+            #     second.labels.DF<-PrepareLabelsAndColors(VAR.Coloration,VAR.long.DF,VAR.facet.primary,VAR.facet.primary)  
+            VAR.long.DF<-aggregate(VAR.long.DF[,VAR.y.variable]
+                                   , by=list(VAR.long.DF[,VAR.x.variable]
+                                             ,VAR.long.DF[,VAR.y.series]
+                                             ,VAR.long.DF[,VAR.facet.primary]
+                                             ,VAR.long.DF[,VAR.facet.secondary]
+                                             ,VAR.long.DF$Graph
+                                   )
+                                   ,FUN = "sum"
+                                   ,na.rm =TRUE
+            )
+            names(VAR.long.DF)<-c("x.variable","category","second","third","Graph","y.variable") 
+            if(VAR.facet.primary==VAR.y.series){
+                VAR.long.DF<-ddply(VAR.long.DF, .(x.variable, third), transform, p=y.variable/sum(y.variable))
+            }
+            else{
+                VAR.long.DF<-ddply(VAR.long.DF, .(x.variable, second, third), transform, p=y.variable/sum(y.variable))
+            }
+            
+        }
+        VAR.long.DF$second<-factor(VAR.long.DF$second,levels=second.labels.DF$variable)
+        rm(second.labels.DF)
+    }
+    
+    
+    if("Graph" %in% names(VAR.long.DF)){
+        VAR.long.DF<-subset(VAR.long.DF, Graph==TRUE)
+    }  
+    
+    
+    VAR.long.DF$category=factor(VAR.long.DF$category
+                                ,levels=c(labels.DF$variable))
+    
+    
+    original<-qplot(
+        , data=VAR.long.DF
+        , x=x.variable#format(x.variable,"%Y")
+        , y=p
+        , ylab=VAR.Y.label
+        , main=VAR.proper.name
+        , xlab=VAR.X.label
+        , geom="line"
+        
+        ,group=category
+        #          ,size=.25
+        # )
+        , color=factor(category,levels=labels.DF$variable),
+    )+ scale_y_continuous(labels = percent_format())  
+    # + geom_line(aes(size=1))
+    
+    #   main=VAR.proper.name,
+    tick.marks<-2
+    print.figure<-original#+scale_x_continuous()
+#     print.figure<-original+scale_x_continuous(
+        #     name=VAR.proper.name,
+#         breaks=
+#             c(seq(
+#                 as.numeric(format(min(VAR.long.DF$x.variable),"%Y")),
+#                 as.numeric(format(max(VAR.long.DF$x.variable),"%Y")),
+#                 by=tick.marks)),
+#         labels=
+#             paste("'",format(as.Date(as.character(
+#                 c(seq(
+#                     as.numeric(format(min(VAR.long.DF$x.variable),"%Y")),
+#                     as.numeric(format(max(VAR.long.DF$x.variable),"%Y")),
+#                     by=tick.marks))
+#             ),"%Y"),"%y"),sep="")  
+#     )
+    
+    
+    #, labels=c(labels.DF$Label) Section labels don't work with facets.
+    #  http://www.cookbook-r.com/Graphs/Facets_(ggplot2)/
+    
+    #   print.figure<-print.figure+scale_shape_discrete(
+    #     VAR.name
+    #     ,  values=color.list
+    #     , breaks=c(labels.DF$variable) 
+    #   )
+    
+    if(!is.na(VAR.facet.secondary)){
+        print.figure<-print.figure+facet_grid(second ~ third
+                                              , scales="free_x"
+                                              , space="free_x"
+                                              , labeller=Label_Wrap
+        )+theme(strip.text.y=element_text(size=axis.text.size,angle=0)
+        )#+scale_y_continuous(expand=c(0,0.75))
+        
+        
+    }
+    else if (!is.na(VAR.facet.primary)){
+        print.figure<-print.figure+facet_wrap(~ second
+                                              #                                           , labeller=Label_Wrap
+                                              #                                           ,ncol=VAR.ncol
+                                              #                                           , scales="fixed", space="free_y"
+        )
+        
+    }
+    
+    print.figure<-print.figure+scale_color_manual(
+        VAR.name
+        ,  values=color.list
+        , breaks=c(labels.DF$variable)
+        , guide = guide_legend(reverse=TRUE)
+        
+    )
+    
+    print.figure<-print.figure+
+        theme(axis.text.x=element_text(size=axis.text.size))+
+        theme(axis.text.y=element_text(size=axis.text.size))+
+        theme(strip.text.x=element_text(size=strip.text.size))+
+        theme(strip.text.y=element_text(size=strip.text.size))+
+        theme(axis.title.x=element_text(size=axis.text.size))+
+        theme(axis.title.y=element_text(size=axis.text.size, angle=90))+
+        theme(plot.title=element_text(size=title.text.size))
+    
+    if(length(unique(VAR.long.DF$category))>1 
+       & (is.na(VAR.facet.primary) || (VAR.facet.primary!=VAR.y.series))){
+        print.figure<-print.figure+
+            theme(legend.position="right")+
+            theme(legend.title=element_text(size=legend.text.size,hjust=0))+
+            theme(legend.text=element_text(size=legend.text.size))
+    }
+    else{
+        print.figure<-print.figure+theme(legend.position="none")
+    }
+    
+    #   print.figure<-facetAdjust(print.figure,"down")
+    print.figure
+
+```
