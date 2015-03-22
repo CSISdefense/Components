@@ -531,6 +531,39 @@ while(!(dev.cur()[[1]]==1)){
     dev.off()
     }</code></pre>
 <p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+<pre class="r"><code>VendorRegimeTable&lt;-ddply(VendorRegime, c(&quot;Fiscal.Year&quot;
+    ,&quot;Vendor.Size.sum&quot;
+    ,&quot;SubCustomer.component&quot;
+    ,&quot;USDATL&quot;)
+    ,summarise
+    ,Obligation.2014=sum(Obligation.2014)
+)
+write.csv(VendorRegimeTable,paste(paste(&quot;DoD_components&quot;
+                 ,&quot;Obligation_2014&quot;
+                 ,&quot;Vendor_Size_sum&quot;
+                 ,&quot;USDATL&quot;
+                 ,&quot;Annual&quot;
+                 ,sep=&quot;_&quot;
+                 )
+           ,&quot;.csv&quot;,
+           sep=&quot;&quot;))
+
+VendorPolicyTable&lt;-ddply(VendorPolicy, c(&quot;Fiscal.Year&quot;
+    ,&quot;Vendor.Size.sum&quot;
+    ,&quot;SubCustomer.component&quot;
+    ,&quot;ATLpolicy&quot;)
+    ,summarise
+    ,Obligation.2014=sum(Obligation.2014)
+)
+write.csv(VendorPolicyTable,paste(paste(&quot;DoD_components&quot;
+                 ,&quot;Obligation_2014&quot;
+                 ,&quot;Vendor_Size_sum&quot;
+                 ,&quot;ATLpolicy&quot;
+                 ,&quot;Annual&quot;
+                 ,sep=&quot;_&quot;
+                 )
+           ,&quot;.csv&quot;,
+           sep=&quot;&quot;))</code></pre>
 
 
 </div>
