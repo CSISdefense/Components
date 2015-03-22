@@ -565,7 +565,7 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 
 ```{r DataTables}
 CompRegimeTable<-ddply(CompRegime, c("Fiscal.Year"
-    ,"Competition.sum.sum"
+    ,"Competition.sum"
     ,"SubCustomer.component"
     ,"USDATL")
     ,summarise
@@ -573,7 +573,7 @@ CompRegimeTable<-ddply(CompRegime, c("Fiscal.Year"
 )
 write.csv(CompRegimeTable,paste(paste("DoD_components"
                  ,"Obligation_2014"
-                 ,"Vendor_Size_sum"
+                 ,"Competition_sum"
                  ,"USDATL"
                  ,"Annual"
                  ,sep="_"
@@ -582,7 +582,7 @@ write.csv(CompRegimeTable,paste(paste("DoD_components"
            sep=""))
 
 CompPolicyTable<-ddply(CompPolicy, c("Fiscal.Year"
-    ,"Competition.sum.sum"
+    ,"Competition.sum"
     ,"SubCustomer.component"
     ,"ATLpolicy")
     ,summarise
@@ -590,7 +590,7 @@ CompPolicyTable<-ddply(CompPolicy, c("Fiscal.Year"
 )
 write.csv(CompPolicyTable,paste(paste("DoD_components"
                  ,"Obligation_2014"
-                 ,"Vendor_Size_sum"
+                 ,"Competition_sum"
                  ,"ATLpolicy"
                  ,"Annual"
                  ,sep="_"

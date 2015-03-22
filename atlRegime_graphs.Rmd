@@ -455,3 +455,41 @@ while(!(dev.cur()[[1]]==1)){
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
+
+```{r DataTables}
+FixedRegimeTable<-ddply(FixedRegime, c("Fiscal.Year"
+    ,"Pricing.Mechanism.sum"
+    ,"SubCustomer.component"
+    ,"USDATL")
+    ,summarise
+    ,Obligation.2014=sum(Obligation.2014)
+)
+write.csv(FixedRegimeTable,paste(paste("DoD_components"
+                 ,"Obligation_2014"
+                 ,"Pricing_Mechanism_sum"
+                 ,"USDATL"
+                 ,"Annual"
+                 ,sep="_"
+                 )
+           ,".csv",
+           sep=""))
+
+FixedPolicyTable<-ddply(FixedPolicy, c("Fiscal.Year"
+    ,"Pricing.Mechanism.sum"
+    ,"SubCustomer.component"
+    ,"ATLpolicy")
+    ,summarise
+    ,Obligation.2014=sum(Obligation.2014)
+)
+write.csv(FixedPolicyTable,paste(paste("DoD_components"
+                 ,"Obligation_2014"
+                 ,"Pricing_Mechanism_sum"
+                 ,"ATLpolicy"
+                 ,"Annual"
+                 ,sep="_"
+                 )
+           ,".csv",
+           sep=""))
+
+
+```

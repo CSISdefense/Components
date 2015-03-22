@@ -581,15 +581,7 @@ CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format
 while(!(dev.cur()[[1]]==1)){
     dev.off()
     }</code></pre>
-<pre class="r"><code>CompPolicy$Fiscal.Year[CompPolicy$Fiscal.Year&gt;CompPolicy$EndDate&amp;
-                                      CompPolicy$SignedMonth&lt;=CompPolicy$EndDate]&lt;-
-    CompPolicy$EndDate[CompPolicy$Fiscal.Year&gt;CompPolicy$EndDate&amp;
-                                      CompPolicy$SignedMonth&lt;=CompPolicy$EndDate]
-CompPolicy$SignedFiscal.Year[CompPolicy$SignedFiscal.Year&lt;CompPolicy$StartDate]&lt;-
-    CompPolicy$StartDate[CompPolicy$SignedFiscal.Year&lt;CompPolicy$StartDate]
-
-
-png(
+<pre class="r"><code>png(
     paste( paste(&quot;DoD_components&quot;
                  ,&quot;Obligation_2014&quot;
                  ,&quot;Comp_Effective&quot;
@@ -655,6 +647,39 @@ while(!(dev.cur()[[1]]==1)){
     dev.off()
     }</code></pre>
 <p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+<pre class="r"><code>CompRegimeTable&lt;-ddply(CompRegime, c(&quot;Fiscal.Year&quot;
+    ,&quot;Competition.sum&quot;
+    ,&quot;SubCustomer.component&quot;
+    ,&quot;USDATL&quot;)
+    ,summarise
+    ,Obligation.2014=sum(Obligation.2014)
+)
+write.csv(CompRegimeTable,paste(paste(&quot;DoD_components&quot;
+                 ,&quot;Obligation_2014&quot;
+                 ,&quot;Competition_sum&quot;
+                 ,&quot;USDATL&quot;
+                 ,&quot;Annual&quot;
+                 ,sep=&quot;_&quot;
+                 )
+           ,&quot;.csv&quot;,
+           sep=&quot;&quot;))
+
+CompPolicyTable&lt;-ddply(CompPolicy, c(&quot;Fiscal.Year&quot;
+    ,&quot;Competition.sum&quot;
+    ,&quot;SubCustomer.component&quot;
+    ,&quot;ATLpolicy&quot;)
+    ,summarise
+    ,Obligation.2014=sum(Obligation.2014)
+)
+write.csv(CompPolicyTable,paste(paste(&quot;DoD_components&quot;
+                 ,&quot;Obligation_2014&quot;
+                 ,&quot;Competition_sum&quot;
+                 ,&quot;ATLpolicy&quot;
+                 ,&quot;Annual&quot;
+                 ,sep=&quot;_&quot;
+                 )
+           ,&quot;.csv&quot;,
+           sep=&quot;&quot;))</code></pre>
 
 
 </div>
