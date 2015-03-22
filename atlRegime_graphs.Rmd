@@ -457,14 +457,14 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 
 
 ```{r DataTables}
-FixedRegimeTable<-ddply(FixedRegime, c("Fiscal.Year"
+FixedPriceRegimeTable<-ddply(FixedPriceRegime, c("Fiscal.Year"
     ,"Pricing.Mechanism.sum"
     ,"SubCustomer.component"
     ,"USDATL")
     ,summarise
     ,Obligation.2014=sum(Obligation.2014)
 )
-write.csv(FixedRegimeTable,paste(paste("DoD_components"
+write.csv(FixedPriceRegimeTable,paste(paste("DoD_components"
                  ,"Obligation_2014"
                  ,"Pricing_Mechanism_sum"
                  ,"USDATL"
@@ -474,14 +474,14 @@ write.csv(FixedRegimeTable,paste(paste("DoD_components"
            ,".csv",
            sep=""))
 
-FixedPolicyTable<-ddply(FixedPolicy, c("Fiscal.Year"
+FixedPricePolicyTable<-ddply(FixedPricePolicy, c("Fiscal.Year"
     ,"Pricing.Mechanism.sum"
     ,"SubCustomer.component"
     ,"ATLpolicy")
     ,summarise
     ,Obligation.2014=sum(Obligation.2014)
 )
-write.csv(FixedPolicyTable,paste(paste("DoD_components"
+write.csv(FixedPricePolicyTable,paste(paste("DoD_components"
                  ,"Obligation_2014"
                  ,"Pricing_Mechanism_sum"
                  ,"ATLpolicy"

@@ -580,6 +580,39 @@ while(!(dev.cur()[[1]]==1)){
     dev.off()
     }</code></pre>
 <p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
+<pre class="r"><code>FixedPriceRegimeTable&lt;-ddply(FixedPriceRegime, c(&quot;Fiscal.Year&quot;
+    ,&quot;Pricing.Mechanism.sum&quot;
+    ,&quot;SubCustomer.component&quot;
+    ,&quot;USDATL&quot;)
+    ,summarise
+    ,Obligation.2014=sum(Obligation.2014)
+)
+write.csv(FixedPriceRegimeTable,paste(paste(&quot;DoD_components&quot;
+                 ,&quot;Obligation_2014&quot;
+                 ,&quot;Pricing_Mechanism_sum&quot;
+                 ,&quot;USDATL&quot;
+                 ,&quot;Annual&quot;
+                 ,sep=&quot;_&quot;
+                 )
+           ,&quot;.csv&quot;,
+           sep=&quot;&quot;))
+
+FixedPricePolicyTable&lt;-ddply(FixedPricePolicy, c(&quot;Fiscal.Year&quot;
+    ,&quot;Pricing.Mechanism.sum&quot;
+    ,&quot;SubCustomer.component&quot;
+    ,&quot;ATLpolicy&quot;)
+    ,summarise
+    ,Obligation.2014=sum(Obligation.2014)
+)
+write.csv(FixedPricePolicyTable,paste(paste(&quot;DoD_components&quot;
+                 ,&quot;Obligation_2014&quot;
+                 ,&quot;Pricing_Mechanism_sum&quot;
+                 ,&quot;ATLpolicy&quot;
+                 ,&quot;Annual&quot;
+                 ,sep=&quot;_&quot;
+                 )
+           ,&quot;.csv&quot;,
+           sep=&quot;&quot;))</code></pre>
 
 
 </div>
