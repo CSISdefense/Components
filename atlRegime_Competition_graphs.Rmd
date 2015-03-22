@@ -1,0 +1,564 @@
+---
+title: "ATLregime"
+author: "Greg Sanders"
+date: "Friday, March 20, 2015"
+output: html_document
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r, echo=FALSE}
+require(ggplot2)
+require(stringr)
+require(plyr)
+options(error=recover)
+setwd("K:\\Development\\Components")
+# setwd("C:\\Users\\Greg Sanders\\Documents\\Development\\Fixed-price")
+Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
+# Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
+source(paste(Path,"lookups.r",sep=""))
+source(paste(Path,"helper.r",sep=""))
+
+axis.text.size<-14
+        strip.text.size<-14
+        legend.text.size<-8
+        # table.text.size<-5.75
+        title.text.size<-12
+        geom.text.size<-12
+        
+        main.text.size<-2
+        note.text.size<-1.40
+```
+
+You can also embed plots, for example:
+
+```{r, echo=FALSE}
+CompRegime  <- read.csv(
+    paste("data\\Defense_Summary_SP_CompetitionHistoryBucketSubCustomerRegime.csv", sep = ""),
+    header = TRUE, sep = ",", dec = ".", strip.white = TRUE, 
+    na.strings = c("NULL","NA",""),
+    stringsAsFactors = TRUE
+    )
+
+CompRegime<-apply_lookups(Path,CompRegime)
+names(CompRegime)
+str(CompRegime)
+CompRegime$USDATL<-factor(CompRegime$USDATL,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","KENDALL" ),ordered=TRUE )
+CompRegime<-subset(CompRegime,USDATL %in% c("YOUNG","CARTER","KENDALL"))
+
+
+Coloration<-read.csv(
+    paste(Path,"Lookups\\","lookup_coloration.csv",sep=""),
+    header=TRUE, sep=",", na.strings="", dec=".", strip.white=TRUE, 
+    stringsAsFactors=FALSE
+    )
+
+Coloration<-ddply(Coloration
+                  , c(.(R), .(G), .(B))
+                  , transform
+                  , ColorRGB=as.character(
+                      if(min(is.na(c(R,G,B)))) {NA} 
+                      else {rgb(max(R),max(G),max(B),max=255)}
+                      )
+                  )
+
+# debug(LatticePercentLineWrapper)
+CompRegime$Graph<-TRUE
+
+CompRegime$SignedQuarter<-as.Date(paste(as.numeric(format(CompRegime$SignedMonth, "%Y"))+
+                                                  floor(as.numeric(format(CompRegime$SignedMonth,"%m"))/10),
+    (floor((as.numeric(format(CompRegime$SignedMonth, "%m"))-1)/3)*3+4) %% 12,
+    1
+      ,sep="-"),"%Y-%m-%d")-1
+CompRegime$SignedSemiAnnual<-CompRegime$SignedQuarter
+CompRegime$SignedSemiAnnual[format(CompRegime$SignedQuarter, "%m")=="06"]<-
+    as.Date(paste(as.numeric(format(
+        CompRegime$SignedMonth[format(CompRegime$SignedQuarter, "%m")=="06"], "%Y"))
+        ,9,30,sep="-"),"%Y-%m-%d")
+CompRegime$SignedSemiAnnual[format(CompRegime$SignedQuarter, "%m")=="12"]<-
+    as.Date(paste(as.numeric(format(
+        CompRegime$SignedMonth[format(CompRegime$SignedQuarter, "%m")=="12"], "%Y"))+1
+        ,3,31,sep="-"),"%Y-%m-%d")
+
+CompRegime$SubCustomer.component<-droplevels(CompRegime$SubCustomer.component)
+CompRegime$SubCustomer.component<-factor(CompRegime$SubCustomer.component,
+                                               levels=c("Army","Navy","Air Force","DLA",
+                                                        "MDA","MilitaryHealth","Additional DoD Components"),
+                                               labels=c("Army","Navy","Air Force","DLA",
+                                                        "MDA","Military\nHealth","Additional\nDoD\nComponents"),
+                                               ordered=TRUE)
+                                                                                               
+```
+
+
+
+
+
+
+```{r CompUSDATLSemiAnnual}        
+ATLregimeFYear<-aggregate(CompRegime$Obligation.2014
+                          , by=list(CompRegime$Fiscal.Year,
+                                    #                                                   CompRegime$SubCustomer.component,
+                                    CompRegime$USDATL)
+                          ,FUN = "sum"
+                          ,na.rm =TRUE
+                          )
+
+names(ATLregimeFYear)<-c("Fiscal.Year","USDATL","AnnualRegimeObligations")
+CompUSDATL<-subset(CompRegime,join(CompRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
+
+
+ATLregimeDetails<-data.frame(USDATL= 'GANSLER+',
+                             StartDate=as.Date('1997/11/10',format='%Y/%m/%d'),
+                             EndDate=as.Date('2001/05/10',format='%Y/%m/%d'))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'ALDRIDGE',
+                                                    StartDate=as.Date('2001/05/10',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2003/05/22' ,format='%Y/%m/%d') ))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'WYNNE',
+                                                    StartDate=as.Date('2003/05/23' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2005/06/05' ,format='%Y/%m/%d')))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KRIEG',
+                                                    StartDate=as.Date('2005/06/06' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2007/07/19' ,format='%Y/%m/%d')))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'YOUNG',
+                                                    StartDate=as.Date('2007/07/20' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2009/04/26',format='%Y/%m/%d')))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'CARTER',
+                                                    StartDate=as.Date('2009/04/27',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2010/11/02',format='%Y/%m/%d')))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
+                                                    StartDate=as.Date('2010/11/03',format='%Y/%m/%d'),
+                                                    EndDate=max(CompRegime$SignedQuarter)))
+
+CompUSDATL<-join(CompUSDATL,ATLregimeDetails,match="first")
+
+CompUSDATL$SignedSemiAnnual[CompUSDATL$SignedSemiAnnual>CompUSDATL$EndDate&
+                                      CompUSDATL$SignedMonth<=CompUSDATL$EndDate]<-
+    CompUSDATL$EndDate[CompUSDATL$SignedSemiAnnual>CompUSDATL$EndDate&
+                                      CompUSDATL$SignedMonth<=CompUSDATL$EndDate]
+
+CompUSDATL$SignedSemiAnnual[CompUSDATL$SignedSemiAnnual<CompUSDATL$StartDate]<-
+    CompUSDATL$StartDate[CompUSDATL$SignedSemiAnnual<CompUSDATL$StartDate]
+
+
+png(
+    paste( paste("DoD_components"
+                 ,"Obligation_2014"
+                 ,"Competition_sum"
+                 ,"USDATL"
+                 ,"Semi_Annual"
+                 ,sep="_"
+                 )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=10
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+# debug(LatticePercentLineWrapper)
+
+CompGraph<-LatticePercentLineWrapper(
+    "Competition"
+    ,"Competition by DoD Component and Starting Regime"
+    ,"Fiscal Year of Obligation"
+    ,"% of Component Obligations"
+    ,Coloration
+    ,0
+    ,0
+    ,CompUSDATL
+    ,NULL
+    ,"SignedSemiAnnual"
+    ,"Obligation.2014"
+    ,"Competition.sum"
+    ,"SubCustomer.component"
+    ,"USDATL"
+    ,"StartDate"
+    ,"EndDate"
+    )
+
+# CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
+CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year")) 
+CompGraph
+    print(CompGraph)
+#     CompGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+```
+
+
+
+```{r CompUSDATLAnnual}        
+CompUSDATL$Fiscal.Year[CompUSDATL$Fiscal.Year>CompUSDATL$EndDate&
+                                      CompUSDATL$SignedMonth<=CompUSDATL$EndDate]<-
+    CompUSDATL$EndDate[CompUSDATL$Fiscal.Year>CompUSDATL$EndDate&
+                                      CompUSDATL$SignedMonth<=CompUSDATL$EndDate]
+
+CompUSDATL$Fiscal.Year[CompUSDATL$Fiscal.Year<CompUSDATL$StartDate]<-
+    CompUSDATL$StartDate[CompUSDATL$Fiscal.Year<CompUSDATL$StartDate]
+
+
+png(
+    paste( paste("DoD_components"
+                 ,"Obligation_2014"
+                 ,"Competition_sum"
+                 ,"USDATL"
+                 ,"Annual"
+                 ,sep="_"
+                 )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=10
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+# debug(LatticePercentLineWrapper)
+
+CompGraph<-LatticePercentLineWrapper(
+    "Competition"
+    ,"Competition by DoD Component and Starting Regime"
+    ,"Fiscal Year of Obligation"
+    ,"% of Component Obligations"
+    ,Coloration
+    ,0
+    ,0
+    ,CompUSDATL
+    ,NULL
+    ,"Fiscal.Year"
+    ,"Obligation.2014"
+    ,"Competition.sum"
+    ,"SubCustomer.component"
+    ,"USDATL"
+    ,"StartDate"
+    ,"EndDate"
+    )
+
+# CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
+CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+CompGraph
+    print(CompGraph)
+#     CompGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+```
+
+
+
+
+```{r CompUSDATLAnnualEffective}        
+png(
+    paste( paste("DoD_components"
+                 ,"Obligation_2014"
+                 ,"Comp_Effective"
+                 ,"USDATL"
+                 ,"Annual"
+                 ,sep="_"
+                 )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=10
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+# debug(LatticePercentLineWrapper)
+
+CompGraph<-LatticePercentLineWrapper(
+    "Competition"
+    ,"Competition by DoD Component and Starting Regime"
+    ,"Fiscal Year of Obligation"
+    ,"% of Component Obligations"
+    ,Coloration
+    ,0
+    ,0
+    ,CompUSDATL
+    ,NULL
+    ,"Fiscal.Year"
+    ,"Obligation.2014"
+    ,"Competition.effective.only"
+    ,"SubCustomer.component"
+    ,"USDATL"
+    ,"StartDate"
+    ,"EndDate"
+    )
+
+# CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
+CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+CompGraph
+    print(CompGraph)
+#     CompGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+```
+
+
+```{r CompPolicySemiAnnual}        
+CompPolicy<-CompRegime
+CompPolicy$ATLpolicy<-as.character(CompRegime$USDATL)
+CompPolicy$ATLpolicy[CompPolicy$BBP1==1]<-"BBP1"
+CompPolicy$ATLpolicy[CompPolicy$BBP2==1]<-"BBP2"
+CompPolicy$ATLpolicy[CompPolicy$BBP3==1]<-"BBP3"
+
+CompPolicy$ATLpolicy<-factor(CompPolicy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","BBP1","BBP2","BBP3" ),ordered=TRUE )
+# 
+# ATLpolicyFYear<-aggregate(CompPolicy$Obligation.2014
+#                           , by=list(CompPolicy$Fiscal.Year,
+#                                     #                                                   CompRegime$SubCustomer.component,
+#                                     CompPolicy$ATLpolicy)
+#                           ,FUN = "sum"
+#                           ,na.rm =TRUE
+#                           )
+# 
+# 
+# 
+# names(ATLpolicyFYear)<-c("Fiscal.Year","ATLpolicy","AnnualPolicyObligations")
+# CompPolicy<-subset(CompPolicy,join(CompPolicy,ATLpolicyFYear)$AnnualPolicyObligations>=50)
+# 
+
+ATLpolicyDetails<-data.frame(ATLpolicy= 'GANSLER+',
+                             StartDate=as.Date('1997/11/10',format='%Y/%m/%d'),
+                             EndDate=as.Date('2001/05/10',format='%Y/%m/%d'))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'ALDRIDGE',
+                                                    StartDate=as.Date('2001/05/10',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2003/05/22' ,format='%Y/%m/%d') ))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'WYNNE',
+                                                    StartDate=as.Date('2003/05/23' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2005/06/05' ,format='%Y/%m/%d')))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'KRIEG',
+                                                    StartDate=as.Date('2005/06/06' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2007/07/19' ,format='%Y/%m/%d')))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'YOUNG',
+                                                    StartDate=as.Date('2007/07/20' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2009/04/26',format='%Y/%m/%d')))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'CARTER',
+                                                    StartDate=as.Date('2009/04/27',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2010/11/02',format='%Y/%m/%d')))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP1',
+                                                    StartDate=as.Date('2010/11/03',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2013/04/23',format='%Y/%m/%d')))
+# ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'WSARA regs',
+#                                                     StartDate=as.Date('2011/03/16',format='%Y/%m/%d'),
+#                                                     EndDate=as.Date('2013/04/23',format='%Y/%m/%d')))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP2',
+                                                    StartDate=as.Date('2013/04/24',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2014/09/18',format='%Y/%m/%d')))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP3',
+                                                    StartDate=as.Date('2014/09/19',format='%Y/%m/%d'),
+                                                    EndDate=max(CompRegime$SignedQuarter)))
+
+
+
+CompPolicy<-join(CompPolicy,ATLpolicyDetails,match="first")
+CompPolicy<-subset(CompPolicy,ATLpolicy!='BBP3') #Not enough to include
+CompPolicy$SignedSemiAnnual[CompPolicy$SignedSemiAnnual>CompPolicy$EndDate&
+                                      CompPolicy$SignedMonth<=CompPolicy$EndDate]<-
+    CompPolicy$EndDate[CompPolicy$SignedSemiAnnual>CompPolicy$EndDate&
+                                      CompPolicy$SignedMonth<=CompPolicy$EndDate]
+CompPolicy$SignedSemiAnnual[CompPolicy$SignedSemiAnnual<CompPolicy$StartDate]<-
+    CompPolicy$StartDate[CompPolicy$SignedSemiAnnual<CompPolicy$StartDate]
+
+png(
+    paste( paste("DoD_components"
+                 ,"Obligation_2014"
+                 ,"Competition_sum"
+                 ,"ATLpolicy"
+                 ,"Semi_Annual"
+                 ,sep="_"
+                 )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=10
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+
+CompGraph<-LatticePercentLineWrapper(
+    "Competition"
+    ,"Competition by DoD Component and Starting Regime"
+    ,"Fiscal Year of Obligation"
+    ,"% of Component Obligations"
+    ,Coloration
+    ,0
+    ,0
+    ,CompPolicy
+    ,NULL
+    ,"SignedSemiAnnual"
+    ,"Obligation.2014"
+    ,"Competition.sum"
+    ,"SubCustomer.component"
+    ,"ATLpolicy"
+    ,"StartDate"
+    ,"EndDate"
+    )
+
+# CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
+CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+CompGraph
+    print(CompGraph)
+#     CompGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+```
+
+
+```{r CompPolicyAnnual}
+CompPolicy$Fiscal.Year[CompPolicy$Fiscal.Year>CompPolicy$EndDate&
+                                      CompPolicy$SignedMonth<=CompPolicy$EndDate]<-
+    CompPolicy$EndDate[CompPolicy$Fiscal.Year>CompPolicy$EndDate&
+                                      CompPolicy$SignedMonth<=CompPolicy$EndDate]
+CompPolicy$SignedFiscal.Year[CompPolicy$SignedFiscal.Year<CompPolicy$StartDate]<-
+    CompPolicy$StartDate[CompPolicy$SignedFiscal.Year<CompPolicy$StartDate]
+
+
+png(
+    paste( paste("DoD_components"
+                 ,"Obligation_2014"
+                 ,"Competition_sum"
+                 ,"ATLpolicy"
+                 ,"Annual"
+                 ,sep="_"
+                 )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=10
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+
+CompGraph<-LatticePercentLineWrapper(
+    "Competition"
+    ,"Competition by DoD Component and Starting Regime"
+    ,"Fiscal Year of Obligation"
+    ,"% of Component Obligations"
+    ,Coloration
+    ,0
+    ,0
+    ,CompPolicy
+    ,NULL
+    ,"Fiscal.Year"
+    ,"Obligation.2014"
+    ,"Competition.sum"
+    ,"SubCustomer.component"
+    ,"ATLpolicy"
+    ,"StartDate"
+    ,"EndDate"
+    )
+
+# CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
+CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+CompGraph
+    print(CompGraph)
+#     CompGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+
+```
+
+```{r CompPolicyAnnualEffective}
+png(
+    paste( paste("DoD_components"
+                 ,"Obligation_2014"
+                 ,"Comp_Effective"
+                 ,"ATLpolicy"
+                 ,"Annual"
+                 ,sep="_"
+                 )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=10
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+
+CompGraph<-LatticePercentLineWrapper(
+    "Competition"
+    ,"Competition by DoD Component and Starting Regime"
+    ,"Fiscal Year of Obligation"
+    ,"% of Component Obligations"
+    ,Coloration
+    ,0
+    ,0
+    ,CompPolicy
+    ,NULL
+    ,"Fiscal.Year"
+    ,"Obligation.2014"
+    ,"Competition.effective.only"
+    ,"SubCustomer.component"
+    ,"ATLpolicy"
+    ,"StartDate"
+    ,"EndDate"
+    )
+
+# CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
+CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+CompGraph
+    print(CompGraph)
+#     CompGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+
+```
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
