@@ -99,14 +99,14 @@ img {
 ## [31] &quot;Deflator.2014&quot;                   &quot;Obligation.2013&quot;                
 ## [33] &quot;Obligation.2014&quot;                 &quot;LogOfAction.Obligation&quot;         
 ## [35] &quot;Graph&quot;</code></pre>
-<pre><code>## 'data.frame':    169560 obs. of  35 variables:
+<pre><code>## 'data.frame':    176499 obs. of  35 variables:
 ##  $ Fiscal.Year                    : Date, format: NA &quot;1988-09-30&quot; ...
 ##  $ Vendor.Size                    : Factor w/ 11 levels &quot;Large&quot;,&quot;Large (Small Subsidiary)&quot;,..: 7 7 10 7 1 7 1 10 1 7 ...
 ##  $ ProductOrServiceArea           : Factor w/ 9 levels &quot;ERS&quot;,&quot;FRS&amp;C&quot;,..: 9 4 5 7 7 6 8 1 2 2 ...
 ##  $ Customer                       : Factor w/ 1 level &quot;Defense&quot;: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ SubCustomer                    : Factor w/ 8 levels &quot;Air Force&quot;,&quot;Army&quot;,..: 6 2 6 6 7 2 2 6 6 6 ...
 ##  $ SignedMonth                    : Date, format: NA NA ...
-##  $ Query_Run                      : Factor w/ 1 level &quot;2015-03-22 08:16:00.740&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ Query_Run                      : Factor w/ 1 level &quot;2015-03-23 17:27:35.170&quot;: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ USDATL                         : Factor w/ 7 levels &quot;ALDRIDGE&quot;,&quot;CARTER&quot;,..: NA NA NA NA NA NA NA NA NA NA ...
 ##  $ ITFsmallBusiness               : int  0 0 0 0 0 0 0 0 0 0 ...
 ##  $ BBP1                           : int  0 0 0 0 0 0 0 0 0 0 ...
@@ -163,9 +163,9 @@ ATLregimeDetails&lt;-rbind(ATLregimeDetails,data.frame(USDATL= 'YOUNG',
                                                     EndDate=as.Date('2009/04/26',format='%Y/%m/%d')))
 ATLregimeDetails&lt;-rbind(ATLregimeDetails,data.frame(USDATL= 'CARTER',
                                                     StartDate=as.Date('2009/04/27',format='%Y/%m/%d'),
-                                                    EndDate=as.Date('2010/11/02',format='%Y/%m/%d')))
+                                                    EndDate=as.Date('2011/11/02',format='%Y/%m/%d')))
 ATLregimeDetails&lt;-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
-                                                    StartDate=as.Date('2010/11/03',format='%Y/%m/%d'),
+                                                    StartDate=as.Date('2011/11/03',format='%Y/%m/%d'),
                                                     EndDate=max(VendorRegime$SignedQuarter)))
 
 VendorUSDATL&lt;-join(VendorUSDATL,ATLregimeDetails,match=&quot;first&quot;)</code></pre>
@@ -226,8 +226,12 @@ VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_fo
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;)) </code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>VendorGraph</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>    print(VendorGraph)</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>#     VendorGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
@@ -291,9 +295,11 @@ VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_fo
 <pre class="r"><code>VendorGraph</code></pre>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>    print(VendorGraph)</code></pre>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>#     VendorGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
@@ -338,7 +344,7 @@ ATLpolicyDetails&lt;-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'YOUNG',
                                                     EndDate=as.Date('2009/04/26',format='%Y/%m/%d')))
 ATLpolicyDetails&lt;-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'CARTER\n pre-IFT',
                                                     StartDate=as.Date('2009/04/27',format='%Y/%m/%d'),
-                                                    EndDate=as.Date('2010/09/22',format='%Y/%m/%d')))
+                                                    EndDate=as.Date('2010/09/22',format='%Y/%m/%d')))
 ATLpolicyDetails&lt;-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'Small Business\nTask Force',
                                                     StartDate=as.Date('2010/09/23',format='%Y/%m/%d'),
                                                     EndDate=as.Date('2013/04/23',format='%Y/%m/%d')))

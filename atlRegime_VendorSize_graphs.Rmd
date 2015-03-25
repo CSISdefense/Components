@@ -127,9 +127,9 @@ ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'YOUNG',
                                                     EndDate=as.Date('2009/04/26',format='%Y/%m/%d')))
 ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'CARTER',
                                                     StartDate=as.Date('2009/04/27',format='%Y/%m/%d'),
-                                                    EndDate=as.Date('2010/11/02',format='%Y/%m/%d')))
+                                                    EndDate=as.Date('2011/11/02',format='%Y/%m/%d')))
 ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
-                                                    StartDate=as.Date('2010/11/03',format='%Y/%m/%d'),
+                                                    StartDate=as.Date('2011/11/03',format='%Y/%m/%d'),
                                                     EndDate=max(VendorRegime$SignedQuarter)))
 
 VendorUSDATL<-join(VendorUSDATL,ATLregimeDetails,match="first")
@@ -307,7 +307,7 @@ ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'YOUNG',
                                                     EndDate=as.Date('2009/04/26',format='%Y/%m/%d')))
 ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'CARTER\n pre-IFT',
                                                     StartDate=as.Date('2009/04/27',format='%Y/%m/%d'),
-                                                    EndDate=as.Date('2010/09/22',format='%Y/%m/%d')))
+                                                    EndDate=as.Date('2010/09/22',format='%Y/%m/%d')))
 ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'Small Business\nTask Force',
                                                     StartDate=as.Date('2010/09/23',format='%Y/%m/%d'),
                                                     EndDate=as.Date('2013/04/23',format='%Y/%m/%d')))

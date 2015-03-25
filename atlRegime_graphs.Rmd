@@ -127,9 +127,9 @@ ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'YOUNG',
                                                     EndDate=as.Date('2009/04/26',format='%Y/%m/%d')))
 ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'CARTER',
                                                     StartDate=as.Date('2009/04/27',format='%Y/%m/%d'),
-                                                    EndDate=as.Date('2010/11/02',format='%Y/%m/%d')))
+                                                    EndDate=as.Date('2011/11/02',format='%Y/%m/%d')))
 ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
-                                                    StartDate=as.Date('2010/11/03',format='%Y/%m/%d'),
+                                                    StartDate=as.Date('2011/11/03',format='%Y/%m/%d'),
                                                     EndDate=max(FixedPriceRegime$SignedQuarter)))
 
 FixedPriceUSDATL<-join(FixedPriceUSDATL,ATLregimeDetails,match="first")
@@ -270,12 +270,12 @@ while(!(dev.cur()[[1]]==1)){
 FixedPricePolicy<-FixedPriceRegime
 FixedPricePolicy$ATLpolicy<-as.character(FixedPriceRegime$USDATL)
 FixedPricePolicy$ATLpolicy[FixedPricePolicy$BBP1==1]<-"CARTER+BBP1"
-FixedPricePolicy$ATLpolicy[FixedPricePolicy$USDATL=="CARTER"]<-"CARTER+BBP1"
+FixedPricePolicy$ATLpolicy[FixedPricePolicy$USDATL=="CARTER"]<-"CARTER\npre-WSARA reg"
 FixedPricePolicy$ATLpolicy[FixedPricePolicy$WSARAreg==1]<-"WSARA regs"
 FixedPricePolicy$ATLpolicy[FixedPricePolicy$BBP2==1]<-"BBP2"
 FixedPricePolicy$ATLpolicy[FixedPricePolicy$BBP3==1]<-"BBP3"
 
-FixedPricePolicy$ATLpolicy<-factor(FixedPricePolicy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER+BBP1","WSARA regs","BBP2","BBP3" ),ordered=TRUE )
+FixedPricePolicy$ATLpolicy<-factor(FixedPricePolicy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER\npre-WSARA reg","WSARA regs","BBP2","BBP3" ),ordered=TRUE )
 # 
 # ATLpolicyFYear<-aggregate(FixedPricePolicy$Obligation.2014
 #                           , by=list(FixedPricePolicy$Fiscal.Year,
@@ -306,7 +306,7 @@ ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'KRIEG',
 ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'YOUNG',
                                                     StartDate=as.Date('2007/07/20' ,format='%Y/%m/%d'),
                                                     EndDate=as.Date('2009/04/26',format='%Y/%m/%d')))
-ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'CARTER+BBP1',
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'CARTER\npre-WSARA reg',
                                                     StartDate=as.Date('2009/04/27',format='%Y/%m/%d'),
                                                     EndDate=as.Date('2011/03/15',format='%Y/%m/%d')))
 # ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'CARTER',

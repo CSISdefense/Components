@@ -257,80 +257,80 @@ Components","YOUNG",-2.36226131197229e-05
 DoD
 Components","CARTER
  pre-IFT",0.000504434823554882
-"161",2010-09-02,"Large","Army","CARTER
+"161",2010-09-22,"Large","Army","CARTER
  pre-IFT",30.8633301309157
-"162",2010-09-02,"Large","Navy","CARTER
+"162",2010-09-22,"Large","Navy","CARTER
  pre-IFT",14.5103880362323
-"163",2010-09-02,"Large","Air Force","CARTER
+"163",2010-09-22,"Large","Air Force","CARTER
  pre-IFT",7.27998702504279
-"164",2010-09-02,"Large","DLA","CARTER
+"164",2010-09-22,"Large","DLA","CARTER
  pre-IFT",17.5276584334082
-"165",2010-09-02,"Large","MDA","CARTER
+"165",2010-09-22,"Large","MDA","CARTER
  pre-IFT",0.0204604019041506
-"166",2010-09-02,"Large","Military
+"166",2010-09-22,"Large","Military
 Health","CARTER
  pre-IFT",0.432674917789902
-"167",2010-09-02,"Large","Additional
+"167",2010-09-22,"Large","Additional
 DoD
 Components","CARTER
  pre-IFT",7.60986378227428
-"168",2010-09-02,"Large (Big 6)","Army","CARTER
+"168",2010-09-22,"Large (Big 6)","Army","CARTER
  pre-IFT",12.7024622155006
-"169",2010-09-02,"Large (Big 6)","Navy","CARTER
+"169",2010-09-22,"Large (Big 6)","Navy","CARTER
  pre-IFT",12.5922567927043
-"170",2010-09-02,"Large (Big 6)","Air Force","CARTER
+"170",2010-09-22,"Large (Big 6)","Air Force","CARTER
  pre-IFT",13.8479467747326
-"171",2010-09-02,"Large (Big 6)","DLA","CARTER
+"171",2010-09-22,"Large (Big 6)","DLA","CARTER
  pre-IFT",1.47340572072101
-"172",2010-09-02,"Large (Big 6)","MDA","CARTER
+"172",2010-09-22,"Large (Big 6)","MDA","CARTER
  pre-IFT",0.924160969052204
-"173",2010-09-02,"Large (Big 6)","Additional
+"173",2010-09-22,"Large (Big 6)","Additional
 DoD
 Components","CARTER
  pre-IFT",1.68455221361789
-"174",2010-09-02,"Medium","Army","CARTER
+"174",2010-09-22,"Medium","Army","CARTER
  pre-IFT",27.0638513831625
-"175",2010-09-02,"Medium","Navy","CARTER
+"175",2010-09-22,"Medium","Navy","CARTER
  pre-IFT",10.2028525338682
-"176",2010-09-02,"Medium","Air Force","CARTER
+"176",2010-09-22,"Medium","Air Force","CARTER
  pre-IFT",6.6876585779739
-"177",2010-09-02,"Medium","DLA","CARTER
+"177",2010-09-22,"Medium","DLA","CARTER
  pre-IFT",7.67378257801669
-"178",2010-09-02,"Medium","MDA","CARTER
+"178",2010-09-22,"Medium","MDA","CARTER
  pre-IFT",0.0425526895164741
-"179",2010-09-02,"Medium","Military
+"179",2010-09-22,"Medium","Military
 Health","CARTER
  pre-IFT",0.161265174711168
-"180",2010-09-02,"Medium","Additional
+"180",2010-09-22,"Medium","Additional
 DoD
 Components","CARTER
  pre-IFT",2.30305717856226
-"181",2010-09-02,"Small","Army","CARTER
+"181",2010-09-22,"Small","Army","CARTER
  pre-IFT",20.778757573481
-"182",2010-09-02,"Small","Navy","CARTER
+"182",2010-09-22,"Small","Navy","CARTER
  pre-IFT",10.1615334668155
-"183",2010-09-02,"Small","Air Force","CARTER
+"183",2010-09-22,"Small","Air Force","CARTER
  pre-IFT",5.36242956009842
-"184",2010-09-02,"Small","DLA","CARTER
+"184",2010-09-22,"Small","DLA","CARTER
  pre-IFT",7.23484925934959
-"185",2010-09-02,"Small","MDA","CARTER
+"185",2010-09-22,"Small","MDA","CARTER
  pre-IFT",0.0910379002781344
-"186",2010-09-02,"Small","Military
+"186",2010-09-22,"Small","Military
 Health","CARTER
  pre-IFT",0.00209382118100128
-"187",2010-09-02,"Small","Additional
+"187",2010-09-22,"Small","Additional
 DoD
 Components","CARTER
  pre-IFT",2.17477574096063
-"188",2010-09-02,"Unlabeled","Army","CARTER
+"188",2010-09-22,"Unlabeled","Army","CARTER
  pre-IFT",4.00987027426187
-"189",2010-09-02,"Unlabeled","Navy","CARTER
+"189",2010-09-22,"Unlabeled","Navy","CARTER
  pre-IFT",0.0395105965447154
-"190",2010-09-02,"Unlabeled","Air Force","CARTER
+"190",2010-09-22,"Unlabeled","Air Force","CARTER
  pre-IFT",0.121969325663243
-"191",2010-09-02,"Unlabeled","DLA","CARTER
+"191",2010-09-22,"Unlabeled","DLA","CARTER
  pre-IFT",0.000496369490800171
-"192",2010-09-02,"Unlabeled","Additional
+"192",2010-09-22,"Unlabeled","Additional
 DoD
 Components","CARTER
  pre-IFT",0.00158359797817715
@@ -1400,7 +1400,7 @@ Task Force",-0.0030777984765
 "723",2014-09-30,"Unlabeled","Navy","CARTER
  pre-IFT",1.46535517e-05
 "724",2014-09-30,"Unlabeled","Navy","Small Business
-Task Force",-4.94606670000003e-06
+Task Force",-4.94606670000004e-06
 "725",2014-09-30,"Unlabeled","Air Force","YOUNG",-0.0004926154375
 "726",2014-09-30,"Unlabeled","Air Force","CARTER
  pre-IFT",0.0002513992202
