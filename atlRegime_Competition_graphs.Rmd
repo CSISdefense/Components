@@ -127,9 +127,9 @@ ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'YOUNG',
                                                     EndDate=as.Date('2009/04/26',format='%Y/%m/%d')))
 ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'CARTER',
                                                     StartDate=as.Date('2009/04/27',format='%Y/%m/%d'),
-                                                    EndDate=as.Date('2010/11/02',format='%Y/%m/%d')))
+                                                    EndDate=as.Date('2011/11/02',format='%Y/%m/%d')))
 ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
-                                                    StartDate=as.Date('2010/11/03',format='%Y/%m/%d'),
+                                                    StartDate=as.Date('2011/11/03',format='%Y/%m/%d'),
                                                     EndDate=max(CompRegime$SignedQuarter)))
 
 CompUSDATL<-join(CompUSDATL,ATLregimeDetails,match="first")
@@ -325,11 +325,12 @@ while(!(dev.cur()[[1]]==1)){
 ```{r CompPolicySemiAnnual}        
 CompPolicy<-CompRegime
 CompPolicy$ATLpolicy<-as.character(CompRegime$USDATL)
+CompPolicy$ATLpolicy[CompPolicy$USDATL=="CARTER"]<-"CARTER\npre-BBP"
 CompPolicy$ATLpolicy[CompPolicy$BBP1==1]<-"BBP1"
 CompPolicy$ATLpolicy[CompPolicy$BBP2==1]<-"BBP2"
 CompPolicy$ATLpolicy[CompPolicy$BBP3==1]<-"BBP3"
 
-CompPolicy$ATLpolicy<-factor(CompPolicy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","BBP1","BBP2","BBP3" ),ordered=TRUE )
+CompPolicy$ATLpolicy<-factor(CompPolicy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER\npre-BBP","BBP1","BBP2","BBP3" ),ordered=TRUE )
 # 
 # ATLpolicyFYear<-aggregate(CompPolicy$Obligation.2014
 #                           , by=list(CompPolicy$Fiscal.Year,
@@ -360,7 +361,7 @@ ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'KRIEG',
 ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'YOUNG',
                                                     StartDate=as.Date('2007/07/20' ,format='%Y/%m/%d'),
                                                     EndDate=as.Date('2009/04/26',format='%Y/%m/%d')))
-ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'CARTER',
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'CARTER\npre-BBP',
                                                     StartDate=as.Date('2009/04/27',format='%Y/%m/%d'),
                                                     EndDate=as.Date('2010/11/02',format='%Y/%m/%d')))
 ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP1',
