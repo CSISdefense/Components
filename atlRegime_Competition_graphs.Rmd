@@ -170,8 +170,8 @@ CompGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,0
-    ,0
+
+
     ,CompUSDATL
     ,NULL
     ,"SignedSemiAnnual"
@@ -236,8 +236,8 @@ CompGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,0
-    ,0
+
+
     ,CompUSDATL
     ,NULL
     ,"Fiscal.Year"
@@ -294,8 +294,8 @@ CompGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,0
-    ,0
+
+
     ,CompUSDATL
     ,NULL
     ,"Fiscal.Year"
@@ -414,8 +414,8 @@ CompGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,0
-    ,0
+
+
     ,CompPolicy
     ,NULL
     ,"SignedSemiAnnual"
@@ -477,8 +477,8 @@ CompGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,0
-    ,0
+
+
     ,CompPolicy
     ,NULL
     ,"Fiscal.Year"
@@ -532,8 +532,8 @@ CompGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,0
-    ,0
+
+
     ,CompPolicy
     ,NULL
     ,"Fiscal.Year"

@@ -30,6 +30,22 @@ axis.text.size<-14
         
         main.text.size<-2
         note.text.size<-1.40
+
+
+Coloration<-read.csv(
+    paste(Path,"Lookups\\","lookup_coloration.csv",sep=""),
+    header=TRUE, sep=",", na.strings="", dec=".", strip.white=TRUE, 
+    stringsAsFactors=FALSE
+    )
+
+Coloration<-ddply(Coloration
+                  , c(.(R), .(G), .(B))
+                  , transform
+                  , ColorRGB=as.character(
+                      if(min(is.na(c(R,G,B)))) {NA} 
+                      else {rgb(max(R),max(G),max(B),max=255)}
+                      )
+                  )
 ```
 
 You can also embed plots, for example:
@@ -49,20 +65,6 @@ VendorRegime$USDATL<-factor(VendorRegime$USDATL,levels=c("GANSLER+","ALDRIDGE","
 VendorRegime<-subset(VendorRegime,USDATL %in% c("YOUNG","CARTER","KENDALL"))
 
 
-Coloration<-read.csv(
-    paste(Path,"Lookups\\","lookup_coloration.csv",sep=""),
-    header=TRUE, sep=",", na.strings="", dec=".", strip.white=TRUE, 
-    stringsAsFactors=FALSE
-    )
-
-Coloration<-ddply(Coloration
-                  , c(.(R), .(G), .(B))
-                  , transform
-                  , ColorRGB=as.character(
-                      if(min(is.na(c(R,G,B)))) {NA} 
-                      else {rgb(max(R),max(G),max(B),max=255)}
-                      )
-                  )
 
 # debug(LatticePercentLineWrapper)
 VendorRegime$Graph<-TRUE
