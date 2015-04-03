@@ -172,8 +172,6 @@ VendorGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,0
-    ,0
     ,VendorUSDATL
     ,NULL
     ,"SignedSemiAnnual"
@@ -238,8 +236,6 @@ VendorGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,0
-    ,0
     ,VendorUSDATL
     ,NULL
     ,"Fiscal.Year"
@@ -392,7 +388,7 @@ while(!(dev.cur()[[1]]==1)){
 ```
 
 
-```{r VendorPolicyAnnual}
+```{r VendorPolicyAnnualComponents}
 VendorPolicy$Fiscal.Year[VendorPolicy$Fiscal.Year>VendorPolicy$EndDate&
                                       VendorPolicy$SignedMonth<=VendorPolicy$EndDate]<-
     VendorPolicy$EndDate[VendorPolicy$Fiscal.Year>VendorPolicy$EndDate&
@@ -427,8 +423,6 @@ VendorGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,0
-    ,0
     ,VendorPolicy
     ,NULL
     ,"Fiscal.Year"
@@ -451,6 +445,132 @@ VendorGraph
 while(!(dev.cur()[[1]]==1)){
     dev.off()
     }
+
+
+```
+
+
+
+
+
+```{r VendorPolicyAnnualSummary}
+CompPolicy$Fiscal.Year[CompPolicy$Fiscal.Year>CompPolicy$EndDate&
+                                      CompPolicy$SignedMonth<=CompPolicy$EndDate]<-
+    CompPolicy$EndDate[CompPolicy$Fiscal.Year>CompPolicy$EndDate&
+                                      CompPolicy$SignedMonth<=CompPolicy$EndDate]
+CompPolicy$SignedFiscal.Year[CompPolicy$SignedFiscal.Year<CompPolicy$StartDate]<-
+    CompPolicy$StartDate[CompPolicy$SignedFiscal.Year<CompPolicy$StartDate]
+
+
+png(
+    paste( paste("DoD_Summar"
+                 ,"Obligation_2014"
+                 ,"Vendor_Size_sum"
+                 ,"ATLpolicy"
+                 ,"Annual"
+                 ,sep="_"
+                 )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=3.5
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+    
+    
+CompGraph<-LatticePercentLineWrapper(
+    VAR.name="Vendor Size"
+    ,VAR.proper.name="Vendor Size by DoD Component and Starting Regime"
+    ,VAR.X.label="Fiscal Year of Obligation"
+    ,VAR.Y.label="% of Component Obligations"
+    ,VAR.Coloration=Coloration
+
+
+    ,VAR.long.DF=VendorPolicy
+    ,VAR.ncol=4
+    ,VAR.x.variable="Fiscal.Year"
+    ,VAR.y.variable="Obligation.2014"
+    ,VAR.y.series=    "Vendor.Size.sum"
+     ,VAR.facet.primary="ATLpolicy"
+    ,VAR.facet.secondary=NA
+    ,"StartDate"
+    ,"EndDate"
+    )
+
+# CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
+CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+CompGraph
+    print(CompGraph)
+#     CompGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+# 
+# 
+# CompGraph<-LatticePercentLineWrapper(
+#     VAR.name="Competition"
+#     ,VAR.proper.name="Competition by DoD Component and Starting Regime"
+#     ,VAR.X.label="Fiscal Year of Obligation"
+#     ,VAR.Y.label="% of Component Obligations"
+#     ,VAR.Coloration=Coloration
+# 
+# 
+#     ,VAR.long.DF=CompPolicy
+#     ,VAR.ncol=1
+#     ,VAR.x.variable="Fiscal.Year"
+#     ,VAR.y.variable="Obligation.2014"
+#     ,VAR.y.series="Competition.effective.only"
+#      ,VAR.facet.primary="ATLpolicy"
+#     ,VAR.facet.secondary=NA
+#     ,"StartDate"
+#     ,"EndDate"
+#     )
+# 
+# # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+#     CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
+# CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+#     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+#     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+# CompGraph
+#     print(CompGraph)
+# 
+# 
+# 
+# 
+# CompGraph<-LatticePercentLineWrapper(
+#     VAR.name="Competition"
+#     ,VAR.proper.name="Competition by DoD Component and Starting Regime"
+#     ,VAR.X.label="Fiscal Year of Obligation"
+#     ,VAR.Y.label="% of Component Obligations"
+#     ,VAR.Coloration=Coloration
+# 
+# 
+#     ,VAR.long.DF=CompPolicy
+#     ,VAR.ncol=1
+#     ,VAR.x.variable="Fiscal.Year"
+#     ,VAR.y.variable="Obligation.2014"
+#     ,VAR.y.series="Competition.effective.only"
+#      ,VAR.facet.primary="Competition.effective.only"
+#     ,VAR.facet.secondary="ATLpolicy"
+#     ,"StartDate"
+#     ,"EndDate"
+#     )
+# 
+# # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+#     CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
+# CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+#     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+#     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+# CompGraph
+# 
 
 
 ```
