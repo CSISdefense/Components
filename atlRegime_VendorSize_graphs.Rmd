@@ -22,7 +22,7 @@ source(paste(Path,"lookups.r",sep=""))
 source(paste(Path,"helper.r",sep=""))
 
 axis.text.size<-14
-        strip.text.size<-14
+        strip.text.size<-12
         legend.text.size<-8
         # table.text.size<-5.75
         title.text.size<-12
@@ -360,8 +360,6 @@ VendorGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,0
-    ,0
     ,VendorPolicy
     ,NULL
     ,"SignedSemiAnnual"
@@ -463,7 +461,7 @@ CompPolicy$SignedFiscal.Year[CompPolicy$SignedFiscal.Year<CompPolicy$StartDate]<
 
 
 png(
-    paste( paste("DoD_Summar"
+    paste( paste("DoD_Summary"
                  ,"Obligation_2014"
                  ,"Vendor_Size_sum"
                  ,"ATLpolicy"
@@ -484,7 +482,7 @@ png(
     
 CompGraph<-LatticePercentLineWrapper(
     VAR.name="Vendor Size"
-    ,VAR.proper.name="Vendor Size by DoD Component and Starting Regime"
+    ,VAR.proper.name="Overall DoD Vendor Size by Starting Regime"
     ,VAR.X.label="Fiscal Year of Obligation"
     ,VAR.Y.label="% of Component Obligations"
     ,VAR.Coloration=Coloration

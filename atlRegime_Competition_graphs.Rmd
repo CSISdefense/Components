@@ -22,7 +22,7 @@ source(paste(Path,"lookups.r",sep=""))
 source(paste(Path,"helper.r",sep=""))
 
 axis.text.size<-14
-        strip.text.size<-14
+        strip.text.size<-12
         legend.text.size<-8
         # table.text.size<-5.75
         title.text.size<-12
@@ -466,8 +466,6 @@ CompGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-
-
     ,CompPolicy
     ,NULL
     ,"SignedSemiAnnual"
@@ -501,6 +499,20 @@ CompPolicy$Fiscal.Year[CompPolicy$Fiscal.Year>CompPolicy$EndDate&
                                       CompPolicy$SignedMonth<=CompPolicy$EndDate]
 CompPolicy$SignedFiscal.Year[CompPolicy$SignedFiscal.Year<CompPolicy$StartDate]<-
     CompPolicy$StartDate[CompPolicy$SignedFiscal.Year<CompPolicy$StartDate]
+
+# str(CompPolicy$Fiscal.Year)
+# c(,
+#   sapply(CompPolicy$Fiscal.Year, function(x) seq.Date(x,length=2,by='3 months')[2]
+#          )
+# CompPolicy$SignedFiscal.YearAdj<-seq.Date(CompPolicy$SignedFiscal.Year,length=2,by='3 months')[2]
+
+# View(cbind(CompPolicy$Fiscal.Year[1:10],sapply(CompPolicy$Fiscal.Year[1:10], function(x) seq.Date(x,length=2,by='3 months')[2])))
+# View(cbind(as.Date(CompPolicy$Fiscal.Year[1:10]),
+#            as.Date(sapply(CompPolicy$Fiscal.Year[1:10], function(x) seq(CompPolicy$Fiscal.Year[1], length=2,by='3 months')[2]))
+#            )
+#      )
+
+# CompPolicy$Fiscal.YearADJ<-sapply(CompPolicy$Fiscal.Year,function(x) seq(x, length=2,by='3 months')[2])
 
 
 png(
@@ -589,7 +601,7 @@ png(
 
 CompGraph<-LatticePercentLineWrapper(
     VAR.name="Competition"
-    ,VAR.proper.name="Competition by DoD Component and Starting Regime"
+    ,VAR.proper.name="Overall DoD Competition by Starting Regime"
     ,VAR.X.label="Fiscal Year of Obligation"
     ,VAR.Y.label="% of Component Obligations"
     ,VAR.Coloration=Coloration

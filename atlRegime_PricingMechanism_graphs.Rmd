@@ -22,7 +22,7 @@ source(paste(Path,"lookups.r",sep=""))
 source(paste(Path,"helper.r",sep=""))
 
 axis.text.size<-14
-        strip.text.size<-14
+        strip.text.size<-12
         legend.text.size<-8
         # table.text.size<-5.75
         title.text.size<-12
@@ -105,6 +105,8 @@ ATLregimeFYear<-aggregate(FixedPriceRegime$Obligation.2014
                           ,FUN = "sum"
                           ,na.rm =TRUE
                           )
+
+
 
 names(ATLregimeFYear)<-c("Fiscal.Year","USDATL","AnnualRegimeObligations")
 FixedPriceUSDATL<-subset(FixedPriceRegime,join(FixedPriceRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
@@ -266,12 +268,12 @@ while(!(dev.cur()[[1]]==1)){
 FixedPricePolicy<-FixedPriceRegime
 FixedPricePolicy$ATLpolicy<-as.character(FixedPriceRegime$USDATL)
 FixedPricePolicy$ATLpolicy[FixedPricePolicy$BBP1==1]<-"CARTER+BBP1"
-FixedPricePolicy$ATLpolicy[FixedPricePolicy$USDATL=="CARTER"]<-"CARTER\npre-WSARA reg"
-FixedPricePolicy$ATLpolicy[FixedPricePolicy$WSARAreg==1]<-"WSARA regs"
+FixedPricePolicy$ATLpolicy[FixedPricePolicy$USDATL=="CARTER"]<-"CARTER\npre-2009 NDAA\nSec. 864 Impl."
+FixedPricePolicy$ATLpolicy[FixedPricePolicy$WSARAreg==1]<-"2009 NDAA\nSec. 864 Impl."
 FixedPricePolicy$ATLpolicy[FixedPricePolicy$BBP2==1]<-"BBP2"
 FixedPricePolicy$ATLpolicy[FixedPricePolicy$BBP3==1]<-"BBP3"
 
-FixedPricePolicy$ATLpolicy<-factor(FixedPricePolicy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER\npre-WSARA reg","WSARA regs","BBP2","BBP3" ),ordered=TRUE )
+FixedPricePolicy$ATLpolicy<-factor(FixedPricePolicy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER\npre-2009 NDAA\nSec. 864 Impl.","2009 NDAA\nSec. 864 Impl.","BBP2","BBP3" ),ordered=TRUE )
 # 
 # ATLpolicyFYear<-aggregate(FixedPricePolicy$Obligation.2014
 #                           , by=list(FixedPricePolicy$Fiscal.Year,
@@ -302,7 +304,7 @@ ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'KRIEG',
 ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'YOUNG',
                                                     StartDate=as.Date('2007/07/20' ,format='%Y/%m/%d'),
                                                     EndDate=as.Date('2009/04/26',format='%Y/%m/%d')))
-ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'CARTER\npre-WSARA reg',
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'CARTER\npre-2009 NDAA\nSec. 864 Impl.',
                                                     StartDate=as.Date('2009/04/27',format='%Y/%m/%d'),
                                                     EndDate=as.Date('2011/03/15',format='%Y/%m/%d')))
 # ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'CARTER',
@@ -311,7 +313,7 @@ ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'CARTER\npre-WSAR
 # ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP1',
 #                                                     StartDate=as.Date('2010/11/03',format='%Y/%m/%d'),
 #                                                     EndDate=as.Date('2011/03/15',format='%Y/%m/%d')))
-ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'WSARA regs',
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= '2009 NDAA\nSec. 864 Impl.',
                                                     StartDate=as.Date('2011/03/16',format='%Y/%m/%d'),
                                                     EndDate=as.Date('2013/04/23',format='%Y/%m/%d')))
 ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP2',
@@ -392,6 +394,12 @@ FixedPricePolicy$Fiscal.Year[FixedPricePolicy$Fiscal.Year>FixedPricePolicy$EndDa
 FixedPricePolicy$SignedFiscal.Year[FixedPricePolicy$SignedFiscal.Year<FixedPricePolicy$StartDate]<-
     FixedPricePolicy$StartDate[FixedPricePolicy$SignedFiscal.Year<FixedPricePolicy$StartDate]
 
+# library(lubridate)
+FixedPricePolicy$SignedFiscal.Year<-FixedPricePolicy$SignedFiscal.Year
+
+# c(as.date(FixedPricePolicy$SignedFiscal.Year),
+# seq.Date( as.date(str(FixedPricePolicy$SignedFiscal.Year)), length=2, by='3 months' )
+# )
 
 png(
     paste( paste("DoD_components"
@@ -419,8 +427,7 @@ FixedGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,0
-    ,0
+
     ,FixedPricePolicy
     ,NULL
     ,"Fiscal.Year"
@@ -482,7 +489,7 @@ png(
     
 CompGraph<-LatticePercentLineWrapper(
     VAR.name="Pricing Mechanism"
-    ,VAR.proper.name="Pricing Mechanism by DoD Component and Starting Regime"
+    ,VAR.proper.name="Overall Pricing Mechanism by DoD Component and Starting Regime"
     ,VAR.X.label="Fiscal Year of Obligation"
     ,VAR.Y.label="% of Component Obligations"
     ,VAR.Coloration=Coloration
