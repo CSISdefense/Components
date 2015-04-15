@@ -33,8 +33,10 @@ axis.text.size<-14
 You can also embed plots, for example:
 
 ```{r, echo=FALSE}
+## ("Data\\defense_summary_SP_CompetitionHistoryBucketSubCustomerRegime.csv", sep = """) Neither the computer nor myself can find this file in (K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\Data)
+
 CompRegime  <- read.csv(
-    paste("data\\Defense_Summary_SP_CompetitionHistoryBucketSubCustomerRegime.csv", sep = ""),
+    paste("Data\\defense_summary_SP_CompetitionHistoryBucketSubCustomerRegime.csv", sep = ""),
     header = TRUE, sep = ",", dec = ".", strip.white = TRUE, 
     na.strings = c("NULL","NA",""),
     stringsAsFactors = TRUE
