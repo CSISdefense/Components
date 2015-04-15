@@ -206,8 +206,7 @@ CompGraph&lt;-LatticePercentLineWrapper(
     ,&quot;Fiscal Year of Obligation&quot;
     ,&quot;% of Component Obligations&quot;
     ,Coloration
-    ,0
-    ,0
+
     ,CompUSDATL
     ,NULL
     ,&quot;SignedSemiAnnual&quot;
@@ -226,13 +225,19 @@ CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;)) </code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>CompGraph</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>    print(CompGraph)</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>#     CompGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
@@ -273,8 +278,7 @@ CompGraph&lt;-LatticePercentLineWrapper(
     ,&quot;Fiscal Year of Obligation&quot;
     ,&quot;% of Component Obligations&quot;
     ,Coloration
-    ,0
-    ,0
+
     ,CompUSDATL
     ,NULL
     ,&quot;Fiscal.Year&quot;
@@ -293,11 +297,15 @@ CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>CompGraph</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>    print(CompGraph)</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>#     CompGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
@@ -329,8 +337,7 @@ CompGraph&lt;-LatticePercentLineWrapper(
     ,&quot;Fiscal Year of Obligation&quot;
     ,&quot;% of Component Obligations&quot;
     ,Coloration
-    ,0
-    ,0
+
     ,CompUSDATL
     ,NULL
     ,&quot;Fiscal.Year&quot;
@@ -349,15 +356,72 @@ CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>CompGraph</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>    print(CompGraph)</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>#     CompGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
-    }</code></pre>
+    }
+
+
+
+
+
+png(
+    paste( paste(&quot;DoD_components&quot;
+                 ,&quot;Obligation_2014&quot;
+                 ,&quot;Comp_Effective&quot;
+                 ,&quot;USDATL&quot;
+                 ,&quot;Annual&quot;
+                 ,sep=&quot;_&quot;
+                 )
+           ,&quot;.png&quot;
+           , sep=&quot;&quot;
+           )
+    , type=&quot;cairo&quot;
+    , width=7.5
+    , height=10
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+# debug(LatticePercentLineWrapper)
+
+CompGraph&lt;-LatticePercentLineWrapper(
+    VAR.name=&quot;Competition&quot;
+    ,VAR.proper.name=&quot;Competition by DoD Component and Starting Regime&quot;
+    ,VAR.X.label=&quot;Fiscal Year of Obligation&quot;
+    ,VAR.Y.label=&quot;% of Component Obligations&quot;
+    ,VAR.Coloration=Coloration
+
+    ,VAR.long.DF=CompUSDATL
+    ,VAR.ncol=1
+    ,VAR.x.variable=&quot;Fiscal.Year&quot;
+    ,VAR.y.variable=&quot;Obligation.2014&quot;
+    ,VAR.y.series=&quot;Competition.effective.only&quot;
+     ,VAR.facet.primary=&quot;USDATL&quot;
+    ,VAR.facet.secondary=NA
+    ,&quot;StartDate&quot;
+    ,&quot;EndDate&quot;
+    )
+
+# CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    CompGraph&lt;-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
+CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+    theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre class="r"><code>CompGraph
+    print(CompGraph)
+#     CompGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))</code></pre>
 <pre class="r"><code>CompPolicy&lt;-CompRegime
 CompPolicy$ATLpolicy&lt;-as.character(CompRegime$USDATL)
 CompPolicy$ATLpolicy[CompPolicy$USDATL==&quot;CARTER&quot;]&lt;-&quot;CARTER\npre-BBP&quot;
@@ -450,8 +514,6 @@ CompGraph&lt;-LatticePercentLineWrapper(
     ,&quot;Fiscal Year of Obligation&quot;
     ,&quot;% of Component Obligations&quot;
     ,Coloration
-    ,0
-    ,0
     ,CompPolicy
     ,NULL
     ,&quot;SignedSemiAnnual&quot;
@@ -470,29 +532,51 @@ CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>CompGraph</code></pre>
-<pre><code>## Warning: Removed 5 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 9 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 5 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 9 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 5 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 9 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 5 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 9 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>    print(CompGraph)</code></pre>
-<pre><code>## Warning: Removed 5 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 9 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 5 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 9 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 5 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 9 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 5 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 9 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>#     CompGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
@@ -503,6 +587,20 @@ while(!(dev.cur()[[1]]==1)){
                                       CompPolicy$SignedMonth&lt;=CompPolicy$EndDate]
 CompPolicy$SignedFiscal.Year[CompPolicy$SignedFiscal.Year&lt;CompPolicy$StartDate]&lt;-
     CompPolicy$StartDate[CompPolicy$SignedFiscal.Year&lt;CompPolicy$StartDate]
+
+# str(CompPolicy$Fiscal.Year)
+# c(,
+#   sapply(CompPolicy$Fiscal.Year, function(x) seq.Date(x,length=2,by='3 months')[2]
+#          )
+# CompPolicy$SignedFiscal.YearAdj&lt;-seq.Date(CompPolicy$SignedFiscal.Year,length=2,by='3 months')[2]
+
+# View(cbind(CompPolicy$Fiscal.Year[1:10],sapply(CompPolicy$Fiscal.Year[1:10], function(x) seq.Date(x,length=2,by='3 months')[2])))
+# View(cbind(as.Date(CompPolicy$Fiscal.Year[1:10]),
+#            as.Date(sapply(CompPolicy$Fiscal.Year[1:10], function(x) seq(CompPolicy$Fiscal.Year[1], length=2,by='3 months')[2]))
+#            )
+#      )
+
+# CompPolicy$Fiscal.YearADJ&lt;-sapply(CompPolicy$Fiscal.Year,function(x) seq(x, length=2,by='3 months')[2])
 
 
 png(
@@ -531,8 +629,7 @@ CompGraph&lt;-LatticePercentLineWrapper(
     ,&quot;Fiscal Year of Obligation&quot;
     ,&quot;% of Component Obligations&quot;
     ,Coloration
-    ,0
-    ,0
+
     ,CompPolicy
     ,NULL
     ,&quot;Fiscal.Year&quot;
@@ -551,31 +648,191 @@ CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>CompGraph</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 4 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 10 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 10 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>    print(CompGraph)</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 4 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 10 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 10 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>#     CompGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
     }</code></pre>
+<pre class="r"><code>CompPolicy$Fiscal.Year[CompPolicy$Fiscal.Year&gt;CompPolicy$EndDate&amp;
+                                      CompPolicy$SignedMonth&lt;=CompPolicy$EndDate]&lt;-
+    CompPolicy$EndDate[CompPolicy$Fiscal.Year&gt;CompPolicy$EndDate&amp;
+                                      CompPolicy$SignedMonth&lt;=CompPolicy$EndDate]
+CompPolicy$SignedFiscal.Year[CompPolicy$SignedFiscal.Year&lt;CompPolicy$StartDate]&lt;-
+    CompPolicy$StartDate[CompPolicy$SignedFiscal.Year&lt;CompPolicy$StartDate]
+
+
+png(
+    paste( paste(&quot;DoD_Summary&quot;
+                 ,&quot;Obligation_2014&quot;
+                 ,&quot;Competition_sum&quot;
+                 ,&quot;ATLpolicy&quot;
+                 ,&quot;Annual&quot;
+                 ,sep=&quot;_&quot;
+                 )
+           ,&quot;.png&quot;
+           , sep=&quot;&quot;
+           )
+    , type=&quot;cairo&quot;
+    , width=7.5
+    , height=3.5
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+CompGraph&lt;-LatticePercentLineWrapper(
+    VAR.name=&quot;Competition&quot;
+    ,VAR.proper.name=&quot;Overall DoD Competition by Starting Regime&quot;
+    ,VAR.X.label=&quot;Fiscal Year of Obligation&quot;
+    ,VAR.Y.label=&quot;% of Component Obligations&quot;
+    ,VAR.Coloration=Coloration
+
+    ,VAR.long.DF=CompPolicy
+    ,VAR.ncol=4
+    ,VAR.x.variable=&quot;Fiscal.Year&quot;
+    ,VAR.y.variable=&quot;Obligation.2014&quot;
+    ,VAR.y.series=    &quot;Competition.sum&quot;
+     ,VAR.facet.primary=&quot;ATLpolicy&quot;
+    ,VAR.facet.secondary=NA
+    ,&quot;StartDate&quot;
+    ,&quot;EndDate&quot;
+    )
+
+# CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    CompGraph&lt;-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
+CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+    theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre class="r"><code>CompGraph</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre class="r"><code>    print(CompGraph)</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre class="r"><code>#     CompGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }</code></pre>
+<pre class="r"><code>for (s in unique(CompPolicy$SubCustomer)){    
+    png(
+        paste( paste(s
+                     ,&quot;Obligation_2014&quot;
+                     ,&quot;Competition_sum&quot;
+                     ,&quot;ATLpolicy&quot;
+                     ,&quot;Annual&quot;
+                     ,sep=&quot;_&quot;
+                     )
+               ,&quot;.png&quot;
+               , sep=&quot;&quot;
+               )
+        , type=&quot;cairo&quot;
+        , width=7.5
+        , height=3.5
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    CompGraph&lt;-LatticePercentLineWrapper(
+        VAR.name=&quot;Competition&quot;
+        ,VAR.proper.name=paste(s,&quot;Competition by Starting Regime&quot;)
+        ,VAR.X.label=&quot;Fiscal Year of Obligation&quot;
+        ,VAR.Y.label=&quot;% of Component Obligations&quot;
+        ,VAR.Coloration=Coloration
+        
+        
+        ,VAR.long.DF=subset(CompPolicy,SubCustomer==s)
+        ,VAR.ncol=4
+        ,VAR.x.variable=&quot;Fiscal.Year&quot;
+        ,VAR.y.variable=&quot;Obligation.2014&quot;
+        ,VAR.y.series=    &quot;Competition.sum&quot;
+        ,VAR.facet.primary=&quot;ATLpolicy&quot;
+        ,VAR.facet.secondary=NA
+        ,&quot;StartDate&quot;
+        ,&quot;EndDate&quot;
+        )
+    
+    # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    CompGraph&lt;-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
+    CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+        theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
+        scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
+    CompGraph
+    print(CompGraph)
+    rm(CompGraph)
+    #     CompGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 10 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>png(
     paste( paste(&quot;DoD_components&quot;
                  ,&quot;Obligation_2014&quot;
@@ -602,8 +859,7 @@ CompGraph&lt;-LatticePercentLineWrapper(
     ,&quot;Fiscal Year of Obligation&quot;
     ,&quot;% of Component Obligations&quot;
     ,Coloration
-    ,0
-    ,0
+
     ,CompPolicy
     ,NULL
     ,&quot;Fiscal.Year&quot;
@@ -622,21 +878,35 @@ CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>CompGraph</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 4 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 6 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>    print(CompGraph)</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 4 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 6 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>#     CompGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()

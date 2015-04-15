@@ -14,8 +14,6 @@ require(ggplot2)
 require(stringr)
 require(plyr)
 options(error=recover)
-setwd("K:\\Development\\Components")
-# setwd("C:\\Users\\Greg Sanders\\Documents\\Development\\Fixed-price")
 Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
 # Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
 source(paste(Path,"lookups.r",sep=""))
@@ -635,7 +633,7 @@ while(!(dev.cur()[[1]]==1)){
 
 
 ```{r CompPolicyAnnualComponentSolitary}
-for (s in unique(CompPolicy$SubCustomer)){
+for (s in unique(CompPolicy$SubCustomer)){    
     png(
         paste( paste(s
                      ,"Obligation_2014"
@@ -663,7 +661,7 @@ for (s in unique(CompPolicy$SubCustomer)){
         ,VAR.Coloration=Coloration
         
         
-        ,VAR.long.DF=subset(CompPolicy,SubCustomer=s)
+        ,VAR.long.DF=subset(CompPolicy,SubCustomer==s)
         ,VAR.ncol=4
         ,VAR.x.variable="Fiscal.Year"
         ,VAR.y.variable="Obligation.2014"
@@ -681,6 +679,7 @@ for (s in unique(CompPolicy$SubCustomer)){
         scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     CompGraph
     print(CompGraph)
+    rm(CompGraph)
     #     CompGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
     while(!(dev.cur()[[1]]==1)){
         dev.off()
