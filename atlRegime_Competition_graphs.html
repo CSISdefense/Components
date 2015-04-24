@@ -218,6 +218,7 @@ CompGraph&lt;-LatticePercentLineWrapper(
     ,&quot;EndDate&quot;
     )
 
+CompGraph&lt;-CompGraph+aes(size=y.variable)
 # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     CompGraph&lt;-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
 CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
@@ -225,19 +226,13 @@ CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;)) </code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>CompGraph</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>    print(CompGraph)</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>#     CompGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
@@ -290,6 +285,7 @@ CompGraph&lt;-LatticePercentLineWrapper(
     ,&quot;EndDate&quot;
     )
 
+CompGraph&lt;-CompGraph+aes(size=y.variable)
 # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     CompGraph&lt;-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
 CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
@@ -297,15 +293,11 @@ CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>CompGraph</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>    print(CompGraph)</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>#     CompGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
@@ -349,6 +341,7 @@ CompGraph&lt;-LatticePercentLineWrapper(
     ,&quot;EndDate&quot;
     )
 
+CompGraph&lt;-CompGraph+aes(size=y.variable)
 # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     CompGraph&lt;-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
 CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
@@ -356,15 +349,11 @@ CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>CompGraph</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>    print(CompGraph)</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>#     CompGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
@@ -413,6 +402,7 @@ CompGraph&lt;-LatticePercentLineWrapper(
     ,&quot;EndDate&quot;
     )
 
+CompGraph&lt;-CompGraph+aes(size=y.variable)
 # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     CompGraph&lt;-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
 CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
@@ -525,6 +515,7 @@ CompGraph&lt;-LatticePercentLineWrapper(
     ,&quot;EndDate&quot;
     )
 
+CompGraph&lt;-CompGraph+aes(size=y.variable)
 # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     CompGraph&lt;-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
 CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
@@ -532,51 +523,29 @@ CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>CompGraph</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 5 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 9 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 5 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 9 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 5 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 9 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 5 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 9 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>    print(CompGraph)</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 5 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 9 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 5 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 9 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 5 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 9 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 5 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 9 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>#     CompGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
@@ -641,6 +610,7 @@ CompGraph&lt;-LatticePercentLineWrapper(
     ,&quot;EndDate&quot;
     )
 
+CompGraph&lt;-CompGraph+aes(size=y.variable)
 # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     CompGraph&lt;-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
 CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
@@ -648,47 +618,27 @@ CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>CompGraph</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 10 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 4 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 10 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>    print(CompGraph)</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 10 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 4 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 10 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>#     CompGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
@@ -738,18 +688,22 @@ CompGraph&lt;-LatticePercentLineWrapper(
     ,&quot;EndDate&quot;
     )
 
+CompGraph&lt;-CompGraph+aes(size=y.variable)
 # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    CompGraph&lt;-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
+    CompGraph&lt;-CompGraph+geom_rect(aes(xmin=StartDate
+                                       , xmax=EndDate
+                                       , ymin=-Inf
+                                       , ymax=Inf
+                                       )
+                                   ,color=&quot;red&quot;,alpha=0)
 CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>CompGraph</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>    print(CompGraph)</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>#     CompGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
@@ -792,9 +746,13 @@ while(!(dev.cur()[[1]]==1)){
         ,&quot;StartDate&quot;
         ,&quot;EndDate&quot;
         )
-    
+    CompGraph&lt;-CompGraph+aes(size=y.variable)
     # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    CompGraph&lt;-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
+    CompGraph&lt;-CompGraph+geom_rect(aes(xmin=StartDate
+                                       , xmax=EndDate
+                                       , ymin=-Inf
+                                       , ymax=Inf
+                                       , size = 0),color=&quot;red&quot;,alpha=0)
     CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
         theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
         scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
@@ -807,32 +765,22 @@ while(!(dev.cur()[[1]]==1)){
         }
     }</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 4 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 10 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 10 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>png(
     paste( paste(&quot;DoD_components&quot;
                  ,&quot;Obligation_2014&quot;
@@ -871,6 +819,7 @@ CompGraph&lt;-LatticePercentLineWrapper(
     ,&quot;EndDate&quot;
     )
 
+CompGraph&lt;-CompGraph+aes(size=y.variable)
 # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     CompGraph&lt;-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
 CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
@@ -878,35 +827,21 @@ CompGraph&lt;-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>CompGraph</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 4 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 6 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>    print(CompGraph)</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
-## (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 4 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 6 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>#     CompGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()

@@ -183,6 +183,8 @@ FixedGraph<-LatticePercentLineWrapper(
     ,"EndDate"
     )
 
+FixedGraph<-FixedGraph+aes(size=y.variable)
+
 # FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     FixedGraph<-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
 FixedGraph<-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
@@ -247,6 +249,7 @@ FixedGraph<-LatticePercentLineWrapper(
     ,"EndDate"
     )
 
+FixedGraph<-FixedGraph+aes(size=y.variable)
 # FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     FixedGraph<-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
 FixedGraph<-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
@@ -371,6 +374,7 @@ FixedGraph<-LatticePercentLineWrapper(
     ,"EndDate"
     )
 
+FixedGraph<-FixedGraph+aes(size=y.variable)
 # FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     FixedGraph<-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
 FixedGraph<-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
@@ -439,6 +443,7 @@ FixedGraph<-LatticePercentLineWrapper(
     ,"EndDate"
     )
 
+FixedGraph<-FixedGraph+aes(size=y.variable)
 # FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     FixedGraph<-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
 FixedGraph<-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
@@ -459,12 +464,12 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 
 
 ```{r FixedPricePolicySummary}
-CompPolicy$Fiscal.Year[CompPolicy$Fiscal.Year>CompPolicy$EndDate&
-                                      CompPolicy$SignedMonth<=CompPolicy$EndDate]<-
-    CompPolicy$EndDate[CompPolicy$Fiscal.Year>CompPolicy$EndDate&
-                                      CompPolicy$SignedMonth<=CompPolicy$EndDate]
-CompPolicy$SignedFiscal.Year[CompPolicy$SignedFiscal.Year<CompPolicy$StartDate]<-
-    CompPolicy$StartDate[CompPolicy$SignedFiscal.Year<CompPolicy$StartDate]
+FixedPolicy$Fiscal.Year[FixedPolicy$Fiscal.Year>FixedPolicy$EndDate&
+                                      FixedPolicy$SignedMonth<=FixedPolicy$EndDate]<-
+    FixedPolicy$EndDate[FixedPolicy$Fiscal.Year>FixedPolicy$EndDate&
+                                      FixedPolicy$SignedMonth<=FixedPolicy$EndDate]
+FixedPolicy$SignedFiscal.Year[FixedPolicy$SignedFiscal.Year<FixedPolicy$StartDate]<-
+    FixedPolicy$StartDate[FixedPolicy$SignedFiscal.Year<FixedPolicy$StartDate]
 
 
 png(
@@ -506,6 +511,7 @@ CompGraph<-LatticePercentLineWrapper(
     ,"EndDate"
     )
 
+FixedGraph<-FixedGraph+aes(size=y.variable)
 # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
 CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
@@ -521,18 +527,18 @@ while(!(dev.cur()[[1]]==1)){
 # 
 # 
 # CompGraph<-LatticePercentLineWrapper(
-#     VAR.name="Competition"
-#     ,VAR.proper.name="Competition by DoD Component and Starting Regime"
+#     VAR.name="Pricing Mechanism"
+#     ,VAR.proper.name="Pricing Mechanism by DoD Component and Starting Regime"
 #     ,VAR.X.label="Fiscal Year of Obligation"
 #     ,VAR.Y.label="% of Component Obligations"
 #     ,VAR.Coloration=Coloration
 # 
 # 
-#     ,VAR.long.DF=CompPolicy
+#     ,VAR.long.DF=FixedPolicy
 #     ,VAR.ncol=1
 #     ,VAR.x.variable="Fiscal.Year"
 #     ,VAR.y.variable="Obligation.2014"
-#     ,VAR.y.series="Competition.effective.only"
+#     ,VAR.y.series="Pricing Mechanism.effective.only"
 #      ,VAR.facet.primary="ATLpolicy"
 #     ,VAR.facet.secondary=NA
 #     ,"StartDate"
@@ -551,14 +557,14 @@ while(!(dev.cur()[[1]]==1)){
 # 
 # 
 # CompGraph<-LatticePercentLineWrapper(
-#     VAR.name="Competition"
-#     ,VAR.proper.name="Competition by DoD Component and Starting Regime"
+#     VAR.name="Pricing Mechanism"
+#     ,VAR.proper.name="Pricing Mechanism by DoD Component and Starting Regime"
 #     ,VAR.X.label="Fiscal Year of Obligation"
 #     ,VAR.Y.label="% of Component Obligations"
 #     ,VAR.Coloration=Coloration
 # 
 # 
-#     ,VAR.long.DF=CompPolicy
+#     ,VAR.long.DF=FixedPolicy
 #     ,VAR.ncol=1
 #     ,VAR.x.variable="Fiscal.Year"
 #     ,VAR.y.variable="Obligation.2014"
@@ -622,12 +628,12 @@ write.csv(FixedPricePolicyTable,paste(paste("DoD_components"
 
 
 
-```{r CompPolicyAnnualComponentSolitary}
-for (s in unique(CompPolicy$SubCustomer)){    
+```{r FixedPolicyAnnualComponentSolitary}
+for (s in unique(FixedPolicy$SubCustomer)){    
     png(
         paste( paste(s
                      ,"Obligation_2014"
-                     ,"Competition_sum"
+                     ,"Pricing_Mechanism_sum"
                      ,"ATLpolicy"
                      ,"Annual"
                      ,sep="_"
@@ -644,24 +650,25 @@ for (s in unique(CompPolicy$SubCustomer)){
         )
     
     CompGraph<-LatticePercentLineWrapper(
-        VAR.name="Competition"
-        ,VAR.proper.name=paste(s,"Competition by Starting Regime")
+        VAR.name="Pricing Mechanism"
+        ,VAR.proper.name=paste(s,"Pricing Mechanism by Starting Regime")
         ,VAR.X.label="Fiscal Year of Obligation"
         ,VAR.Y.label="% of Component Obligations"
         ,VAR.Coloration=Coloration
         
         
-        ,VAR.long.DF=subset(CompPolicy,SubCustomer==s)
+        ,VAR.long.DF=subset(FixedPolicy,SubCustomer==s)
         ,VAR.ncol=4
         ,VAR.x.variable="Fiscal.Year"
         ,VAR.y.variable="Obligation.2014"
-        ,VAR.y.series=    "Competition.sum"
+        ,VAR.y.series=    "Pricing.Mechanism.sum"
         ,VAR.facet.primary="ATLpolicy"
         ,VAR.facet.secondary=NA
         ,"StartDate"
         ,"EndDate"
         )
     
+    FixedGraph<-FixedGraph+aes(size=y.variable)
     # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
     CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
