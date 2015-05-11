@@ -206,8 +206,6 @@ VendorGraph&lt;-LatticePercentLineWrapper(
     ,&quot;Fiscal Year of Obligation&quot;
     ,&quot;% of Component Obligations&quot;
     ,Coloration
-    ,0
-    ,0
     ,VendorUSDATL
     ,NULL
     ,&quot;SignedSemiAnnual&quot;
@@ -219,6 +217,7 @@ VendorGraph&lt;-LatticePercentLineWrapper(
     ,&quot;EndDate&quot;
     )
 
+VendorGraph&lt;-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
 VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
@@ -273,8 +272,6 @@ VendorGraph&lt;-LatticePercentLineWrapper(
     ,&quot;Fiscal Year of Obligation&quot;
     ,&quot;% of Component Obligations&quot;
     ,Coloration
-    ,0
-    ,0
     ,VendorUSDATL
     ,NULL
     ,&quot;Fiscal.Year&quot;
@@ -286,6 +283,7 @@ VendorGraph&lt;-LatticePercentLineWrapper(
     ,&quot;EndDate&quot;
     )
 
+VendorGraph&lt;-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
 VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
@@ -400,8 +398,6 @@ VendorGraph&lt;-LatticePercentLineWrapper(
     ,&quot;Fiscal Year of Obligation&quot;
     ,&quot;% of Component Obligations&quot;
     ,Coloration
-    ,0
-    ,0
     ,VendorPolicy
     ,NULL
     ,&quot;SignedSemiAnnual&quot;
@@ -413,6 +409,7 @@ VendorGraph&lt;-LatticePercentLineWrapper(
     ,&quot;EndDate&quot;
     )
 
+VendorGraph&lt;-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
 VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
@@ -453,8 +450,8 @@ while(!(dev.cur()[[1]]==1)){
                                       VendorPolicy$SignedMonth&lt;=VendorPolicy$EndDate]&lt;-
     VendorPolicy$EndDate[VendorPolicy$Fiscal.Year&gt;VendorPolicy$EndDate&amp;
                                       VendorPolicy$SignedMonth&lt;=VendorPolicy$EndDate]
-VendorPolicy$SignedFiscal.Year[VendorPolicy$SignedFiscal.Year&lt;VendorPolicy$StartDate]&lt;-
-    VendorPolicy$StartDate[VendorPolicy$SignedFiscal.Year&lt;VendorPolicy$StartDate]
+# VendorPolicy$SignedFiscalYearStart[VendorPolicy$SignedFiscalYearStart&lt;VendorPolicy$StartDate]&lt;-
+#     VendorPolicy$StartDate[VendorPolicy$SignedFiscalYearStart&lt;VendorPolicy$StartDate]
 
 
 png(
@@ -483,8 +480,6 @@ VendorGraph&lt;-LatticePercentLineWrapper(
     ,&quot;Fiscal Year of Obligation&quot;
     ,&quot;% of Component Obligations&quot;
     ,Coloration
-    ,0
-    ,0
     ,VendorPolicy
     ,NULL
     ,&quot;Fiscal.Year&quot;
@@ -496,6 +491,7 @@ VendorGraph&lt;-LatticePercentLineWrapper(
     ,&quot;EndDate&quot;
     )
 
+VendorGraph&lt;-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
 VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
@@ -536,6 +532,214 @@ VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_fo
 while(!(dev.cur()[[1]]==1)){
     dev.off()
     }</code></pre>
+<pre class="r"><code># VendorPolicy$SignedFiscalYearStart
+
+VendorPolicy$Fiscal.Year[VendorPolicy$Fiscal.Year&gt;VendorPolicy$EndDate&amp;
+                                      VendorPolicy$SignedMonth&lt;=VendorPolicy$EndDate]&lt;-
+    VendorPolicy$EndDate[VendorPolicy$Fiscal.Year&gt;VendorPolicy$EndDate&amp;
+                                      VendorPolicy$SignedMonth&lt;=VendorPolicy$EndDate]
+# VendorPolicy$SignedFiscalYearStart[VendorPolicy$SignedFiscalYearStart&lt;VendorPolicy$StartDate]&lt;-
+#     VendorPolicy$StartDate[VendorPolicy$SignedFiscalYearStart&lt;VendorPolicy$StartDate]
+
+
+png(
+    paste( paste(&quot;DoD_components&quot;
+                 ,&quot;Obligation_2014&quot;
+                 ,&quot;Vendor_Size_sum&quot;
+                 ,&quot;ATLpolicy&quot;
+                 ,&quot;Annual&quot;
+                 ,sep=&quot;_&quot;
+                 )
+           ,&quot;.png&quot;
+           , sep=&quot;&quot;
+           )
+    , type=&quot;cairo&quot;
+    , width=7.5
+    , height=10
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+
+VendorGraph&lt;-LatticePercentLineWrapper(
+    &quot;Vendor Size&quot;
+    ,&quot;Vendor Size by DoD Component and Starting Regime&quot;
+    ,&quot;Fiscal Year of Obligation&quot;
+    ,&quot;% of Component Obligations&quot;
+    ,Coloration
+    ,VendorPolicy
+    ,NULL
+    ,&quot;Fiscal.Year&quot;
+    ,&quot;Obligation.2014&quot;
+    ,&quot;Vendor.Size.sum&quot;
+    ,&quot;SubCustomer.component&quot;
+    ,&quot;ATLpolicy&quot;
+    ,&quot;StartDate&quot;
+    ,&quot;EndDate&quot;
+    )
+
+VendorGraph&lt;-VendorGraph+aes(size=y.variable)
+# VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
+VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+    theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre class="r"><code>VendorGraph</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 5 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 4 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre class="r"><code>    print(VendorGraph)</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 5 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 4 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre class="r"><code>#     VendorGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }</code></pre>
+<pre class="r"><code>VendorPolicy$Fiscal.Year[VendorPolicy$Fiscal.Year&gt;VendorPolicy$EndDate&amp;
+                                      VendorPolicy$SignedMonth&lt;=VendorPolicy$EndDate]&lt;-
+    VendorPolicy$EndDate[VendorPolicy$Fiscal.Year&gt;VendorPolicy$EndDate&amp;
+                                      VendorPolicy$SignedMonth&lt;=VendorPolicy$EndDate]
+# VendorPolicy$SignedFiscalYearStart[VendorPolicy$SignedFiscalYearStart&lt;VendorPolicy$StartDate]&lt;-
+#     VendorPolicy$StartDate[VendorPolicy$SignedFiscalYearStart&lt;VendorPolicy$StartDate]
+
+
+png(
+    paste( paste(&quot;DoD_Summary&quot;
+                 ,&quot;Obligation_2014&quot;
+                 ,&quot;Vendor_Size_sum&quot;
+                 ,&quot;ATLpolicy&quot;
+                 ,&quot;Annual&quot;
+                 ,sep=&quot;_&quot;
+                 )
+           ,&quot;.png&quot;
+           , sep=&quot;&quot;
+           )
+    , type=&quot;cairo&quot;
+    , width=7.5
+    , height=3.5
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+    
+    
+VendorGraph&lt;-LatticePercentLineWrapper(
+    VAR.name=&quot;Vendor Size&quot;
+    ,VAR.proper.name=&quot;Overall DoD Vendor Size by Starting Regime&quot;
+    ,VAR.X.label=&quot;Fiscal Year of Obligation&quot;
+    ,VAR.Y.label=&quot;% of Component Obligations&quot;
+    ,VAR.Coloration=Coloration
+
+    ,VAR.long.DF=VendorPolicy
+    ,VAR.ncol=4
+    ,VAR.x.variable=&quot;Fiscal.Year&quot;
+    ,VAR.y.variable=&quot;Obligation.2014&quot;
+    ,VAR.y.series=    &quot;Vendor.Size.sum&quot;
+     ,VAR.facet.primary=&quot;ATLpolicy&quot;
+    ,VAR.facet.secondary=NA
+    ,&quot;StartDate&quot;
+    ,&quot;EndDate&quot;
+    )
+
+VendorGraph&lt;-VendorGraph+aes(size=y.variable)
+# VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
+VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+    theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre class="r"><code>VendorGraph</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre class="r"><code>    print(VendorGraph)</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre class="r"><code>#     VendorGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+# 
+# 
+# VendorGraph&lt;-LatticePercentLineWrapper(
+#     VAR.name=&quot;Competition&quot;
+#     ,VAR.proper.name=&quot;Competition by DoD Component and Starting Regime&quot;
+#     ,VAR.X.label=&quot;Fiscal Year of Obligation&quot;
+#     ,VAR.Y.label=&quot;% of Component Obligations&quot;
+#     ,VAR.Coloration=Coloration
+# 
+# 
+#     ,VAR.long.DF=VendorPolicy
+#     ,VAR.ncol=1
+#     ,VAR.x.variable=&quot;Fiscal.Year&quot;
+#     ,VAR.y.variable=&quot;Obligation.2014&quot;
+#     ,VAR.y.series=&quot;Competition.effective.only&quot;
+#      ,VAR.facet.primary=&quot;ATLpolicy&quot;
+#     ,VAR.facet.secondary=NA
+#     ,&quot;StartDate&quot;
+#     ,&quot;EndDate&quot;
+#     )
+# 
+# # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+#     VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
+# VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+#     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
+#     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
+# VendorGraph
+#     print(VendorGraph)
+# 
+# 
+# 
+# 
+# VendorGraph&lt;-LatticePercentLineWrapper(
+#     VAR.name=&quot;Competition&quot;
+#     ,VAR.proper.name=&quot;Competition by DoD Component and Starting Regime&quot;
+#     ,VAR.X.label=&quot;Fiscal Year of Obligation&quot;
+#     ,VAR.Y.label=&quot;% of Component Obligations&quot;
+#     ,VAR.Coloration=Coloration
+# 
+# 
+#     ,VAR.long.DF=VendorPolicy
+#     ,VAR.ncol=1
+#     ,VAR.x.variable=&quot;Fiscal.Year&quot;
+#     ,VAR.y.variable=&quot;Obligation.2014&quot;
+#     ,VAR.y.series=&quot;Competition.effective.only&quot;
+#      ,VAR.facet.primary=&quot;Competition.effective.only&quot;
+#     ,VAR.facet.secondary=&quot;ATLpolicy&quot;
+#     ,&quot;StartDate&quot;
+#     ,&quot;EndDate&quot;
+#     )
+# 
+# # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+#     VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
+# VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+#     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
+#     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
+# VendorGraph
+# </code></pre>
 <p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
 <pre class="r"><code>VendorRegimeTable&lt;-ddply(VendorRegime, c(&quot;Fiscal.Year&quot;
     ,&quot;Vendor.Size.sum&quot;
@@ -570,6 +774,80 @@ write.csv(VendorPolicyTable,paste(paste(&quot;DoD_components&quot;
                  )
            ,&quot;.csv&quot;,
            sep=&quot;&quot;))</code></pre>
+<pre class="r"><code>for (s in unique(VendorPolicy$SubCustomer)){    
+    png(
+        paste( paste(s
+                     ,&quot;Obligation_2014&quot;
+                     ,&quot;Vendor_Size_sum&quot;
+                     ,&quot;ATLpolicy&quot;
+                     ,&quot;Annual&quot;
+                     ,sep=&quot;_&quot;
+                     )
+               ,&quot;.png&quot;
+               , sep=&quot;&quot;
+               )
+        , type=&quot;cairo&quot;
+        , width=7.5
+        , height=3.5
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    VendorGraph&lt;-LatticePercentLineWrapper(
+        VAR.name=&quot;Competition&quot;
+        ,VAR.proper.name=paste(s,&quot;Competition by Starting Regime&quot;)
+        ,VAR.X.label=&quot;Fiscal Year of Obligation&quot;
+        ,VAR.Y.label=&quot;% of Component Obligations&quot;
+        ,VAR.Coloration=Coloration
+        
+        
+        ,VAR.long.DF=subset(VendorPolicy,SubCustomer==s)
+        ,VAR.ncol=4
+        ,VAR.x.variable=&quot;Fiscal.Year&quot;
+        ,VAR.y.variable=&quot;Obligation.2014&quot;
+        ,VAR.y.series=    &quot;Vendor.Size.sum&quot;
+        ,VAR.facet.primary=&quot;ATLpolicy&quot;
+        ,VAR.facet.secondary=NA
+        ,&quot;StartDate&quot;
+        ,&quot;EndDate&quot;
+        )
+    
+    VendorGraph&lt;-VendorGraph+aes(size=y.variable)
+    # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
+    VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+        theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
+        scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
+    VendorGraph
+    print(VendorGraph)
+    rm(VendorGraph)
+    #     VendorGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning: Removed 5 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning: Removed 4 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 
 
 </div>
