@@ -176,7 +176,7 @@ png(
 
 VendorGraph<-LatticePercentLineWrapper(
     "Vendor Size"
-    ,"Vendor Size by DoD Component and Starting Regime"
+    ,""#Vendor Size by DoD Component and Starting Regime"
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
@@ -241,7 +241,7 @@ png(
 
 VendorGraph<-LatticePercentLineWrapper(
     "Vendor Size"
-    ,"Vendor Size by DoD Component and Starting Regime"
+    ,""#Vendor Size by DoD Component and Starting Regime"
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
@@ -366,7 +366,7 @@ png(
 
 VendorGraph<-LatticePercentLineWrapper(
     "Vendor Size"
-    ,"Vendor Size by DoD Component and Starting Regime"
+    ,""#Vendor Size by DoD Component and Starting Regime"
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
@@ -428,7 +428,7 @@ png(
 
 VendorGraph<-LatticePercentLineWrapper(
     "Vendor Size"
-    ,"Vendor Size by DoD Component and Starting Regime"
+    ,""#Vendor Size by DoD Component and Starting Regime"
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
@@ -498,7 +498,7 @@ png(
 
 VendorGraph<-LatticePercentLineWrapper(
     "Vendor Size"
-    ,"Vendor Size by DoD Component and Starting Regime"
+    ,""#Vendor Size by DoD Component and Starting Regime"
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
@@ -562,7 +562,7 @@ png(
     
 VendorGraph<-LatticePercentLineWrapper(
     VAR.name="Vendor Size"
-    ,VAR.proper.name="Overall DoD Vendor Size by Starting Regime"
+    ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
     ,VAR.X.label="Fiscal Year of Obligation"
     ,VAR.Y.label="% of Component Obligations"
     ,VAR.Coloration=Coloration
@@ -720,7 +720,7 @@ for (s in unique(VendorPolicy$SubCustomer)){
     
     VendorGraph<-LatticePercentLineWrapper(
         VAR.name="Competition"
-        ,VAR.proper.name=paste(s,"Competition by Starting Regime")
+        ,VAR.proper.name=""#paste(s,"Competition by Starting Regime")
         ,VAR.X.label="Fiscal Year of Obligation"
         ,VAR.Y.label="% of Component Obligations"
         ,VAR.Coloration=Coloration
