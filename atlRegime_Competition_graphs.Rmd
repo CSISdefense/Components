@@ -14,8 +14,9 @@ require(ggplot2)
 require(stringr)
 require(plyr)
 options(error=recover)
-# Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
-Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
+Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
+# Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
+# setwd("K:/Development/Components")
 source(paste(Path,"lookups.r",sep=""))
 source(paste(Path,"helper.r",sep=""))
 
@@ -185,7 +186,7 @@ CompGraph<-LatticePercentLineWrapper(
 
 CompGraph<-CompGraph+aes(size=y.variable)
 # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
+    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
 CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year")) 
@@ -252,7 +253,7 @@ CompGraph<-LatticePercentLineWrapper(
 
 CompGraph<-CompGraph+aes(size=y.variable)
 # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
+    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
 CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
@@ -311,7 +312,7 @@ CompGraph<-LatticePercentLineWrapper(
 
 CompGraph<-CompGraph+aes(size=y.variable)
 # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
+    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
 CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
@@ -368,7 +369,7 @@ CompGraph<-LatticePercentLineWrapper(
 
 CompGraph<-CompGraph+aes(size=y.variable)
 # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
+    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
 CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
@@ -483,7 +484,7 @@ CompGraph<-LatticePercentLineWrapper(
 
 CompGraph<-CompGraph+aes(size=y.variable)
 # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
+    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
 CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
@@ -561,7 +562,7 @@ CompGraph<-LatticePercentLineWrapper(
 
 CompGraph<-CompGraph+aes(size=y.variable)
 # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
+    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
 CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
@@ -631,7 +632,7 @@ CompGraph<-CompGraph+aes(size=y.variable)
                                        , ymin=-Inf
                                        , ymax=Inf
                                        )
-                                   ,color="red",alpha=0)
+                                   ,color="red",alpha=0,size=1)
 CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
@@ -649,7 +650,8 @@ while(!(dev.cur()[[1]]==1)){
 ```{r CompPolicyAnnualComponentSolitary}
 for (s in unique(CompPolicy$SubCustomer)){    
     png(
-        paste( paste(s
+        paste( paste("Output/"
+                     ,s
                      ,"Obligation_2014"
                      ,"Competition_sum"
                      ,"ATLpolicy"
@@ -660,8 +662,8 @@ for (s in unique(CompPolicy$SubCustomer)){
                , sep=""
                )
         , type="cairo"
-        , width=7.5
-        , height=3.5
+        , width=10
+        , height=5
         , units='in'
         , pointsize=12
         , res=150
@@ -669,7 +671,7 @@ for (s in unique(CompPolicy$SubCustomer)){
     
     CompGraph<-LatticePercentLineWrapper(
         VAR.name="Competition"
-        ,VAR.proper.name=paste(s,"Competition by Starting Regime")
+        ,VAR.proper.name=""#paste(s,"Competition by Starting Regime")
         ,VAR.X.label="Fiscal Year of Obligation"
         ,VAR.Y.label="% of Component Obligations"
         ,VAR.Coloration=Coloration
@@ -685,13 +687,13 @@ for (s in unique(CompPolicy$SubCustomer)){
         ,"StartDate"
         ,"EndDate"
         )
-    CompGraph<-CompGraph+aes(size=y.variable)
+    CompGraph<-CompGraph+aes(size=y.variable)+scale_size_continuous(name="Constant 2014 $ Obligated, Billions")
     # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate
                                        , xmax=EndDate
                                        , ymin=-Inf
                                        , ymax=Inf
-                                       , size = 0),color="red",alpha=0)
+                                       , size = 0),color="red",alpha=0,size=1)
     CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
         theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
         scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
@@ -749,7 +751,7 @@ CompGraph<-LatticePercentLineWrapper(
 
 CompGraph<-CompGraph+aes(size=y.variable)
 # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
+    CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
 CompGraph<-CompGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))

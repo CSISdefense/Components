@@ -219,19 +219,25 @@ VendorGraph&lt;-LatticePercentLineWrapper(
 
 VendorGraph&lt;-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
+    VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
 VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;)) </code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>VendorGraph</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>    print(VendorGraph)</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>#     VendorGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
@@ -285,19 +291,25 @@ VendorGraph&lt;-LatticePercentLineWrapper(
 
 VendorGraph&lt;-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
+    VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
 VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>VendorGraph</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>    print(VendorGraph)</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>#     VendorGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
@@ -411,37 +423,61 @@ VendorGraph&lt;-LatticePercentLineWrapper(
 
 VendorGraph&lt;-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
+    VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
 VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>VendorGraph</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 7 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>    print(VendorGraph)</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 7 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>#     VendorGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
@@ -493,45 +529,75 @@ VendorGraph&lt;-LatticePercentLineWrapper(
 
 VendorGraph&lt;-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
+    VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
 VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>VendorGraph</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 5 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 4 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 5 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>    print(VendorGraph)</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 5 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 4 rows containing missing values (geom_path).</code></pre>
-<pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 5 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
 <pre class="r"><code>#     VendorGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
     }</code></pre>
+<<<<<<< HEAD
+=======
 <pre class="r"><code># VendorPolicy$SignedFiscalYearStart
 
 VendorPolicy$Fiscal.Year[VendorPolicy$Fiscal.Year&gt;VendorPolicy$EndDate&amp;
@@ -620,12 +686,18 @@ VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_fo
 while(!(dev.cur()[[1]]==1)){
     dev.off()
     }</code></pre>
+>>>>>>> 637b524f0b24388a9c394803c93e74e1f32297c5
 <pre class="r"><code>VendorPolicy$Fiscal.Year[VendorPolicy$Fiscal.Year&gt;VendorPolicy$EndDate&amp;
                                       VendorPolicy$SignedMonth&lt;=VendorPolicy$EndDate]&lt;-
     VendorPolicy$EndDate[VendorPolicy$Fiscal.Year&gt;VendorPolicy$EndDate&amp;
                                       VendorPolicy$SignedMonth&lt;=VendorPolicy$EndDate]
+<<<<<<< HEAD
+VendorPolicy$SignedFiscal.Year[VendorPolicy$SignedFiscal.Year&lt;VendorPolicy$StartDate]&lt;-
+    VendorPolicy$StartDate[VendorPolicy$SignedFiscal.Year&lt;VendorPolicy$StartDate]
+=======
 # VendorPolicy$SignedFiscalYearStart[VendorPolicy$SignedFiscalYearStart&lt;VendorPolicy$StartDate]&lt;-
 #     VendorPolicy$StartDate[VendorPolicy$SignedFiscalYearStart&lt;VendorPolicy$StartDate]
+>>>>>>> 637b524f0b24388a9c394803c93e74e1f32297c5
 
 
 png(
@@ -668,15 +740,27 @@ VendorGraph&lt;-LatticePercentLineWrapper(
 
 VendorGraph&lt;-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+<<<<<<< HEAD
+    VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
+=======
     VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
+>>>>>>> 637b524f0b24388a9c394803c93e74e1f32297c5
 VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre class="r"><code>VendorGraph</code></pre>
+<<<<<<< HEAD
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre class="r"><code>    print(VendorGraph)</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+=======
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre class="r"><code>    print(VendorGraph)</code></pre>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+>>>>>>> 637b524f0b24388a9c394803c93e74e1f32297c5
 <pre class="r"><code>#     VendorGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
@@ -704,7 +788,11 @@ while(!(dev.cur()[[1]]==1)){
 #     )
 # 
 # # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+<<<<<<< HEAD
+#     VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
+=======
 #     VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
+>>>>>>> 637b524f0b24388a9c394803c93e74e1f32297c5
 # VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
 #     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
 #     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
@@ -734,7 +822,11 @@ while(!(dev.cur()[[1]]==1)){
 #     )
 # 
 # # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+<<<<<<< HEAD
+#     VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
+=======
 #     VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
+>>>>>>> 637b524f0b24388a9c394803c93e74e1f32297c5
 # VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
 #     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
 #     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
@@ -795,8 +887,13 @@ write.csv(VendorPolicyTable,paste(paste(&quot;DoD_components&quot;
         )
     
     VendorGraph&lt;-LatticePercentLineWrapper(
+<<<<<<< HEAD
+        VAR.name=&quot;Vendor Size&quot;
+        ,VAR.proper.name=paste(s,&quot;Vendor Size by Starting Regime&quot;)
+=======
         VAR.name=&quot;Competition&quot;
         ,VAR.proper.name=paste(s,&quot;Competition by Starting Regime&quot;)
+>>>>>>> 637b524f0b24388a9c394803c93e74e1f32297c5
         ,VAR.X.label=&quot;Fiscal Year of Obligation&quot;
         ,VAR.Y.label=&quot;% of Component Obligations&quot;
         ,VAR.Coloration=Coloration
@@ -815,7 +912,11 @@ write.csv(VendorPolicyTable,paste(paste(&quot;DoD_components&quot;
     
     VendorGraph&lt;-VendorGraph+aes(size=y.variable)
     # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+<<<<<<< HEAD
+    VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
+=======
     VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0)
+>>>>>>> 637b524f0b24388a9c394803c93e74e1f32297c5
     VendorGraph&lt;-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
         theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
         scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
@@ -828,6 +929,42 @@ write.csv(VendorPolicyTable,paste(paste(&quot;DoD_components&quot;
         }
     }</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<<<<<<< HEAD
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 5 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+=======
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
@@ -848,6 +985,7 @@ write.csv(VendorPolicyTable,paste(paste(&quot;DoD_components&quot;
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre><code>## Warning: Removed 2 rows containing missing values (geom_path).</code></pre>
 <pre><code>## Warning: Removed 1 rows containing missing values (geom_path).</code></pre>
+>>>>>>> 637b524f0b24388a9c394803c93e74e1f32297c5
 
 
 </div>
