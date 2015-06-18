@@ -15,9 +15,9 @@ require(stringr)
 require(plyr)
 options(error=recover)
 # setwd("K:\\Development\\Components")
-setwd("C:\\Users\\Greg Sanders\\Documents\\Development\\Components")
-# Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
-Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
+# setwd("C:\\Users\\Greg Sanders\\Documents\\Development\\Components")
+Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
+# Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
 source(paste(Path,"lookups.r",sep=""))
 source(paste(Path,"helper.r",sep=""))
 
@@ -462,6 +462,53 @@ while(!(dev.cur()[[1]]==1)){
 
 
 ```{r VendorPolicyHorseTail}
+
+ATLregimeMonthly<-aggregate(VendorRegime$Obligation.2014
+                          , by=list(VendorRegime$Fiscal.Year,
+                                    #                                                   VendorRegime$SubCustomer.component,
+                                    VendorRegime$USDATL)
+                          ,FUN = "sum"
+                          ,na.rm =TRUE
+                          )
+
+names(ATLregimeFYear)<-c("Fiscal.Year","USDATL","AnnualRegimeObligations")
+VendorUSDATL<-subset(VendorRegime,join(VendorRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
+
+
+ATLregimeDetails<-data.frame(USDATL= 'GANSLER+',
+                             StartDate=as.Date('1997/11/10',format='%Y/%m/%d'),
+                             EndDate=as.Date('2001/05/10',format='%Y/%m/%d'))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'ALDRIDGE',
+                                                    StartDate=as.Date('2001/05/10',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2003/05/22' ,format='%Y/%m/%d') ))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'WYNNE',
+                                                    StartDate=as.Date('2003/05/23' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2005/06/05' ,format='%Y/%m/%d')))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KRIEG',
+                                                    StartDate=as.Date('2005/06/06' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2007/07/19' ,format='%Y/%m/%d')))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'YOUNG',
+                                                    StartDate=as.Date('2007/07/20' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2009/04/26',format='%Y/%m/%d')))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'CARTER',
+                                                    StartDate=as.Date('2009/04/27',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2011/11/02',format='%Y/%m/%d')))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
+                                                    StartDate=as.Date('2011/11/03',format='%Y/%m/%d'),
+                                                    EndDate=max(VendorRegime$SignedQuarter)))
+
+VendorUSDATL<-join(VendorUSDATL,ATLregimeDetails,match="first")
+
+VendorUSDATL$SignedSemiAnnual[VendorUSDATL$SignedSemiAnnual>VendorUSDATL$EndDate&
+                                      VendorUSDATL$SignedMonth<=VendorUSDATL$EndDate]<-
+    VendorUSDATL$EndDate[VendorUSDATL$SignedSemiAnnual>VendorUSDATL$EndDate&
+                                      VendorUSDATL$SignedMonth<=VendorUSDATL$EndDate]
+
+VendorUSDATL$SignedSemiAnnual[VendorUSDATL$SignedSemiAnnual<VendorUSDATL$StartDate]<-
+    VendorUSDATL$StartDate[VendorUSDATL$SignedSemiAnnual<VendorUSDATL$StartDate]
+
+
+
 # VendorPolicy$SignedFiscalYearStart
 
 difftime(strptime("26.03.2014", format = "%d.%m.%Y"),
