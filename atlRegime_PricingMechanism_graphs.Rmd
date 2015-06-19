@@ -593,7 +593,7 @@ FixedPriceRegimeTable<-ddply(FixedPriceRegime, c("Fiscal.Year"
     ,"Pricing.Mechanism.sum"
     ,"SubCustomer.component"
     ,"USDATL")
-    ,summarise
+    ,summarize
     ,Obligation.2014=sum(Obligation.2014)
 )
 write.csv(FixedPriceRegimeTable,paste(paste("DoD_components"
