@@ -14,8 +14,8 @@ require(ggplot2)
 require(stringr)
 require(plyr)
 options(error=recover)
-Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
-# Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
+# Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
+Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
 # setwd("K:/Development/Components")
 source(paste(Path,"lookups.r",sep=""))
 source(paste(Path,"helper.r",sep=""))
@@ -145,7 +145,7 @@ CompUSDATL$SignedSemiAnnual[CompUSDATL$SignedSemiAnnual<CompUSDATL$StartDate]<-
 
 
 png(
-    paste( paste("DoD_components"
+    paste("Output\\Competition\\", paste("DoD_components"
                  ,"Obligation_2014"
                  ,"Competition_sum"
                  ,"USDATL"
@@ -212,7 +212,8 @@ CompUSDATL$Fiscal.Year[CompUSDATL$Fiscal.Year<CompUSDATL$StartDate]<-
 
 
 png(
-    paste( paste("DoD_components"
+    paste( "Output\\Competition\\", 
+           paste("DoD_components"
                  ,"Obligation_2014"
                  ,"Competition_sum"
                  ,"USDATL"
@@ -271,7 +272,8 @@ while(!(dev.cur()[[1]]==1)){
 
 ```{r CompUSDATLAnnualEffective}        
 png(
-    paste( paste("DoD_components"
+    paste( "Output\\Competition\\", 
+           paste("DoD_components"
                  ,"Obligation_2014"
                  ,"Comp_Effective"
                  ,"USDATL"
@@ -328,7 +330,8 @@ while(!(dev.cur()[[1]]==1)){
 
 
 png(
-    paste( paste("DoD_components"
+    paste( "Output\\Competition\\", 
+           paste("DoD_components"
                  ,"Obligation_2014"
                  ,"Comp_Effective"
                  ,"USDATL"
@@ -446,7 +449,8 @@ CompPolicy$SignedSemiAnnual[CompPolicy$SignedSemiAnnual<CompPolicy$StartDate]<-
     CompPolicy$StartDate[CompPolicy$SignedSemiAnnual<CompPolicy$StartDate]
 
 png(
-    paste( paste("DoD_components"
+    paste("Output\\Competition\\", 
+          paste("DoD_components"
                  ,"Obligation_2014"
                  ,"Competition_sum"
                  ,"ATLpolicy"
@@ -522,7 +526,8 @@ CompPolicy$SignedFiscal.Year[CompPolicy$SignedFiscal.Year<CompPolicy$StartDate]<
 
 
 png(
-    paste( paste("DoD_components"
+    paste("Output\\Competition\\", 
+          paste("DoD_components"
                  ,"Obligation_2014"
                  ,"Competition_sum"
                  ,"ATLpolicy"
@@ -588,7 +593,8 @@ CompPolicy$SignedFiscal.Year[CompPolicy$SignedFiscal.Year<CompPolicy$StartDate]<
 
 
 png(
-    paste( paste("DoD_Summary"
+    paste( "Output\\Competition\\", 
+           paste("DoD_Summary"
                  ,"Obligation_2014"
                  ,"Competition_sum"
                  ,"ATLpolicy"
@@ -650,8 +656,8 @@ while(!(dev.cur()[[1]]==1)){
 ```{r CompPolicyAnnualComponentSolitary}
 for (s in unique(CompPolicy$SubCustomer)){    
     png(
-        paste( paste("Output/"
-                     ,s
+        paste("Output\\Competition\\", 
+              paste(s
                      ,"Obligation_2014"
                      ,"Competition_sum"
                      ,"ATLpolicy"
@@ -711,7 +717,8 @@ for (s in unique(CompPolicy$SubCustomer)){
 
 ```{r CompPolicyAnnualEffective}
 png(
-    paste( paste("DoD_components"
+    paste( "Output\\Competition\\", 
+           paste("DoD_components"
                  ,"Obligation_2014"
                  ,"Comp_Effective"
                  ,"ATLpolicy"

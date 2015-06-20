@@ -15,7 +15,7 @@ require(stringr)
 require(plyr)
 options(error=recover)
 # setwd("K:\\Development\\Components")
-setwd("C:\\Users\\Greg Sanders\\Documents\\Development\\Fixed-price")
+# setwd("C:\\Users\\Greg Sanders\\Documents\\Development\\Components")
 # Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
 Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
 source(paste(Path,"lookups.r",sep=""))
@@ -146,7 +146,8 @@ FixedPriceUSDATL$SignedSemiAnnual[FixedPriceUSDATL$SignedSemiAnnual<FixedPriceUS
 
 
 png(
-    paste( paste("DoD_components"
+    paste("Output//Pricing_Mechanism//",
+          paste("DoD_components"
                  ,"Obligation_2014"
                  ,"Pricing_Mechanism_sum"
                  ,"USDATL"
@@ -212,7 +213,8 @@ FixedPriceUSDATL$Fiscal.Year[FixedPriceUSDATL$Fiscal.Year<FixedPriceUSDATL$Start
 
 
 png(
-    paste( paste("DoD_components"
+    paste("Output//Pricing_Mechanism//",
+          paste("DoD_components"
                  ,"Obligation_2014"
                  ,"Pricing_Mechanism_sum"
                  ,"USDATL"
@@ -338,7 +340,8 @@ FixedPricePolicy$SignedSemiAnnual[FixedPricePolicy$SignedSemiAnnual<FixedPricePo
     FixedPricePolicy$StartDate[FixedPricePolicy$SignedSemiAnnual<FixedPricePolicy$StartDate]
 
 png(
-    paste( paste("DoD_components"
+    paste("Output//Pricing_Mechanism//",
+          paste("DoD_components"
                  ,"Obligation_2014"
                  ,"Pricing_Mechanism_sum"
                  ,"ATLpolicy"
@@ -406,7 +409,8 @@ FixedPricePolicy$SignedFiscal.Year<-FixedPricePolicy$SignedFiscal.Year
 # )
 
 png(
-    paste( paste("DoD_components"
+    paste("Output//Pricing_Mechanism//",
+          paste("DoD_components"
                  ,"Obligation_2014"
                  ,"Pricing_Mechanism_sum"
                  ,"ATLpolicy"
@@ -473,7 +477,8 @@ FixedPricePolicy$SignedFiscal.Year[FixedPricePolicy$SignedFiscal.Year<FixedPrice
 
 
 png(
-    paste( paste("DoD_Summary"
+    paste("Output//Pricing_Mechanism//",
+          paste("DoD_Summary"
                  ,"Obligation_2014"
                  ,"Pricing_Mechanism_sum"
                  ,"ATLpolicy"
@@ -631,8 +636,8 @@ write.csv(FixedPricePolicyTable,paste(paste("DoD_components"
 ```{r FixedPricePolicyAnnualComponentSolitary}
 for (s in unique(FixedPricePolicy$SubCustomer)){    
     png(
-        paste( paste("Output/"
-                     ,s
+        paste("Output//Pricing_Mechanism//",
+              paste(s
                      ,"Obligation_2014"
                      ,"Pricing_Mechanism_sum"
                      ,"ATLpolicy"
