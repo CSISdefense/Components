@@ -593,45 +593,6 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r DataTables}
-FixedPriceRegimeTable<-ddply(FixedPriceRegime, c("Fiscal.Year"
-    ,"Pricing.Mechanism.sum"
-    ,"SubCustomer.component"
-    ,"USDATL")
-    ,summarize
-    ,Obligation.2014=sum(Obligation.2014)
-)
-write.csv(FixedPriceRegimeTable,paste(paste("DoD_components"
-                 ,"Obligation_2014"
-                 ,"Pricing_Mechanism_sum"
-                 ,"USDATL"
-                 ,"Annual"
-                 ,sep="_"
-                 )
-           ,".csv",
-           sep=""))
-
-FixedPricePolicyTable<-ddply(FixedPricePolicy, c("Fiscal.Year"
-    ,"Pricing.Mechanism.sum"
-    ,"SubCustomer.component"
-    ,"ATLpolicy")
-    ,summarise
-    ,Obligation.2014=sum(Obligation.2014)
-)
-write.csv(FixedPricePolicyTable,paste(paste("DoD_components"
-                 ,"Obligation_2014"
-                 ,"Pricing_Mechanism_sum"
-                 ,"ATLpolicy"
-                 ,"Annual"
-                 ,sep="_"
-                 )
-           ,".csv",
-           sep=""))
-
-
-```
-
-
 
 ```{r FixedPricePolicyAnnualComponentSolitary}
 for (s in unique(FixedPricePolicy$SubCustomer)){    
@@ -688,5 +649,48 @@ for (s in unique(FixedPricePolicy$SubCustomer)){
         dev.off()
         }
     }
+
+```
+
+
+
+
+```{r DataTables}
+FixedPriceRegimeTable<-ddply(FixedPriceRegime, c("Fiscal.Year"
+    ,"Pricing.Mechanism.sum"
+    ,"SubCustomer.component"
+    ,"USDATL")
+    ,summarize
+    ,Obligation.2014=sum(Obligation.2014)
+)
+write.csv(FixedPriceRegimeTable,paste("Output\\Competition\\",
+                                      paste("DoD_components"
+                 ,"Obligation_2014"
+                 ,"Pricing_Mechanism_sum"
+                 ,"USDATL"
+                 ,"Annual"
+                 ,sep="_"
+                 )
+           ,".csv",
+           sep=""))
+
+FixedPricePolicyTable<-ddply(FixedPricePolicy, c("Fiscal.Year"
+    ,"Pricing.Mechanism.sum"
+    ,"SubCustomer.component"
+    ,"ATLpolicy")
+    ,summarise
+    ,Obligation.2014=sum(Obligation.2014)
+)
+write.csv(FixedPricePolicyTable,paste("Output\\Competition\\",
+                                      paste("DoD_components"
+                 ,"Obligation_2014"
+                 ,"Pricing_Mechanism_sum"
+                 ,"ATLpolicy"
+                 ,"Annual"
+                 ,sep="_"
+                 )
+           ,".csv",
+           sep=""))
+
 
 ```

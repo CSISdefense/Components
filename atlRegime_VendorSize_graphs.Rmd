@@ -174,7 +174,7 @@ png(
 VendorGraph<-LatticePercentLineWrapper(
     "Vendor Size"
     ,""#Vendor Size by DoD Component and Starting Regime"
-    ,"Fiscal Year of Obligation"
+    ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
     ,Coloration
     ,VendorUSDATL
@@ -363,7 +363,7 @@ png(
 VendorGraph<-LatticePercentLineWrapper(
     "Vendor Size"
     ,""#Vendor Size by DoD Component and Starting Regime"
-    ,"Fiscal Year of Obligation"
+    ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
     ,Coloration
     ,VendorPolicy
@@ -459,7 +459,7 @@ png(
                  ,"Obligation_2014"
                  ,"Vendor_Size_sum"
                  ,"ATLpolicy"
-                 ,"3monthMovingAverage"
+                 ,"6monthMovingAverage"
                  ,sep="_"
                  )
            ,".png"
@@ -477,13 +477,13 @@ png(
 VendorGraph<-LatticePercentLineWrapper(
     VAR.name="Vendor Size"
     ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
-    ,VAR.X.label="Fiscal Year of Obligation"
+    ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
     ,VAR.Y.label="% of DoD Obligations"
     ,VAR.Coloration=Coloration
     
     
     ,VAR.long.DF=VendorPolicy
-    ,VAR.ncol=1
+    ,VAR.ncol=NA
     ,VAR.x.variable="SignedMonth"
     ,VAR.y.variable="Obligation.2014"
     ,VAR.y.series=    "Vendor.Size.sum"
@@ -491,7 +491,7 @@ VendorGraph<-LatticePercentLineWrapper(
     ,VAR.facet.secondary=NA
     ,"StartDate"
     ,"EndDate"
-    ,MovingAverage=3
+    ,MovingAverage=6
     )
 
 VendorGraph<-VendorGraph+aes(size=y.variable)
@@ -545,7 +545,7 @@ VendorGraph<-LatticePercentLineWrapper(
     
     
     ,VAR.long.DF=VendorPolicy
-    ,VAR.ncol=4
+    ,VAR.ncol=NA
     ,VAR.x.variable="Fiscal.Year"
     ,VAR.y.variable="Obligation.2014"
     ,VAR.y.series=    "Vendor.Size.sum"
@@ -573,7 +573,7 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r VendorPolicyAnnualComponentSolitary}
+```{r VendorPolicyMonthlyComponentSolitary}
 
 for (s in unique(VendorPolicy$SubCustomer)){    
     png(
@@ -582,7 +582,7 @@ for (s in unique(VendorPolicy$SubCustomer)){
                      ,"Obligation_2014"
                      ,"Vendor_Size_sum"
                      ,"ATLpolicy"
-                     ,"3monthMovingAverage"
+                     ,"6monthMovingAverage"
                      ,sep="_"
                      )
                ,".png"
@@ -599,13 +599,13 @@ for (s in unique(VendorPolicy$SubCustomer)){
     VendorGraph<-LatticePercentLineWrapper(
         VAR.name="Vendor Size"
         ,VAR.proper.name=""#paste(s,"Vendor Size by Starting Regime")
-        ,VAR.X.label="Fiscal Year of Obligation"
+        ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
         ,VAR.Y.label=paste("% of ",s," Obligations")
         ,VAR.Coloration=Coloration
         
         
         ,VAR.long.DF=subset(VendorPolicy,SubCustomer==s)
-        ,VAR.ncol=1
+        ,VAR.ncol=NA
         ,VAR.x.variable="SignedMonth"
         ,VAR.y.variable="Obligation.2014"
         ,VAR.y.series=    "Vendor.Size.sum"
@@ -613,7 +613,7 @@ for (s in unique(VendorPolicy$SubCustomer)){
         ,VAR.facet.secondary=NA
         ,"StartDate"
         ,"EndDate"
-        ,MovingAverage=3
+        ,MovingAverage=6
         )
     
     VendorGraph<-VendorGraph+aes(size=y.variable)+scale_size_continuous(name="Constant 2014 $ Obligated, Billions")
@@ -667,7 +667,7 @@ for (s in unique(VendorPolicy$SubCustomer)){
         
         
         ,VAR.long.DF=subset(VendorPolicy,SubCustomer==s)
-        ,VAR.ncol=4
+        ,VAR.ncol=NA
         ,VAR.x.variable="Fiscal.Year"
         ,VAR.y.variable="Obligation.2014"
         ,VAR.y.series=    "Vendor.Size.sum"

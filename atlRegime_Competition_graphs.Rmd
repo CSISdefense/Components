@@ -784,7 +784,8 @@ CompRegimeTable<-ddply(CompRegime, c("Fiscal.Year"
     ,summarise
     ,Obligation.2014=sum(Obligation.2014)
 )
-write.csv(CompRegimeTable,paste(paste("DoD_components"
+write.csv(CompRegimeTable,paste("Output\\Competition\\",
+                                paste("DoD_components"
                  ,"Obligation_2014"
                  ,"Competition_sum"
                  ,"USDATL"
@@ -801,7 +802,8 @@ CompPolicyTable<-ddply(CompPolicy, c("Fiscal.Year"
     ,summarise
     ,Obligation.2014=sum(Obligation.2014)
 )
-write.csv(CompPolicyTable,paste(paste("DoD_components"
+write.csv(CompPolicyTable,paste("Output\\Competition\\",
+                                paste("DoD_components"
                  ,"Obligation_2014"
                  ,"Competition_sum"
                  ,"ATLpolicy"
