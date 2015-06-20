@@ -9,10 +9,11 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r, echo=FALSE}
+```{r Setup, echo=FALSE}
 require(ggplot2)
 require(stringr)
 require(plyr)
+require(lubridate)
 options(error=recover)
 # setwd("K:\\Development\\Components")
 # setwd("C:\\Users\\Greg Sanders\\Documents\\Development\\Components")
@@ -21,7 +22,7 @@ Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive
 source(paste(Path,"lookups.r",sep=""))
 source(paste(Path,"helper.r",sep=""))
 
-axis.text.size<-14
+axis.text.size<-12
 strip.text.size<-12
 legend.text.size<-8
 # table.text.size<-5.75
@@ -50,7 +51,9 @@ Coloration<-ddply(Coloration
 
 You can also embed plots, for example:
 
-```{r, echo=FALSE}
+
+
+```{r DateEntryAndProcessing, echo=FALSE}
 VendorRegime  <- read.csv(
     paste("data\\Defense_Vendor_SP_VendorSizeHistoryBucketSubCustomerRegime.csv", sep = ""),
     header = TRUE, sep = ",", dec = ".", strip.white = TRUE, 
@@ -103,11 +106,7 @@ VendorRegime$SubCustomer.component<-factor(VendorRegime$SubCustomer.component,
 ```
 
 
-
-
-
-
-```{r VendorUSDATLSemiAnnual}        
+```{r ATLregime}
 ATLregimeFYear<-aggregate(VendorRegime$Obligation.2014
                           , by=list(VendorRegime$Fiscal.Year,
                                     #                                                   VendorRegime$SubCustomer.component,
@@ -142,6 +141,14 @@ ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
                                                     StartDate=as.Date('2011/11/03',format='%Y/%m/%d'),
                                                     EndDate=max(VendorRegime$SignedQuarter)))
 
+
+
+ATLregimeDetails$StartFiscalYear<-ymd(paste(year(ATLregimeDetails$StartDate)+
+                                                ifelse(month(ATLregimeDetails$StartDate)<10,-1,0)
+                                            ,"-10-1",sep=""))
+
+
+
 VendorUSDATL<-join(VendorUSDATL,ATLregimeDetails,match="first")
 
 VendorUSDATL$SignedSemiAnnual[VendorUSDATL$SignedSemiAnnual>VendorUSDATL$EndDate&
@@ -153,14 +160,29 @@ VendorUSDATL$SignedSemiAnnual[VendorUSDATL$SignedSemiAnnual<VendorUSDATL$StartDa
     VendorUSDATL$StartDate[VendorUSDATL$SignedSemiAnnual<VendorUSDATL$StartDate]
 
 
+VendorUSDATL$Fiscal.Year[VendorUSDATL$Fiscal.Year>VendorUSDATL$EndDate&
+                             VendorUSDATL$SignedMonth<=VendorUSDATL$EndDate]<-
+    VendorUSDATL$EndDate[VendorUSDATL$Fiscal.Year>VendorUSDATL$EndDate&
+                             VendorUSDATL$SignedMonth<=VendorUSDATL$EndDate]
+
+VendorUSDATL$Fiscal.Year[VendorUSDATL$Fiscal.Year<VendorUSDATL$StartDate]<-
+    VendorUSDATL$StartDate[VendorUSDATL$Fiscal.Year<VendorUSDATL$StartDate]
+
+
+```
+
+
+
+```{r VendorUSDATLSemiAnnual}        
+
 png(
-    paste( paste("DoD_components"
-                 ,"Obligation_2014"
-                 ,"Vendor_Size_sum"
-                 ,"USDATL"
-                 ,"Semi_Annual"
-                 ,sep="_"
-                 )
+    paste( "Output\\Vendor_Size\\",paste("DoD_components"
+                            ,"Obligation_2014"
+                            ,"Vendor_Size_sum"
+                            ,"USDATL"
+                            ,"Semi_Annual"
+                            ,sep="_"
+                            )
            ,".png"
            , sep=""
            )
@@ -209,23 +231,15 @@ while(!(dev.cur()[[1]]==1)){
 
 
 ```{r VendorUSDATLAnnual}        
-VendorUSDATL$Fiscal.Year[VendorUSDATL$Fiscal.Year>VendorUSDATL$EndDate&
-                             VendorUSDATL$SignedMonth<=VendorUSDATL$EndDate]<-
-    VendorUSDATL$EndDate[VendorUSDATL$Fiscal.Year>VendorUSDATL$EndDate&
-                             VendorUSDATL$SignedMonth<=VendorUSDATL$EndDate]
-
-VendorUSDATL$Fiscal.Year[VendorUSDATL$Fiscal.Year<VendorUSDATL$StartDate]<-
-    VendorUSDATL$StartDate[VendorUSDATL$Fiscal.Year<VendorUSDATL$StartDate]
-
 
 png(
-    paste( paste("DoD_components"
-                 ,"Obligation_2014"
-                 ,"Vendor_Size_sum"
-                 ,"USDATL"
-                 ,"Annual"
-                 ,sep="_"
-                 )
+    paste( "Output\\Vendor_Size\\",paste("DoD_components"
+                            ,"Obligation_2014"
+                            ,"Vendor_Size_sum"
+                            ,"USDATL"
+                            ,"Annual"
+                            ,sep="_"
+                            )
            ,".png"
            , sep=""
            )
@@ -273,8 +287,7 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-
-```{r VendorPolicySemiAnnual}        
+```{r ATLpolicy}
 VendorPolicy<-VendorRegime
 VendorPolicy$ATLpolicy<-as.character(VendorRegime$USDATL)
 VendorPolicy$ATLpolicy[VendorPolicy$USDATL=="CARTER"]<-"CARTER\n pre-IFT"
@@ -334,24 +347,39 @@ ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP3',
                                                     EndDate=max(VendorRegime$SignedQuarter)))
 
 
+ATLpolicyDetails$StartFiscalYear<-ymd(paste(year(ATLpolicyDetails$StartDate)+
+                                                ifelse(month(ATLpolicyDetails$StartDate)<10,-1,0)
+                                            ,"-10-1",sep=""))
 
 VendorPolicy<-join(VendorPolicy,ATLpolicyDetails,match="first")
+
 VendorPolicy<-subset(VendorPolicy,ATLpolicy!='BBP3') #Not enough to include
+
 VendorPolicy$SignedSemiAnnual[VendorPolicy$SignedSemiAnnual>VendorPolicy$EndDate&
                                   VendorPolicy$SignedMonth<=VendorPolicy$EndDate]<-
     VendorPolicy$EndDate[VendorPolicy$SignedSemiAnnual>VendorPolicy$EndDate&
                              VendorPolicy$SignedMonth<=VendorPolicy$EndDate]
+
 VendorPolicy$SignedSemiAnnual[VendorPolicy$SignedSemiAnnual<VendorPolicy$StartDate]<-
     VendorPolicy$StartDate[VendorPolicy$SignedSemiAnnual<VendorPolicy$StartDate]
 
+VendorPolicy$Fiscal.Year[VendorPolicy$Fiscal.Year>VendorPolicy$EndDate&
+                             VendorPolicy$SignedMonth<=VendorPolicy$EndDate]<-
+    VendorPolicy$EndDate[VendorPolicy$Fiscal.Year>VendorPolicy$EndDate&
+                             VendorPolicy$SignedMonth<=VendorPolicy$EndDate]
+
+```
+
+```{r VendorPolicySemiAnnual}        
+
 png(
-    paste( paste("DoD_components"
-                 ,"Obligation_2014"
-                 ,"Vendor_Size_sum"
-                 ,"ATLpolicy"
-                 ,"Semi_Annual"
-                 ,sep="_"
-                 )
+    paste( "Output\\Vendor_Size\\",paste("DoD_components"
+                            ,"Obligation_2014"
+                            ,"Vendor_Size_sum"
+                            ,"ATLpolicy"
+                            ,"Semi_Annual"
+                            ,sep="_"
+                            )
            ,".png"
            , sep=""
            )
@@ -398,16 +426,10 @@ while(!(dev.cur()[[1]]==1)){
 
 
 ```{r VendorPolicyAnnualComponents}
-VendorPolicy$Fiscal.Year[VendorPolicy$Fiscal.Year>VendorPolicy$EndDate&
-                             VendorPolicy$SignedMonth<=VendorPolicy$EndDate]<-
-    VendorPolicy$EndDate[VendorPolicy$Fiscal.Year>VendorPolicy$EndDate&
-                             VendorPolicy$SignedMonth<=VendorPolicy$EndDate]
-# VendorPolicy$SignedFiscalYearStart[VendorPolicy$SignedFiscalYearStart<VendorPolicy$StartDate]<-
-#     VendorPolicy$StartDate[VendorPolicy$SignedFiscalYearStart<VendorPolicy$StartDate]
-
 
 png(
-    paste( paste("DoD_components"
+    paste( "Output\\Vendor_Size\\",
+           paste("DoD_components"
                  ,"Obligation_2014"
                  ,"Vendor_Size_sum"
                  ,"ATLpolicy"
@@ -459,197 +481,173 @@ while(!(dev.cur()[[1]]==1)){
 
 ```
 
-
-
-```{r VendorPolicyHorseTail}
-
-
-
-
-png(
-    paste( paste("DoD_Summary"
-                 ,"Obligation_2014"
-                 ,"Vendor_Size_sum"
-                 ,"ATLpolicy"
-                 ,"Annual"
-                 ,sep="_"
-                 )
-           ,".png"
-           , sep=""
-           )
-    , type="cairo"
-    , width=7.5
-    , height=3.5
-    , units='in'
-    , pointsize=12
-    , res=150
+```{r PrepareSinceFirstFiscalYear}
+VendorPolicy$SinceFirstFiscalYear<-as.numeric(as.duration(
+    ymd(VendorPolicy$SignedMonth)-VendorPolicy$StartFiscalYear)
+    /dyears(1)
     )
+
+```
+
+
+
+```{r VendorPolicySeriesHorseTail}
 
 OldGraph<-VendorPolicy$Graph
-VendorPolicy$Graph[VendorPolicy$Vendor.Size.sum!="Large (Big 6)"]<-FALSE
 
-VendorGraph<-LatticePercentLineWrapper(
-    VAR.name="Vendor Size"
-    ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
-    ,VAR.X.label="Fiscal Year of Obligation"
-    ,VAR.Y.label="% of Component Obligations"
-    ,VAR.Coloration=Coloration
-    , HorseTail=TRUE
+for (s in unique(VendorPolicy$Vendor.Size.sum)){    
+    png(
+        paste( "Output\\Vendor_Size\\",
+               paste(
+                   "DoD"
+                   ,"Category"
+                   ,"Percent"
+                   ,s
+                   ,"Vendor_Size_sum"
+                   ,"HorseTail"
+                   ,"3monthMovingAverage"
+                   ,sep="_"
+                   )
+               ,".png"
+               , sep=""
+               )
+        , type="cairo"
+        , width=7.5
+        , height=4
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
     
-    ,VAR.long.DF=VendorPolicy
-    ,VAR.ncol=1
-    ,VAR.x.variable="SignedMonth"
-    ,VAR.y.variable="Obligation.2014"
-    ,VAR.y.series=    "ATLpolicy"
-    ,VAR.facet.primary="Vendor.Size.sum"
-    ,VAR.facet.secondary=NA
+    VendorPolicy$Graph[VendorPolicy$Vendor.Size.sum!=s]<-FALSE
+    VendorPolicy$Graph[VendorPolicy$Vendor.Size.sum==s]<-TRUE
     
-    ,"StartDate"
-    ,"EndDate"
-    ,MovingAverage=5
-    ,MovingSides=2
-    )
-
-VendorGraph<-VendorGraph+aes(size=y.variable)
-# VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-VendorGraph<-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
-    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
-    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
-VendorGraph
-print(VendorGraph)
-#     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
-while(!(dev.cur()[[1]]==1)){
-    dev.off()
+    VendorGraph<-LatticePercentLineWrapper(
+        VAR.name="Vendor Size"
+        ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
+        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year"
+        ,VAR.Y.label="% of Component Obligations"
+        ,VAR.Coloration=Coloration
+        , HorseTail=TRUE
+        
+        ,VAR.long.DF=VendorPolicy
+        ,VAR.ncol=1
+        ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series=    "ATLpolicy"
+        ,VAR.facet.primary="Vendor.Size.sum"
+        ,VAR.facet.secondary=NA
+        #     ,"StartDate"
+        #     ,"EndDate"
+        ,MovingAverage=3
+        ,MovingSides=1
+        )
+    
+    # VendorGraph<-VendorGraph+aes(size=y.variable)
+    
+    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:8))
+    
+    # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    # VendorGraph<-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+    #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    VendorGraph
+    print(VendorGraph)
+    #     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
     }
 
+VendorPolicy$Graph<-OldGraph
 
-# ATLregimeMonthly<-aggregate(VendorRegime$Obligation.2014
-#                           , by=list(VendorRegime$Fiscal.Year,
-#                                     #                                                   VendorRegime$SubCustomer.component,
-#                                     VendorRegime$USDATL)
-#                           ,FUN = "sum"
-#                           ,na.rm =TRUE
-#                           )
-# 
-# names(ATLregimeFYear)<-c("Fiscal.Year","USDATL","AnnualRegimeObligations")
-# VendorUSDATL<-subset(VendorRegime,join(VendorRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
-# 
-# 
-# ATLregimeDetails<-data.frame(USDATL= 'GANSLER+',
-#                              StartDate=as.Date('1997/11/10',format='%Y/%m/%d'),
-#                              EndDate=as.Date('2001/05/10',format='%Y/%m/%d'))
-# ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'ALDRIDGE',
-#                                                     StartDate=as.Date('2001/05/10',format='%Y/%m/%d'),
-#                                                     EndDate=as.Date('2003/05/22' ,format='%Y/%m/%d') ))
-# ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'WYNNE',
-#                                                     StartDate=as.Date('2003/05/23' ,format='%Y/%m/%d'),
-#                                                     EndDate=as.Date('2005/06/05' ,format='%Y/%m/%d')))
-# ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KRIEG',
-#                                                     StartDate=as.Date('2005/06/06' ,format='%Y/%m/%d'),
-#                                                     EndDate=as.Date('2007/07/19' ,format='%Y/%m/%d')))
-# ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'YOUNG',
-#                                                     StartDate=as.Date('2007/07/20' ,format='%Y/%m/%d'),
-#                                                     EndDate=as.Date('2009/04/26',format='%Y/%m/%d')))
-# ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'CARTER',
-#                                                     StartDate=as.Date('2009/04/27',format='%Y/%m/%d'),
-#                                                     EndDate=as.Date('2011/11/02',format='%Y/%m/%d')))
-# ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
-#                                                     StartDate=as.Date('2011/11/03',format='%Y/%m/%d'),
-#                                                     EndDate=max(VendorRegime$SignedQuarter)))
-# 
-# VendorUSDATL<-join(VendorUSDATL,ATLregimeDetails,match="first")
-# 
-# VendorUSDATL$SignedSemiAnnual[VendorUSDATL$SignedSemiAnnual>VendorUSDATL$EndDate&
-#                                       VendorUSDATL$SignedMonth<=VendorUSDATL$EndDate]<-
-#     VendorUSDATL$EndDate[VendorUSDATL$SignedSemiAnnual>VendorUSDATL$EndDate&
-#                                       VendorUSDATL$SignedMonth<=VendorUSDATL$EndDate]
-# 
-# VendorUSDATL$SignedSemiAnnual[VendorUSDATL$SignedSemiAnnual<VendorUSDATL$StartDate]<-
-#     VendorUSDATL$StartDate[VendorUSDATL$SignedSemiAnnual<VendorUSDATL$StartDate]
-# 
-# 
-# 
-# # VendorPolicy$SignedFiscalYearStart
-# 
-# difftime(strptime("26.03.2014", format = "%d.%m.%Y"),
-# strptime("14.01.2013", format = "%d.%m.%Y"),units="weeks")
-# 
-# 
-# VendorPolicy$Fiscal.Year[VendorPolicy$Fiscal.Year>VendorPolicy$EndDate&
-#                                       VendorPolicy$SignedMonth<=VendorPolicy$EndDate]<-
-#     VendorPolicy$EndDate[VendorPolicy$Fiscal.Year>VendorPolicy$EndDate&
-#                                       VendorPolicy$SignedMonth<=VendorPolicy$EndDate]
-# # VendorPolicy$SignedFiscalYearStart[VendorPolicy$SignedFiscalYearStart<VendorPolicy$StartDate]<-
-# #     VendorPolicy$StartDate[VendorPolicy$SignedFiscalYearStart<VendorPolicy$StartDate]
-# 
-# 
-# png(
-#     paste( paste("DoD_components"
-#                  ,"Obligation_2014"
-#                  ,"Vendor_Size_sum"
-#                  ,"ATLpolicy"
-#                  ,"Annual"
-#                  ,sep="_"
-#                  )
-#            ,".png"
-#            , sep=""
-#            )
-#     , type="cairo"
-#     , width=7.5
-#     , height=10
-#     , units='in'
-#     , pointsize=12
-#     , res=150
-#     )
-# 
-# 
-# VendorGraph<-LatticePercentLineWrapper(
-#     "Vendor Size"
-#     ,""#Vendor Size by DoD Component and Starting Regime"
-#     ,"Fiscal Year of Obligation"
-#     ,"% of Component Obligations"
-#     ,Coloration
-#     ,VendorPolicy
-#     ,NULL
-#     ,"Fiscal.Year"
-#     ,"Obligation.2014"
-#     ,"Vendor.Size.sum"
-#     ,"SubCustomer.component"
-#     ,"ATLpolicy"
-#     ,"StartDate"
-#     ,"EndDate"
-#     )
-# 
-# VendorGraph<-VendorGraph+aes(size=y.variable)
-# # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-#     VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0)
-# VendorGraph<-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
-#     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
-#     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
-# VendorGraph
-#     print(VendorGraph)
-# #     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
-# while(!(dev.cur()[[1]]==1)){
-#     dev.off()
-#     }
+```
 
+
+
+```{r VendorPolicySeriesSpendingBar}
+
+
+OldGraph<-VendorPolicy$Graph
+
+for (s in unique(VendorPolicy$Vendor.Size.sum)){    
+    png(
+        paste( "Output\\Vendor_Size\\",
+               paste(
+                   "DoD"
+                   ,"Category"
+                   ,"Obligation_2014"
+                   ,s
+                   ,"Vendor_Size_sum"
+                   ,"Bar"
+                   ,"3monthMovingAverage"
+                   ,sep="_"
+                   )
+               ,".png"
+               , sep=""
+               )
+        , type="cairo"
+        , width=7.5
+        , height=4
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    VendorPolicy$Graph[VendorPolicy$Vendor.Size.sum!=s]<-FALSE
+    VendorPolicy$Graph[VendorPolicy$Vendor.Size.sum==s]<-TRUE
+    
+    VendorGraph<-LatticePlotWrapper(
+        VAR.name="Vendor Size"
+        ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
+        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year"
+        ,VAR.Y.label=paste(s,"Obligations 2014 $s")
+        ,VAR.Coloration=Coloration
+        ,VAR.long.DF=VendorPolicy
+        ,VAR.ncol=1
+        ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series="ATLpolicy"
+        ,VAR.facet.primary="ATLpolicy"
+        ,VAR.facet.secondary=NA
+        #     ,"StartDate"
+        #     ,"EndDate"
+#         ,MovingAverage=3
+#         ,MovingSides=1
+        )
+    VendorGraph<-VendorGraph+geom_bar(width=1/12,stat="identity",position="dodge")
+    # VendorGraph<-VendorGraph+aes(size=y.variable)
+    
+    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:8))
+    
+    # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    # VendorGraph<-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+    #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    VendorGraph
+    print(VendorGraph)
+    #     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+VendorPolicy$Graph<-OldGraph
 
 ```
 
 
 
 ```{r VendorPolicyAnnualSummary}
-VendorPolicy$Fiscal.Year[VendorPolicy$Fiscal.Year>VendorPolicy$EndDate&
-                             VendorPolicy$SignedMonth<=VendorPolicy$EndDate]<-
-    VendorPolicy$EndDate[VendorPolicy$Fiscal.Year>VendorPolicy$EndDate&
-                             VendorPolicy$SignedMonth<=VendorPolicy$EndDate]
 # VendorPolicy$SignedFiscalYearStart[VendorPolicy$SignedFiscalYearStart<VendorPolicy$StartDate]<-
 #     VendorPolicy$StartDate[VendorPolicy$SignedFiscalYearStart<VendorPolicy$StartDate]
 
 
 png(
-    paste( paste("DoD_Summary"
+    paste( "Output\\Vendor_size\\",
+           paste("DoD_Summary"
                  ,"Obligation_2014"
                  ,"Vendor_Size_sum"
                  ,"ATLpolicy"
@@ -672,7 +670,7 @@ VendorGraph<-LatticePercentLineWrapper(
     VAR.name="Vendor Size"
     ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
     ,VAR.X.label="Fiscal Year of Obligation"
-    ,VAR.Y.label="% of Component Obligations"
+    ,VAR.Y.label="% of DoD Obligations"
     ,VAR.Coloration=Coloration
     
     
@@ -700,120 +698,16 @@ while(!(dev.cur()[[1]]==1)){
     dev.off()
     }
 
-# 
-# 
-# VendorGraph<-LatticePercentLineWrapper(
-#     VAR.name="Competition"
-#     ,VAR.proper.name="Competition by DoD Component and Starting Regime"
-#     ,VAR.X.label="Fiscal Year of Obligation"
-#     ,VAR.Y.label="% of Component Obligations"
-#     ,VAR.Coloration=Coloration
-# 
-# 
-#     ,VAR.long.DF=VendorPolicy
-#     ,VAR.ncol=1
-#     ,VAR.x.variable="Fiscal.Year"
-#     ,VAR.y.variable="Obligation.2014"
-#     ,VAR.y.series="Competition.effective.only"
-#      ,VAR.facet.primary="ATLpolicy"
-#     ,VAR.facet.secondary=NA
-#     ,"StartDate"
-#     ,"EndDate"
-#     )
-# 
-# # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-#     VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-# VendorGraph<-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
-#     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
-#     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
-# VendorGraph
-#     print(VendorGraph)
-# 
-# 
-# 
-# 
-# VendorGraph<-LatticePercentLineWrapper(
-#     VAR.name="Competition"
-#     ,VAR.proper.name="Competition by DoD Component and Starting Regime"
-#     ,VAR.X.label="Fiscal Year of Obligation"
-#     ,VAR.Y.label="% of Component Obligations"
-#     ,VAR.Coloration=Coloration
-# 
-# 
-#     ,VAR.long.DF=VendorPolicy
-#     ,VAR.ncol=1
-#     ,VAR.x.variable="Fiscal.Year"
-#     ,VAR.y.variable="Obligation.2014"
-#     ,VAR.y.series="Competition.effective.only"
-#      ,VAR.facet.primary="Competition.effective.only"
-#     ,VAR.facet.secondary="ATLpolicy"
-#     ,"StartDate"
-#     ,"EndDate"
-#     )
-# 
-# # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-#     VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-# VendorGraph<-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
-#     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
-#     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
-# VendorGraph
-# 
-
 
 ```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
-```{r DataTables}
-# VendorRegimeTable<-ddply(VendorRegime, 
-#                          .(
-#                              Fiscal.Year,
-#                            Vendor.Size.sum,
-#                            SubCustomer.component,
-#                            USDATL
-#                            ),
-#                          summarize,
-#                          Obligation.2014=sum(Obligation.2014)
-#                          )
-# 
-# write.csv(VendorRegimeTable,paste(paste("DoD_components"
-#                  ,"Obligation_2014"
-#                  ,"Vendor_Size_sum"
-#                  ,"USDATL"
-#                  ,"Annual"
-#                  ,sep="_"
-#                  )
-#            ,".csv",
-#            sep=""))
-# 
-# VendorPolicyTable<-ddply(VendorPolicy, c("Fiscal.Year"
-#     ,"Vendor.Size.sum"
-#     ,"SubCustomer.component"
-#     ,"ATLpolicy")
-#     ,summarise
-#     ,Obligation.2014=sum(Obligation.2014)
-# )
-# write.csv(VendorPolicyTable,paste(paste("DoD_components"
-#                  ,"Obligation_2014"
-#                  ,"Vendor_Size_sum"
-#                  ,"ATLpolicy"
-#                  ,"Annual"
-#                  ,sep="_"
-#                  )
-#            ,".csv",
-#            sep=""))
-# 
-
-```
-
 
 
 ```{r VendorPolicyAnnualComponentSolitary}
 
 for (s in unique(VendorPolicy$SubCustomer)){    
     png(
-        paste( paste("Output/"
-                     ,s
+        paste("Output\\Vendor_Size\\", paste(
+                     s
                      ,"Obligation_2014"
                      ,"Vendor_Size_sum"
                      ,"ATLpolicy"
@@ -869,4 +763,46 @@ for (s in unique(VendorPolicy$SubCustomer)){
 ```
 
 
+
+```{r DataTables}
+# VendorRegimeTable<-ddply(VendorRegime, 
+#                          .(
+#                              Fiscal.Year,
+#                            Vendor.Size.sum,
+#                            SubCustomer.component,
+#                            USDATL
+#                            ),
+#                          summarize,
+#                          Obligation.2014=sum(Obligation.2014)
+#                          )
+# 
+# write.csv(VendorRegimeTable,paste(paste("DoD_components"
+#                  ,"Obligation_2014"
+#                  ,"Vendor_Size_sum"
+#                  ,"USDATL"
+#                  ,"Annual"
+#                  ,sep="_"
+#                  )
+#            ,".csv",
+#            sep=""))
+# 
+# VendorPolicyTable<-ddply(VendorPolicy, c("Fiscal.Year"
+#     ,"Vendor.Size.sum"
+#     ,"SubCustomer.component"
+#     ,"ATLpolicy")
+#     ,summarise
+#     ,Obligation.2014=sum(Obligation.2014)
+# )
+# write.csv(VendorPolicyTable,paste(paste("DoD_components"
+#                  ,"Obligation_2014"
+#                  ,"Vendor_Size_sum"
+#                  ,"ATLpolicy"
+#                  ,"Annual"
+#                  ,sep="_"
+#                  )
+#            ,".csv",
+#            sep=""))
+# 
+
+```
 
