@@ -901,7 +901,7 @@ HorseTailYears<-6
 
 OldGraph<-CompPolicy$Graph
 
-for (s in unique(CompPolicy$Competition.sum)){    
+for (s in unique(CompPolicy$Competition.effective.only)){    
     png(
         paste( "Output\\Competition\\",
                paste(
@@ -909,7 +909,7 @@ for (s in unique(CompPolicy$Competition.sum)){
                    ,"Category"
                    ,"Percent"
                    ,s
-                   ,"Competition_sum"
+                   ,"Comp_Effective"
                    ,"HorseTail"
                    ,"3monthMovingAverage"
                    ,sep="_"
@@ -925,8 +925,8 @@ for (s in unique(CompPolicy$Competition.sum)){
         , res=150
         )
     
-    CompPolicy$Graph[CompPolicy$Competition.sum!=s]<-FALSE
-    CompPolicy$Graph[CompPolicy$Competition.sum==s]<-TRUE
+    CompPolicy$Graph[CompPolicy$Competition.effective.only!=s]<-FALSE
+    CompPolicy$Graph[CompPolicy$Competition.effective.only==s]<-TRUE
     
     CompGraph<-LatticePercentLineWrapper(
         VAR.name="Competition"
@@ -941,7 +941,7 @@ for (s in unique(CompPolicy$Competition.sum)){
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
         ,VAR.y.series=    "ATLpolicy"
-        ,VAR.facet.primary="Competition.sum"
+        ,VAR.facet.primary="Competition.effective.only"
         ,VAR.facet.secondary=NA
         #     ,"StartDate"
         #     ,"EndDate"
@@ -976,7 +976,7 @@ CompPolicy$Graph<-OldGraph
 
 OldGraph<-CompPolicy$Graph
 
-for (s in unique(CompPolicy$Competition.sum)){    
+for (s in unique(CompPolicy$Competition.effective.only)){    
     png(
         paste( "Output\\Competition\\",
                paste(
@@ -984,7 +984,7 @@ for (s in unique(CompPolicy$Competition.sum)){
                    ,"Category"
                    ,"Percent"
                    ,s
-                   ,"Competition_sum"
+                   ,"Comp_Effective"
                    ,"HorseTail"
                    ,"3monthMovingAverage"
                    ,sep="_"
@@ -1000,8 +1000,8 @@ for (s in unique(CompPolicy$Competition.sum)){
         , res=150
         )
     
-    CompPolicy$Graph[CompPolicy$Competition.sum!=s]<-FALSE
-    CompPolicy$Graph[CompPolicy$Competition.sum==s]<-TRUE
+    CompPolicy$Graph[CompPolicy$Competition.effective.only!=s]<-FALSE
+    CompPolicy$Graph[CompPolicy$Competition.effective.only==s]<-TRUE
     
     CompGraph<-LatticePercentLineWrapper(
         VAR.name="Competition"
@@ -1016,7 +1016,7 @@ for (s in unique(CompPolicy$Competition.sum)){
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
         ,VAR.y.series=    "ATLpolicy"
-        ,VAR.facet.primary="Competition.sum"
+        ,VAR.facet.primary="Competition.effective.only"
         ,VAR.facet.secondary="SubCustomer"
         #     ,"StartDate"
         #     ,"EndDate"
@@ -1051,7 +1051,7 @@ CompPolicy$Graph<-OldGraph
 
 OldGraph<-CompPolicy$Graph
 
-for (s in unique(CompPolicy$Competition.sum)){    
+for (s in unique(CompPolicy$Competition.effective.only)){    
     png(
         paste( "Output\\Competition\\",
                paste(
@@ -1059,7 +1059,7 @@ for (s in unique(CompPolicy$Competition.sum)){
                    ,"Category"
                    ,"Obligation_2014"
                    ,s
-                   ,"Competition_sum"
+                   ,"Comp_Effective"
                    ,"Bar"
                    ,"3monthMovingAverage"
                    ,sep="_"
@@ -1075,8 +1075,8 @@ for (s in unique(CompPolicy$Competition.sum)){
         , res=150
         )
     
-    CompPolicy$Graph[CompPolicy$Competition.sum!=s]<-FALSE
-    CompPolicy$Graph[CompPolicy$Competition.sum==s]<-TRUE
+    CompPolicy$Graph[CompPolicy$Competition.effective.only!=s]<-FALSE
+    CompPolicy$Graph[CompPolicy$Competition.effective.only==s]<-TRUE
     
     CompGraph<-LatticePlotWrapper(
         VAR.name="Competition"
@@ -1126,9 +1126,9 @@ CompPolicy$Graph<-OldGraph
 OldGraph<-CompPolicy$Graph
 for (c in unique(CompPolicy$SubCustomer)){ 
     CompSubCustomer<-subset(CompPolicy,SubCustomer==c)
-    for (s in unique(CompPolicy$Competition.sum)){    
-        CompSubCustomer$Graph[CompSubCustomer$Competition.sum!=s]<-FALSE
-        CompSubCustomer$Graph[CompSubCustomer$Competition.sum==s]<-TRUE
+    for (s in unique(CompPolicy$Competition.effective.only)){    
+        CompSubCustomer$Graph[CompSubCustomer$Competition.effective.only!=s]<-FALSE
+        CompSubCustomer$Graph[CompSubCustomer$Competition.effective.only==s]<-TRUE
         if(any(CompSubCustomer$Graph==TRUE)){
             png(
                 paste( "Output\\Competition\\",c,"\\",
@@ -1137,7 +1137,7 @@ for (c in unique(CompPolicy$SubCustomer)){
                            ,"Category"
                            ,"Percent"
                            ,s
-                           ,"Competition_sum"
+                           ,"Comp_Effective"
                            ,"HorseTail"
                            ,"3monthMovingAverage"
                            ,sep="_"
@@ -1167,7 +1167,7 @@ for (c in unique(CompPolicy$SubCustomer)){
                 ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
                 ,VAR.y.variable="Obligation.2014"
                 ,VAR.y.series=    "ATLpolicy"
-                ,VAR.facet.primary="Competition.sum"
+                ,VAR.facet.primary="Competition.effective.only"
                 ,VAR.facet.secondary=NA
                 #     ,"StartDate"
                 #     ,"EndDate"
@@ -1206,9 +1206,9 @@ CompPolicy$Graph<-OldGraph
 OldGraph<-CompPolicy$Graph
 for (c in unique(CompPolicy$SubCustomer)){ 
     CompSubCustomer<-subset(CompPolicy,SubCustomer==c)
-    for (s in unique(CompPolicy$Competition.sum)){    
-        CompSubCustomer$Graph[CompSubCustomer$Competition.sum!=s]<-FALSE
-        CompSubCustomer$Graph[CompSubCustomer$Competition.sum==s]<-TRUE
+    for (s in unique(CompPolicy$Competition.effective.only)){    
+        CompSubCustomer$Graph[CompSubCustomer$Competition.effective.only!=s]<-FALSE
+        CompSubCustomer$Graph[CompSubCustomer$Competition.effective.only==s]<-TRUE
         if(any(CompSubCustomer$Graph==TRUE)){
     png(
         paste( "Output\\Competition\\",c,"\\",
