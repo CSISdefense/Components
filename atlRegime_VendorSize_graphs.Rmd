@@ -89,7 +89,7 @@ VendorRegime$SubCustomer.component<-factor(VendorRegime$SubCustomer.component,
 ```
 
 
-```{r ATLregime}
+```{r VendorATLregime}
 ATLregimeFYear<-aggregate(VendorRegime$Obligation.2014
                           , by=list(VendorRegime$Fiscal.Year,
                                     #                                                   VendorRegime$SubCustomer.component,
@@ -152,12 +152,12 @@ VendorUSDATL$Fiscal.Year[VendorUSDATL$Fiscal.Year<VendorUSDATL$StartDate]<-
 
 png(
     paste( "Output\\Vendor_Size\\",paste("DoD_components"
-                            ,"Obligation_2014"
-                            ,"Vendor_Size_sum"
-                            ,"USDATL"
-                            ,"6monthMovingAverage"
-                            ,sep="_"
-                            )
+                                         ,"Obligation_2014"
+                                         ,"Vendor_Size_sum"
+                                         ,"USDATL"
+                                         ,"6monthMovingAverage"
+                                         ,sep="_"
+                                         )
            ,".png"
            , sep=""
            )
@@ -192,7 +192,7 @@ VendorGraph<-LatticePercentLineWrapper(
 VendorGraph<-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
 VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-VendorGraph<-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+VendorGraph<-VendorGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year")) 
 VendorGraph
@@ -210,12 +210,12 @@ while(!(dev.cur()[[1]]==1)){
 
 png(
     paste( "Output\\Vendor_Size\\",paste("DoD_components"
-                            ,"Obligation_2014"
-                            ,"Vendor_Size_sum"
-                            ,"USDATL"
-                            ,"Annual"
-                            ,sep="_"
-                            )
+                                         ,"Obligation_2014"
+                                         ,"Vendor_Size_sum"
+                                         ,"USDATL"
+                                         ,"Annual"
+                                         ,sep="_"
+                                         )
            ,".png"
            , sep=""
            )
@@ -249,7 +249,7 @@ VendorGraph<-LatticePercentLineWrapper(
 VendorGraph<-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
 VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-VendorGraph<-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+VendorGraph<-VendorGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
 VendorGraph
@@ -263,7 +263,7 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r ATLpolicy}
+```{r VendorATLpolicy}
 VendorPolicy<-VendorRegime
 VendorPolicy$ATLpolicy<-as.character(VendorRegime$USDATL)
 VendorPolicy$ATLpolicy[VendorPolicy$USDATL=="CARTER"]<-"CARTER\n pre-IFT"
@@ -342,12 +342,12 @@ VendorPolicy$Fiscal.Year[VendorPolicy$Fiscal.Year>VendorPolicy$EndDate&
 
 png(
     paste( "Output\\Vendor_Size\\",paste("DoD_components"
-                            ,"Obligation_2014"
-                            ,"Vendor_Size_sum"
-                            ,"ATLpolicy"
-                            ,"6monthMovingAverage"
-                            ,sep="_"
-                            )
+                                         ,"Obligation_2014"
+                                         ,"Vendor_Size_sum"
+                                         ,"ATLpolicy"
+                                         ,"6monthMovingAverage"
+                                         ,sep="_"
+                                         )
            ,".png"
            , sep=""
            )
@@ -381,7 +381,7 @@ VendorGraph<-LatticePercentLineWrapper(
 VendorGraph<-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
 VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-VendorGraph<-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+VendorGraph<-VendorGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
 VendorGraph
@@ -437,7 +437,7 @@ VendorGraph<-LatticePercentLineWrapper(
 VendorGraph<-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
 VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-VendorGraph<-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+VendorGraph<-VendorGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
 VendorGraph
@@ -467,7 +467,7 @@ png(
            )
     , type="cairo"
     , width=7.5
-    , height=10
+    , height=3.5
     , units='in'
     , pointsize=12
     , res=150
@@ -497,7 +497,7 @@ VendorGraph<-LatticePercentLineWrapper(
 VendorGraph<-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
 VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-VendorGraph<-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+VendorGraph<-VendorGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
 VendorGraph
@@ -558,7 +558,7 @@ VendorGraph<-LatticePercentLineWrapper(
 VendorGraph<-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
 VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-VendorGraph<-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+VendorGraph<-VendorGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
 VendorGraph
@@ -575,19 +575,19 @@ while(!(dev.cur()[[1]]==1)){
 
 ```{r VendorPolicyMonthlyComponentSolitary}
 
-for (s in unique(VendorPolicy$SubCustomer)){    
+for (c in unique(VendorPolicy$SubCustomer)){    
     png(
-        paste("Output\\Vendor_Size\\", paste(
-                     s
-                     ,"Obligation_2014"
-                     ,"Vendor_Size_sum"
-                     ,"ATLpolicy"
-                     ,"6monthMovingAverage"
-                     ,sep="_"
-                     )
-               ,".png"
-               , sep=""
-               )
+        paste( "Output\\Vendor_Size\\",c,"\\",paste(
+            c
+            ,"Obligation_2014"
+            ,"Vendor_Size_sum"
+            ,"ATLpolicy"
+            ,"6monthMovingAverage"
+            ,sep="_"
+            )
+            ,".png"
+            , sep=""
+            )
         , type="cairo"
         , width=10
         , height=5
@@ -598,13 +598,13 @@ for (s in unique(VendorPolicy$SubCustomer)){
     
     VendorGraph<-LatticePercentLineWrapper(
         VAR.name="Vendor Size"
-        ,VAR.proper.name=""#paste(s,"Vendor Size by Starting Regime")
+        ,VAR.proper.name=""#paste(c,"Vendor Size by Starting Regime")
         ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
-        ,VAR.Y.label=paste("% of ",s," Obligations")
+        ,VAR.Y.label=paste("% of ",c," Obligations")
         ,VAR.Coloration=Coloration
         
         
-        ,VAR.long.DF=subset(VendorPolicy,SubCustomer==s)
+        ,VAR.long.DF=subset(VendorPolicy,SubCustomer==c)
         ,VAR.ncol=NA
         ,VAR.x.variable="SignedMonth"
         ,VAR.y.variable="Obligation.2014"
@@ -619,7 +619,7 @@ for (s in unique(VendorPolicy$SubCustomer)){
     VendorGraph<-VendorGraph+aes(size=y.variable)+scale_size_continuous(name="Constant 2014 $ Obligated, Billions")
     # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-    VendorGraph<-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+    VendorGraph<-VendorGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
         theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
         scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     VendorGraph
@@ -637,19 +637,20 @@ for (s in unique(VendorPolicy$SubCustomer)){
 
 ```{r VendorPolicyAnnualComponentSolitary}
 
-for (s in unique(VendorPolicy$SubCustomer)){    
+for (c in unique(VendorPolicy$SubCustomer)){    
     png(
-        paste("Output\\Vendor_Size\\", paste(
-                     s
-                     ,"Obligation_2014"
-                     ,"Vendor_Size_sum"
-                     ,"ATLpolicy"
-                     ,"Annual"
-                     ,sep="_"
-                     )
-               ,".png"
-               , sep=""
-               )
+        paste("Output\\Vendor_Size\\",c,"\\",
+              paste(
+            c
+            ,"Obligation_2014"
+            ,"Vendor_Size_sum"
+            ,"ATLpolicy"
+            ,"Annual"
+            ,sep="_"
+            )
+            ,".png"
+            , sep=""
+            )
         , type="cairo"
         , width=10
         , height=5
@@ -660,13 +661,13 @@ for (s in unique(VendorPolicy$SubCustomer)){
     
     VendorGraph<-LatticePercentLineWrapper(
         VAR.name="Vendor Size"
-        ,VAR.proper.name=""#paste(s,"Vendor Size by Starting Regime")
+        ,VAR.proper.name=""#paste(c,"Vendor Size by Starting Regime")
         ,VAR.X.label="Fiscal Year of Obligation"
-        ,VAR.Y.label=paste("% of ",s," Obligations")
+        ,VAR.Y.label=paste("% of ",c," Obligations")
         ,VAR.Coloration=Coloration
         
         
-        ,VAR.long.DF=subset(VendorPolicy,SubCustomer==s)
+        ,VAR.long.DF=subset(VendorPolicy,SubCustomer==c)
         ,VAR.ncol=NA
         ,VAR.x.variable="Fiscal.Year"
         ,VAR.y.variable="Obligation.2014"
@@ -680,7 +681,7 @@ for (s in unique(VendorPolicy$SubCustomer)){
     VendorGraph<-VendorGraph+aes(size=y.variable)+scale_size_continuous(name="Constant 2014 $ Obligated, Billions")
     # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-    VendorGraph<-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+    VendorGraph<-VendorGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
         theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
         scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     VendorGraph
@@ -696,17 +697,20 @@ for (s in unique(VendorPolicy$SubCustomer)){
 ```
 
 
-```{r PrepareSinceFirstFiscalYear}
+```{r PrepareHorseTail}
 VendorPolicy$SinceFirstFiscalYear<-as.numeric(as.duration(
     ymd(VendorPolicy$SignedMonth)-VendorPolicy$StartFiscalYear)
     /dyears(1)
     )
 
+HorseTailYears<-6
+
+
 ```
 
 
 
-```{r VendorPolicySeriesHorseTail}
+```{r VendorPolicySeriesHorseTailSummary}
 
 OldGraph<-VendorPolicy$Graph
 
@@ -740,7 +744,7 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
     VendorGraph<-LatticePercentLineWrapper(
         VAR.name="Vendor Size"
         ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
-        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year"
+        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label="% of DoD Obligations"
         ,VAR.Coloration=Coloration
         , HorseTail=TRUE
@@ -760,12 +764,13 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
     
     # VendorGraph<-VendorGraph+aes(size=y.variable)
     
-    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:8))
+    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:HorseTailYears),limits=c(1,HorseTailYears))
     
     # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-    # VendorGraph<-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
-    #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    VendorGraph<-VendorGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))
+#     +
     #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     VendorGraph
     print(VendorGraph)
@@ -780,8 +785,81 @@ VendorPolicy$Graph<-OldGraph
 ```
 
 
+```{r VendorPolicySeriesHorseTailComponents}
 
-```{r VendorPolicySeriesSpendingBar}
+OldGraph<-VendorPolicy$Graph
+
+for (s in unique(VendorPolicy$Vendor.Size.sum)){    
+    png(
+        paste( "Output\\Vendor_Size\\",
+               paste(
+                   "DoD_components"
+                   ,"Category"
+                   ,"Percent"
+                   ,s
+                   ,"Vendor_Size_sum"
+                   ,"HorseTail"
+                   ,"3monthMovingAverage"
+                   ,sep="_"
+                   )
+               ,".png"
+               , sep=""
+               )
+        , type="cairo"
+        , width=7.5
+        , height=10
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    VendorPolicy$Graph[VendorPolicy$Vendor.Size.sum!=s]<-FALSE
+    VendorPolicy$Graph[VendorPolicy$Vendor.Size.sum==s]<-TRUE
+    
+    VendorGraph<-LatticePercentLineWrapper(
+        VAR.name="Vendor Size"
+        ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
+        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
+        ,VAR.Y.label="% of Component Obligations"
+        ,VAR.Coloration=Coloration
+        , HorseTail=TRUE
+        
+        ,VAR.long.DF=VendorPolicy
+        ,VAR.ncol=1
+        ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series=    "ATLpolicy"
+        ,VAR.facet.primary="Vendor.Size.sum"
+        ,VAR.facet.secondary="SubCustomer"
+        #     ,"StartDate"
+        #     ,"EndDate"
+        ,MovingAverage=3
+        ,MovingSides=1
+        )
+    
+    # VendorGraph<-VendorGraph+aes(size=y.variable)
+    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:HorseTailYears),
+                                                limits=c(1,HorseTailYears))
+    
+    # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    VendorGraph<-VendorGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))
+    #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    VendorGraph
+    print(VendorGraph)
+    #     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+VendorPolicy$Graph<-OldGraph
+
+```
+
+
+```{r VendorPolicySeriesSpendingBarSummary}
 
 
 OldGraph<-VendorPolicy$Graph
@@ -816,7 +894,7 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
     VendorGraph<-LatticePlotWrapper(
         VAR.name="Vendor Size"
         ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
-        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year"
+        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(s,"Constant 2014 $ Obligated, Billions")
         ,VAR.Coloration=Coloration
         ,VAR.long.DF=VendorPolicy
@@ -834,11 +912,12 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
     VendorGraph<-VendorGraph+geom_bar(width=1/12,stat="identity",position="dodge")
     # VendorGraph<-VendorGraph+aes(size=y.variable)
     
-    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:8))
+    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:HorseTailYears),
+                                                limits=c(1,HorseTailYears))
     
     # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-    # VendorGraph<-VendorGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+    # VendorGraph<-VendorGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
     #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     VendorGraph
@@ -855,6 +934,163 @@ VendorPolicy$Graph<-OldGraph
 
 
 
+```{r VendorPolicySeriesHorseTailComponentSolitary}
+
+OldGraph<-VendorPolicy$Graph
+for (c in unique(VendorPolicy$SubCustomer)){ 
+    VendorSubCustomer<-subset(VendorPolicy,SubCustomer==c)
+    for (s in unique(VendorPolicy$Vendor.Size.sum)){    
+        VendorSubCustomer$Graph[VendorSubCustomer$Vendor.Size.sum!=s]<-FALSE
+        VendorSubCustomer$Graph[VendorSubCustomer$Vendor.Size.sum==s]<-TRUE
+        if(any(VendorSubCustomer$Graph==TRUE)){
+            png(
+                paste( "Output\\Vendor_Size\\",c,"\\",
+                       paste(
+                           c
+                           ,"Category"
+                           ,"Percent"
+                           ,s
+                           ,"Vendor_Size_sum"
+                           ,"HorseTail"
+                           ,"3monthMovingAverage"
+                           ,sep="_"
+                           )
+                       ,".png"
+                       , sep=""
+                       )
+                , type="cairo"
+                , width=7.5
+                , height=4
+                , units='in'
+                , pointsize=12
+                , res=150
+                )
+            
+            
+            VendorGraph<-LatticePercentLineWrapper(
+                VAR.name="Vendor Size"
+                ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
+                ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
+                ,VAR.Y.label=paste("% of",c,"Obligations")
+                ,VAR.Coloration=Coloration
+                , HorseTail=TRUE
+                
+                ,VAR.long.DF=VendorSubCustomer
+                ,VAR.ncol=1
+                ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+                ,VAR.y.variable="Obligation.2014"
+                ,VAR.y.series=    "ATLpolicy"
+                ,VAR.facet.primary="Vendor.Size.sum"
+                ,VAR.facet.secondary=NA
+                #     ,"StartDate"
+                #     ,"EndDate"
+                ,MovingAverage=3
+                ,MovingSides=1
+                )
+            
+            # VendorGraph<-VendorGraph+aes(size=y.variable)
+            
+            VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:HorseTailYears)
+                                                        ,limits=c(1,HorseTailYears))
+            
+            # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+            # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+            # VendorGraph<-VendorGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
+            #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+            #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+            VendorGraph
+            print(VendorGraph)
+            #     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+            while(!(dev.cur()[[1]]==1)){
+                dev.off()
+                }
+            }
+        }
+    }
+VendorPolicy$Graph<-OldGraph
+
+```
+
+
+
+
+```{r VendorPolicySeriesSpendingBarComponentSolitary}
+
+OldGraph<-VendorPolicy$Graph
+for (c in unique(VendorPolicy$SubCustomer)){ 
+    VendorSubCustomer<-subset(VendorPolicy,SubCustomer==c)
+    for (s in unique(VendorPolicy$Vendor.Size.sum)){    
+        VendorSubCustomer$Graph[VendorSubCustomer$Vendor.Size.sum!=s]<-FALSE
+        VendorSubCustomer$Graph[VendorSubCustomer$Vendor.Size.sum==s]<-TRUE
+        if(any(VendorSubCustomer$Graph==TRUE)){
+    png(
+        paste( "Output\\Vendor_Size\\",c,"\\",
+               paste(
+                   c
+                   ,"Category"
+                   ,"Obligation_2014"
+                   ,s
+                   ,"Vendor_Size_sum"
+                   ,"Bar"
+                   ,"3monthMovingAverage"
+                   ,sep="_"
+                   )
+               ,".png"
+               , sep=""
+               )
+        , type="cairo"
+        , width=7.5
+        , height=4
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    VendorGraph<-LatticePlotWrapper(
+        VAR.name="Vendor Size"
+        ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
+        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
+        ,VAR.Y.label=paste(c,s,"Constant 2014 $ Obligated, Billions")
+        ,VAR.Coloration=Coloration
+        ,VAR.long.DF=VendorSubCustomer
+        ,VAR.ncol=1
+        ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series="ATLpolicy"
+        ,VAR.facet.primary="ATLpolicy"
+        ,VAR.facet.secondary=NA
+        #     ,"StartDate"
+        #     ,"EndDate"
+        ,MovingAverage=3
+        ,MovingSides=1
+        ,DataLabels=FALSE
+        )
+#     browser()
+    VendorGraph<-VendorGraph+geom_bar(width=1/12,stat="identity",position="dodge")
+    # VendorGraph<-VendorGraph+aes(size=y.variable)
+    
+    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:HorseTailYears)
+                                                ,limits=c(1,HorseTailYears))
+    
+    # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    # VendorGraph<-VendorGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
+    #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    VendorGraph
+    print(VendorGraph)
+    #     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+        }
+    }
+VendorPolicy$Graph<-OldGraph
+
+```
+
 
 ```{r DataTables}
 
@@ -862,24 +1098,24 @@ VendorPolicy$Graph<-OldGraph
 VendorRegimeTable<-ddply(VendorRegime, 
                          .(
                              Fiscal.Year,
-                           Vendor.Size.sum,
-                           SubCustomer.component,
-                           USDATL
-                           ),
+                             Vendor.Size.sum,
+                             SubCustomer.component,
+                             USDATL
+                             ),
                          summarize,
                          Obligation.2014=sum(Obligation.2014)
                          )
 
 write.csv(VendorRegimeTable,paste("Output\\Vendor_Size\\",
                                   paste("DoD_components"
-                 ,"Obligation_2014"
-                 ,"Vendor_Size_sum"
-                 ,"USDATL"
-                 ,"Annual"
-                 ,sep="_"
-                 )
-           ,".csv",
-           sep=""))
+                                        ,"Obligation_2014"
+                                        ,"Vendor_Size_sum"
+                                        ,"USDATL"
+                                        ,"Annual"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
 
 
 #Monthly
@@ -887,91 +1123,91 @@ write.csv(VendorRegimeTable,paste("Output\\Vendor_Size\\",
 VendorRegimeTable<-ddply(VendorRegime, 
                          .(
                              SignedMonth,
-                           Vendor.Size.sum,
-                           SubCustomer.component,
-                           USDATL
-                           ),
+                             Vendor.Size.sum,
+                             SubCustomer.component,
+                             USDATL
+                             ),
                          summarize,
                          Obligation.2014=sum(Obligation.2014)
                          )
 
 
 VendorRegimeTable<-ddply(VendorRegimeTable, 
-                      .(Vendor.Size.sum,
+                         .(Vendor.Size.sum,
                            SubCustomer.component,
                            USDATL),
-                      .fun=TransformFilter,
-                      MovingAverage=3,
-                      MovingSides=1,
-                      Source="Obligation.2014"
-                      )
+                         .fun=TransformFilter,
+                         MovingAverage=3,
+                         MovingSides=1,
+                         Source="Obligation.2014"
+                         )
 
 
 write.csv(VendorRegimeTable,paste("Output\\Vendor_Size\\",
                                   paste("DoD_components"
-                 ,"Obligation_2014"
-                 ,"Vendor_Size_sum"
-                 ,"USDATL"
-                 ,"Monthly"
-                 ,sep="_"
-                 )
-           ,".csv",
-           sep=""))
+                                        ,"Obligation_2014"
+                                        ,"Vendor_Size_sum"
+                                        ,"USDATL"
+                                        ,"Monthly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
 
 
 #Annual
 VendorPolicyTable<-ddply(VendorPolicy, c("Fiscal.Year"
-    ,"Vendor.Size.sum"
-    ,"SubCustomer.component"
-    ,"ATLpolicy")
-    ,summarise
-    ,Obligation.2014=sum(Obligation.2014)
-)
+                                         ,"Vendor.Size.sum"
+                                         ,"SubCustomer.component"
+                                         ,"ATLpolicy")
+                         ,summarise
+                         ,Obligation.2014=sum(Obligation.2014)
+                         )
 
 
 write.csv(VendorPolicyTable,paste("Output\\Vendor_Size\\",
                                   paste("DoD_components"
-                 ,"Obligation_2014"
-                 ,"Vendor_Size_sum"
-                 ,"ATLpolicy"
-                 ,"Annual"
-                 ,sep="_"
-                 )
-           ,".csv",
-           sep=""))
+                                        ,"Obligation_2014"
+                                        ,"Vendor_Size_sum"
+                                        ,"ATLpolicy"
+                                        ,"Annual"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
 
 
 #Monthly
 
 VendorPolicyTable<-ddply(VendorPolicy, c("SignedMonth"
-    ,"Vendor.Size.sum"
-    ,"SubCustomer.component"
-    ,"ATLpolicy")
-    ,summarise
-    ,Obligation.2014=sum(Obligation.2014)
-)
+                                         ,"Vendor.Size.sum"
+                                         ,"SubCustomer.component"
+                                         ,"ATLpolicy")
+                         ,summarise
+                         ,Obligation.2014=sum(Obligation.2014)
+                         )
 
 VendorPolicyTable<-ddply(VendorPolicyTable, 
-                      .(Vendor.Size.sum,
+                         .(Vendor.Size.sum,
                            SubCustomer.component,
                            ATLpolicy),
-                      .fun=TransformFilter,
-                      MovingAverage=3,
-                      MovingSides=1,
-                      Source="Obligation.2014"
-                      )
+                         .fun=TransformFilter,
+                         MovingAverage=3,
+                         MovingSides=1,
+                         Source="Obligation.2014"
+                         )
 
 
 write.csv(VendorPolicyTable,paste("Output\\Vendor_Size\\",
                                   paste("DoD_components"
-                 ,"Obligation_2014"
-                 ,"Vendor_Size_sum"
-                 ,"ATLpolicy"
-                 ,"Monthly"
-                 ,sep="_"
-                 )
-           ,".csv",
-           sep=""))
+                                        ,"Obligation_2014"
+                                        ,"Vendor_Size_sum"
+                                        ,"ATLpolicy"
+                                        ,"Monthly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
 
 
 ```
