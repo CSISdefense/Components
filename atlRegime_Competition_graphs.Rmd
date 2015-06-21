@@ -1,5 +1,5 @@
 ---
-title: "ATLregime"
+title: "CompetitionATLregime"
 author: "Greg Sanders"
 date: "Friday, March 20, 2015"
 output: html_document
@@ -9,7 +9,7 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r Setup echo=FALSE}
+```{r Setup, echo=FALSE}
 require(ggplot2)
 require(stringr)
 require(plyr)
@@ -104,6 +104,8 @@ ATLregimeFYear<-aggregate(CompRegime$Obligation.2014
                           )
 
 names(ATLregimeFYear)<-c("Fiscal.Year","USDATL","AnnualRegimeObligations")
+
+
 CompUSDATL<-subset(CompRegime,join(CompRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
 
 
@@ -129,6 +131,12 @@ ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
                                                     StartDate=as.Date('2011/11/03',format='%Y/%m/%d'),
                                                     EndDate=max(CompRegime$SignedQuarter)))
 
+
+ATLregimeDetails$StartFiscalYear<-ymd(paste(year(ATLregimeDetails$StartDate)+
+                                                ifelse(month(ATLregimeDetails$StartDate)<10,-1,0)
+                                            ,"-10-1",sep=""))
+
+
 CompUSDATL<-join(CompUSDATL,ATLregimeDetails,match="first")
 
 CompUSDATL$SignedSemiAnnual[CompUSDATL$SignedSemiAnnual>CompUSDATL$EndDate&
@@ -150,7 +158,7 @@ CompUSDATL$Fiscal.Year[CompUSDATL$Fiscal.Year<CompUSDATL$StartDate]<-
 ```
 
 ```{r CompUSDATLmonthlyComponents}        
-
+    
 png(
     paste( "Output\\Competition\\",paste("DoD_components"
                                          ,"Obligation_2014"
@@ -494,6 +502,9 @@ ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP3',
                                                     EndDate=max(CompRegime$SignedQuarter)))
 
 
+ATLpolicyDetails$StartFiscalYear<-ymd(paste(year(ATLpolicyDetails$StartDate)+
+                                                ifelse(month(ATLpolicyDetails$StartDate)<10,-1,0)
+                                            ,"-10-1",sep=""))
 
 CompPolicy<-join(CompPolicy,ATLpolicyDetails,match="first")
 CompPolicy<-subset(CompPolicy,ATLpolicy!='BBP3') #Not enough to include
@@ -541,7 +552,7 @@ CompGraph<-LatticePercentLineWrapper(
     ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
     ,Coloration
-    ,CompetitionPolicy
+    ,CompPolicy
     ,NULL
     ,"SignedMonth"
     ,"Obligation.2014"
@@ -598,7 +609,7 @@ CompGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,CompetitionPolicy
+    ,CompPolicy
     ,NULL
     ,"Fiscal.Year"
     ,"Obligation.2014"
@@ -657,7 +668,7 @@ CompGraph<-LatticePercentLineWrapper(
     ,VAR.Coloration=Coloration
     
     
-    ,VAR.long.DF=CompetitionPolicy
+    ,VAR.long.DF=CompPolicy
     ,VAR.ncol=NA
     ,VAR.x.variable="SignedMonth"
     ,VAR.y.variable="Obligation.2014"
@@ -719,7 +730,7 @@ CompGraph<-LatticePercentLineWrapper(
     ,VAR.Coloration=Coloration
     
     
-    ,VAR.long.DF=CompetitionPolicy
+    ,VAR.long.DF=CompPolicy
     ,VAR.ncol=NA
     ,VAR.x.variable="Fiscal.Year"
     ,VAR.y.variable="Obligation.2014"
@@ -750,7 +761,7 @@ while(!(dev.cur()[[1]]==1)){
 
 ```{r CompPolicyMonthlyComponentSolitary}
 
-for (c in unique(CompetitionPolicy$SubCustomer)){    
+for (c in unique(CompPolicy$SubCustomer)){    
     png(
         paste( "Output\\Competition\\",c,"\\",paste(
             c
@@ -779,7 +790,7 @@ for (c in unique(CompetitionPolicy$SubCustomer)){
         ,VAR.Coloration=Coloration
         
         
-        ,VAR.long.DF=subset(CompetitionPolicy,SubCustomer==c)
+        ,VAR.long.DF=subset(CompPolicy,SubCustomer==c)
         ,VAR.ncol=NA
         ,VAR.x.variable="SignedMonth"
         ,VAR.y.variable="Obligation.2014"
@@ -812,7 +823,7 @@ for (c in unique(CompetitionPolicy$SubCustomer)){
 
 ```{r CompPolicyAnnualComponentSolitary}
 
-for (c in unique(CompetitionPolicy$SubCustomer)){    
+for (c in unique(CompPolicy$SubCustomer)){    
     png(
         paste("Output\\Competition\\",c,"\\",
               paste(
@@ -842,7 +853,7 @@ for (c in unique(CompetitionPolicy$SubCustomer)){
         ,VAR.Coloration=Coloration
         
         
-        ,VAR.long.DF=subset(CompetitionPolicy,SubCustomer==c)
+        ,VAR.long.DF=subset(CompPolicy,SubCustomer==c)
         ,VAR.ncol=NA
         ,VAR.x.variable="Fiscal.Year"
         ,VAR.y.variable="Obligation.2014"
@@ -873,8 +884,9 @@ for (c in unique(CompetitionPolicy$SubCustomer)){
 
 
 ```{r PrepareHorseTail}
-CompetitionPolicy$SinceFirstFiscalYear<-as.numeric(as.duration(
-    ymd(CompetitionPolicy$SignedMonth)-CompetitionPolicy$StartFiscalYear)
+
+CompPolicy$SinceFirstFiscalYear<-as.numeric(as.duration(
+    ymd(CompPolicy$SignedMonth)-CompPolicy$StartFiscalYear)
     /dyears(1)
     )
 
@@ -887,9 +899,9 @@ HorseTailYears<-6
 
 ```{r CompPolicySeriesHorseTailSummary}
 
-OldGraph<-CompetitionPolicy$Graph
+OldGraph<-CompPolicy$Graph
 
-for (s in unique(CompetitionPolicy$Competition.sum)){    
+for (s in unique(CompPolicy$Competition.sum)){    
     png(
         paste( "Output\\Competition\\",
                paste(
@@ -913,8 +925,8 @@ for (s in unique(CompetitionPolicy$Competition.sum)){
         , res=150
         )
     
-    CompetitionPolicy$Graph[CompetitionPolicy$Competition.sum!=s]<-FALSE
-    CompetitionPolicy$Graph[CompetitionPolicy$Competition.sum==s]<-TRUE
+    CompPolicy$Graph[CompPolicy$Competition.sum!=s]<-FALSE
+    CompPolicy$Graph[CompPolicy$Competition.sum==s]<-TRUE
     
     CompGraph<-LatticePercentLineWrapper(
         VAR.name="Competition"
@@ -924,7 +936,7 @@ for (s in unique(CompetitionPolicy$Competition.sum)){
         ,VAR.Coloration=Coloration
         , HorseTail=TRUE
         
-        ,VAR.long.DF=CompetitionPolicy
+        ,VAR.long.DF=CompPolicy
         ,VAR.ncol=1
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
@@ -955,16 +967,16 @@ for (s in unique(CompetitionPolicy$Competition.sum)){
         }
     }
 
-CompetitionPolicy$Graph<-OldGraph
+CompPolicy$Graph<-OldGraph
 
 ```
 
 
 ```{r CompPolicySeriesHorseTailComponents}
 
-OldGraph<-CompetitionPolicy$Graph
+OldGraph<-CompPolicy$Graph
 
-for (s in unique(CompetitionPolicy$Competition.sum)){    
+for (s in unique(CompPolicy$Competition.sum)){    
     png(
         paste( "Output\\Competition\\",
                paste(
@@ -988,8 +1000,8 @@ for (s in unique(CompetitionPolicy$Competition.sum)){
         , res=150
         )
     
-    CompetitionPolicy$Graph[CompetitionPolicy$Competition.sum!=s]<-FALSE
-    CompetitionPolicy$Graph[CompetitionPolicy$Competition.sum==s]<-TRUE
+    CompPolicy$Graph[CompPolicy$Competition.sum!=s]<-FALSE
+    CompPolicy$Graph[CompPolicy$Competition.sum==s]<-TRUE
     
     CompGraph<-LatticePercentLineWrapper(
         VAR.name="Competition"
@@ -999,7 +1011,7 @@ for (s in unique(CompetitionPolicy$Competition.sum)){
         ,VAR.Coloration=Coloration
         , HorseTail=TRUE
         
-        ,VAR.long.DF=CompetitionPolicy
+        ,VAR.long.DF=CompPolicy
         ,VAR.ncol=1
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
@@ -1029,7 +1041,7 @@ for (s in unique(CompetitionPolicy$Competition.sum)){
         }
     }
 
-CompetitionPolicy$Graph<-OldGraph
+CompPolicy$Graph<-OldGraph
 
 ```
 
@@ -1037,9 +1049,9 @@ CompetitionPolicy$Graph<-OldGraph
 ```{r CompPolicySeriesSpendingBarSummary}
 
 
-OldGraph<-CompetitionPolicy$Graph
+OldGraph<-CompPolicy$Graph
 
-for (s in unique(CompetitionPolicy$Competition.sum)){    
+for (s in unique(CompPolicy$Competition.sum)){    
     png(
         paste( "Output\\Competition\\",
                paste(
@@ -1063,8 +1075,8 @@ for (s in unique(CompetitionPolicy$Competition.sum)){
         , res=150
         )
     
-    CompetitionPolicy$Graph[CompetitionPolicy$Competition.sum!=s]<-FALSE
-    CompetitionPolicy$Graph[CompetitionPolicy$Competition.sum==s]<-TRUE
+    CompPolicy$Graph[CompPolicy$Competition.sum!=s]<-FALSE
+    CompPolicy$Graph[CompPolicy$Competition.sum==s]<-TRUE
     
     CompGraph<-LatticePlotWrapper(
         VAR.name="Competition"
@@ -1072,7 +1084,7 @@ for (s in unique(CompetitionPolicy$Competition.sum)){
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(s,"Constant 2014 $ Obligated, Billions")
         ,VAR.Coloration=Coloration
-        ,VAR.long.DF=CompetitionPolicy
+        ,VAR.long.DF=CompPolicy
         ,VAR.ncol=1
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
@@ -1103,7 +1115,7 @@ for (s in unique(CompetitionPolicy$Competition.sum)){
         }
     }
 
-CompetitionPolicy$Graph<-OldGraph
+CompPolicy$Graph<-OldGraph
 
 ```
 
@@ -1111,10 +1123,10 @@ CompetitionPolicy$Graph<-OldGraph
 
 ```{r CompPolicySeriesHorseTailComponentSolitary}
 
-OldGraph<-CompetitionPolicy$Graph
-for (c in unique(CompetitionPolicy$SubCustomer)){ 
-    CompSubCustomer<-subset(CompetitionPolicy,SubCustomer==c)
-    for (s in unique(CompetitionPolicy$Competition.sum)){    
+OldGraph<-CompPolicy$Graph
+for (c in unique(CompPolicy$SubCustomer)){ 
+    CompSubCustomer<-subset(CompPolicy,SubCustomer==c)
+    for (s in unique(CompPolicy$Competition.sum)){    
         CompSubCustomer$Graph[CompSubCustomer$Competition.sum!=s]<-FALSE
         CompSubCustomer$Graph[CompSubCustomer$Competition.sum==s]<-TRUE
         if(any(CompSubCustomer$Graph==TRUE)){
@@ -1182,7 +1194,7 @@ for (c in unique(CompetitionPolicy$SubCustomer)){
             }
         }
     }
-CompetitionPolicy$Graph<-OldGraph
+CompPolicy$Graph<-OldGraph
 
 ```
 
@@ -1191,10 +1203,10 @@ CompetitionPolicy$Graph<-OldGraph
 
 ```{r CompPolicySeriesSpendingBarComponentSolitary}
 
-OldGraph<-CompetitionPolicy$Graph
-for (c in unique(CompetitionPolicy$SubCustomer)){ 
-    CompSubCustomer<-subset(CompetitionPolicy,SubCustomer==c)
-    for (s in unique(CompetitionPolicy$Competition.sum)){    
+OldGraph<-CompPolicy$Graph
+for (c in unique(CompPolicy$SubCustomer)){ 
+    CompSubCustomer<-subset(CompPolicy,SubCustomer==c)
+    for (s in unique(CompPolicy$Competition.sum)){    
         CompSubCustomer$Graph[CompSubCustomer$Competition.sum!=s]<-FALSE
         CompSubCustomer$Graph[CompSubCustomer$Competition.sum==s]<-TRUE
         if(any(CompSubCustomer$Graph==TRUE)){
@@ -1262,12 +1274,12 @@ for (c in unique(CompetitionPolicy$SubCustomer)){
 
         }
     }
-CompetitionPolicy$Graph<-OldGraph
+CompPolicy$Graph<-OldGraph
 
 ```
 
 
-```{r CompPolicyAnnualComponents}
+```{r CompPolicyAnnualComponentsOld}
 # 
 # 
 # png(
@@ -1328,7 +1340,7 @@ CompetitionPolicy$Graph<-OldGraph
 
 
 
-```{r CompPolicyAnnualSummary}
+```{r CompPolicyAnnualSummaryOld}
 # CompPolicy$Fiscal.Year[CompPolicy$Fiscal.Year>CompPolicy$EndDate&
 #                                       CompPolicy$SignedMonth<=CompPolicy$EndDate]<-
 #     CompPolicy$EndDate[CompPolicy$Fiscal.Year>CompPolicy$EndDate&
@@ -1398,7 +1410,7 @@ CompetitionPolicy$Graph<-OldGraph
 ```
 
 
-```{r CompPolicyAnnualComponentSolitary}
+```{r CompPolicyAnnualComponentSolitaryOld}
 # for (s in unique(CompPolicy$SubCustomer)){    
 #     png(
 #         paste("Output\\Competition\\", 
@@ -1592,7 +1604,7 @@ write.csv(CompRegimeTable,paste("Output\\Competition\\",
 
 
 #Annual
-CompPolicyTable<-ddply(CompetitionPolicy, c("Fiscal.Year"
+CompPolicyTable<-ddply(CompPolicy, c("Fiscal.Year"
                                          ,"Competition.sum"
                                          ,"SubCustomer.component"
                                          ,"ATLpolicy")
@@ -1615,7 +1627,7 @@ write.csv(CompPolicyTable,paste("Output\\Competition\\",
 
 #Monthly
 
-CompPolicyTable<-ddply(CompetitionPolicy, c("SignedMonth"
+CompPolicyTable<-ddply(CompPolicy, c("SignedMonth"
                                          ,"Competition.sum"
                                          ,"SubCustomer.component"
                                          ,"ATLpolicy")
