@@ -126,6 +126,10 @@ ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
 
 
 
+ATLregimeDetails$StartFiscalYear<-ymd(paste(year(ATLregimeDetails$StartDate)+
+                                                ifelse(month(ATLregimeDetails$StartDate)<10,-1,0)
+                                            ,"-10-1",sep=""))
+
 
 
 VendorUSDATL<-join(VendorUSDATL,ATLregimeDetails,match="first")
@@ -318,6 +322,13 @@ ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP3',
                                                     StartDate=as.Date('2014/09/19',format='%Y/%m/%d'),
                                                     EndDate=max(VendorRegime$SignedQuarter)))
 
+
+
+
+ATLpolicyDetails$StartFiscalYear<-ymd(
+    paste(year(ATLpolicyDetails$StartDate)+
+              ifelse(month(ATLpolicyDetails$StartDate)<10,-1,0)
+          ,"-10-1",sep=""))
 
 
 VendorPolicy<-join(VendorPolicy,ATLpolicyDetails,match="first")
@@ -570,14 +581,14 @@ while(!(dev.cur()[[1]]==1)){
 
 for (c in unique(VendorPolicy$SubCustomer)){    
     png(
-        paste( "Output\\Vendor_Size\\",c,"\\",paste(
+        paste( "Output\\Vendor_Size\\",c,"\\",CleanFileName(paste(
             c
             ,"Obligation_2014"
             ,"Vendor_Size_sum"
             ,"ATLpolicy"
             ,"6monthMovingAverage"
             ,sep="_"
-            )
+            ))
             ,".png"
             , sep=""
             )
@@ -633,14 +644,14 @@ for (c in unique(VendorPolicy$SubCustomer)){
 for (c in unique(VendorPolicy$SubCustomer)){    
     png(
         paste("Output\\Vendor_Size\\",c,"\\",
-              paste(
+              CleanFileName(paste(
             c
             ,"Obligation_2014"
             ,"Vendor_Size_sum"
             ,"ATLpolicy"
             ,"Annual"
             ,sep="_"
-            )
+            ))
             ,".png"
             , sep=""
             )
@@ -691,7 +702,6 @@ for (c in unique(VendorPolicy$SubCustomer)){
 
 
 ```{r PrepareHorseTail}
-
 VendorPolicy$SinceFirstFiscalYear<-as.numeric(as.duration(
     ymd(VendorPolicy$SignedMonth)-VendorPolicy$StartFiscalYear)
     /dyears(1)
@@ -711,7 +721,7 @@ OldGraph<-VendorPolicy$Graph
 for (s in unique(VendorPolicy$Vendor.Size.sum)){    
     png(
         paste( "Output\\Vendor_Size\\",
-               paste(
+               CleanFileName(paste(
                    "DoD"
                    ,"Category"
                    ,"Percent"
@@ -720,7 +730,7 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
                    ,"HorseTail"
                    ,"3monthMovingAverage"
                    ,sep="_"
-                   )
+                   ))
                ,".png"
                , sep=""
                )
@@ -786,7 +796,7 @@ OldGraph<-VendorPolicy$Graph
 for (s in unique(VendorPolicy$Vendor.Size.sum)){    
     png(
         paste( "Output\\Vendor_Size\\",
-               paste(
+               CleanFileName(paste(
                    "DoD_components"
                    ,"Category"
                    ,"Percent"
@@ -795,7 +805,7 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
                    ,"HorseTail"
                    ,"3monthMovingAverage"
                    ,sep="_"
-                   )
+                   ))
                ,".png"
                , sep=""
                )
@@ -861,7 +871,7 @@ OldGraph<-VendorPolicy$Graph
 for (s in unique(VendorPolicy$Vendor.Size.sum)){    
     png(
         paste( "Output\\Vendor_Size\\",
-               paste(
+               CleanFileName(paste(
                    "DoD"
                    ,"Category"
                    ,"Obligation_2014"
@@ -870,7 +880,7 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
                    ,"Bar"
                    ,"3monthMovingAverage"
                    ,sep="_"
-                   )
+                   ))
                ,".png"
                , sep=""
                )
@@ -939,7 +949,7 @@ for (c in unique(VendorPolicy$SubCustomer)){
         if(any(VendorSubCustomer$Graph==TRUE)){
             png(
                 paste( "Output\\Vendor_Size\\",c,"\\",
-                       paste(
+                       CleanFileName(paste(
                            c
                            ,"Category"
                            ,"Percent"
@@ -948,7 +958,7 @@ for (c in unique(VendorPolicy$SubCustomer)){
                            ,"HorseTail"
                            ,"3monthMovingAverage"
                            ,sep="_"
-                           )
+                           ))
                        ,".png"
                        , sep=""
                        )
@@ -1019,7 +1029,7 @@ for (c in unique(VendorPolicy$SubCustomer)){
         if(any(VendorSubCustomer$Graph==TRUE)){
     png(
         paste( "Output\\Vendor_Size\\",c,"\\",
-               paste(
+               CleanFileName(paste(
                    c
                    ,"Category"
                    ,"Obligation_2014"
@@ -1028,7 +1038,7 @@ for (c in unique(VendorPolicy$SubCustomer)){
                    ,"Bar"
                    ,"3monthMovingAverage"
                    ,sep="_"
-                   )
+                   ))
                ,".png"
                , sep=""
                )

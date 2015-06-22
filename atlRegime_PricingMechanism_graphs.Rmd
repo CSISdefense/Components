@@ -9,7 +9,7 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r, echo=FALSE}
+```{r Setup, echo=FALSE}
 require(ggplot2)
 require(stringr)
 require(plyr)
@@ -34,19 +34,19 @@ axis.text.size<-14
 
 You can also embed plots, for example:
 
-```{r, echo=FALSE}
-FixedPriceRegime  <- read.csv(
+```{r DateEntryAndProcessing, echo=FALSE}
+PricingRegime  <- read.csv(
     paste("data\\Defense_Summary_SP_FundingMechanismHistoryBucketSubCustomerRegime.csv", sep = ""),
     header = TRUE, sep = ",", dec = ".", strip.white = TRUE, 
     na.strings = c("NULL","NA",""),
     stringsAsFactors = TRUE
     )
 
-FixedPriceRegime<-apply_lookups(Path,FixedPriceRegime)
-names(FixedPriceRegime)
-str(FixedPriceRegime)
-FixedPriceRegime$USDATL<-factor(FixedPriceRegime$USDATL,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","KENDALL" ),ordered=TRUE )
-FixedPriceRegime<-subset(FixedPriceRegime,USDATL %in% c("YOUNG","CARTER","KENDALL"))
+PricingRegime<-apply_lookups(Path,PricingRegime)
+names(PricingRegime)
+str(PricingRegime)
+PricingRegime$USDATL<-factor(PricingRegime$USDATL,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","KENDALL" ),ordered=TRUE )
+PricingRegime<-subset(PricingRegime,USDATL %in% c("YOUNG","CARTER","KENDALL"))
 
 
 Coloration<-read.csv(
@@ -65,25 +65,16 @@ Coloration<-ddply(Coloration
                   )
 
 # debug(LatticePercentLineWrapper)
-FixedPriceRegime$Graph<-TRUE
+PricingRegime$Graph<-TRUE
 
-FixedPriceRegime$SignedQuarter<-as.Date(paste(as.numeric(format(FixedPriceRegime$SignedMonth, "%Y"))+
-                                                  floor(as.numeric(format(FixedPriceRegime$SignedMonth,"%m"))/10),
-    (floor((as.numeric(format(FixedPriceRegime$SignedMonth, "%m"))-1)/3)*3+4) %% 12,
+PricingRegime$SignedQuarter<-as.Date(paste(as.numeric(format(PricingRegime$SignedMonth, "%Y"))+
+                                                  floor(as.numeric(format(PricingRegime$SignedMonth,"%m"))/10),
+    (floor((as.numeric(format(PricingRegime$SignedMonth, "%m"))-1)/3)*3+4) %% 12,
     1
       ,sep="-"),"%Y-%m-%d")-1
-FixedPriceRegime$SignedSemiAnnual<-FixedPriceRegime$SignedQuarter
-FixedPriceRegime$SignedSemiAnnual[format(FixedPriceRegime$SignedQuarter, "%m")=="06"]<-
-    as.Date(paste(as.numeric(format(
-        FixedPriceRegime$SignedMonth[format(FixedPriceRegime$SignedQuarter, "%m")=="06"], "%Y"))
-        ,9,30,sep="-"),"%Y-%m-%d")
-FixedPriceRegime$SignedSemiAnnual[format(FixedPriceRegime$SignedQuarter, "%m")=="12"]<-
-    as.Date(paste(as.numeric(format(
-        FixedPriceRegime$SignedMonth[format(FixedPriceRegime$SignedQuarter, "%m")=="12"], "%Y"))+1
-        ,3,31,sep="-"),"%Y-%m-%d")
 
-FixedPriceRegime$SubCustomer.component<-droplevels(FixedPriceRegime$SubCustomer.component)
-FixedPriceRegime$SubCustomer.component<-factor(FixedPriceRegime$SubCustomer.component,
+PricingRegime$SubCustomer.component<-droplevels(PricingRegime$SubCustomer.component)
+PricingRegime$SubCustomer.component<-factor(PricingRegime$SubCustomer.component,
                                                levels=c("Army","Navy","Air Force","DLA",
                                                         "MDA","MilitaryHealth","Additional DoD Components"),
                                                labels=c("Army","Navy","Air Force","DLA",
@@ -93,15 +84,12 @@ FixedPriceRegime$SubCustomer.component<-factor(FixedPriceRegime$SubCustomer.comp
 ```
 
 
+```{r PricingATLregime}
 
-
-
-
-```{r FixedPriceUSDATLSemiAnnual}        
-ATLregimeFYear<-aggregate(FixedPriceRegime$Obligation.2014
-                          , by=list(FixedPriceRegime$Fiscal.Year,
-                                    #                                                   FixedPriceRegime$SubCustomer.component,
-                                    FixedPriceRegime$USDATL)
+ATLregimeFYear<-aggregate(PricingRegime$Obligation.2014
+                          , by=list(PricingRegime$Fiscal.Year,
+                                    #                                                   PricingRegime$SubCustomer.component,
+                                    PricingRegime$USDATL)
                           ,FUN = "sum"
                           ,na.rm =TRUE
                           )
@@ -109,7 +97,7 @@ ATLregimeFYear<-aggregate(FixedPriceRegime$Obligation.2014
 
 
 names(ATLregimeFYear)<-c("Fiscal.Year","USDATL","AnnualRegimeObligations")
-FixedPriceUSDATL<-subset(FixedPriceRegime,join(FixedPriceRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
+PricingUSDATL<-subset(PricingRegime,join(PricingRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
 
 
 ATLregimeDetails<-data.frame(USDATL= 'GANSLER+',
@@ -132,28 +120,32 @@ ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'CARTER',
                                                     EndDate=as.Date('2011/11/02',format='%Y/%m/%d')))
 ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
                                                     StartDate=as.Date('2011/11/03',format='%Y/%m/%d'),
-                                                    EndDate=max(FixedPriceRegime$SignedQuarter)))
+                                                    EndDate=max(PricingRegime$SignedQuarter)))
 
-FixedPriceUSDATL<-join(FixedPriceUSDATL,ATLregimeDetails,match="first")
+ATLregimeDetails$StartFiscalYear<-ymd(paste(year(ATLregimeDetails$StartDate)+
+                                                ifelse(month(ATLregimeDetails$StartDate)<10,-1,0)
+                                            ,"-10-1",sep=""))
 
-FixedPriceUSDATL$SignedSemiAnnual[FixedPriceUSDATL$SignedSemiAnnual>FixedPriceUSDATL$EndDate&
-                                      FixedPriceUSDATL$SignedMonth<=FixedPriceUSDATL$EndDate]<-
-    FixedPriceUSDATL$EndDate[FixedPriceUSDATL$SignedSemiAnnual>FixedPriceUSDATL$EndDate&
-                                      FixedPriceUSDATL$SignedMonth<=FixedPriceUSDATL$EndDate]
 
-FixedPriceUSDATL$SignedSemiAnnual[FixedPriceUSDATL$SignedSemiAnnual<FixedPriceUSDATL$StartDate]<-
-    FixedPriceUSDATL$StartDate[FixedPriceUSDATL$SignedSemiAnnual<FixedPriceUSDATL$StartDate]
+PricingUSDATL<-join(PricingUSDATL,ATLregimeDetails,match="first")
 
+
+
+```
+
+
+
+
+```{r PricingUSDATLmonthlyComponents}        
 
 png(
-    paste("Output//Pricing_Mechanism//",
-          paste("DoD_components"
-                 ,"Obligation_2014"
-                 ,"Pricing_Mechanism_sum"
-                 ,"USDATL"
-                 ,"Semi_Annual"
-                 ,sep="_"
-                 )
+    paste( "Output\\Pricing_Mechanism\\",paste("DoD_components"
+                                         ,"Obligation_2014"
+                                         ,"Pricing_Mechanism_sum"
+                                         ,"USDATL"
+                                         ,"6monthMovingAverage"
+                                         ,sep="_"
+                                         )
            ,".png"
            , sep=""
            )
@@ -167,33 +159,33 @@ png(
 
 # debug(LatticePercentLineWrapper)
 
-FixedGraph<-LatticePercentLineWrapper(
+PricingGraph<-LatticePercentLineWrapper(
     "Pricing Mechanism"
-    ,"Pricing Mechanism by DoD Component and Starting Regime"
-    ,"Fiscal Year of Obligation"
+    ,""#Pricing Mechanism by DoD Component and Starting Regime"
+    ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
     ,Coloration
-    ,FixedPriceUSDATL
+    ,PricingUSDATL
     ,NULL
-    ,"SignedSemiAnnual"
+    ,"SignedMonth"
     ,"Obligation.2014"
     ,"Pricing.Mechanism.sum"
     ,"SubCustomer.component"
     ,"USDATL"
     ,"StartDate"
     ,"EndDate"
+    ,MovingAverage=6
     )
 
-FixedGraph<-FixedGraph+aes(size=y.variable)
-
-# FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    FixedGraph<-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-FixedGraph<-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+PricingGraph<-PricingGraph+aes(size=y.variable)
+# PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+PricingGraph<-PricingGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year")) 
-FixedGraph
-    print(FixedGraph)
-#     FixedGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+PricingGraph
+print(PricingGraph)
+#     PricingGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
     }
@@ -202,25 +194,16 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r FixedPriceUSDATLAnnual}        
-FixedPriceUSDATL$Fiscal.Year[FixedPriceUSDATL$Fiscal.Year>FixedPriceUSDATL$EndDate&
-                                      FixedPriceUSDATL$SignedMonth<=FixedPriceUSDATL$EndDate]<-
-    FixedPriceUSDATL$EndDate[FixedPriceUSDATL$Fiscal.Year>FixedPriceUSDATL$EndDate&
-                                      FixedPriceUSDATL$SignedMonth<=FixedPriceUSDATL$EndDate]
-
-FixedPriceUSDATL$Fiscal.Year[FixedPriceUSDATL$Fiscal.Year<FixedPriceUSDATL$StartDate]<-
-    FixedPriceUSDATL$StartDate[FixedPriceUSDATL$Fiscal.Year<FixedPriceUSDATL$StartDate]
-
+```{r PricingUSDATLannualComponents}        
 
 png(
-    paste("Output//Pricing_Mechanism//",
-          paste("DoD_components"
-                 ,"Obligation_2014"
-                 ,"Pricing_Mechanism_sum"
-                 ,"USDATL"
-                 ,"Annual"
-                 ,sep="_"
-                 )
+    paste( "Output\\Pricing_Mechanism\\",paste("DoD_components"
+                                         ,"Obligation_2014"
+                                         ,"Pricing_Mechanism_sum"
+                                         ,"USDATL"
+                                         ,"Annual"
+                                         ,sep="_"
+                                         )
            ,".png"
            , sep=""
            )
@@ -234,13 +217,13 @@ png(
 
 # debug(LatticePercentLineWrapper)
 
-FixedGraph<-LatticePercentLineWrapper(
+PricingGraph<-LatticePercentLineWrapper(
     "Pricing Mechanism"
-    ,"Pricing Mechanism by DoD Component and Starting Regime"
+    ,""#Pricing Mechanism by DoD Component and Starting Regime"
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,FixedPriceUSDATL
+    ,PricingUSDATL
     ,NULL
     ,"Fiscal.Year"
     ,"Obligation.2014"
@@ -251,15 +234,15 @@ FixedGraph<-LatticePercentLineWrapper(
     ,"EndDate"
     )
 
-FixedGraph<-FixedGraph+aes(size=y.variable)
-# FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    FixedGraph<-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-FixedGraph<-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+PricingGraph<-PricingGraph+aes(size=y.variable)
+# PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+PricingGraph<-PricingGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
-FixedGraph
-    print(FixedGraph)
-#     FixedGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+PricingGraph
+print(PricingGraph)
+#     PricingGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
     }
@@ -268,22 +251,21 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
+```{r PricingATLpolicy}
+PricingPolicy<-PricingRegime
+PricingPolicy$ATLpolicy<-as.character(PricingRegime$USDATL)
+PricingPolicy$ATLpolicy[PricingPolicy$BBP1==1]<-"CARTER+BBP1"
+PricingPolicy$ATLpolicy[PricingPolicy$USDATL=="CARTER"]<-"CARTER\npre-2009 NDAA\nSec. 864 Impl."
+PricingPolicy$ATLpolicy[PricingPolicy$WSARAreg==1]<-"2009 NDAA\nSec. 864 Impl."
+PricingPolicy$ATLpolicy[PricingPolicy$BBP2==1]<-"BBP2"
+PricingPolicy$ATLpolicy[PricingPolicy$BBP3==1]<-"BBP3"
 
-```{r FixedPricePolicySemiAnnual}        
-FixedPricePolicy<-FixedPriceRegime
-FixedPricePolicy$ATLpolicy<-as.character(FixedPriceRegime$USDATL)
-FixedPricePolicy$ATLpolicy[FixedPricePolicy$BBP1==1]<-"CARTER+BBP1"
-FixedPricePolicy$ATLpolicy[FixedPricePolicy$USDATL=="CARTER"]<-"CARTER\npre-2009 NDAA\nSec. 864 Impl."
-FixedPricePolicy$ATLpolicy[FixedPricePolicy$WSARAreg==1]<-"2009 NDAA\nSec. 864 Impl."
-FixedPricePolicy$ATLpolicy[FixedPricePolicy$BBP2==1]<-"BBP2"
-FixedPricePolicy$ATLpolicy[FixedPricePolicy$BBP3==1]<-"BBP3"
-
-FixedPricePolicy$ATLpolicy<-factor(FixedPricePolicy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER\npre-2009 NDAA\nSec. 864 Impl.","2009 NDAA\nSec. 864 Impl.","BBP2","BBP3" ),ordered=TRUE )
+PricingPolicy$ATLpolicy<-factor(PricingPolicy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER\npre-2009 NDAA\nSec. 864 Impl.","2009 NDAA\nSec. 864 Impl.","BBP2","BBP3" ),ordered=TRUE )
 # 
-# ATLpolicyFYear<-aggregate(FixedPricePolicy$Obligation.2014
-#                           , by=list(FixedPricePolicy$Fiscal.Year,
-#                                     #                                                   FixedPriceRegime$SubCustomer.component,
-#                                     FixedPricePolicy$ATLpolicy)
+# ATLpolicyFYear<-aggregate(PricingPolicy$Obligation.2014
+#                           , by=list(PricingPolicy$Fiscal.Year,
+#                                     #                                                   PricingRegime$SubCustomer.component,
+#                                     PricingPolicy$ATLpolicy)
 #                           ,FUN = "sum"
 #                           ,na.rm =TRUE
 #                           )
@@ -291,7 +273,7 @@ FixedPricePolicy$ATLpolicy<-factor(FixedPricePolicy$ATLpolicy,levels=c("GANSLER+
 # 
 # 
 # names(ATLpolicyFYear)<-c("Fiscal.Year","ATLpolicy","AnnualPolicyObligations")
-# FixedPricePolicy<-subset(FixedPricePolicy,join(FixedPricePolicy,ATLpolicyFYear)$AnnualPolicyObligations>=50)
+# PricingPolicy<-subset(PricingPolicy,join(PricingPolicy,ATLpolicyFYear)$AnnualPolicyObligations>=50)
 # 
 
 ATLpolicyDetails<-data.frame(ATLpolicy= 'GANSLER+',
@@ -326,28 +308,46 @@ ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP2',
                                                     EndDate=as.Date('2014/09/18',format='%Y/%m/%d')))
 ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP3',
                                                     StartDate=as.Date('2014/09/19',format='%Y/%m/%d'),
-                                                    EndDate=max(FixedPriceRegime$SignedQuarter)))
+                                                    EndDate=max(PricingRegime$SignedQuarter)))
 
 
+ATLpolicyDetails$StartFiscalYear<-ymd(
+    paste(year(ATLpolicyDetails$StartDate)+
+              ifelse(month(ATLpolicyDetails$StartDate)<10,-1,0)
+          ,"-10-1",sep=""))
 
-FixedPricePolicy<-join(FixedPricePolicy,ATLpolicyDetails,match="first")
-FixedPricePolicy<-subset(FixedPricePolicy,ATLpolicy!='BBP3') #Not enough to include
-FixedPricePolicy$SignedSemiAnnual[FixedPricePolicy$SignedSemiAnnual>FixedPricePolicy$EndDate&
-                                      FixedPricePolicy$SignedMonth<=FixedPricePolicy$EndDate]<-
-    FixedPricePolicy$EndDate[FixedPricePolicy$SignedSemiAnnual>FixedPricePolicy$EndDate&
-                                      FixedPricePolicy$SignedMonth<=FixedPricePolicy$EndDate]
-FixedPricePolicy$SignedSemiAnnual[FixedPricePolicy$SignedSemiAnnual<FixedPricePolicy$StartDate]<-
-    FixedPricePolicy$StartDate[FixedPricePolicy$SignedSemiAnnual<FixedPricePolicy$StartDate]
+
+PricingPolicy<-join(PricingPolicy,ATLpolicyDetails,match="first")
+PricingPolicy<-subset(PricingPolicy,ATLpolicy!='BBP3') #Not enough to include
+
+PricingPolicy$Fiscal.Year[PricingPolicy$Fiscal.Year>PricingPolicy$EndDate&
+                                      PricingPolicy$SignedMonth<=PricingPolicy$EndDate]<-
+    PricingPolicy$EndDate[PricingPolicy$Fiscal.Year>PricingPolicy$EndDate&
+                                      PricingPolicy$SignedMonth<=PricingPolicy$EndDate]
+PricingPolicy$SignedFiscal.Year[PricingPolicy$SignedFiscal.Year<PricingPolicy$StartDate]<-
+    PricingPolicy$StartDate[PricingPolicy$SignedFiscal.Year<PricingPolicy$StartDate]
+
+# library(lubridate)
+PricingPolicy$SignedFiscal.Year<-PricingPolicy$SignedFiscal.Year
+
+# c(as.date(PricingPolicy$SignedFiscal.Year),
+# seq.Date( as.date(str(PricingPolicy$SignedFiscal.Year)), length=2, by='3 months' )
+# )
+
+
+```
+
+
+```{r PricingPolicyMonthlyComponents}        
 
 png(
-    paste("Output//Pricing_Mechanism//",
-          paste("DoD_components"
-                 ,"Obligation_2014"
-                 ,"Pricing_Mechanism_sum"
-                 ,"ATLpolicy"
-                 ,"Semi_Annual"
-                 ,sep="_"
-                 )
+    paste( "Output\\Pricing_Mechanism\\",paste("DoD_components"
+                                         ,"Obligation_2014"
+                                         ,"Pricing_Mechanism_sum"
+                                         ,"ATLpolicy"
+                                         ,"6monthMovingAverage"
+                                         ,sep="_"
+                                         )
            ,".png"
            , sep=""
            )
@@ -360,32 +360,33 @@ png(
     )
 
 
-FixedGraph<-LatticePercentLineWrapper(
+PricingGraph<-LatticePercentLineWrapper(
     "Pricing Mechanism"
-    ,"Pricing Mechanism by DoD Component and Starting Regime"
-    ,"Fiscal Year of Obligation"
+    ,""#Pricing Mechanism by DoD Component and Starting Regime"
+    ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
     ,Coloration
-    ,FixedPricePolicy
+    ,PricingPolicy
     ,NULL
-    ,"SignedSemiAnnual"
+    ,"SignedMonth"
     ,"Obligation.2014"
     ,"Pricing.Mechanism.sum"
     ,"SubCustomer.component"
     ,"ATLpolicy"
     ,"StartDate"
     ,"EndDate"
+    ,MovingAverage=6
     )
 
-FixedGraph<-FixedGraph+aes(size=y.variable)
-# FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    FixedGraph<-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-FixedGraph<-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+PricingGraph<-PricingGraph+aes(size=y.variable)
+# PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+PricingGraph<-PricingGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
-FixedGraph
-    print(FixedGraph)
-#     FixedGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+PricingGraph
+print(PricingGraph)
+#     PricingGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
     }
@@ -393,24 +394,11 @@ while(!(dev.cur()[[1]]==1)){
 ```
 
 
-```{r FixedPricePolicyAnnual}
-FixedPricePolicy$Fiscal.Year[FixedPricePolicy$Fiscal.Year>FixedPricePolicy$EndDate&
-                                      FixedPricePolicy$SignedMonth<=FixedPricePolicy$EndDate]<-
-    FixedPricePolicy$EndDate[FixedPricePolicy$Fiscal.Year>FixedPricePolicy$EndDate&
-                                      FixedPricePolicy$SignedMonth<=FixedPricePolicy$EndDate]
-FixedPricePolicy$SignedFiscal.Year[FixedPricePolicy$SignedFiscal.Year<FixedPricePolicy$StartDate]<-
-    FixedPricePolicy$StartDate[FixedPricePolicy$SignedFiscal.Year<FixedPricePolicy$StartDate]
-
-# library(lubridate)
-FixedPricePolicy$SignedFiscal.Year<-FixedPricePolicy$SignedFiscal.Year
-
-# c(as.date(FixedPricePolicy$SignedFiscal.Year),
-# seq.Date( as.date(str(FixedPricePolicy$SignedFiscal.Year)), length=2, by='3 months' )
-# )
+```{r PricingPolicyAnnualComponents}
 
 png(
-    paste("Output//Pricing_Mechanism//",
-          paste("DoD_components"
+    paste( "Output\\Pricing_Mechanism\\",
+           paste("DoD_components"
                  ,"Obligation_2014"
                  ,"Pricing_Mechanism_sum"
                  ,"ATLpolicy"
@@ -429,14 +417,13 @@ png(
     )
 
 
-FixedGraph<-LatticePercentLineWrapper(
+PricingGraph<-LatticePercentLineWrapper(
     "Pricing Mechanism"
-    ,"Pricing Mechanism by DoD Component and Starting Regime"
+    ,""#Pricing Mechanism by DoD Component and Starting Regime"
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-
-    ,FixedPricePolicy
+    ,PricingPolicy
     ,NULL
     ,"Fiscal.Year"
     ,"Obligation.2014"
@@ -447,15 +434,15 @@ FixedGraph<-LatticePercentLineWrapper(
     ,"EndDate"
     )
 
-FixedGraph<-FixedGraph+aes(size=y.variable)
-# FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    FixedGraph<-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-FixedGraph<-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+PricingGraph<-PricingGraph+aes(size=y.variable)
+# PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+PricingGraph<-PricingGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
-FixedGraph
-    print(FixedGraph)
-#     FixedGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+PricingGraph
+print(PricingGraph)
+#     PricingGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
     }
@@ -463,22 +450,74 @@ while(!(dev.cur()[[1]]==1)){
 
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
-
-
-```{r FixedPricePolicySummary}
-FixedPricePolicy$Fiscal.Year[FixedPricePolicy$Fiscal.Year>FixedPricePolicy$EndDate&
-                                      FixedPricePolicy$SignedMonth<=FixedPricePolicy$EndDate]<-
-    FixedPricePolicy$EndDate[FixedPricePolicy$Fiscal.Year>FixedPricePolicy$EndDate&
-                                      FixedPricePolicy$SignedMonth<=FixedPricePolicy$EndDate]
-FixedPricePolicy$SignedFiscal.Year[FixedPricePolicy$SignedFiscal.Year<FixedPricePolicy$StartDate]<-
-    FixedPricePolicy$StartDate[FixedPricePolicy$SignedFiscal.Year<FixedPricePolicy$StartDate]
+```{r PricingPolicyMonthlySummary}
 
 
 png(
-    paste("Output//Pricing_Mechanism//",
-          paste("DoD_Summary"
+    paste( "Output\\Pricing_Mechanism\\",
+           paste("DoD_Summary"
+                 ,"Obligation_2014"
+                 ,"Pricing_Mechanism_sum"
+                 ,"ATLpolicy"
+                 ,"6monthMovingAverage"
+                 ,sep="_"
+                 )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=3.5
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+
+PricingGraph<-LatticePercentLineWrapper(
+    VAR.name="Pricing Mechanism"
+    ,""#VAR.proper.name=""#Overall DoD Pricing Mechanism by Starting Regime"
+    ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
+    ,VAR.Y.label="% of DoD Obligations"
+    ,VAR.Coloration=Coloration
+    
+    
+    ,VAR.long.DF=PricingPolicy
+    ,VAR.ncol=NA
+    ,VAR.x.variable="SignedMonth"
+    ,VAR.y.variable="Obligation.2014"
+    ,VAR.y.series=    "Pricing.Mechanism.sum"
+    ,VAR.facet.primary="ATLpolicy"
+    ,VAR.facet.secondary=NA
+    ,"StartDate"
+    ,"EndDate"
+    ,MovingAverage=6
+    )
+
+PricingGraph<-PricingGraph+aes(size=y.variable)
+# PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+PricingGraph<-PricingGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+PricingGraph
+print(PricingGraph)
+#     PricingGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+
+```
+
+
+
+```{r PricingPolicyAnnualSummary}
+
+
+png(
+    paste( "Output\\Pricing_Mechanism\\",
+           paste("DoD_Summary"
                  ,"Obligation_2014"
                  ,"Pricing_Mechanism_sum"
                  ,"ATLpolicy"
@@ -495,39 +534,808 @@ png(
     , pointsize=12
     , res=150
     )
-    
-    
-FixedGraph<-LatticePercentLineWrapper(
+
+
+PricingGraph<-LatticePercentLineWrapper(
     VAR.name="Pricing Mechanism"
-    ,VAR.proper.name="Overall Pricing Mechanism by DoD Component and Starting Regime"
+    ,""#VAR.proper.name=""#Overall DoD Pricing Mechanism by Starting Regime"
     ,VAR.X.label="Fiscal Year of Obligation"
-    ,VAR.Y.label="% of Component Obligations"
+    ,VAR.Y.label="% of DoD Obligations"
     ,VAR.Coloration=Coloration
-
-
-    ,VAR.long.DF=  FixedPricePolicy
-    ,VAR.ncol=4
+    
+    
+    ,VAR.long.DF=PricingPolicy
+    ,VAR.ncol=NA
     ,VAR.x.variable="Fiscal.Year"
     ,VAR.y.variable="Obligation.2014"
     ,VAR.y.series=    "Pricing.Mechanism.sum"
-     ,VAR.facet.primary="ATLpolicy"
+    ,VAR.facet.primary="ATLpolicy"
     ,VAR.facet.secondary=NA
     ,"StartDate"
     ,"EndDate"
     )
 
-FixedGraph<-FixedGraph+aes(size=y.variable)
-# FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    FixedGraph<-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-FixedGraph<-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+PricingGraph<-PricingGraph+aes(size=y.variable)
+# PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+PricingGraph<-PricingGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
-FixedGraph
-    print(FixedGraph)
-#     FixedGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+PricingGraph
+print(PricingGraph)
+#     PricingGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
 while(!(dev.cur()[[1]]==1)){
     dev.off()
     }
+
+
+```
+
+
+
+```{r PricingPolicyMonthlyComponentSolitary}
+
+for (c in unique(PricingPolicy$SubCustomer)){    
+    png(
+        paste( "Output\\Pricing_Mechanism\\",c,"\\",CleanFileName(
+            paste(
+            c
+            ,"Obligation_2014"
+            ,"Pricing_Mechanism_sum"
+            ,"ATLpolicy"
+            ,"6monthMovingAverage"
+            ,sep="_"
+            ))
+            ,".png"
+            , sep=""
+            )
+        , type="cairo"
+        , width=10
+        , height=5
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    PricingGraph<-LatticePercentLineWrapper(
+        VAR.name="Pricing Mechanism"
+        ,VAR.proper.name=""#paste(c,"Pricing Mechanism by Starting Regime")
+        ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
+        ,VAR.Y.label=paste("% of ",c," Obligations")
+        ,VAR.Coloration=Coloration
+        
+        
+        ,VAR.long.DF=subset(PricingPolicy,SubCustomer==c)
+        ,VAR.ncol=NA
+        ,VAR.x.variable="SignedMonth"
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series=    "Pricing.Mechanism.sum"
+        ,VAR.facet.primary="ATLpolicy"
+        ,VAR.facet.secondary=NA
+        ,"StartDate"
+        ,"EndDate"
+        ,MovingAverage=6
+        )
+    
+    PricingGraph<-PricingGraph+aes(size=y.variable)+scale_size_continuous(name="Constant 2014 $ Obligated, Billions")
+    # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    PricingGraph<-PricingGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+        scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    PricingGraph
+    print(PricingGraph)
+    rm(PricingGraph)
+    #     PricingGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+
+```
+
+
+```{r PricingPolicyAnnualComponentSolitary}
+
+for (c in unique(PricingPolicy$SubCustomer)){    
+    png(
+        paste("Output\\Pricing_Mechanism\\",c,"\\",
+             CleanFileName( paste(
+            c
+            ,"Obligation_2014"
+            ,"Pricing_Mechanism_sum"
+            ,"ATLpolicy"
+            ,"Annual"
+            ,sep="_"
+            ))
+            ,".png"
+            , sep=""
+            )
+        , type="cairo"
+        , width=10
+        , height=5
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    PricingGraph<-LatticePercentLineWrapper(
+        VAR.name="Pricing Mechanism"
+        ,VAR.proper.name=""#paste(c,"Pricing Mechanism by Starting Regime")
+        ,VAR.X.label="Fiscal Year of Obligation"
+        ,VAR.Y.label=paste("% of ",c," Obligations")
+        ,VAR.Coloration=Coloration
+        
+        
+        ,VAR.long.DF=subset(PricingPolicy,SubCustomer==c)
+        ,VAR.ncol=NA
+        ,VAR.x.variable="Fiscal.Year"
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series=    "Pricing.Mechanism.sum"
+        ,VAR.facet.primary="ATLpolicy"
+        ,VAR.facet.secondary=NA
+        ,"StartDate"
+        ,"EndDate"
+        )
+    
+    PricingGraph<-PricingGraph+aes(size=y.variable)+scale_size_continuous(name="Constant 2014 $ Obligated, Billions")
+    # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    PricingGraph<-PricingGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+        scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    PricingGraph
+    print(PricingGraph)
+    rm(PricingGraph)
+    #     PricingGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+
+```
+
+
+```{r PrepareHorseTail}
+PricingPolicy$SinceFirstFiscalYear<-as.numeric(as.duration(
+    ymd(PricingPolicy$SignedMonth)-PricingPolicy$StartFiscalYear)
+    /dyears(1)
+    )
+
+HorseTailYears<-6
+
+
+```
+
+
+
+```{r PricingPolicySeriesHorseTailSummary}
+
+OldGraph<-PricingPolicy$Graph
+
+for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){    
+    png(
+        paste( "Output\\Pricing_Mechanism\\",
+               CleanFileName(paste(
+                   "DoD"
+                   ,"Category"
+                   ,"Percent"
+                   ,s
+                   ,"Pricing_Mechanism_sum"
+                   ,"HorseTail"
+                   ,"3monthMovingAverage"
+                   ,sep="_"
+                   ))
+               ,".png"
+               , sep=""
+               )
+        , type="cairo"
+        , width=7.5
+        , height=4
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    PricingPolicy$Graph[PricingPolicy$Pricing.Mechanism.sum!=s]<-FALSE
+    PricingPolicy$Graph[PricingPolicy$Pricing.Mechanism.sum==s]<-TRUE
+    
+    PricingGraph<-LatticePercentLineWrapper(
+        VAR.name="Pricing Mechanism"
+        ,""#VAR.proper.name=""#Overall DoD Pricing Mechanism by Starting Regime"
+        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
+        ,VAR.Y.label="% of DoD Obligations"
+        ,VAR.Coloration=Coloration
+        , HorseTail=TRUE
+        
+        ,VAR.long.DF=PricingPolicy
+        ,VAR.ncol=1
+        ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series=    "ATLpolicy"
+        ,VAR.facet.primary="Pricing.Mechanism.sum"
+        ,VAR.facet.secondary=NA
+        #     ,"StartDate"
+        #     ,"EndDate"
+        ,MovingAverage=3
+        ,MovingSides=1
+        )
+    
+    # PricingGraph<-PricingGraph+aes(size=y.variable)
+    
+    PricingGraph<-PricingGraph+scale_x_continuous(breaks=c(1:HorseTailYears),limits=c(1,HorseTailYears))
+    
+    # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    # PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    PricingGraph<-PricingGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))
+#     +
+    #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    PricingGraph
+    print(PricingGraph)
+    #     PricingGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+PricingPolicy$Graph<-OldGraph
+
+```
+
+
+```{r PricingPolicySeriesHorseTailComponents}
+
+OldGraph<-PricingPolicy$Graph
+
+for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){    
+    png(
+        paste( "Output\\Pricing_Mechanism\\",
+               CleanFileName(paste(
+                   "DoD_components"
+                   ,"Category"
+                   ,"Percent"
+                   ,s
+                   ,"Pricing_Mechanism_sum"
+                   ,"HorseTail"
+                   ,"3monthMovingAverage"
+                   ,sep="_"
+                   ))
+               ,".png"
+               , sep=""
+               )
+        , type="cairo"
+        , width=7.5
+        , height=10
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    PricingPolicy$Graph[PricingPolicy$Pricing.Mechanism.sum!=s]<-FALSE
+    PricingPolicy$Graph[PricingPolicy$Pricing.Mechanism.sum==s]<-TRUE
+    
+    PricingGraph<-LatticePercentLineWrapper(
+        VAR.name="Pricing Mechanism"
+        ,""#VAR.proper.name=""#Overall DoD Pricing Mechanism by Starting Regime"
+        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
+        ,VAR.Y.label="% of Component Obligations"
+        ,VAR.Coloration=Coloration
+        , HorseTail=TRUE
+        
+        ,VAR.long.DF=PricingPolicy
+        ,VAR.ncol=1
+        ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series=    "ATLpolicy"
+        ,VAR.facet.primary="Pricing.Mechanism.sum"
+        ,VAR.facet.secondary="SubCustomer"
+        #     ,"StartDate"
+        #     ,"EndDate"
+        ,MovingAverage=3
+        ,MovingSides=1
+        )
+    
+    # PricingGraph<-PricingGraph+aes(size=y.variable)
+    PricingGraph<-PricingGraph+scale_x_continuous(breaks=c(1:HorseTailYears),
+                                                limits=c(1,HorseTailYears))
+    
+    # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    # PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    PricingGraph<-PricingGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))
+    #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    PricingGraph
+    print(PricingGraph)
+    #     PricingGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+PricingPolicy$Graph<-OldGraph
+
+```
+
+
+```{r PricingPolicySeriesSpendingBarSummary}
+
+
+OldGraph<-PricingPolicy$Graph
+
+for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){    
+    png(
+        paste( "Output\\Pricing_Mechanism\\",
+               CleanFileName(paste(
+                   "DoD"
+                   ,"Category"
+                   ,"Obligation_2014"
+                   ,s
+                   ,"Pricing_Mechanism_sum"
+                   ,"Bar"
+                   ,"3monthMovingAverage"
+                   ,sep="_"
+                   ))
+               ,".png"
+               , sep=""
+               )
+        , type="cairo"
+        , width=7.5
+        , height=4
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    PricingPolicy$Graph[PricingPolicy$Pricing.Mechanism.sum!=s]<-FALSE
+    PricingPolicy$Graph[PricingPolicy$Pricing.Mechanism.sum==s]<-TRUE
+    
+    PricingGraph<-LatticePlotWrapper(
+        VAR.name="Pricing Mechanism"
+        ,""#VAR.proper.name=""#Overall DoD Pricing Mechanism by Starting Regime"
+        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
+        ,VAR.Y.label=paste(s,"Constant 2014 $ Obligated, Billions")
+        ,VAR.Coloration=Coloration
+        ,VAR.long.DF=PricingPolicy
+        ,VAR.ncol=1
+        ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series="ATLpolicy"
+        ,VAR.facet.primary="ATLpolicy"
+        ,VAR.facet.secondary=NA
+        #     ,"StartDate"
+        #     ,"EndDate"
+        ,MovingAverage=3
+        ,MovingSides=1
+        )
+    PricingGraph<-PricingGraph+geom_bar(width=1/12,stat="identity",position="dodge")
+    # PricingGraph<-PricingGraph+aes(size=y.variable)
+    
+    PricingGraph<-PricingGraph+scale_x_continuous(breaks=c(1:HorseTailYears),
+                                                limits=c(1,HorseTailYears))
+    
+    # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    # PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    # PricingGraph<-PricingGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
+    #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    PricingGraph
+    print(PricingGraph)
+    #     PricingGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+PricingPolicy$Graph<-OldGraph
+
+```
+
+
+
+```{r PricingPolicySeriesHorseTailComponentSolitary}
+
+OldGraph<-PricingPolicy$Graph
+for (c in unique(PricingPolicy$SubCustomer)){ 
+    PricingSubCustomer<-subset(PricingPolicy,SubCustomer==c)
+    for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){    
+        PricingSubCustomer$Graph[PricingSubCustomer$Pricing.Mechanism.sum!=s]<-FALSE
+        PricingSubCustomer$Graph[PricingSubCustomer$Pricing.Mechanism.sum==s]<-TRUE
+        if(any(PricingSubCustomer$Graph==TRUE)){
+            png(
+                paste( "Output\\Pricing_Mechanism\\",c,"\\",
+                       CleanFileName(paste(
+                           c
+                           ,"Category"
+                           ,"Percent"
+                           ,s
+                           ,"Pricing_Mechanism_sum"
+                           ,"HorseTail"
+                           ,"3monthMovingAverage"
+                           ,sep="_"
+                           ))
+                       ,".png"
+                       , sep=""
+                       )
+                , type="cairo"
+                , width=7.5
+                , height=4
+                , units='in'
+                , pointsize=12
+                , res=150
+                )
+            
+            
+            PricingGraph<-LatticePercentLineWrapper(
+                VAR.name="Pricing Mechanism"
+                ,""#VAR.proper.name=""#Overall DoD Pricing Mechanism by Starting Regime"
+                ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
+                ,VAR.Y.label=paste("% of",c,"Obligations")
+                ,VAR.Coloration=Coloration
+                , HorseTail=TRUE
+                
+                ,VAR.long.DF=PricingSubCustomer
+                ,VAR.ncol=1
+                ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+                ,VAR.y.variable="Obligation.2014"
+                ,VAR.y.series=    "ATLpolicy"
+                ,VAR.facet.primary="Pricing.Mechanism.sum"
+                ,VAR.facet.secondary=NA
+                #     ,"StartDate"
+                #     ,"EndDate"
+                ,MovingAverage=3
+                ,MovingSides=1
+                )
+            
+            # PricingGraph<-PricingGraph+aes(size=y.variable)
+            
+            PricingGraph<-PricingGraph+scale_x_continuous(breaks=c(1:HorseTailYears)
+                                                        ,limits=c(1,HorseTailYears))
+            
+            # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+            # PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+            # PricingGraph<-PricingGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
+            #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+            #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+            PricingGraph
+            print(PricingGraph)
+            #     PricingGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+            while(!(dev.cur()[[1]]==1)){
+                dev.off()
+                }
+            }
+        }
+    }
+PricingPolicy$Graph<-OldGraph
+
+```
+
+
+
+
+```{r PricingPolicySeriesSpendingBarComponentSolitary}
+
+OldGraph<-PricingPolicy$Graph
+for (c in unique(PricingPolicy$SubCustomer)){ 
+    PricingSubCustomer<-subset(PricingPolicy,SubCustomer==c)
+    for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){    
+        PricingSubCustomer$Graph[PricingSubCustomer$Pricing.Mechanism.sum!=s]<-FALSE
+        PricingSubCustomer$Graph[PricingSubCustomer$Pricing.Mechanism.sum==s]<-TRUE
+        if(any(PricingSubCustomer$Graph==TRUE)){
+    png(
+        paste( "Output\\Pricing_Mechanism\\",c,"\\",
+              CleanFileName( paste(
+                   c
+                   ,"Category"
+                   ,"Obligation_2014"
+                   ,s
+                   ,"Pricing_Mechanism_sum"
+                   ,"Bar"
+                   ,"3monthMovingAverage"
+                   ,sep="_"
+                   ))
+               ,".png"
+               , sep=""
+               )
+        , type="cairo"
+        , width=7.5
+        , height=4
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    PricingGraph<-LatticePlotWrapper(
+        VAR.name="Pricing Mechanism"
+        ,""#VAR.proper.name=""#Overall DoD Pricing Mechanism by Starting Regime"
+        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
+        ,VAR.Y.label=paste(c,s,"Constant 2014 $ Obligated, Billions")
+        ,VAR.Coloration=Coloration
+        ,VAR.long.DF=PricingSubCustomer
+        ,VAR.ncol=1
+        ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series="ATLpolicy"
+        ,VAR.facet.primary="ATLpolicy"
+        ,VAR.facet.secondary=NA
+        #     ,"StartDate"
+        #     ,"EndDate"
+        ,MovingAverage=3
+        ,MovingSides=1
+        ,DataLabels=FALSE
+        )
+#     browser()
+    PricingGraph<-PricingGraph+geom_bar(width=1/12,stat="identity",position="dodge")
+    # PricingGraph<-PricingGraph+aes(size=y.variable)
+    
+    PricingGraph<-PricingGraph+scale_x_continuous(breaks=c(1:HorseTailYears)
+                                                ,limits=c(1,HorseTailYears))
+    
+    # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    # PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    # PricingGraph<-PricingGraph+scale_y_continuous(breaks=seq(0,1,0.25),labels = percent_format())+
+    #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    PricingGraph
+    print(PricingGraph)
+    #     PricingGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+        }
+    }
+PricingPolicy$Graph<-OldGraph
+
+```
+
+
+```{r DataTables}
+
+#Annual
+PricingRegimeTable<-ddply(PricingRegime, 
+                         .(
+                             Fiscal.Year,
+                             Pricing.Mechanism.sum,
+                             SubCustomer.component,
+                             USDATL
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014)
+                         )
+
+write.csv(PricingRegimeTable,paste("Output\\Pricing_Mechanism\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Pricing_Mechanism_sum"
+                                        ,"USDATL"
+                                        ,"Annual"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+#Monthly
+
+PricingRegimeTable<-ddply(PricingRegime, 
+                         .(
+                             SignedMonth,
+                             Pricing.Mechanism.sum,
+                             SubCustomer.component,
+                             USDATL
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014)
+                         )
+
+
+PricingRegimeTable<-ddply(PricingRegimeTable, 
+                         .(Pricing.Mechanism.sum,
+                           SubCustomer.component,
+                           USDATL),
+                         .fun=TransformFilter,
+                         MovingAverage=3,
+                         MovingSides=1,
+                         Source="Obligation.2014"
+                         )
+
+
+write.csv(PricingRegimeTable,paste("Output\\Pricing_Mechanism\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Pricing_Mechanism_sum"
+                                        ,"USDATL"
+                                        ,"Monthly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+#Annual
+PricingPolicyTable<-ddply(PricingPolicy, c("Fiscal.Year"
+                                         ,"Pricing.Mechanism.sum"
+                                         ,"SubCustomer.component"
+                                         ,"ATLpolicy")
+                         ,summarise
+                         ,Obligation.2014=sum(Obligation.2014)
+                         )
+
+
+write.csv(PricingPolicyTable,paste("Output\\Pricing_Mechanism\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Pricing_Mechanism_sum"
+                                        ,"ATLpolicy"
+                                        ,"Annual"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+#Monthly
+
+PricingPolicyTable<-ddply(PricingPolicy, c("SignedMonth"
+                                         ,"Pricing.Mechanism.sum"
+                                         ,"SubCustomer.component"
+                                         ,"ATLpolicy")
+                         ,summarise
+                         ,Obligation.2014=sum(Obligation.2014)
+                         )
+
+PricingPolicyTable<-ddply(PricingPolicyTable, 
+                         .(Pricing.Mechanism.sum,
+                           SubCustomer.component,
+                           ATLpolicy),
+                         .fun=TransformFilter,
+                         MovingAverage=3,
+                         MovingSides=1,
+                         Source="Obligation.2014"
+                         )
+
+
+write.csv(PricingPolicyTable,paste("Output\\Pricing_Mechanism\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Pricing_Mechanism_sum"
+                                        ,"ATLpolicy"
+                                        ,"Monthly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+```
+
+
+```{r PricingPolicyAnnualOld}
+# 
+# png(
+#     paste("Output//Pricing_Mechanism//",
+#           paste("DoD_components"
+#                  ,"Obligation_2014"
+#                  ,"Pricing_Mechanism_sum"
+#                  ,"ATLpolicy"
+#                  ,"Annual"
+#                  ,sep="_"
+#                  )
+#            ,".png"
+#            , sep=""
+#            )
+#     , type="cairo"
+#     , width=7.5
+#     , height=10
+#     , units='in'
+#     , pointsize=12
+#     , res=150
+#     )
+# 
+# 
+# FixedGraph<-LatticePercentLineWrapper(
+#     "Pricing Mechanism"
+#     ,"Pricing Mechanism by DoD Component and Starting Regime"
+#     ,"Fiscal Year of Obligation"
+#     ,"% of Component Obligations"
+#     ,Coloration
+# 
+#     ,PricingPolicy
+#     ,NULL
+#     ,"Fiscal.Year"
+#     ,"Obligation.2014"
+#     ,"Pricing.Mechanism.sum"
+#     ,"SubCustomer.component"
+#     ,"ATLpolicy"
+#     ,"StartDate"
+#     ,"EndDate"
+#     )
+# 
+# FixedGraph<-FixedGraph+aes(size=y.variable)
+# # FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+#     FixedGraph<-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+# FixedGraph<-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+#     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+#     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+# FixedGraph
+#     print(FixedGraph)
+# #     FixedGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+# while(!(dev.cur()[[1]]==1)){
+#     dev.off()
+#     }
+# 
+
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+```{r PricingPolicySummaryOld}
+# PricingPolicy$Fiscal.Year[PricingPolicy$Fiscal.Year>PricingPolicy$EndDate&
+#                                       PricingPolicy$SignedMonth<=PricingPolicy$EndDate]<-
+#     PricingPolicy$EndDate[PricingPolicy$Fiscal.Year>PricingPolicy$EndDate&
+#                                       PricingPolicy$SignedMonth<=PricingPolicy$EndDate]
+# PricingPolicy$SignedFiscal.Year[PricingPolicy$SignedFiscal.Year<PricingPolicy$StartDate]<-
+#     PricingPolicy$StartDate[PricingPolicy$SignedFiscal.Year<PricingPolicy$StartDate]
+# 
+# 
+# png(
+#     paste("Output//Pricing_Mechanism//",
+#           paste("DoD_Summary"
+#                  ,"Obligation_2014"
+#                  ,"Pricing_Mechanism_sum"
+#                  ,"ATLpolicy"
+#                  ,"Annual"
+#                  ,sep="_"
+#                  )
+#            ,".png"
+#            , sep=""
+#            )
+#     , type="cairo"
+#     , width=7.5
+#     , height=3.5
+#     , units='in'
+#     , pointsize=12
+#     , res=150
+#     )
+#     
+#     
+# FixedGraph<-LatticePercentLineWrapper(
+#     VAR.name="Pricing Mechanism"
+#     ,VAR.proper.name="Overall Pricing Mechanism by DoD Component and Starting Regime"
+#     ,VAR.X.label="Fiscal Year of Obligation"
+#     ,VAR.Y.label="% of Component Obligations"
+#     ,VAR.Coloration=Coloration
+# 
+# 
+#     ,VAR.long.DF=  PricingPolicy
+#     ,VAR.ncol=4
+#     ,VAR.x.variable="Fiscal.Year"
+#     ,VAR.y.variable="Obligation.2014"
+#     ,VAR.y.series=    "Pricing.Mechanism.sum"
+#      ,VAR.facet.primary="ATLpolicy"
+#     ,VAR.facet.secondary=NA
+#     ,"StartDate"
+#     ,"EndDate"
+#     )
+# 
+# FixedGraph<-FixedGraph+aes(size=y.variable)
+# # FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+#     FixedGraph<-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+# FixedGraph<-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+#     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+#     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+# FixedGraph
+#     print(FixedGraph)
+# #     FixedGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+# while(!(dev.cur()[[1]]==1)){
+#     dev.off()
+#     }
 
 # 
 # 
@@ -539,7 +1347,7 @@ while(!(dev.cur()[[1]]==1)){
 #     ,VAR.Coloration=Coloration
 # 
 # 
-#     ,VAR.long.DF=FixedPricePolicy
+#     ,VAR.long.DF=PricingPolicy
 #     ,VAR.ncol=1
 #     ,VAR.x.variable="Fiscal.Year"
 #     ,VAR.y.variable="Obligation.2014"
@@ -569,7 +1377,7 @@ while(!(dev.cur()[[1]]==1)){
 #     ,VAR.Coloration=Coloration
 # 
 # 
-#     ,VAR.long.DF=FixedPricePolicy
+#     ,VAR.long.DF=PricingPolicy
 #     ,VAR.ncol=1
 #     ,VAR.x.variable="Fiscal.Year"
 #     ,VAR.y.variable="Obligation.2014"
@@ -594,103 +1402,129 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r FixedPricePolicyAnnualComponentSolitary}
-for (s in unique(FixedPricePolicy$SubCustomer)){    
-    png(
-        paste("Output//Pricing_Mechanism//",
-              paste(s
-                     ,"Obligation_2014"
-                     ,"Pricing_Mechanism_sum"
-                     ,"ATLpolicy"
-                     ,"Annual"
-                     ,sep="_"
-                     )
-               ,".png"
-               , sep=""
-               )
-        , type="cairo"
-        , width=10
-        , height=5
-        , units='in'
-        , pointsize=12
-        , res=150
-        )
-    
-    FixedGraph<-LatticePercentLineWrapper(
-        VAR.name="Pricing Mechanism"
-        ,VAR.proper.name=""#paste(s,"Pricing Mechanism by Starting Regime")
-        ,VAR.X.label="Fiscal Year of Obligation"
-        ,VAR.Y.label="% of Component Obligations"
-        ,VAR.Coloration=Coloration
-        
-        
-        ,VAR.long.DF=subset(FixedPricePolicy,SubCustomer==s)
-        ,VAR.ncol=4
-        ,VAR.x.variable="Fiscal.Year"
-        ,VAR.y.variable="Obligation.2014"
-        ,VAR.y.series=    "Pricing.Mechanism.sum"
-        ,VAR.facet.primary="ATLpolicy"
-        ,VAR.facet.secondary=NA
-        ,"StartDate"
-        ,"EndDate"
-        )
-    
-    FixedGraph<-FixedGraph+aes(size=y.variable)+scale_size_continuous(name="Constant 2014 $ Obligated, Billions")
-    # FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-    FixedGraph<-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-    FixedGraph<-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
-        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
-        scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
-    FixedGraph
-    print(FixedGraph)
-    rm(FixedGraph)
-    #     FixedGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
-    while(!(dev.cur()[[1]]==1)){
-        dev.off()
-        }
-    }
+```{r PricingPolicyAnnualComponentSolitaryOld}
+# for (s in unique(PricingPolicy$SubCustomer)){    
+#     png(
+#         paste("Output//Pricing_Mechanism//",
+#               paste(s
+#                      ,"Obligation_2014"
+#                      ,"Pricing_Mechanism_sum"
+#                      ,"ATLpolicy"
+#                      ,"Annual"
+#                      ,sep="_"
+#                      )
+#                ,".png"
+#                , sep=""
+#                )
+#         , type="cairo"
+#         , width=10
+#         , height=5
+#         , units='in'
+#         , pointsize=12
+#         , res=150
+#         )
+#     
+#     FixedGraph<-LatticePercentLineWrapper(
+#         VAR.name="Pricing Mechanism"
+#         ,VAR.proper.name=""#paste(s,"Pricing Mechanism by Starting Regime")
+#         ,VAR.X.label="Fiscal Year of Obligation"
+#         ,VAR.Y.label="% of Component Obligations"
+#         ,VAR.Coloration=Coloration
+#         
+#         
+#         ,VAR.long.DF=subset(PricingPolicy,SubCustomer==s)
+#         ,VAR.ncol=4
+#         ,VAR.x.variable="Fiscal.Year"
+#         ,VAR.y.variable="Obligation.2014"
+#         ,VAR.y.series=    "Pricing.Mechanism.sum"
+#         ,VAR.facet.primary="ATLpolicy"
+#         ,VAR.facet.secondary=NA
+#         ,"StartDate"
+#         ,"EndDate"
+#         )
+#     
+#     FixedGraph<-FixedGraph+aes(size=y.variable)+scale_size_continuous(name="Constant 2014 $ Obligated, Billions")
+#     # FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+#     FixedGraph<-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+#     FixedGraph<-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+#         theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+#         scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+#     FixedGraph
+#     print(FixedGraph)
+#     rm(FixedGraph)
+#     #     FixedGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+#     while(!(dev.cur()[[1]]==1)){
+#         dev.off()
+#         }
+#     }
 
 ```
 
 
 
 
-```{r DataTables}
-FixedPriceRegimeTable<-ddply(FixedPriceRegime, c("Fiscal.Year"
-    ,"Pricing.Mechanism.sum"
-    ,"SubCustomer.component"
-    ,"USDATL")
-    ,summarize
-    ,Obligation.2014=sum(Obligation.2014)
-)
-write.csv(FixedPriceRegimeTable,paste("Output\\Competition\\",
-                                      paste("DoD_components"
-                 ,"Obligation_2014"
-                 ,"Pricing_Mechanism_sum"
-                 ,"USDATL"
-                 ,"Annual"
-                 ,sep="_"
-                 )
-           ,".csv",
-           sep=""))
 
-FixedPricePolicyTable<-ddply(FixedPricePolicy, c("Fiscal.Year"
-    ,"Pricing.Mechanism.sum"
-    ,"SubCustomer.component"
-    ,"ATLpolicy")
-    ,summarise
-    ,Obligation.2014=sum(Obligation.2014)
-)
-write.csv(FixedPricePolicyTable,paste("Output\\Competition\\",
-                                      paste("DoD_components"
-                 ,"Obligation_2014"
-                 ,"Pricing_Mechanism_sum"
-                 ,"ATLpolicy"
-                 ,"Annual"
-                 ,sep="_"
-                 )
-           ,".csv",
-           sep=""))
 
+```{r PricingUSDATLAnnualOld}        
+# PricingUSDATL$Fiscal.Year[PricingUSDATL$Fiscal.Year>PricingUSDATL$EndDate&
+#                                       PricingUSDATL$SignedMonth<=PricingUSDATL$EndDate]<-
+#     PricingUSDATL$EndDate[PricingUSDATL$Fiscal.Year>PricingUSDATL$EndDate&
+#                                       PricingUSDATL$SignedMonth<=PricingUSDATL$EndDate]
+# 
+# PricingUSDATL$Fiscal.Year[PricingUSDATL$Fiscal.Year<PricingUSDATL$StartDate]<-
+#     PricingUSDATL$StartDate[PricingUSDATL$Fiscal.Year<PricingUSDATL$StartDate]
+# 
+# 
+# png(
+#     paste("Output//Pricing_Mechanism//",
+#           paste("DoD_components"
+#                  ,"Obligation_2014"
+#                  ,"Pricing_Mechanism_sum"
+#                  ,"USDATL"
+#                  ,"Annual"
+#                  ,sep="_"
+#                  )
+#            ,".png"
+#            , sep=""
+#            )
+#     , type="cairo"
+#     , width=7.5
+#     , height=10
+#     , units='in'
+#     , pointsize=12
+#     , res=150
+#     )
+# 
+# # debug(LatticePercentLineWrapper)
+# 
+# FixedGraph<-LatticePercentLineWrapper(
+#     "Pricing Mechanism"
+#     ,"Pricing Mechanism by DoD Component and Starting Regime"
+#     ,"Fiscal Year of Obligation"
+#     ,"% of Component Obligations"
+#     ,Coloration
+#     ,PricingUSDATL
+#     ,NULL
+#     ,"Fiscal.Year"
+#     ,"Obligation.2014"
+#     ,"Pricing.Mechanism.sum"
+#     ,"SubCustomer.component"
+#     ,"USDATL"
+#     ,"StartDate"
+#     ,"EndDate"
+#     )
+# 
+# FixedGraph<-FixedGraph+aes(size=y.variable)
+# # FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+#     FixedGraph<-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+# FixedGraph<-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
+#     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+#     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+# FixedGraph
+#     print(FixedGraph)
+# #     FixedGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+# while(!(dev.cur()[[1]]==1)){
+#     dev.off()
+#     }
 
 ```

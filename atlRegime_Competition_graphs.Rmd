@@ -73,15 +73,6 @@ CompRegime$SignedQuarter<-as.Date(paste(as.numeric(format(CompRegime$SignedMonth
     (floor((as.numeric(format(CompRegime$SignedMonth, "%m"))-1)/3)*3+4) %% 12,
     1
       ,sep="-"),"%Y-%m-%d")-1
-CompRegime$SignedSemiAnnual<-CompRegime$SignedQuarter
-CompRegime$SignedSemiAnnual[format(CompRegime$SignedQuarter, "%m")=="06"]<-
-    as.Date(paste(as.numeric(format(
-        CompRegime$SignedMonth[format(CompRegime$SignedQuarter, "%m")=="06"], "%Y"))
-        ,9,30,sep="-"),"%Y-%m-%d")
-CompRegime$SignedSemiAnnual[format(CompRegime$SignedQuarter, "%m")=="12"]<-
-    as.Date(paste(as.numeric(format(
-        CompRegime$SignedMonth[format(CompRegime$SignedQuarter, "%m")=="12"], "%Y"))+1
-        ,3,31,sep="-"),"%Y-%m-%d")
 
 CompRegime$SubCustomer.component<-droplevels(CompRegime$SubCustomer.component)
 CompRegime$SubCustomer.component<-factor(CompRegime$SubCustomer.component,
@@ -138,14 +129,6 @@ ATLregimeDetails$StartFiscalYear<-ymd(paste(year(ATLregimeDetails$StartDate)+
 
 
 CompUSDATL<-join(CompUSDATL,ATLregimeDetails,match="first")
-
-CompUSDATL$SignedSemiAnnual[CompUSDATL$SignedSemiAnnual>CompUSDATL$EndDate&
-                                      CompUSDATL$SignedMonth<=CompUSDATL$EndDate]<-
-    CompUSDATL$EndDate[CompUSDATL$SignedSemiAnnual>CompUSDATL$EndDate&
-                                      CompUSDATL$SignedMonth<=CompUSDATL$EndDate]
-
-CompUSDATL$SignedSemiAnnual[CompUSDATL$SignedSemiAnnual<CompUSDATL$StartDate]<-
-    CompUSDATL$StartDate[CompUSDATL$SignedSemiAnnual<CompUSDATL$StartDate]
 
 CompUSDATL$Fiscal.Year[CompUSDATL$Fiscal.Year>CompUSDATL$EndDate&
                                       CompUSDATL$SignedMonth<=CompUSDATL$EndDate]<-
@@ -521,6 +504,8 @@ CompPolicy$Fiscal.Year[CompPolicy$Fiscal.Year>CompPolicy$EndDate&
                                       CompPolicy$SignedMonth<=CompPolicy$EndDate]
 CompPolicy$SignedFiscal.Year[CompPolicy$SignedFiscal.Year<CompPolicy$StartDate]<-
     CompPolicy$StartDate[CompPolicy$SignedFiscal.Year<CompPolicy$StartDate]
+
+
 
 ```
 
@@ -1174,7 +1159,7 @@ for (c in unique(CompPolicy$SubCustomer)){
                 ,MovingAverage=3
                 ,MovingSides=1
                 )
-            
+                    
             # CompGraph<-CompGraph+aes(size=y.variable)
             
             CompGraph<-CompGraph+scale_x_continuous(breaks=c(1:HorseTailYears)
@@ -1341,12 +1326,7 @@ CompPolicy$Graph<-OldGraph
 
 
 ```{r CompPolicyAnnualSummaryOld}
-# CompPolicy$Fiscal.Year[CompPolicy$Fiscal.Year>CompPolicy$EndDate&
-#                                       CompPolicy$SignedMonth<=CompPolicy$EndDate]<-
-#     CompPolicy$EndDate[CompPolicy$Fiscal.Year>CompPolicy$EndDate&
-#                                       CompPolicy$SignedMonth<=CompPolicy$EndDate]
-# CompPolicy$SignedFiscal.Year[CompPolicy$SignedFiscal.Year<CompPolicy$StartDate]<-
-#     CompPolicy$StartDate[CompPolicy$SignedFiscal.Year<CompPolicy$StartDate]
+
 # 
 # 
 # png(
