@@ -1,0 +1,1218 @@
+---
+title: "ATLregime Platform Portfolio"
+author: "Greg Sanders"
+date: "Friday, March 20, 2015"
+output: html_document
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r Setup, echo=FALSE}
+require(ggplot2)
+require(stringr)
+require(plyr)
+require(lubridate)
+options(error=recover)
+# setwd("K:\\Development\\Components")
+# setwd("C:\\Users\\Greg Sanders\\Documents\\Development\\Components")
+Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
+# Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
+source(paste(Path,"lookups.r",sep=""))
+source(paste(Path,"helper.r",sep=""))
+
+axis.text.size<-12
+strip.text.size<-12
+legend.text.size<-8
+# table.text.size<-5.75
+title.text.size<-12
+geom.text.size<-12
+
+main.text.size<-2
+note.text.size<-1.40
+
+
+Coloration<-read.csv(
+    paste(Path,"Lookups\\","lookup_coloration.csv",sep=""),
+    header=TRUE, sep=",", na.strings="", dec=".", strip.white=TRUE, 
+    stringsAsFactors=FALSE
+    )
+
+Coloration<-ddply(Coloration
+                  , c(.(R), .(G), .(B))
+                  , transform
+                  , ColorRGB=as.character(
+                      if(min(is.na(c(R,G,B)))) {NA} 
+                      else {rgb(max(R),max(G),max(B),max=255)}
+                      )
+                  )
+```
+
+You can also embed plots, for example:
+
+
+
+```{r DateEntryAndProcessing, echo=FALSE}
+PlatformRegime  <- read.csv(
+    unz("Data\\Defense_Summary_SP_FundingMechanismHistoryBucketPlatformSubCustomerRegime.zip",
+        "Defense_Summary_SP_FundingMechanismHistoryBucketPlatformSubCustomerRegime.csv"),
+    header = TRUE, sep = ",", dec = ".", strip.white = TRUE, 
+    na.strings = c("NULL","NA",""),
+    stringsAsFactors = TRUE
+    )
+
+PlatformRegime<-apply_lookups(Path,PlatformRegime)
+names(PlatformRegime)
+str(PlatformRegime)
+PlatformRegime$USDATL<-factor(PlatformRegime$USDATL,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","KENDALL" ),ordered=TRUE )
+PlatformRegime<-subset(PlatformRegime,USDATL %in% c("YOUNG","CARTER","KENDALL"))
+
+PlatformRegime$Graph<-TRUE
+
+PlatformRegime$SignedQuarter<-as.Date(
+    paste(as.numeric(format(PlatformRegime$SignedMonth, "%Y"))+
+              floor(as.numeric(format(PlatformRegime$SignedMonth,"%m"))/10),
+          (floor((as.numeric(format(PlatformRegime$SignedMonth, "%m"))-1)/3)*3+4) %% 12,
+          1
+          ,sep="-"),"%Y-%m-%d")-1
+
+PlatformRegime$SubCustomer.component<-droplevels(PlatformRegime$SubCustomer.component)
+PlatformRegime$SubCustomer.component<-factor(PlatformRegime$SubCustomer.component,
+                                           levels=c("Army","Navy","Air Force","DLA",
+                                                    "MDA","MilitaryHealth",
+                                                    "Additional DoD Components"),
+                                           labels=c("Army","Navy","Air Force","DLA",
+                                                    "MDA","Military\nHealth",
+                                                    "Additional\nDoD\nComponents"),
+                                           ordered=TRUE)
+
+```
+
+
+```{r VendorATLregime}
+ATLregimeFYear<-aggregate(PlatformRegime$Obligation.2014
+                          , by=list(PlatformRegime$Fiscal.Year,
+                                    #                                                   PlatformRegime$SubCustomer.component,
+                                    PlatformRegime$USDATL)
+                          ,FUN = "sum"
+                          ,na.rm =TRUE
+                          )
+
+names(ATLregimeFYear)<-c("Fiscal.Year","USDATL","AnnualRegimeObligations")
+VendorUSDATL<-subset(PlatformRegime,join(PlatformRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
+
+
+ATLregimeDetails<-data.frame(USDATL= 'GANSLER+',
+                             StartDate=as.Date('1997/11/10',format='%Y/%m/%d'),
+                             EndDate=as.Date('2001/05/10',format='%Y/%m/%d'))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'ALDRIDGE',
+                                                    StartDate=as.Date('2001/05/10',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2003/05/22' ,format='%Y/%m/%d') ))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'WYNNE',
+                                                    StartDate=as.Date('2003/05/23' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2005/06/05' ,format='%Y/%m/%d')))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KRIEG',
+                                                    StartDate=as.Date('2005/06/06' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2007/07/19' ,format='%Y/%m/%d')))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'YOUNG',
+                                                    StartDate=as.Date('2007/07/20' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2009/04/26',format='%Y/%m/%d')))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'CARTER',
+                                                    StartDate=as.Date('2009/04/27',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2011/11/02',format='%Y/%m/%d')))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
+                                                    StartDate=as.Date('2011/11/03',format='%Y/%m/%d'),
+                                                    EndDate=max(PlatformRegime$SignedQuarter)))
+
+
+
+ATLregimeDetails$StartFiscalYear<-ymd(paste(year(ATLregimeDetails$StartDate)+
+                                                ifelse(month(ATLregimeDetails$StartDate)<10,-1,0)
+                                            ,"-10-1",sep=""))
+
+
+
+VendorUSDATL<-join(VendorUSDATL,ATLregimeDetails,match="first")
+
+
+VendorUSDATL$Fiscal.Year[VendorUSDATL$Fiscal.Year>VendorUSDATL$EndDate&
+                             VendorUSDATL$SignedMonth<=VendorUSDATL$EndDate]<-
+    VendorUSDATL$EndDate[VendorUSDATL$Fiscal.Year>VendorUSDATL$EndDate&
+                             VendorUSDATL$SignedMonth<=VendorUSDATL$EndDate]
+
+VendorUSDATL$Fiscal.Year[VendorUSDATL$Fiscal.Year<VendorUSDATL$StartDate]<-
+    VendorUSDATL$StartDate[VendorUSDATL$Fiscal.Year<VendorUSDATL$StartDate]
+
+
+```
+
+
+
+```{r VendorUSDATLmonthlyComponents}        
+
+png(
+    paste( "Output\\Platform\\",paste("DoD_components"
+                                         ,"Obligation_2014"
+                                         ,"Platform_sum"
+                                         ,"USDATL"
+                                         ,"6monthMovingAverage"
+                                         ,sep="_"
+                                         )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=10
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+# debug(LatticePercentLineWrapper)
+
+VendorGraph<-LatticePercentLineWrapper(
+    "Platform Portfolio"
+    ,""#Platform Portfolio by DoD Component and Starting Regime"
+    ,"Month of Obligation (6 Month Lagging Average)"
+    ,"% of Component Obligations"
+    ,Coloration
+    ,VendorUSDATL
+    ,NULL
+    ,"SignedMonth"
+    ,"Obligation.2014"
+    ,"Vendor.Size.sum"
+    ,"SubCustomer.component"
+    ,"USDATL"
+    ,"StartDate"
+    ,"EndDate"
+    ,MovingAverage=6
+    )
+
+VendorGraph<-VendorGraph+aes(size=y.variable)
+# VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year")) 
+VendorGraph
+print(VendorGraph)
+#     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+```
+
+
+
+```{r VendorUSDATLannualComponents}        
+
+png(
+    paste( "Output\\Platform\\",paste("DoD_components"
+                                         ,"Obligation_2014"
+                                         ,"Platform_sum"
+                                         ,"USDATL"
+                                         ,"Annual"
+                                         ,sep="_"
+                                         )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=10
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+# debug(LatticePercentLineWrapper)
+
+VendorGraph<-LatticePercentLineWrapper(
+    "Platform Portfolio"
+    ,""#Platform Portfolio by DoD Component and Starting Regime"
+    ,"Fiscal Year of Obligation"
+    ,"% of Component Obligations"
+    ,Coloration
+    ,VendorUSDATL
+    ,NULL
+    ,"Fiscal.Year"
+    ,"Obligation.2014"
+    ,"Vendor.Size.sum"
+    ,"SubCustomer.component"
+    ,"USDATL"
+    ,"StartDate"
+    ,"EndDate"
+    )
+
+VendorGraph<-VendorGraph+aes(size=y.variable)
+# VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+VendorGraph
+print(VendorGraph)
+#     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+```
+
+
+
+```{r VendorATLpolicy}
+PlatformPolicy<-PlatformRegime
+PlatformPolicy$ATLpolicy<-as.character(PlatformRegime$USDATL)
+PlatformPolicy$ATLpolicy[PlatformPolicy$USDATL=="CARTER"]<-"CARTER\n pre-IFT"
+PlatformPolicy$ATLpolicy[PlatformPolicy$ITFsmallBusiness==1]<-"Small Business\nTask Force"
+PlatformPolicy$ATLpolicy[PlatformPolicy$BBP2==1]<-"BBP2"
+PlatformPolicy$ATLpolicy[PlatformPolicy$BBP3==1]<-"BBP3"
+
+PlatformPolicy$ATLpolicy<-factor(PlatformPolicy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER\n pre-IFT","Small Business\nTask Force","BBP2","BBP3" ),ordered=TRUE )
+# 
+# ATLpolicyFYear<-aggregate(PlatformPolicy$Obligation.2014
+#                           , by=list(PlatformPolicy$Fiscal.Year,
+#                                     #                                                   PlatformRegime$SubCustomer.component,
+#                                     PlatformPolicy$ATLpolicy)
+#                           ,FUN = "sum"
+#                           ,na.rm =TRUE
+#                           )
+# 
+# 
+# 
+# names(ATLpolicyFYear)<-c("Fiscal.Year","ATLpolicy","AnnualPolicyObligations")
+# PlatformPolicy<-subset(PlatformPolicy,join(PlatformPolicy,ATLpolicyFYear)$AnnualPolicyObligations>=50)
+# 
+
+ATLpolicyDetails<-data.frame(ATLpolicy= 'GANSLER+',
+                             StartDate=as.Date('1997/11/10',format='%Y/%m/%d'),
+                             EndDate=as.Date('2001/05/10',format='%Y/%m/%d'))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'ALDRIDGE',
+                                                    StartDate=as.Date('2001/05/10',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2003/05/22' ,format='%Y/%m/%d') ))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'WYNNE',
+                                                    StartDate=as.Date('2003/05/23' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2005/06/05' ,format='%Y/%m/%d')))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'KRIEG',
+                                                    StartDate=as.Date('2005/06/06' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2007/07/19' ,format='%Y/%m/%d')))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'YOUNG',
+                                                    StartDate=as.Date('2007/07/20' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2009/04/26',format='%Y/%m/%d')))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'CARTER\n pre-IFT',
+                                                    StartDate=as.Date('2009/04/27',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2010/09/22',format='%Y/%m/%d')))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'Small Business\nTask Force',
+                                                    StartDate=as.Date('2010/09/23',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2013/04/23',format='%Y/%m/%d')))
+
+# ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP1',
+#                                                     StartDate=as.Date('2010/11/03',format='%Y/%m/%d'),
+#                                                     EndDate=as.Date('2013/04/23',format='%Y/%m/%d')))
+# ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'WSARA regs',
+#                                                     StartDate=as.Date('2011/03/16',format='%Y/%m/%d'),
+#                                                     EndDate=as.Date('2013/04/23',format='%Y/%m/%d')))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP2',
+                                                    StartDate=as.Date('2013/04/24',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2014/09/18',format='%Y/%m/%d')))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP3',
+                                                    StartDate=as.Date('2014/09/19',format='%Y/%m/%d'),
+                                                    EndDate=max(PlatformRegime$SignedQuarter)))
+
+
+
+
+ATLpolicyDetails$StartFiscalYear<-ymd(
+    paste(year(ATLpolicyDetails$StartDate)+
+              ifelse(month(ATLpolicyDetails$StartDate)<10,-1,0)
+          ,"-10-1",sep=""))
+
+
+PlatformPolicy<-join(PlatformPolicy,ATLpolicyDetails,match="first")
+
+PlatformPolicy<-subset(PlatformPolicy,ATLpolicy!='BBP3') #Not enough to include
+
+PlatformPolicy$Fiscal.Year[PlatformPolicy$Fiscal.Year>PlatformPolicy$EndDate&
+                             PlatformPolicy$SignedMonth<=PlatformPolicy$EndDate]<-
+    PlatformPolicy$EndDate[PlatformPolicy$Fiscal.Year>PlatformPolicy$EndDate&
+                             PlatformPolicy$SignedMonth<=PlatformPolicy$EndDate]
+
+```
+
+```{r PlatformPolicyMonthlyComponents}        
+
+png(
+    paste( "Output\\Platform\\",paste("DoD_components"
+                                         ,"Obligation_2014"
+                                         ,"Platform_sum"
+                                         ,"ATLpolicy"
+                                         ,"6monthMovingAverage"
+                                         ,sep="_"
+                                         )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=10
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+
+VendorGraph<-LatticePercentLineWrapper(
+    "Platform Portfolio"
+    ,""#Platform Portfolio by DoD Component and Starting Regime"
+    ,"Month of Obligation (6 Month Lagging Average)"
+    ,"% of Component Obligations"
+    ,Coloration
+    ,PlatformPolicy
+    ,NULL
+    ,"SignedMonth"
+    ,"Obligation.2014"
+    ,"Vendor.Size.sum"
+    ,"SubCustomer.component"
+    ,"ATLpolicy"
+    ,"StartDate"
+    ,"EndDate"
+    ,MovingAverage=6
+    )
+
+VendorGraph<-VendorGraph+aes(size=y.variable)
+# VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+VendorGraph
+print(VendorGraph)
+#     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+```
+
+
+```{r PlatformPolicyAnnualComponents}
+
+png(
+    paste( "Output\\Platform\\",
+           paste("DoD_components"
+                 ,"Obligation_2014"
+                 ,"Platform_sum"
+                 ,"ATLpolicy"
+                 ,"Annual"
+                 ,sep="_"
+                 )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=10
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+
+VendorGraph<-LatticePercentLineWrapper(
+    "Platform Portfolio"
+    ,""#Platform Portfolio by DoD Component and Starting Regime"
+    ,"Fiscal Year of Obligation"
+    ,"% of Component Obligations"
+    ,Coloration
+    ,PlatformPolicy
+    ,NULL
+    ,"Fiscal.Year"
+    ,"Obligation.2014"
+    ,"Vendor.Size.sum"
+    ,"SubCustomer.component"
+    ,"ATLpolicy"
+    ,"StartDate"
+    ,"EndDate"
+    )
+
+VendorGraph<-VendorGraph+aes(size=y.variable)
+# VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+VendorGraph
+print(VendorGraph)
+#     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+
+```
+
+```{r PlatformPolicyMonthlySummary}
+
+
+png(
+    paste( "Output\\Platform\\",
+           paste("DoD_Summary"
+                 ,"Obligation_2014"
+                 ,"Platform_sum"
+                 ,"ATLpolicy"
+                 ,"6monthMovingAverage"
+                 ,sep="_"
+                 )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=3.5
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+
+VendorGraph<-LatticePercentLineWrapper(
+    VAR.name="Platform Portfolio"
+    ,""#VAR.proper.name=""#Overall DoD Platform Portfolio by Starting Regime"
+    ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
+    ,VAR.Y.label="% of DoD Obligations"
+    ,VAR.Coloration=Coloration
+    
+    
+    ,VAR.long.DF=PlatformPolicy
+    ,VAR.ncol=NA
+    ,VAR.x.variable="SignedMonth"
+    ,VAR.y.variable="Obligation.2014"
+    ,VAR.y.series=    "Vendor.Size.sum"
+    ,VAR.facet.primary="ATLpolicy"
+    ,VAR.facet.secondary=NA
+    ,"StartDate"
+    ,"EndDate"
+    ,MovingAverage=6
+    )
+
+VendorGraph<-VendorGraph+aes(size=y.variable)
+# VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+VendorGraph
+print(VendorGraph)
+#     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+
+```
+
+
+
+```{r PlatformPolicyAnnualSummary}
+
+
+png(
+    paste( "Output\\Platform\\",
+           paste("DoD_Summary"
+                 ,"Obligation_2014"
+                 ,"Platform_sum"
+                 ,"ATLpolicy"
+                 ,"Annual"
+                 ,sep="_"
+                 )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=3.5
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+
+VendorGraph<-LatticePercentLineWrapper(
+    VAR.name="Platform Portfolio"
+    ,""#VAR.proper.name=""#Overall DoD Platform Portfolio by Starting Regime"
+    ,VAR.X.label="Fiscal Year of Obligation"
+    ,VAR.Y.label="% of DoD Obligations"
+    ,VAR.Coloration=Coloration
+    
+    
+    ,VAR.long.DF=PlatformPolicy
+    ,VAR.ncol=NA
+    ,VAR.x.variable="Fiscal.Year"
+    ,VAR.y.variable="Obligation.2014"
+    ,VAR.y.series=    "Vendor.Size.sum"
+    ,VAR.facet.primary="ATLpolicy"
+    ,VAR.facet.secondary=NA
+    ,"StartDate"
+    ,"EndDate"
+    )
+
+VendorGraph<-VendorGraph+aes(size=y.variable)
+# VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+VendorGraph
+print(VendorGraph)
+#     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+
+```
+
+
+
+```{r PlatformPolicyMonthlyComponentSolitary}
+
+for (c in unique(PlatformPolicy$SubCustomer)){    
+    png(
+        paste( "Output\\Platform\\",c,"\\",CleanFileName(paste(
+            c
+            ,"Obligation_2014"
+            ,"Platform_sum"
+            ,"ATLpolicy"
+            ,"6monthMovingAverage"
+            ,sep="_"
+            ))
+            ,".png"
+            , sep=""
+            )
+        , type="cairo"
+        , width=10
+        , height=5
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    VendorGraph<-LatticePercentLineWrapper(
+        VAR.name="Platform Portfolio"
+        ,VAR.proper.name=""#paste(c,"Platform Portfolio by Starting Regime")
+        ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
+        ,VAR.Y.label=paste("% of ",c," Obligations")
+        ,VAR.Coloration=Coloration
+        
+        
+        ,VAR.long.DF=subset(PlatformPolicy,SubCustomer==c)
+        ,VAR.ncol=NA
+        ,VAR.x.variable="SignedMonth"
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series=    "Vendor.Size.sum"
+        ,VAR.facet.primary="ATLpolicy"
+        ,VAR.facet.secondary=NA
+        ,"StartDate"
+        ,"EndDate"
+        ,MovingAverage=6
+        )
+    
+    VendorGraph<-VendorGraph+aes(size=y.variable)+scale_size_continuous(name="Constant 2014 $ Obligated, Billions")
+    # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+        scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    VendorGraph
+    print(VendorGraph)
+    rm(VendorGraph)
+    #     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+
+```
+
+
+```{r PlatformPolicyAnnualComponentSolitary}
+
+for (c in unique(PlatformPolicy$SubCustomer)){    
+    png(
+        paste("Output\\Platform\\",c,"\\",
+              CleanFileName(paste(
+            c
+            ,"Obligation_2014"
+            ,"Platform_sum"
+            ,"ATLpolicy"
+            ,"Annual"
+            ,sep="_"
+            ))
+            ,".png"
+            , sep=""
+            )
+        , type="cairo"
+        , width=10
+        , height=5
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    VendorGraph<-LatticePercentLineWrapper(
+        VAR.name="Platform Portfolio"
+        ,VAR.proper.name=""#paste(c,"Platform Portfolio by Starting Regime")
+        ,VAR.X.label="Fiscal Year of Obligation"
+        ,VAR.Y.label=paste("% of ",c," Obligations")
+        ,VAR.Coloration=Coloration
+        
+        
+        ,VAR.long.DF=subset(PlatformPolicy,SubCustomer==c)
+        ,VAR.ncol=NA
+        ,VAR.x.variable="Fiscal.Year"
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series=    "Vendor.Size.sum"
+        ,VAR.facet.primary="ATLpolicy"
+        ,VAR.facet.secondary=NA
+        ,"StartDate"
+        ,"EndDate"
+        )
+    
+    VendorGraph<-VendorGraph+aes(size=y.variable)+scale_size_continuous(name="Constant 2014 $ Obligated, Billions")
+    # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+        scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    VendorGraph
+    print(VendorGraph)
+    rm(VendorGraph)
+    #     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+
+```
+
+
+```{r PrepareHorseTail}
+PlatformPolicy$SinceFirstFiscalYear<-as.numeric(as.duration(
+    ymd(PlatformPolicy$SignedMonth)-PlatformPolicy$StartFiscalYear)
+    /dyears(1)
+    )
+
+HorseTailYears<-6
+
+
+```
+
+
+
+```{r PlatformPolicySeriesHorseTailSummary}
+
+OldGraph<-PlatformPolicy$Graph
+
+for (s in unique(PlatformPolicy$Vendor.Size.sum)){    
+    png(
+        paste( "Output\\Platform\\",
+               CleanFileName(paste(
+                   "DoD"
+                   ,"Category"
+                   ,"Percent"
+                   ,s
+                   ,"Platform_sum"
+                   ,"HorseTail"
+                   ,"3monthMovingAverage"
+                   ,sep="_"
+                   ))
+               ,".png"
+               , sep=""
+               )
+        , type="cairo"
+        , width=7.5
+        , height=4
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    PlatformPolicy$Graph[PlatformPolicy$Vendor.Size.sum!=s]<-FALSE
+    PlatformPolicy$Graph[PlatformPolicy$Vendor.Size.sum==s]<-TRUE
+    
+    VendorGraph<-LatticePercentLineWrapper(
+        VAR.name="Platform Portfolio"
+        ,""#VAR.proper.name=""#Overall DoD Platform Portfolio by Starting Regime"
+        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
+        ,VAR.Y.label="% of DoD Obligations"
+        ,VAR.Coloration=Coloration
+        , HorseTail=TRUE
+        
+        ,VAR.long.DF=PlatformPolicy
+        ,VAR.ncol=1
+        ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series=    "ATLpolicy"
+        ,VAR.facet.primary="Vendor.Size.sum"
+        ,VAR.facet.secondary=NA
+        #     ,"StartDate"
+        #     ,"EndDate"
+        ,MovingAverage=3
+        ,MovingSides=1
+        )
+    
+    # VendorGraph<-VendorGraph+aes(size=y.variable)
+    
+    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:HorseTailYears),limits=c(1,HorseTailYears))
+    
+    # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))
+#     +
+    #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    VendorGraph
+    print(VendorGraph)
+    #     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+PlatformPolicy$Graph<-OldGraph
+
+```
+
+
+```{r PlatformPolicySeriesHorseTailComponents}
+
+OldGraph<-PlatformPolicy$Graph
+
+for (s in unique(PlatformPolicy$Vendor.Size.sum)){    
+    png(
+        paste( "Output\\Platform\\",
+               CleanFileName(paste(
+                   "DoD_components"
+                   ,"Category"
+                   ,"Percent"
+                   ,s
+                   ,"Platform_sum"
+                   ,"HorseTail"
+                   ,"3monthMovingAverage"
+                   ,sep="_"
+                   ))
+               ,".png"
+               , sep=""
+               )
+        , type="cairo"
+        , width=7.5
+        , height=10
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    PlatformPolicy$Graph[PlatformPolicy$Vendor.Size.sum!=s]<-FALSE
+    PlatformPolicy$Graph[PlatformPolicy$Vendor.Size.sum==s]<-TRUE
+    
+    VendorGraph<-LatticePercentLineWrapper(
+        VAR.name="Platform Portfolio"
+        ,""#VAR.proper.name=""#Overall DoD Platform Portfolio by Starting Regime"
+        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
+        ,VAR.Y.label="% of Component Obligations"
+        ,VAR.Coloration=Coloration
+        , HorseTail=TRUE
+        
+        ,VAR.long.DF=PlatformPolicy
+        ,VAR.ncol=1
+        ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series=    "ATLpolicy"
+        ,VAR.facet.primary="Vendor.Size.sum"
+        ,VAR.facet.secondary="SubCustomer"
+        #     ,"StartDate"
+        #     ,"EndDate"
+        ,MovingAverage=3
+        ,MovingSides=1
+        )
+    
+    # VendorGraph<-VendorGraph+aes(size=y.variable)
+    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:HorseTailYears),
+                                                limits=c(1,HorseTailYears))
+    
+    # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))
+    #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    VendorGraph
+    print(VendorGraph)
+    #     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+PlatformPolicy$Graph<-OldGraph
+
+```
+
+
+```{r PlatformPolicySeriesSpendingBarSummary}
+
+
+OldGraph<-PlatformPolicy$Graph
+
+for (s in unique(PlatformPolicy$Vendor.Size.sum)){    
+    png(
+        paste( "Output\\Platform\\",
+               CleanFileName(paste(
+                   "DoD"
+                   ,"Category"
+                   ,"Obligation_2014"
+                   ,s
+                   ,"Platform_sum"
+                   ,"Bar"
+                   ,"3monthMovingAverage"
+                   ,sep="_"
+                   ))
+               ,".png"
+               , sep=""
+               )
+        , type="cairo"
+        , width=7.5
+        , height=4
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    PlatformPolicy$Graph[PlatformPolicy$Vendor.Size.sum!=s]<-FALSE
+    PlatformPolicy$Graph[PlatformPolicy$Vendor.Size.sum==s]<-TRUE
+    
+    VendorGraph<-LatticePlotWrapper(
+        VAR.name="Platform Portfolio"
+        ,""#VAR.proper.name=""#Overall DoD Platform Portfolio by Starting Regime"
+        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
+        ,VAR.Y.label=paste(s,"Constant 2014 $ Obligated, Billions")
+        ,VAR.Coloration=Coloration
+        ,VAR.long.DF=PlatformPolicy
+        ,VAR.ncol=1
+        ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series="ATLpolicy"
+        ,VAR.facet.primary="ATLpolicy"
+        ,VAR.facet.secondary=NA
+        #     ,"StartDate"
+        #     ,"EndDate"
+        ,MovingAverage=3
+        ,MovingSides=1
+        )
+    VendorGraph<-VendorGraph+geom_bar(width=1/12,stat="identity",position="dodge")
+    # VendorGraph<-VendorGraph+aes(size=y.variable)
+    
+    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:HorseTailYears),
+                                                limits=c(1,HorseTailYears))
+    
+    # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    # VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+    #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    VendorGraph
+    print(VendorGraph)
+    #     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+PlatformPolicy$Graph<-OldGraph
+
+```
+
+
+
+```{r PlatformPolicySeriesHorseTailComponentSolitary}
+
+OldGraph<-PlatformPolicy$Graph
+for (c in unique(PlatformPolicy$SubCustomer)){ 
+    VendorSubCustomer<-subset(PlatformPolicy,SubCustomer==c)
+    for (s in unique(PlatformPolicy$Vendor.Size.sum)){    
+        VendorSubCustomer$Graph[VendorSubCustomer$Vendor.Size.sum!=s]<-FALSE
+        VendorSubCustomer$Graph[VendorSubCustomer$Vendor.Size.sum==s]<-TRUE
+        if(any(VendorSubCustomer$Graph==TRUE)){
+            png(
+                paste( "Output\\Platform\\",c,"\\",
+                       CleanFileName(paste(
+                           c
+                           ,"Category"
+                           ,"Percent"
+                           ,s
+                           ,"Platform_sum"
+                           ,"HorseTail"
+                           ,"3monthMovingAverage"
+                           ,sep="_"
+                           ))
+                       ,".png"
+                       , sep=""
+                       )
+                , type="cairo"
+                , width=7.5
+                , height=4
+                , units='in'
+                , pointsize=12
+                , res=150
+                )
+            
+            
+            VendorGraph<-LatticePercentLineWrapper(
+                VAR.name="Platform Portfolio"
+                ,""#VAR.proper.name=""#Overall DoD Platform Portfolio by Starting Regime"
+                ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
+                ,VAR.Y.label=paste("% of",c,"Obligations")
+                ,VAR.Coloration=Coloration
+                , HorseTail=TRUE
+                
+                ,VAR.long.DF=VendorSubCustomer
+                ,VAR.ncol=1
+                ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+                ,VAR.y.variable="Obligation.2014"
+                ,VAR.y.series=    "ATLpolicy"
+                ,VAR.facet.primary="Vendor.Size.sum"
+                ,VAR.facet.secondary=NA
+                #     ,"StartDate"
+                #     ,"EndDate"
+                ,MovingAverage=3
+                ,MovingSides=1
+                )
+            
+            # VendorGraph<-VendorGraph+aes(size=y.variable)
+            
+            VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:HorseTailYears)
+                                                        ,limits=c(1,HorseTailYears))
+            
+            # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+            # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+            # VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+            #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+            #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+            VendorGraph
+            print(VendorGraph)
+            #     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+            while(!(dev.cur()[[1]]==1)){
+                dev.off()
+                }
+            }
+        }
+    }
+PlatformPolicy$Graph<-OldGraph
+
+```
+
+
+
+
+```{r PlatformPolicySeriesSpendingBarComponentSolitary}
+
+OldGraph<-PlatformPolicy$Graph
+for (c in unique(PlatformPolicy$SubCustomer)){ 
+    VendorSubCustomer<-subset(PlatformPolicy,SubCustomer==c)
+    for (s in unique(PlatformPolicy$Vendor.Size.sum)){    
+        VendorSubCustomer$Graph[VendorSubCustomer$Vendor.Size.sum!=s]<-FALSE
+        VendorSubCustomer$Graph[VendorSubCustomer$Vendor.Size.sum==s]<-TRUE
+        if(any(VendorSubCustomer$Graph==TRUE)){
+    png(
+        paste( "Output\\Platform\\",c,"\\",
+               CleanFileName(paste(
+                   c
+                   ,"Category"
+                   ,"Obligation_2014"
+                   ,s
+                   ,"Platform_sum"
+                   ,"Bar"
+                   ,"3monthMovingAverage"
+                   ,sep="_"
+                   ))
+               ,".png"
+               , sep=""
+               )
+        , type="cairo"
+        , width=7.5
+        , height=4
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    VendorGraph<-LatticePlotWrapper(
+        VAR.name="Platform Portfolio"
+        ,""#VAR.proper.name=""#Overall DoD Platform Portfolio by Starting Regime"
+        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
+        ,VAR.Y.label=paste(c,s,"Constant 2014 $ Obligated, Billions")
+        ,VAR.Coloration=Coloration
+        ,VAR.long.DF=VendorSubCustomer
+        ,VAR.ncol=1
+        ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series="ATLpolicy"
+        ,VAR.facet.primary="ATLpolicy"
+        ,VAR.facet.secondary=NA
+        #     ,"StartDate"
+        #     ,"EndDate"
+        ,MovingAverage=3
+        ,MovingSides=1
+        ,DataLabels=FALSE
+        )
+#     browser()
+    VendorGraph<-VendorGraph+geom_bar(width=1/12,stat="identity",position="dodge")
+    # VendorGraph<-VendorGraph+aes(size=y.variable)
+    
+    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:HorseTailYears)
+                                                ,limits=c(1,HorseTailYears))
+    
+    # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    # VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+    #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    VendorGraph
+    print(VendorGraph)
+    #     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+        }
+    }
+PlatformPolicy$Graph<-OldGraph
+
+```
+
+
+```{r DataTables}
+
+#Annual
+PlatformRegimeTable<-ddply(PlatformRegime, 
+                         .(
+                             Fiscal.Year,
+                             Vendor.Size.sum,
+                             SubCustomer.component,
+                             USDATL
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014)
+                         )
+
+write.csv(PlatformRegimeTable,paste("Output\\Platform\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Platform_sum"
+                                        ,"USDATL"
+                                        ,"Annual"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+#Monthly
+
+PlatformRegimeTable<-ddply(PlatformRegime, 
+                         .(
+                             SignedMonth,
+                             Vendor.Size.sum,
+                             SubCustomer.component,
+                             USDATL
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014)
+                         )
+
+
+PlatformRegimeTable<-ddply(PlatformRegimeTable, 
+                         .(Vendor.Size.sum,
+                           SubCustomer.component,
+                           USDATL),
+                         .fun=TransformFilter,
+                         MovingAverage=3,
+                         MovingSides=1,
+                         Source="Obligation.2014"
+                         )
+
+
+write.csv(PlatformRegimeTable,paste("Output\\Platform\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Platform_sum"
+                                        ,"USDATL"
+                                        ,"Monthly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+#Annual
+PlatformPolicyTable<-ddply(PlatformPolicy, c("Fiscal.Year"
+                                         ,"Vendor.Size.sum"
+                                         ,"SubCustomer.component"
+                                         ,"ATLpolicy")
+                         ,summarise
+                         ,Obligation.2014=sum(Obligation.2014)
+                         )
+
+
+write.csv(PlatformPolicyTable,paste("Output\\Platform\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Platform_sum"
+                                        ,"ATLpolicy"
+                                        ,"Annual"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+#Monthly
+
+PlatformPolicyTable<-ddply(PlatformPolicy, c("SignedMonth"
+                                         ,"Vendor.Size.sum"
+                                         ,"SubCustomer.component"
+                                         ,"ATLpolicy")
+                         ,summarise
+                         ,Obligation.2014=sum(Obligation.2014)
+                         )
+
+PlatformPolicyTable<-ddply(PlatformPolicyTable, 
+                         .(Vendor.Size.sum,
+                           SubCustomer.component,
+                           ATLpolicy),
+                         .fun=TransformFilter,
+                         MovingAverage=3,
+                         MovingSides=1,
+                         Source="Obligation.2014"
+                         )
+
+
+write.csv(PlatformPolicyTable,paste("Output\\Platform\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Platform_sum"
+                                        ,"ATLpolicy"
+                                        ,"Monthly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+```
