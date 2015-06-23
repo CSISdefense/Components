@@ -16,8 +16,8 @@ require(plyr)
 require(lubridate)
 
 options(error=recover)
-# Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
-Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
+Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
+# Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
 # setwd("K:/Development/Components")
 source(paste(Path,"lookups.r",sep=""))
 source(paste(Path,"helper.r",sep=""))
@@ -39,7 +39,9 @@ You can also embed plots, for example:
 ## ("Data\\defense_summary_SP_CompetitionHistoryBucketSubCustomerRegime.csv", sep = """) Neither the computer nor myself can find this file in (K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\Data)
 
 CompRegime  <- read.csv(
-    paste("Data\\defense_summary_SP_CompetitionHistoryBucketSubCustomerRegime.csv", sep = ""),
+    unz("Data\\Defense_Summary_SP_CompetitionVehicleHistoryBucketSubCustomerRegime.zip",
+        "Defense_Summary_SP_CompetitionVehicleHistoryBucketSubCustomerRegime.csv"),
+#     "Data\\defense_summary_SP_CompetitionHistoryBucketSubCustomerRegime.csv",
     header = TRUE, sep = ",", dec = ".", strip.white = TRUE, 
     na.strings = c("NULL","NA",""),
     stringsAsFactors = TRUE
