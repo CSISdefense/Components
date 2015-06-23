@@ -1,0 +1,2503 @@
+"","Fiscal.Year","Vehicle.sum","SubCustomer.component","ATLpolicy","Obligation.2014"
+"1",2007-09-30,"BPA","Army","YOUNG",1.08777640588169e-05
+"2",2007-09-30,"BPA","Navy","YOUNG",0.000363273173195645
+"3",2007-09-30,"BPA","Additional
+DoD
+Components","YOUNG",1.61572118082838e-05
+"4",2007-09-30,"Definitive","Army","YOUNG",6.24840518236615
+"5",2007-09-30,"Definitive","Navy","YOUNG",3.01972493468403
+"6",2007-09-30,"Definitive","Air Force","YOUNG",1.53355176500168
+"7",2007-09-30,"Definitive","DLA","YOUNG",0.338717952295432
+"8",2007-09-30,"Definitive","MDA","YOUNG",0.0191322112470535
+"9",2007-09-30,"Definitive","Military
+Health","YOUNG",0
+"10",2007-09-30,"Definitive","Additional
+DoD
+Components","YOUNG",0.322052678807947
+"11",2007-09-30,"FSS","Army","YOUNG",1.44529511855427
+"12",2007-09-30,"FSS","Navy","YOUNG",0.802199166505781
+"13",2007-09-30,"FSS","Air Force","YOUNG",0.752590881142665
+"14",2007-09-30,"FSS","DLA","YOUNG",0.0705649287911101
+"15",2007-09-30,"FSS","MDA","YOUNG",0.00385659577954877
+"16",2007-09-30,"FSS","Military
+Health","YOUNG",0.000935117038949377
+"17",2007-09-30,"FSS","Additional
+DoD
+Components","YOUNG",0.16951399417443
+"18",2007-09-30,"Multi-Awd.","Army","YOUNG",3.69497480535414
+"19",2007-09-30,"Multi-Awd.","Navy","YOUNG",1.72086492737457
+"20",2007-09-30,"Multi-Awd.","Air Force","YOUNG",2.35540008538557
+"21",2007-09-30,"Multi-Awd.","DLA","YOUNG",0.342603952261758
+"22",2007-09-30,"Multi-Awd.","Additional
+DoD
+Components","YOUNG",0.44560969546526
+"23",2007-09-30,"Other IDV","Army","YOUNG",0.0292267553934224
+"24",2007-09-30,"Other IDV","Navy","YOUNG",0.065361062610843
+"25",2007-09-30,"Other IDV","Air Force","YOUNG",0.0567427152542373
+"26",2007-09-30,"Other IDV","DLA","YOUNG",0.00518129461218992
+"27",2007-09-30,"Other IDV","Additional
+DoD
+Components","YOUNG",0.0434708314513413
+"28",2007-09-30,"Pur. Order","Army","YOUNG",1.94922330030306
+"29",2007-09-30,"Pur. Order","Navy","YOUNG",0.626783173554832
+"30",2007-09-30,"Pur. Order","Air Force","YOUNG",0.514736762004714
+"31",2007-09-30,"Pur. Order","DLA","YOUNG",0.335717826220676
+"32",2007-09-30,"Pur. Order","MDA","YOUNG",0.000440140307554159
+"33",2007-09-30,"Pur. Order","Military
+Health","YOUNG",0.000154955718935907
+"34",2007-09-30,"Pur. Order","Additional
+DoD
+Components","YOUNG",0.10494749490403
+"35",2007-09-30,"Single-Awd.","Army","YOUNG",11.6390840419351
+"36",2007-09-30,"Single-Awd.","Navy","YOUNG",7.09847708539679
+"37",2007-09-30,"Single-Awd.","Air Force","YOUNG",5.20814060407453
+"38",2007-09-30,"Single-Awd.","DLA","YOUNG",5.5720521247278
+"39",2007-09-30,"Single-Awd.","MDA","YOUNG",0.00872424177797733
+"40",2007-09-30,"Single-Awd.","Military
+Health","YOUNG",8.13671568077225e-05
+"41",2007-09-30,"Single-Awd.","Additional
+DoD
+Components","YOUNG",0.839057346705579
+"42",2007-09-30,"Unlbd. IDV","Army","YOUNG",0.0106135993377483
+"43",2007-09-30,"Unlbd. IDV","Navy","YOUNG",0.00785288925805365
+"44",2007-09-30,"Unlbd. IDV","Air Force","YOUNG",0.12664853361769
+"45",2007-09-30,"Unlbd. IDV","DLA","YOUNG",0.00881814008306207
+"46",2007-09-30,"Unlbd. IDV","Additional
+DoD
+Components","YOUNG",0.000258033449320911
+"47",2008-09-30,"BPA","Army","YOUNG",9.41543383947939e-05
+"48",2008-09-30,"BPA","Navy","YOUNG",0.000968386952277657
+"49",2008-09-30,"BPA","Air Force","YOUNG",5.97238611713666e-05
+"50",2008-09-30,"BPA","DLA","YOUNG",6.65845986984816e-06
+"51",2008-09-30,"BPA","Additional
+DoD
+Components","YOUNG",2.2527114967462e-05
+"52",2008-09-30,"Definitive","Army","YOUNG",37.2698258303471
+"53",2008-09-30,"Definitive","Navy","YOUNG",18.2110649090564
+"54",2008-09-30,"Definitive","Air Force","YOUNG",8.12801320696312
+"55",2008-09-30,"Definitive","DLA","YOUNG",1.41740693249458
+"56",2008-09-30,"Definitive","MDA","YOUNG",0.353949056399132
+"57",2008-09-30,"Definitive","Military
+Health","YOUNG",0.0189621902494577
+"58",2008-09-30,"Definitive","Additional
+DoD
+Components","YOUNG",0.983899000455531
+"59",2008-09-30,"FSS","Army","YOUNG",3.07673506399132
+"60",2008-09-30,"FSS","Navy","YOUNG",1.81601142404555
+"61",2008-09-30,"FSS","Air Force","YOUNG",1.36543412550976
+"62",2008-09-30,"FSS","DLA","YOUNG",0.235442187516269
+"63",2008-09-30,"FSS","MDA","YOUNG",0.0381012485900217
+"64",2008-09-30,"FSS","Military
+Health","YOUNG",0.00237843242950108
+"65",2008-09-30,"FSS","Additional
+DoD
+Components","YOUNG",0.544324737331887
+"66",2008-09-30,"Multi-Awd.","Army","YOUNG",16.1983737185683
+"67",2008-09-30,"Multi-Awd.","Navy","YOUNG",5.89336010635358
+"68",2008-09-30,"Multi-Awd.","Air Force","YOUNG",5.58523892390456
+"69",2008-09-30,"Multi-Awd.","DLA","YOUNG",1.28979662591106
+"70",2008-09-30,"Multi-Awd.","MDA","YOUNG",0.000124852321041215
+"71",2008-09-30,"Multi-Awd.","Additional
+DoD
+Components","YOUNG",5.29081645759219
+"72",2008-09-30,"Other IDV","Army","YOUNG",0.151523823210412
+"73",2008-09-30,"Other IDV","Navy","YOUNG",0.309482942841649
+"74",2008-09-30,"Other IDV","Air Force","YOUNG",0.132839577418655
+"75",2008-09-30,"Other IDV","DLA","YOUNG",0.0128960599566161
+"76",2008-09-30,"Other IDV","Additional
+DoD
+Components","YOUNG",0.252600256908894
+"77",2008-09-30,"Pur. Order","Army","YOUNG",5.32540331874187
+"78",2008-09-30,"Pur. Order","Navy","YOUNG",1.7797433633731
+"79",2008-09-30,"Pur. Order","Air Force","YOUNG",1.03514937290672
+"80",2008-09-30,"Pur. Order","DLA","YOUNG",2.64797918507592
+"81",2008-09-30,"Pur. Order","MDA","YOUNG",0.00128315688720174
+"82",2008-09-30,"Pur. Order","Military
+Health","YOUNG",0.00249075109544469
+"83",2008-09-30,"Pur. Order","Additional
+DoD
+Components","YOUNG",0.438756615238612
+"84",2008-09-30,"Single-Awd.","Army","YOUNG",49.7190050902603
+"85",2008-09-30,"Single-Awd.","Navy","YOUNG",28.8516389906508
+"86",2008-09-30,"Single-Awd.","Air Force","YOUNG",18.8740951250542
+"87",2008-09-30,"Single-Awd.","DLA","YOUNG",31.7583683029393
+"88",2008-09-30,"Single-Awd.","MDA","YOUNG",0.375667688817787
+"89",2008-09-30,"Single-Awd.","Military
+Health","YOUNG",0.367168479848156
+"90",2008-09-30,"Single-Awd.","Additional
+DoD
+Components","YOUNG",3.65908179494577
+"91",2008-09-30,"Unlbd. IDV","Army","YOUNG",0.0299383126030369
+"92",2008-09-30,"Unlbd. IDV","Navy","YOUNG",0.0238331313882863
+"93",2008-09-30,"Unlbd. IDV","Air Force","YOUNG",0.164248094956616
+"94",2008-09-30,"Unlbd. IDV","DLA","YOUNG",0.023760359186551
+"95",2008-09-30,"Unlbd. IDV","Additional
+DoD
+Components","YOUNG",0.00120964387201735
+"96",2009-04-26,"BPA","Army","YOUNG",0.00093902011257848
+"97",2009-04-26,"BPA","Navy","YOUNG",0.000224075113660966
+"98",2009-04-26,"BPA","DLA","YOUNG",1.83901493829833e-05
+"99",2009-04-26,"Definitive","Army","YOUNG",18.5230868471639
+"100",2009-04-26,"Definitive","Navy","YOUNG",18.7060461295627
+"101",2009-04-26,"Definitive","Air Force","YOUNG",7.8123355557913
+"102",2009-04-26,"Definitive","DLA","YOUNG",0.847659342985495
+"103",2009-04-26,"Definitive","MDA","YOUNG",0.775515016551202
+"104",2009-04-26,"Definitive","Military
+Health","YOUNG",0.752060513682615
+"105",2009-04-26,"Definitive","Additional
+DoD
+Components","YOUNG",0.914156757620697
+"106",2009-04-26,"FSS","Army","YOUNG",1.26168295733925
+"107",2009-04-26,"FSS","Navy","YOUNG",0.780959099653605
+"108",2009-04-26,"FSS","Air Force","YOUNG",0.458613884585408
+"109",2009-04-26,"FSS","DLA","YOUNG",0.127521919387313
+"110",2009-04-26,"FSS","MDA","YOUNG",0.035242781705997
+"111",2009-04-26,"FSS","Military
+Health","YOUNG",0.00316559489066898
+"112",2009-04-26,"FSS","Additional
+DoD
+Components","YOUNG",0.374230941307642
+"113",2009-04-26,"Multi-Awd.","Army","YOUNG",7.93848197485386
+"114",2009-04-26,"Multi-Awd.","Navy","YOUNG",3.39543848978134
+"115",2009-04-26,"Multi-Awd.","Air Force","YOUNG",3.04623840825969
+"116",2009-04-26,"Multi-Awd.","DLA","YOUNG",0.492579892877246
+"117",2009-04-26,"Multi-Awd.","MDA","YOUNG",0.000149667980082269
+"118",2009-04-26,"Multi-Awd.","Additional
+DoD
+Components","YOUNG",3.51071391941979
+"119",2009-04-26,"Other IDV","Army","YOUNG",0.0501207950530418
+"120",2009-04-26,"Other IDV","Navy","YOUNG",0.047956614591903
+"121",2009-04-26,"Other IDV","Air Force","YOUNG",0.0502893028794111
+"122",2009-04-26,"Other IDV","DLA","YOUNG",0.00432298875297684
+"123",2009-04-26,"Other IDV","Additional
+DoD
+Components","YOUNG",0.155281127711626
+"124",2009-04-26,"Pur. Order","Army","YOUNG",1.96135543745399
+"125",2009-04-26,"Pur. Order","Navy","YOUNG",0.749203591004546
+"126",2009-04-26,"Pur. Order","Air Force","YOUNG",0.375100250638666
+"127",2009-04-26,"Pur. Order","DLA","YOUNG",1.51760121687595
+"128",2009-04-26,"Pur. Order","MDA","YOUNG",0.000962021000216497
+"129",2009-04-26,"Pur. Order","Military
+Health","YOUNG",0.000294149220610522
+"130",2009-04-26,"Pur. Order","Additional
+DoD
+Components","YOUNG",0.247024843288591
+"131",2009-04-26,"Single-Awd.","Army","YOUNG",26.3043027375622
+"132",2009-04-26,"Single-Awd.","Navy","YOUNG",11.5051249113986
+"133",2009-04-26,"Single-Awd.","Air Force","YOUNG",13.2313997868045
+"134",2009-04-26,"Single-Awd.","DLA","YOUNG",19.9122282138883
+"135",2009-04-26,"Single-Awd.","MDA","YOUNG",0.559749708432561
+"136",2009-04-26,"Single-Awd.","Military
+Health","YOUNG",0.402974179108032
+"137",2009-04-26,"Single-Awd.","Additional
+DoD
+Components","YOUNG",2.87698614228188
+"138",2009-04-26,"Unlbd. IDV","Army","YOUNG",0.0456848001840225
+"139",2009-04-26,"Unlbd. IDV","Navy","YOUNG",0.0126658454968608
+"140",2009-04-26,"Unlbd. IDV","Air Force","YOUNG",0.0252895425092011
+"141",2009-04-26,"Unlbd. IDV","DLA","YOUNG",0.00174368843905607
+"142",2009-04-26,"Unlbd. IDV","MDA","YOUNG",2.45746373673955e-05
+"143",2009-04-26,"Unlbd. IDV","Additional
+DoD
+Components","YOUNG",0.00173756756873782
+"144",2009-09-30,"BPA","Army","YOUNG",-1.6526759038753e-05
+"145",2009-09-30,"BPA","Army","CARTER pre-Task
+& Delivery Comp.",1.57983004979433e-05
+"146",2009-09-30,"BPA","Navy","YOUNG",-5.04676336869452e-06
+"147",2009-09-30,"BPA","Navy","CARTER pre-Task
+& Delivery Comp.",0.000219055499025763
+"148",2009-09-30,"BPA","Air Force","CARTER pre-Task
+& Delivery Comp.",0
+"149",2009-09-30,"BPA","DLA","YOUNG",4.12751677852349e-07
+"150",2009-09-30,"Definitive","Army","YOUNG",6.92690851100888
+"151",2009-09-30,"Definitive","Army","CARTER pre-Task
+& Delivery Comp.",15.2659388493289
+"152",2009-09-30,"Definitive","Navy","YOUNG",6.96177771158259
+"153",2009-09-30,"Definitive","Navy","CARTER pre-Task
+& Delivery Comp.",7.36235903227971
+"154",2009-09-30,"Definitive","Air Force","YOUNG",3.46084106311972
+"155",2009-09-30,"Definitive","Air Force","CARTER pre-Task
+& Delivery Comp.",3.94503244116692
+"156",2009-09-30,"Definitive","DLA","YOUNG",0.15956319003031
+"157",2009-09-30,"Definitive","DLA","CARTER pre-Task
+& Delivery Comp.",1.11680536381251
+"158",2009-09-30,"Definitive","MDA","YOUNG",0.457570765977484
+"159",2009-09-30,"Definitive","MDA","CARTER pre-Task
+& Delivery Comp.",0.0443063387313271
+"160",2009-09-30,"Definitive","Military
+Health","YOUNG",0.373039618423901
+"161",2009-09-30,"Definitive","Additional
+DoD
+Components","YOUNG",0.195398666161507
+"162",2009-09-30,"Definitive","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.480227922678069
+"163",2009-09-30,"FSS","Army","YOUNG",0.365306441675687
+"164",2009-09-30,"FSS","Army","CARTER pre-Task
+& Delivery Comp.",1.62626803865555
+"165",2009-09-30,"FSS","Navy","YOUNG",0.255739290820524
+"166",2009-09-30,"FSS","Navy","CARTER pre-Task
+& Delivery Comp.",1.1294587832756
+"167",2009-09-30,"FSS","Air Force","YOUNG",0.156890297954103
+"168",2009-09-30,"FSS","Air Force","CARTER pre-Task
+& Delivery Comp.",0.896537446168002
+"169",2009-09-30,"FSS","DLA","YOUNG",0.113038929140507
+"170",2009-09-30,"FSS","DLA","CARTER pre-Task
+& Delivery Comp.",0.0993268366529552
+"171",2009-09-30,"FSS","MDA","YOUNG",0.0120126666378004
+"172",2009-09-30,"FSS","MDA","CARTER pre-Task
+& Delivery Comp.",0.00356151836977701
+"173",2009-09-30,"FSS","Military
+Health","YOUNG",9.00444252002598e-05
+"174",2009-09-30,"FSS","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0.00189139497726781
+"175",2009-09-30,"FSS","Additional
+DoD
+Components","YOUNG",0.0676847999783503
+"176",2009-09-30,"FSS","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.257686211853215
+"177",2009-09-30,"Multi-Awd.","Army","YOUNG",4.05140306847803
+"178",2009-09-30,"Multi-Awd.","Army","CARTER pre-Task
+& Delivery Comp.",11.7492702268023
+"179",2009-09-30,"Multi-Awd.","Navy","YOUNG",1.59049759307209
+"180",2009-09-30,"Multi-Awd.","Navy","CARTER pre-Task
+& Delivery Comp.",3.37618171261096
+"181",2009-09-30,"Multi-Awd.","Air Force","YOUNG",1.02606178724832
+"182",2009-09-30,"Multi-Awd.","Air Force","CARTER pre-Task
+& Delivery Comp.",3.07137130464386
+"183",2009-09-30,"Multi-Awd.","DLA","YOUNG",0.0603349735007577
+"184",2009-09-30,"Multi-Awd.","DLA","CARTER pre-Task
+& Delivery Comp.",0.469617866756874
+"185",2009-09-30,"Multi-Awd.","MDA","YOUNG",-1.42138449880927e-05
+"186",2009-09-30,"Multi-Awd.","MDA","CARTER pre-Task
+& Delivery Comp.",0.000731255358302663
+"187",2009-09-30,"Multi-Awd.","Additional
+DoD
+Components","YOUNG",0.344211351418056
+"188",2009-09-30,"Multi-Awd.","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",2.01095555453561
+"189",2009-09-30,"Other IDV","Army","YOUNG",0.0118382309590821
+"190",2009-09-30,"Other IDV","Army","CARTER pre-Task
+& Delivery Comp.",0.0559189147542758
+"191",2009-09-30,"Other IDV","Navy","YOUNG",0.00712339273652306
+"192",2009-09-30,"Other IDV","Navy","CARTER pre-Task
+& Delivery Comp.",0.0800606024680667
+"193",2009-09-30,"Other IDV","Air Force","YOUNG",0.0133021210976402
+"194",2009-09-30,"Other IDV","Air Force","CARTER pre-Task
+& Delivery Comp.",0.0940711066356354
+"195",2009-09-30,"Other IDV","DLA","YOUNG",0.00111078187919463
+"196",2009-09-30,"Other IDV","DLA","CARTER pre-Task
+& Delivery Comp.",0.0121658653604676
+"197",2009-09-30,"Other IDV","Additional
+DoD
+Components","YOUNG",0.0135835360251137
+"198",2009-09-30,"Other IDV","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.190945317958433
+"199",2009-09-30,"Pur. Order","Army","YOUNG",0.161750601439706
+"200",2009-09-30,"Pur. Order","Army","CARTER pre-Task
+& Delivery Comp.",2.69797493414159
+"201",2009-09-30,"Pur. Order","Navy","YOUNG",0.0717800854730461
+"202",2009-09-30,"Pur. Order","Navy","CARTER pre-Task
+& Delivery Comp.",0.9170208796168
+"203",2009-09-30,"Pur. Order","Air Force","YOUNG",0.0324896801688677
+"204",2009-09-30,"Pur. Order","Air Force","CARTER pre-Task
+& Delivery Comp.",0.675747304979433
+"205",2009-09-30,"Pur. Order","DLA","YOUNG",0.00211777445334488
+"206",2009-09-30,"Pur. Order","DLA","CARTER pre-Task
+& Delivery Comp.",1.19670475260879
+"207",2009-09-30,"Pur. Order","MDA","YOUNG",0.000254642931370427
+"208",2009-09-30,"Pur. Order","MDA","CARTER pre-Task
+& Delivery Comp.",0.000204620556397489
+"209",2009-09-30,"Pur. Order","Military
+Health","YOUNG",8.70069928555964e-05
+"210",2009-09-30,"Pur. Order","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0.000195688839575666
+"211",2009-09-30,"Pur. Order","Additional
+DoD
+Components","YOUNG",0.0100034823771379
+"212",2009-09-30,"Pur. Order","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.251659568478026
+"213",2009-09-30,"Single-Awd.","Army","YOUNG",7.36498355987227
+"214",2009-09-30,"Single-Awd.","Army","CARTER pre-Task
+& Delivery Comp.",21.4984812573393
+"215",2009-09-30,"Single-Awd.","Navy","YOUNG",2.11280174809483
+"216",2009-09-30,"Single-Awd.","Navy","CARTER pre-Task
+& Delivery Comp.",9.52390323459623
+"217",2009-09-30,"Single-Awd.","Air Force","YOUNG",2.7459133872375
+"218",2009-09-30,"Single-Awd.","Air Force","CARTER pre-Task
+& Delivery Comp.",7.48638417177961
+"219",2009-09-30,"Single-Awd.","DLA","YOUNG",0.0376076863606841
+"220",2009-09-30,"Single-Awd.","DLA","CARTER pre-Task
+& Delivery Comp.",14.1146159832973
+"221",2009-09-30,"Single-Awd.","MDA","YOUNG",0.251351007447499
+"222",2009-09-30,"Single-Awd.","MDA","CARTER pre-Task
+& Delivery Comp.",0.0211427668651223
+"223",2009-09-30,"Single-Awd.","Military
+Health","YOUNG",0.0277147930937432
+"224",2009-09-30,"Single-Awd.","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0.030502045334488
+"225",2009-09-30,"Single-Awd.","Additional
+DoD
+Components","YOUNG",0.446676347705131
+"226",2009-09-30,"Single-Awd.","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",1.99473037262394
+"227",2009-09-30,"Unlbd. IDV","Army","YOUNG",0.00243476155011907
+"228",2009-09-30,"Unlbd. IDV","Army","CARTER pre-Task
+& Delivery Comp.",0.0187503019701234
+"229",2009-09-30,"Unlbd. IDV","Navy","YOUNG",0.000723943494262828
+"230",2009-09-30,"Unlbd. IDV","Navy","CARTER pre-Task
+& Delivery Comp.",0.0134787151223208
+"231",2009-09-30,"Unlbd. IDV","Air Force","YOUNG",0.000377442758172765
+"232",2009-09-30,"Unlbd. IDV","Air Force","CARTER pre-Task
+& Delivery Comp.",0.173839580320416
+"233",2009-09-30,"Unlbd. IDV","DLA","CARTER pre-Task
+& Delivery Comp.",0.00422026847802555
+"234",2009-09-30,"Unlbd. IDV","Additional
+DoD
+Components","YOUNG",0.000309384412210435
+"235",2009-09-30,"Unlbd. IDV","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",-0.00424321337951938
+"236",2010-04-18,"BPA","Army","CARTER pre-Task
+& Delivery Comp.",0.0802487019897304
+"237",2010-04-18,"BPA","Navy","CARTER pre-Task
+& Delivery Comp.",0.000855313510911425
+"238",2010-04-18,"BPA","Air Force","CARTER pre-Task
+& Delivery Comp.",0.000279779097133077
+"239",2010-04-18,"BPA","DLA","CARTER pre-Task
+& Delivery Comp.",0
+"240",2010-04-18,"BPA","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.00222568817928969
+"241",2010-04-18,"Definitive","Army","CARTER pre-Task
+& Delivery Comp.",14.1362566201006
+"242",2010-04-18,"Definitive","Navy","CARTER pre-Task
+& Delivery Comp.",8.54545400258879
+"243",2010-04-18,"Definitive","Air Force","CARTER pre-Task
+& Delivery Comp.",4.141351042362
+"244",2010-04-18,"Definitive","DLA","CARTER pre-Task
+& Delivery Comp.",0.986853207563115
+"245",2010-04-18,"Definitive","MDA","CARTER pre-Task
+& Delivery Comp.",0.208972195143346
+"246",2010-04-18,"Definitive","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0.0009609702610184
+"247",2010-04-18,"Definitive","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.763266531215233
+"248",2010-04-18,"FSS","Army","CARTER pre-Task
+& Delivery Comp.",0.682686288799743
+"249",2010-04-18,"FSS","Navy","CARTER pre-Task
+& Delivery Comp.",0.541919263553701
+"250",2010-04-18,"FSS","Air Force","CARTER pre-Task
+& Delivery Comp.",0.328796794993582
+"251",2010-04-18,"FSS","DLA","CARTER pre-Task
+& Delivery Comp.",0.0520379931322208
+"252",2010-04-18,"FSS","MDA","CARTER pre-Task
+& Delivery Comp.",0.0290450659071459
+"253",2010-04-18,"FSS","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0.00139328168592212
+"254",2010-04-18,"FSS","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.196879897336329
+"255",2010-04-18,"Multi-Awd.","Army","CARTER pre-Task
+& Delivery Comp.",9.27947914440522
+"256",2010-04-18,"Multi-Awd.","Navy","CARTER pre-Task
+& Delivery Comp.",2.56716827298887
+"257",2010-04-18,"Multi-Awd.","Air Force","CARTER pre-Task
+& Delivery Comp.",1.27236660396876
+"258",2010-04-18,"Multi-Awd.","DLA","CARTER pre-Task
+& Delivery Comp.",0.464934947218656
+"259",2010-04-18,"Multi-Awd.","MDA","CARTER pre-Task
+& Delivery Comp.",0.000272601026957638
+"260",2010-04-18,"Multi-Awd.","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",3.67211992339538
+"261",2010-04-18,"Other IDV","Army","CARTER pre-Task
+& Delivery Comp.",0.0394213935815148
+"262",2010-04-18,"Other IDV","Navy","CARTER pre-Task
+& Delivery Comp.",0.0248672215019255
+"263",2010-04-18,"Other IDV","Air Force","CARTER pre-Task
+& Delivery Comp.",0.0200385497432606
+"264",2010-04-18,"Other IDV","DLA","CARTER pre-Task
+& Delivery Comp.",0.00434368613607189
+"265",2010-04-18,"Other IDV","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.137646763018828
+"266",2010-04-18,"Pur. Order","Army","CARTER pre-Task
+& Delivery Comp.",1.61842858980531
+"267",2010-04-18,"Pur. Order","Navy","CARTER pre-Task
+& Delivery Comp.",0.620994879845956
+"268",2010-04-18,"Pur. Order","Air Force","CARTER pre-Task
+& Delivery Comp.",0.324761426337184
+"269",2010-04-18,"Pur. Order","DLA","CARTER pre-Task
+& Delivery Comp.",1.42308541756525
+"270",2010-04-18,"Pur. Order","MDA","CARTER pre-Task
+& Delivery Comp.",0.000360240789473684
+"271",2010-04-18,"Pur. Order","Military
+Health","CARTER pre-Task
+& Delivery Comp.",4.2328027385537e-05
+"272",2010-04-18,"Pur. Order","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.358541905862217
+"273",2010-04-18,"Single-Awd.","Army","CARTER pre-Task
+& Delivery Comp.",17.2501523951433
+"274",2010-04-18,"Single-Awd.","Navy","CARTER pre-Task
+& Delivery Comp.",11.0083452539367
+"275",2010-04-18,"Single-Awd.","Air Force","CARTER pre-Task
+& Delivery Comp.",9.71732453546213
+"276",2010-04-18,"Single-Awd.","DLA","CARTER pre-Task
+& Delivery Comp.",13.6044848013907
+"277",2010-04-18,"Single-Awd.","MDA","CARTER pre-Task
+& Delivery Comp.",0.353311820271716
+"278",2010-04-18,"Single-Awd.","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0.487631481803594
+"279",2010-04-18,"Single-Awd.","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",2.59120675232135
+"280",2010-04-18,"Unlbd. IDV","Army","CARTER pre-Task
+& Delivery Comp.",0.02743304889816
+"281",2010-04-18,"Unlbd. IDV","Navy","CARTER pre-Task
+& Delivery Comp.",0.0100116344244758
+"282",2010-04-18,"Unlbd. IDV","Air Force","CARTER pre-Task
+& Delivery Comp.",0.000920863468121523
+"283",2010-04-18,"Unlbd. IDV","DLA","CARTER pre-Task
+& Delivery Comp.",0.00371292023962345
+"284",2010-04-18,"Unlbd. IDV","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.000498151946940522
+"285",2010-09-30,"BPA","Army","CARTER pre-Task
+& Delivery Comp.",0.000452549507916132
+"286",2010-09-30,"BPA","Army","Task &
+Delivery Comp.",0.36063587707531
+"287",2010-09-30,"BPA","Navy","YOUNG",-4.97304236200257e-06
+"288",2010-09-30,"BPA","Navy","CARTER pre-Task
+& Delivery Comp.",-1.1339323919555e-06
+"289",2010-09-30,"BPA","Navy","Task &
+Delivery Comp.",0.030416429139923
+"290",2010-09-30,"BPA","Air Force","YOUNG",-1.09242618741977e-05
+"291",2010-09-30,"BPA","Air Force","CARTER pre-Task
+& Delivery Comp.",0
+"292",2010-09-30,"BPA","Air Force","Task &
+Delivery Comp.",0.0371481345207531
+"293",2010-09-30,"BPA","DLA","YOUNG",2.20138853230638e-05
+"294",2010-09-30,"BPA","DLA","Task &
+Delivery Comp.",0.0169628707851947
+"295",2010-09-30,"BPA","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",2.37537762088147e-05
+"296",2010-09-30,"BPA","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.0240108302845528
+"297",2010-09-30,"Definitive","Army","YOUNG",12.7809041023214
+"298",2010-09-30,"Definitive","Army","CARTER pre-Task
+& Delivery Comp.",4.81959000538083
+"299",2010-09-30,"Definitive","Army","Task &
+Delivery Comp.",14.0649933150941
+"300",2010-09-30,"Definitive","Navy","YOUNG",15.7735549733098
+"301",2010-09-30,"Definitive","Navy","CARTER pre-Task
+& Delivery Comp.",2.61125829245828
+"302",2010-09-30,"Definitive","Navy","Task &
+Delivery Comp.",8.10645306972614
+"303",2010-09-30,"Definitive","Air Force","YOUNG",7.70372806850663
+"304",2010-09-30,"Definitive","Air Force","CARTER pre-Task
+& Delivery Comp.",1.56874066407788
+"305",2010-09-30,"Definitive","Air Force","Task &
+Delivery Comp.",3.52812390163671
+"306",2010-09-30,"Definitive","DLA","YOUNG",0.299808645902867
+"307",2010-09-30,"Definitive","DLA","CARTER pre-Task
+& Delivery Comp.",0.0671304137248609
+"308",2010-09-30,"Definitive","DLA","Task &
+Delivery Comp.",1.41207556293325
+"309",2010-09-30,"Definitive","MDA","YOUNG",1.43471588929183
+"310",2010-09-30,"Definitive","MDA","CARTER pre-Task
+& Delivery Comp.",0.142033863125802
+"311",2010-09-30,"Definitive","MDA","Task &
+Delivery Comp.",0.105048969298246
+"312",2010-09-30,"Definitive","Military
+Health","YOUNG",1.61952096214163
+"313",2010-09-30,"Definitive","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0
+"314",2010-09-30,"Definitive","Military
+Health","Task &
+Delivery Comp.",0.0613785922550278
+"315",2010-09-30,"Definitive","Additional
+DoD
+Components","YOUNG",0.625121751893453
+"316",2010-09-30,"Definitive","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.177499951743688
+"317",2010-09-30,"Definitive","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.627840029952931
+"318",2010-09-30,"FSS","Army","YOUNG",0.520889632937527
+"319",2010-09-30,"FSS","Army","CARTER pre-Task
+& Delivery Comp.",0.29982335445015
+"320",2010-09-30,"FSS","Army","Task &
+Delivery Comp.",1.81019239385965
+"321",2010-09-30,"FSS","Navy","YOUNG",0.235851833408216
+"322",2010-09-30,"FSS","Navy","CARTER pre-Task
+& Delivery Comp.",0.105117485323064
+"323",2010-09-30,"FSS","Navy","Task &
+Delivery Comp.",1.12448236801455
+"324",2010-09-30,"FSS","Air Force","YOUNG",0.303823852481814
+"325",2010-09-30,"FSS","Air Force","CARTER pre-Task
+& Delivery Comp.",0.0981719866816431
+"326",2010-09-30,"FSS","Air Force","Task &
+Delivery Comp.",0.809296056707317
+"327",2010-09-30,"FSS","DLA","YOUNG",0.100343215575524
+"328",2010-09-30,"FSS","DLA","CARTER pre-Task
+& Delivery Comp.",0.0196037487590929
+"329",2010-09-30,"FSS","DLA","Task &
+Delivery Comp.",0.0939215598523749
+"330",2010-09-30,"FSS","MDA","YOUNG",0.0396112082691485
+"331",2010-09-30,"FSS","MDA","CARTER pre-Task
+& Delivery Comp.",0.0112191099807445
+"332",2010-09-30,"FSS","MDA","Task &
+Delivery Comp.",0.00829891034445871
+"333",2010-09-30,"FSS","Military
+Health","YOUNG",0.00314077705391528
+"334",2010-09-30,"FSS","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0.00130630331621737
+"335",2010-09-30,"FSS","Military
+Health","Task &
+Delivery Comp.",0.00222935040650406
+"336",2010-09-30,"FSS","Additional
+DoD
+Components","YOUNG",0.330549213125802
+"337",2010-09-30,"FSS","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.0988585548459564
+"338",2010-09-30,"FSS","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.260399244362431
+"339",2010-09-30,"Multi-Awd.","Army","YOUNG",5.56602734250107
+"340",2010-09-30,"Multi-Awd.","Army","CARTER pre-Task
+& Delivery Comp.",5.07542476974754
+"341",2010-09-30,"Multi-Awd.","Army","Task &
+Delivery Comp.",9.42594511959778
+"342",2010-09-30,"Multi-Awd.","Navy","YOUNG",3.12542451445229
+"343",2010-09-30,"Multi-Awd.","Navy","CARTER pre-Task
+& Delivery Comp.",1.10136702817715
+"344",2010-09-30,"Multi-Awd.","Navy","Task &
+Delivery Comp.",3.64300444615961
+"345",2010-09-30,"Multi-Awd.","Air Force","YOUNG",2.02722347617672
+"346",2010-09-30,"Multi-Awd.","Air Force","CARTER pre-Task
+& Delivery Comp.",0.513913725117672
+"347",2010-09-30,"Multi-Awd.","Air Force","Task &
+Delivery Comp.",3.04876552318143
+"348",2010-09-30,"Multi-Awd.","DLA","YOUNG",0.0444930919982884
+"349",2010-09-30,"Multi-Awd.","DLA","CARTER pre-Task
+& Delivery Comp.",0.0681574107616603
+"350",2010-09-30,"Multi-Awd.","DLA","Task &
+Delivery Comp.",0.722947526080445
+"351",2010-09-30,"Multi-Awd.","MDA","YOUNG",6.27129118528027e-05
+"352",2010-09-30,"Multi-Awd.","MDA","CARTER pre-Task
+& Delivery Comp.",0
+"353",2010-09-30,"Multi-Awd.","MDA","Task &
+Delivery Comp.",0.00648477000427899
+"354",2010-09-30,"Multi-Awd.","Military
+Health","YOUNG",0
+"355",2010-09-30,"Multi-Awd.","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0
+"356",2010-09-30,"Multi-Awd.","Additional
+DoD
+Components","YOUNG",0.529593916163885
+"357",2010-09-30,"Multi-Awd.","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.359232467426187
+"358",2010-09-30,"Multi-Awd.","Additional
+DoD
+Components","Task &
+Delivery Comp.",2.26819063000642
+"359",2010-09-30,"Other IDV","Army","YOUNG",0.0127316688168592
+"360",2010-09-30,"Other IDV","Army","CARTER pre-Task
+& Delivery Comp.",0.00258751534017972
+"361",2010-09-30,"Other IDV","Army","Task &
+Delivery Comp.",0.149233570934959
+"362",2010-09-30,"Other IDV","Navy","YOUNG",0.00953650070603338
+"363",2010-09-30,"Other IDV","Navy","CARTER pre-Task
+& Delivery Comp.",0.00309154955070603
+"364",2010-09-30,"Other IDV","Navy","Task &
+Delivery Comp.",0.295310265436457
+"365",2010-09-30,"Other IDV","Air Force","YOUNG",0.0528341111253744
+"366",2010-09-30,"Other IDV","Air Force","CARTER pre-Task
+& Delivery Comp.",0.0190570940308087
+"367",2010-09-30,"Other IDV","Air Force","Task &
+Delivery Comp.",0.178416292597347
+"368",2010-09-30,"Other IDV","DLA","YOUNG",6.72186136071887e-05
+"369",2010-09-30,"Other IDV","DLA","CARTER pre-Task
+& Delivery Comp.",0.000486371822849807
+"370",2010-09-30,"Other IDV","DLA","Task &
+Delivery Comp.",0.0257883959670518
+"371",2010-09-30,"Other IDV","Additional
+DoD
+Components","YOUNG",0.0756496787869063
+"372",2010-09-30,"Other IDV","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.0514476057017544
+"373",2010-09-30,"Other IDV","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.239170516345742
+"374",2010-09-30,"Pur. Order","Army","YOUNG",0.272851295186136
+"375",2010-09-30,"Pur. Order","Army","CARTER pre-Task
+& Delivery Comp.",0.141608367725717
+"376",2010-09-30,"Pur. Order","Army","Task &
+Delivery Comp.",2.28333618200717
+"377",2010-09-30,"Pur. Order","Navy","YOUNG",0.0862219810427899
+"378",2010-09-30,"Pur. Order","Navy","CARTER pre-Task
+& Delivery Comp.",0.0556109936019469
+"379",2010-09-30,"Pur. Order","Navy","Task &
+Delivery Comp.",1.02130183210312
+"380",2010-09-30,"Pur. Order","Air Force","YOUNG",0.0602983103765511
+"381",2010-09-30,"Pur. Order","Air Force","CARTER pre-Task
+& Delivery Comp.",0.0301876953038083
+"382",2010-09-30,"Pur. Order","Air Force","Task &
+Delivery Comp.",0.62089001194908
+"383",2010-09-30,"Pur. Order","DLA","YOUNG",0.000316159766795036
+"384",2010-09-30,"Pur. Order","DLA","CARTER pre-Task
+& Delivery Comp.",0.00191956238767651
+"385",2010-09-30,"Pur. Order","DLA","Task &
+Delivery Comp.",1.72197829946513
+"386",2010-09-30,"Pur. Order","MDA","YOUNG",0.000562896501925546
+"387",2010-09-30,"Pur. Order","MDA","CARTER pre-Task
+& Delivery Comp.",1.94679075738126e-06
+"388",2010-09-30,"Pur. Order","MDA","Task &
+Delivery Comp.",0.0001105885216089
+"389",2010-09-30,"Pur. Order","Military
+Health","YOUNG",3.87682498930252e-05
+"390",2010-09-30,"Pur. Order","Military
+Health","CARTER pre-Task
+& Delivery Comp.",8.98587933247754e-06
+"391",2010-09-30,"Pur. Order","Military
+Health","Task &
+Delivery Comp.",0.000677975470688917
+"392",2010-09-30,"Pur. Order","Additional
+DoD
+Components","YOUNG",0.0497556411959778
+"393",2010-09-30,"Pur. Order","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.00771775280273855
+"394",2010-09-30,"Pur. Order","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.425326218239196
+"395",2010-09-30,"Single-Awd.","Army","YOUNG",7.50600693922764
+"396",2010-09-30,"Single-Awd.","Army","CARTER pre-Task
+& Delivery Comp.",4.51857134966838
+"397",2010-09-30,"Single-Awd.","Army","Task &
+Delivery Comp.",20.2662482323171
+"398",2010-09-30,"Single-Awd.","Navy","YOUNG",1.386924439003
+"399",2010-09-30,"Single-Awd.","Navy","CARTER pre-Task
+& Delivery Comp.",1.53561111470903
+"400",2010-09-30,"Single-Awd.","Navy","Task &
+Delivery Comp.",9.83107170091998
+"401",2010-09-30,"Single-Awd.","Air Force","YOUNG",4.31971380915704
+"402",2010-09-30,"Single-Awd.","Air Force","CARTER pre-Task
+& Delivery Comp.",2.46834526867779
+"403",2010-09-30,"Single-Awd.","Air Force","Task &
+Delivery Comp.",8.26528064599914
+"404",2010-09-30,"Single-Awd.","DLA","YOUNG",0.714612386959777
+"405",2010-09-30,"Single-Awd.","DLA","CARTER pre-Task
+& Delivery Comp.",0.548931875534874
+"406",2010-09-30,"Single-Awd.","DLA","Task &
+Delivery Comp.",14.4988467044608
+"407",2010-09-30,"Single-Awd.","MDA","YOUNG",0.501721448727
+"408",2010-09-30,"Single-Awd.","MDA","CARTER pre-Task
+& Delivery Comp.",0.0638645319319641
+"409",2010-09-30,"Single-Awd.","MDA","Task &
+Delivery Comp.",0.157851929396662
+"410",2010-09-30,"Single-Awd.","Military
+Health","YOUNG",0.0247290678861789
+"411",2010-09-30,"Single-Awd.","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0.000703671897732135
+"412",2010-09-30,"Single-Awd.","Military
+Health","Task &
+Delivery Comp.",0.0441871144629867
+"413",2010-09-30,"Single-Awd.","Additional
+DoD
+Components","YOUNG",0.626239739420197
+"414",2010-09-30,"Single-Awd.","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.354781461660248
+"415",2010-09-30,"Single-Awd.","Additional
+DoD
+Components","Task &
+Delivery Comp.",2.19519817801669
+"416",2010-09-30,"Unlbd. IDV","Army","YOUNG",0.0143005124197689
+"417",2010-09-30,"Unlbd. IDV","Army","CARTER pre-Task
+& Delivery Comp.",0.0042792946940522
+"418",2010-09-30,"Unlbd. IDV","Army","Task &
+Delivery Comp.",0.00972935968121523
+"419",2010-09-30,"Unlbd. IDV","Navy","YOUNG",0.00464846770432178
+"420",2010-09-30,"Unlbd. IDV","Navy","CARTER pre-Task
+& Delivery Comp.",0.0018368614356012
+"421",2010-09-30,"Unlbd. IDV","Navy","Task &
+Delivery Comp.",0.0170977669875909
+"422",2010-09-30,"Unlbd. IDV","Air Force","YOUNG",0.000225483836114677
+"423",2010-09-30,"Unlbd. IDV","Air Force","CARTER pre-Task
+& Delivery Comp.",-0.000670595228925973
+"424",2010-09-30,"Unlbd. IDV","Air Force","Task &
+Delivery Comp.",0.171904662216517
+"425",2010-09-30,"Unlbd. IDV","DLA","Task &
+Delivery Comp.",0.00547949368848952
+"426",2010-09-30,"Unlbd. IDV","Additional
+DoD
+Components","YOUNG",0.000769858793324775
+"427",2010-09-30,"Unlbd. IDV","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",-1.41232884039367e-05
+"428",2010-09-30,"Unlbd. IDV","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.000411099572100984
+"429",2011-09-30,"BPA","Army","CARTER pre-Task
+& Delivery Comp.",0.00109262610155266
+"430",2011-09-30,"BPA","Army","Task &
+Delivery Comp.",0.96353398637222
+"431",2011-09-30,"BPA","Navy","CARTER pre-Task
+& Delivery Comp.",0
+"432",2011-09-30,"BPA","Navy","Task &
+Delivery Comp.",0.130379701888376
+"433",2011-09-30,"BPA","Air Force","CARTER pre-Task
+& Delivery Comp.",0
+"434",2011-09-30,"BPA","Air Force","Task &
+Delivery Comp.",0.115547386508603
+"435",2011-09-30,"BPA","DLA","YOUNG",2.94905581200168e-05
+"436",2011-09-30,"BPA","DLA","Task &
+Delivery Comp.",0.0699922288921527
+"437",2011-09-30,"BPA","MDA","Task &
+Delivery Comp.",0
+"438",2011-09-30,"BPA","Military
+Health","Task &
+Delivery Comp.",0
+"439",2011-09-30,"BPA","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0
+"440",2011-09-30,"BPA","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.147611210228703
+"441",2011-09-30,"Definitive","Army","YOUNG",9.70366697416072
+"442",2011-09-30,"Definitive","Army","CARTER pre-Task
+& Delivery Comp.",4.30396153747377
+"443",2011-09-30,"Definitive","Army","Task &
+Delivery Comp.",30.3632552388481
+"444",2011-09-30,"Definitive","Navy","YOUNG",20.5350714729333
+"445",2011-09-30,"Definitive","Navy","CARTER pre-Task
+& Delivery Comp.",8.37218345912715
+"446",2011-09-30,"Definitive","Navy","Task &
+Delivery Comp.",20.7755694826899
+"447",2011-09-30,"Definitive","Air Force","YOUNG",5.58204353448384
+"448",2011-09-30,"Definitive","Air Force","CARTER pre-Task
+& Delivery Comp.",3.11045985544482
+"449",2011-09-30,"Definitive","Air Force","Task &
+Delivery Comp.",11.4345150847146
+"450",2011-09-30,"Definitive","DLA","YOUNG",0.209015752989929
+"451",2011-09-30,"Definitive","DLA","CARTER pre-Task
+& Delivery Comp.",0.148202946223248
+"452",2011-09-30,"Definitive","DLA","Task &
+Delivery Comp.",2.38956717088754
+"453",2011-09-30,"Definitive","MDA","YOUNG",0.727001783403273
+"454",2011-09-30,"Definitive","MDA","CARTER pre-Task
+& Delivery Comp.",0.360635751154008
+"455",2011-09-30,"Definitive","MDA","Task &
+Delivery Comp.",0.783329936309274
+"456",2011-09-30,"Definitive","Military
+Health","YOUNG",1.87466138286823
+"457",2011-09-30,"Definitive","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0.0022312673101133
+"458",2011-09-30,"Definitive","Military
+Health","Task &
+Delivery Comp.",1.22613550114352
+"459",2011-09-30,"Definitive","Additional
+DoD
+Components","YOUNG",0.495816796023919
+"460",2011-09-30,"Definitive","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.740697460501469
+"461",2011-09-30,"Definitive","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.88545319216324
+"462",2011-09-30,"FSS","Army","YOUNG",0.323520965169954
+"463",2011-09-30,"FSS","Army","CARTER pre-Task
+& Delivery Comp.",0.324722270929501
+"464",2011-09-30,"FSS","Army","Task &
+Delivery Comp.",2.36354764417751
+"465",2011-09-30,"FSS","Navy","YOUNG",0.123860057815778
+"466",2011-09-30,"FSS","Navy","CARTER pre-Task
+& Delivery Comp.",0.172219149632816
+"467",2011-09-30,"FSS","Navy","Task &
+Delivery Comp.",1.65688347183172
+"468",2011-09-30,"FSS","Air Force","YOUNG",0.186836773804029
+"469",2011-09-30,"FSS","Air Force","CARTER pre-Task
+& Delivery Comp.",0.130159275514058
+"470",2011-09-30,"FSS","Air Force","Task &
+Delivery Comp.",0.989846135648342
+"471",2011-09-30,"FSS","DLA","YOUNG",0.0741549958665548
+"472",2011-09-30,"FSS","DLA","CARTER pre-Task
+& Delivery Comp.",0.0380230697230382
+"473",2011-09-30,"FSS","DLA","Task &
+Delivery Comp.",0.138241934001259
+"474",2011-09-30,"FSS","MDA","YOUNG",0.0174844834557281
+"475",2011-09-30,"FSS","MDA","CARTER pre-Task
+& Delivery Comp.",0.0250837290600084
+"476",2011-09-30,"FSS","MDA","Task &
+Delivery Comp.",0.0120085253881662
+"477",2011-09-30,"FSS","Military
+Health","YOUNG",0.00573481017624843
+"478",2011-09-30,"FSS","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0.00114013116869492
+"479",2011-09-30,"FSS","Military
+Health","Task &
+Delivery Comp.",0.00428097925933697
+"480",2011-09-30,"FSS","Additional
+DoD
+Components","YOUNG",0.257974474874108
+"481",2011-09-30,"FSS","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.158806947933277
+"482",2011-09-30,"FSS","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.802487603976081
+"483",2011-09-30,"Multi-Awd.","Army","YOUNG",2.25752374090432
+"484",2011-09-30,"Multi-Awd.","Army","CARTER pre-Task
+& Delivery Comp.",8.68818843074906
+"485",2011-09-30,"Multi-Awd.","Army","Task &
+Delivery Comp.",17.5329457995699
+"486",2011-09-30,"Multi-Awd.","Navy","YOUNG",2.49349385205623
+"487",2011-09-30,"Multi-Awd.","Navy","CARTER pre-Task
+& Delivery Comp.",1.84590010484683
+"488",2011-09-30,"Multi-Awd.","Navy","Task &
+Delivery Comp.",7.42561817494754
+"489",2011-09-30,"Multi-Awd.","Air Force","YOUNG",1.11141776425724
+"490",2011-09-30,"Multi-Awd.","Air Force","CARTER pre-Task
+& Delivery Comp.",0.635789997524129
+"491",2011-09-30,"Multi-Awd.","Air Force","Task &
+Delivery Comp.",5.13971600368233
+"492",2011-09-30,"Multi-Awd.","DLA","YOUNG",0.0368712874842635
+"493",2011-09-30,"Multi-Awd.","DLA","CARTER pre-Task
+& Delivery Comp.",0.0574438423835501
+"494",2011-09-30,"Multi-Awd.","DLA","Task &
+Delivery Comp.",1.27398747632186
+"495",2011-09-30,"Multi-Awd.","MDA","CARTER pre-Task
+& Delivery Comp.",0
+"496",2011-09-30,"Multi-Awd.","MDA","Task &
+Delivery Comp.",0.190495481430969
+"497",2011-09-30,"Multi-Awd.","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0
+"498",2011-09-30,"Multi-Awd.","Additional
+DoD
+Components","YOUNG",0.260469088533361
+"499",2011-09-30,"Multi-Awd.","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.567068563606798
+"500",2011-09-30,"Multi-Awd.","Additional
+DoD
+Components","Task &
+Delivery Comp.",8.53563693213911
+"501",2011-09-30,"Other IDV","Army","YOUNG",0.00243669244649601
+"502",2011-09-30,"Other IDV","Army","CARTER pre-Task
+& Delivery Comp.",0.0102501680234998
+"503",2011-09-30,"Other IDV","Army","Task &
+Delivery Comp.",0.93111303433697
+"504",2011-09-30,"Other IDV","Navy","YOUNG",0.00644499891942929
+"505",2011-09-30,"Other IDV","Navy","CARTER pre-Task
+& Delivery Comp.",0.00630915423835501
+"506",2011-09-30,"Other IDV","Navy","Task &
+Delivery Comp.",1.09663098155686
+"507",2011-09-30,"Other IDV","Air Force","YOUNG",0.0329864029899287
+"508",2011-09-30,"Other IDV","Air Force","CARTER pre-Task
+& Delivery Comp.",0.042074516974402
+"509",2011-09-30,"Other IDV","Air Force","Task &
+Delivery Comp.",1.38779353061267
+"510",2011-09-30,"Other IDV","DLA","YOUNG",0
+"511",2011-09-30,"Other IDV","DLA","CARTER pre-Task
+& Delivery Comp.",0.00041717247167436
+"512",2011-09-30,"Other IDV","DLA","Task &
+Delivery Comp.",0.217636154049517
+"513",2011-09-30,"Other IDV","Military
+Health","Task &
+Delivery Comp.",2.71769408308854e-05
+"514",2011-09-30,"Other IDV","Additional
+DoD
+Components","YOUNG",0.0655462488040285
+"515",2011-09-30,"Other IDV","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.103681655539236
+"516",2011-09-30,"Other IDV","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.419672307448594
+"517",2011-09-30,"Pur. Order","Army","YOUNG",0.149477142373059
+"518",2011-09-30,"Pur. Order","Army","CARTER pre-Task
+& Delivery Comp.",0.185441038480906
+"519",2011-09-30,"Pur. Order","Army","Task &
+Delivery Comp.",3.44430816381662
+"520",2011-09-30,"Pur. Order","Navy","YOUNG",0.0366915961393202
+"521",2011-09-30,"Pur. Order","Navy","CARTER pre-Task
+& Delivery Comp.",0.0512619998845992
+"522",2011-09-30,"Pur. Order","Navy","Task &
+Delivery Comp.",1.75123015431179
+"523",2011-09-30,"Pur. Order","Air Force","YOUNG",0.0280039548783047
+"524",2011-09-30,"Pur. Order","Air Force","CARTER pre-Task
+& Delivery Comp.",0.0431993038921527
+"525",2011-09-30,"Pur. Order","Air Force","Task &
+Delivery Comp.",0.939739089865715
+"526",2011-09-30,"Pur. Order","DLA","YOUNG",0.000317727864036928
+"527",2011-09-30,"Pur. Order","DLA","CARTER pre-Task
+& Delivery Comp.",0.00175719841586236
+"528",2011-09-30,"Pur. Order","DLA","Task &
+Delivery Comp.",3.2126826992971
+"529",2011-09-30,"Pur. Order","MDA","YOUNG",0.000165395677717163
+"530",2011-09-30,"Pur. Order","MDA","CARTER pre-Task
+& Delivery Comp.",9.94702056231641e-06
+"531",2011-09-30,"Pur. Order","MDA","Task &
+Delivery Comp.",0.00140682525178347
+"532",2011-09-30,"Pur. Order","Military
+Health","YOUNG",2.49910826689047e-06
+"533",2011-09-30,"Pur. Order","Military
+Health","CARTER pre-Task
+& Delivery Comp.",8.81242131766681e-06
+"534",2011-09-30,"Pur. Order","Military
+Health","Task &
+Delivery Comp.",0.00173169148132606
+"535",2011-09-30,"Pur. Order","Additional
+DoD
+Components","YOUNG",0.0257152913973982
+"536",2011-09-30,"Pur. Order","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.0240502891838019
+"537",2011-09-30,"Pur. Order","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.631086448237516
+"538",2011-09-30,"Single-Awd.","Army","YOUNG",4.28539243246958
+"539",2011-09-30,"Single-Awd.","Army","CARTER pre-Task
+& Delivery Comp.",3.13016760544482
+"540",2011-09-30,"Single-Awd.","Army","Task &
+Delivery Comp.",32.5831556667541
+"541",2011-09-30,"Single-Awd.","Navy","YOUNG",0.392851922408728
+"542",2011-09-30,"Single-Awd.","Navy","CARTER pre-Task
+& Delivery Comp.",0.90571474538397
+"543",2011-09-30,"Single-Awd.","Navy","Task &
+Delivery Comp.",22.0653902953525
+"544",2011-09-30,"Single-Awd.","Air Force","YOUNG",1.35248034962232
+"545",2011-09-30,"Single-Awd.","Air Force","CARTER pre-Task
+& Delivery Comp.",2.42374479597146
+"546",2011-09-30,"Single-Awd.","Air Force","Task &
+Delivery Comp.",19.0198584748426
+"547",2011-09-30,"Single-Awd.","DLA","YOUNG",0.288501730465799
+"548",2011-09-30,"Single-Awd.","DLA","CARTER pre-Task
+& Delivery Comp.",0.300529003997063
+"549",2011-09-30,"Single-Awd.","DLA","Task &
+Delivery Comp.",28.9249654073017
+"550",2011-09-30,"Single-Awd.","MDA","YOUNG",0.325608334945447
+"551",2011-09-30,"Single-Awd.","MDA","CARTER pre-Task
+& Delivery Comp.",0.115173680308435
+"552",2011-09-30,"Single-Awd.","MDA","Task &
+Delivery Comp.",0.75417124355854
+"553",2011-09-30,"Single-Awd.","Military
+Health","YOUNG",-0.00477794144985313
+"554",2011-09-30,"Single-Awd.","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0.00128560182543013
+"555",2011-09-30,"Single-Awd.","Military
+Health","Task &
+Delivery Comp.",0.567543905339908
+"556",2011-09-30,"Single-Awd.","Additional
+DoD
+Components","YOUNG",0.377616278189257
+"557",2011-09-30,"Single-Awd.","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.453725187389845
+"558",2011-09-30,"Single-Awd.","Additional
+DoD
+Components","Task &
+Delivery Comp.",6.15367724066303
+"559",2011-09-30,"Unlbd. IDV","Army","YOUNG",0.0119844352916492
+"560",2011-09-30,"Unlbd. IDV","Army","CARTER pre-Task
+& Delivery Comp.",0.00744160557070919
+"561",2011-09-30,"Unlbd. IDV","Army","Task &
+Delivery Comp.",0.036333149548888
+"562",2011-09-30,"Unlbd. IDV","Navy","YOUNG",0.00501442704574066
+"563",2011-09-30,"Unlbd. IDV","Navy","CARTER pre-Task
+& Delivery Comp.",0.00382927183172472
+"564",2011-09-30,"Unlbd. IDV","Navy","Task &
+Delivery Comp.",0.0141609907784305
+"565",2011-09-30,"Unlbd. IDV","Air Force","YOUNG",2.34854280318926e-05
+"566",2011-09-30,"Unlbd. IDV","Air Force","CARTER pre-Task
+& Delivery Comp.",0.00020607064624423
+"567",2011-09-30,"Unlbd. IDV","Air Force","Task &
+Delivery Comp.",0.189010341963911
+"568",2011-09-30,"Unlbd. IDV","DLA","CARTER pre-Task
+& Delivery Comp.",0.000186733413764163
+"569",2011-09-30,"Unlbd. IDV","DLA","Task &
+Delivery Comp.",0.00448495449013848
+"570",2011-09-30,"Unlbd. IDV","MDA","Task &
+Delivery Comp.",-7.64708875367184e-05
+"571",2011-09-30,"Unlbd. IDV","Military
+Health","Task &
+Delivery Comp.",8.69653378094838e-05
+"572",2011-09-30,"Unlbd. IDV","Additional
+DoD
+Components","YOUNG",0.000471419775493076
+"573",2011-09-30,"Unlbd. IDV","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.000147758644565674
+"574",2011-09-30,"Unlbd. IDV","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.000522544093579522
+"575",2012-03-01,"BPA","Army","Task &
+Delivery Comp.",0.34690501175986
+"576",2012-03-01,"BPA","Navy","Task &
+Delivery Comp.",0.0467106134280713
+"577",2012-03-01,"BPA","Air Force","Task &
+Delivery Comp.",0.0170245450623005
+"578",2012-03-01,"BPA","DLA","Task &
+Delivery Comp.",0.0418720149624138
+"579",2012-03-01,"BPA","MDA","Task &
+Delivery Comp.",0
+"580",2012-03-01,"BPA","Military
+Health","Task &
+Delivery Comp.",0.000240875996292864
+"581",2012-03-01,"BPA","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.087872964957265
+"582",2012-03-01,"Definitive","Army","Task &
+Delivery Comp.",11.2103635675626
+"583",2012-03-01,"Definitive","Navy","Task &
+Delivery Comp.",12.7817379302235
+"584",2012-03-01,"Definitive","Air Force","Task &
+Delivery Comp.",8.0186174472248
+"585",2012-03-01,"Definitive","DLA","Task &
+Delivery Comp.",0.676064367202142
+"586",2012-03-01,"Definitive","MDA","Task &
+Delivery Comp.",1.20174253621666
+"587",2012-03-01,"Definitive","Military
+Health","Task &
+Delivery Comp.",3.10859811648646
+"588",2012-03-01,"Definitive","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.562257353877047
+"589",2012-03-01,"FSS","Army","Task &
+Delivery Comp.",0.417094059396561
+"590",2012-03-01,"FSS","Navy","Task &
+Delivery Comp.",0.383079538924931
+"591",2012-03-01,"FSS","Air Force","Task &
+Delivery Comp.",0.364958385593657
+"592",2012-03-01,"FSS","DLA","Task &
+Delivery Comp.",0.0962818867057976
+"593",2012-03-01,"FSS","MDA","Task &
+Delivery Comp.",0.00611025771805169
+"594",2012-03-01,"FSS","Military
+Health","Task &
+Delivery Comp.",0.0184086858305015
+"595",2012-03-01,"FSS","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.453073567686129
+"596",2012-03-01,"Multi-Awd.","Army","Task &
+Delivery Comp.",4.11573173191226
+"597",2012-03-01,"Multi-Awd.","Navy","Task &
+Delivery Comp.",1.8737842802698
+"598",2012-03-01,"Multi-Awd.","Air Force","Task &
+Delivery Comp.",1.32637891197611
+"599",2012-03-01,"Multi-Awd.","DLA","Task &
+Delivery Comp.",0.422105633250953
+"600",2012-03-01,"Multi-Awd.","MDA","Task &
+Delivery Comp.",0.289147385439193
+"601",2012-03-01,"Multi-Awd.","Military
+Health","Task &
+Delivery Comp.",0.000429766831428281
+"602",2012-03-01,"Multi-Awd.","Additional
+DoD
+Components","Task &
+Delivery Comp.",4.67770315594686
+"603",2012-03-01,"Other IDV","Army","Task &
+Delivery Comp.",0.293982068952734
+"604",2012-03-01,"Other IDV","Navy","Task &
+Delivery Comp.",0.537792121594069
+"605",2012-03-01,"Other IDV","Air Force","Task &
+Delivery Comp.",1.40587737961075
+"606",2012-03-01,"Other IDV","DLA","Task &
+Delivery Comp.",0.121076437730409
+"607",2012-03-01,"Other IDV","Military
+Health","Task &
+Delivery Comp.",-1.08021830913397e-05
+"608",2012-03-01,"Other IDV","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.172476153877047
+"609",2012-03-01,"Pur. Order","Army","Task &
+Delivery Comp.",0.832881539748739
+"610",2012-03-01,"Pur. Order","Navy","Task &
+Delivery Comp.",0.437988647224797
+"611",2012-03-01,"Pur. Order","Air Force","Task &
+Delivery Comp.",0.214391844537123
+"612",2012-03-01,"Pur. Order","DLA","Task &
+Delivery Comp.",1.18810978847698
+"613",2012-03-01,"Pur. Order","MDA","Task &
+Delivery Comp.",3.60168674698795e-05
+"614",2012-03-01,"Pur. Order","Military
+Health","Task &
+Delivery Comp.",0.00258551077129029
+"615",2012-03-01,"Pur. Order","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.15235569338894
+"616",2012-03-01,"Single-Awd.","Army","Task &
+Delivery Comp.",9.23434524470188
+"617",2012-03-01,"Single-Awd.","Navy","Task &
+Delivery Comp.",7.94163673547009
+"618",2012-03-01,"Single-Awd.","Air Force","Task &
+Delivery Comp.",9.03399248935125
+"619",2012-03-01,"Single-Awd.","DLA","Task &
+Delivery Comp.",13.5871126092674
+"620",2012-03-01,"Single-Awd.","MDA","Task &
+Delivery Comp.",0.878265140788796
+"621",2012-03-01,"Single-Awd.","Military
+Health","Task &
+Delivery Comp.",0.362657961342807
+"622",2012-03-01,"Single-Awd.","Additional
+DoD
+Components","Task &
+Delivery Comp.",2.32902318981557
+"623",2012-03-01,"Unlbd. IDV","Army","Task &
+Delivery Comp.",0.0209273426629595
+"624",2012-03-01,"Unlbd. IDV","Navy","Task &
+Delivery Comp.",0.00953024334260117
+"625",2012-03-01,"Unlbd. IDV","Air Force","Task &
+Delivery Comp.",0.00201904697765421
+"626",2012-03-01,"Unlbd. IDV","DLA","Task &
+Delivery Comp.",0.0026812297188755
+"627",2012-03-01,"Unlbd. IDV","Military
+Health","Task &
+Delivery Comp.",1.38245288847698e-05
+"628",2012-03-01,"Unlbd. IDV","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.000120161775306354
+"629",2012-09-30,"BPA","Army","CARTER pre-Task
+& Delivery Comp.",0.00126021462259294
+"630",2012-09-30,"BPA","Army","Task &
+Delivery Comp.",0.0733866673051179
+"631",2012-09-30,"BPA","Army","Impl. of
+863-09",0.552470601173927
+"632",2012-09-30,"BPA","Navy","CARTER pre-Task
+& Delivery Comp.",0
+"633",2012-09-30,"BPA","Navy","Task &
+Delivery Comp.",0.00442519203995469
+"634",2012-09-30,"BPA","Navy","Impl. of
+863-09",0.248599055421687
+"635",2012-09-30,"BPA","Air Force","CARTER pre-Task
+& Delivery Comp.",0
+"636",2012-09-30,"BPA","Air Force","Task &
+Delivery Comp.",3.40694882092473e-05
+"637",2012-09-30,"BPA","Air Force","Impl. of
+863-09",0.114296016383483
+"638",2012-09-30,"BPA","DLA","YOUNG",1.24792606322727e-05
+"639",2012-09-30,"BPA","DLA","Task &
+Delivery Comp.",0.0254169432293276
+"640",2012-09-30,"BPA","DLA","Impl. of
+863-09",0.12354457695397
+"641",2012-09-30,"BPA","Military
+Health","Task &
+Delivery Comp.",0
+"642",2012-09-30,"BPA","Military
+Health","Impl. of
+863-09",0.00222599490268767
+"643",2012-09-30,"BPA","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0
+"644",2012-09-30,"BPA","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.025072068386366
+"645",2012-09-30,"BPA","Additional
+DoD
+Components","Impl. of
+863-09",0.207452786376274
+"646",2012-09-30,"Definitive","Army","YOUNG",5.96736526349501
+"647",2012-09-30,"Definitive","Army","CARTER pre-Task
+& Delivery Comp.",3.80150512775203
+"648",2012-09-30,"Definitive","Army","Task &
+Delivery Comp.",6.1881992579549
+"649",2012-09-30,"Definitive","Army","Impl. of
+863-09",19.358725556297
+"650",2012-09-30,"Definitive","Navy","YOUNG",16.2253867694882
+"651",2012-09-30,"Definitive","Navy","CARTER pre-Task
+& Delivery Comp.",4.82670323587684
+"652",2012-09-30,"Definitive","Navy","Task &
+Delivery Comp.",7.32408309900113
+"653",2012-09-30,"Definitive","Navy","Impl. of
+863-09",8.25601913745237
+"654",2012-09-30,"Definitive","Air Force","YOUNG",4.68676625786222
+"655",2012-09-30,"Definitive","Air Force","CARTER pre-Task
+& Delivery Comp.",2.32412249512923
+"656",2012-09-30,"Definitive","Air Force","Task &
+Delivery Comp.",4.21827134944908
+"657",2012-09-30,"Definitive","Air Force","Impl. of
+863-09",11.5379163568531
+"658",2012-09-30,"Definitive","DLA","YOUNG",0.248654079404799
+"659",2012-09-30,"Definitive","DLA","CARTER pre-Task
+& Delivery Comp.",0.0722909543713315
+"660",2012-09-30,"Definitive","DLA","Task &
+Delivery Comp.",0.12595370227577
+"661",2012-09-30,"Definitive","DLA","Impl. of
+863-09",1.33996974959324
+"662",2012-09-30,"Definitive","MDA","YOUNG",0.147419793399238
+"663",2012-09-30,"Definitive","MDA","CARTER pre-Task
+& Delivery Comp.",0.296559176325816
+"664",2012-09-30,"Definitive","MDA","Task &
+Delivery Comp.",0.712223461538462
+"665",2012-09-30,"Definitive","MDA","Impl. of
+863-09",0.10781609206055
+"666",2012-09-30,"Definitive","Military
+Health","YOUNG",1.86628533661827
+"667",2012-09-30,"Definitive","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0.000698363083101637
+"668",2012-09-30,"Definitive","Military
+Health","Task &
+Delivery Comp.",1.54270550976213
+"669",2012-09-30,"Definitive","Military
+Health","Impl. of
+863-09",0.0352729762846257
+"670",2012-09-30,"Definitive","Additional
+DoD
+Components","YOUNG",0.378229603274637
+"671",2012-09-30,"Definitive","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.264540228174235
+"672",2012-09-30,"Definitive","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.390753937349398
+"673",2012-09-30,"Definitive","Additional
+DoD
+Components","Impl. of
+863-09",0.763578191092576
+"674",2012-09-30,"FSS","Army","YOUNG",0.117576731726908
+"675",2012-09-30,"FSS","Army","CARTER pre-Task
+& Delivery Comp.",0.156737657718052
+"676",2012-09-30,"FSS","Army","Task &
+Delivery Comp.",0.347369244691587
+"677",2012-09-30,"FSS","Army","Impl. of
+863-09",1.38272956227989
+"678",2012-09-30,"FSS","Navy","YOUNG",0.0521805577798373
+"679",2012-09-30,"FSS","Navy","CARTER pre-Task
+& Delivery Comp.",-0.00486238423437339
+"680",2012-09-30,"FSS","Navy","Task &
+Delivery Comp.",0.19291552635156
+"681",2012-09-30,"FSS","Navy","Impl. of
+863-09",0.808695524631861
+"682",2012-09-30,"FSS","Air Force","YOUNG",0.106646146071465
+"683",2012-09-30,"FSS","Air Force","CARTER pre-Task
+& Delivery Comp.",0.0745894374317784
+"684",2012-09-30,"FSS","Air Force","Task &
+Delivery Comp.",0.120385988631449
+"685",2012-09-30,"FSS","Air Force","Impl. of
+863-09",0.690827125476264
+"686",2012-09-30,"FSS","DLA","YOUNG",0.0490650674389867
+"687",2012-09-30,"FSS","DLA","CARTER pre-Task
+& Delivery Comp.",0.0221360151168778
+"688",2012-09-30,"FSS","DLA","Task &
+Delivery Comp.",0.0369092755637936
+"689",2012-09-30,"FSS","DLA","Impl. of
+863-09",0.127204891247039
+"690",2012-09-30,"FSS","MDA","YOUNG",0.00892364868705591
+"691",2012-09-30,"FSS","MDA","CARTER pre-Task
+& Delivery Comp.",0.00390609817732468
+"692",2012-09-30,"FSS","MDA","Task &
+Delivery Comp.",0.00163824601997735
+"693",2012-09-30,"FSS","MDA","Impl. of
+863-09",0.00550967044588611
+"694",2012-09-30,"FSS","Military
+Health","YOUNG",0.00259091161569354
+"695",2012-09-30,"FSS","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0.00191242326227989
+"696",2012-09-30,"FSS","Military
+Health","Task &
+Delivery Comp.",0.0138988582947173
+"697",2012-09-30,"FSS","Military
+Health","Impl. of
+863-09",0.0164116269591185
+"698",2012-09-30,"FSS","Additional
+DoD
+Components","YOUNG",0.138429611152302
+"699",2012-09-30,"FSS","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.124323593007929
+"700",2012-09-30,"FSS","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.244883235866543
+"701",2012-09-30,"FSS","Additional
+DoD
+Components","Impl. of
+863-09",0.457049744712182
+"702",2012-09-30,"Multi-Awd.","Army","YOUNG",0.94290969309031
+"703",2012-09-30,"Multi-Awd.","Army","CARTER pre-Task
+& Delivery Comp.",5.68069293531047
+"704",2012-09-30,"Multi-Awd.","Army","Task &
+Delivery Comp.",3.78016615018021
+"705",2012-09-30,"Multi-Awd.","Army","Impl. of
+863-09",8.49011247573885
+"706",2012-09-30,"Multi-Awd.","Navy","YOUNG",1.5855952716919
+"707",2012-09-30,"Multi-Awd.","Navy","CARTER pre-Task
+& Delivery Comp.",1.24925975515395
+"708",2012-09-30,"Multi-Awd.","Navy","Task &
+Delivery Comp.",1.96705017580064
+"709",2012-09-30,"Multi-Awd.","Navy","Impl. of
+863-09",4.79964374470188
+"710",2012-09-30,"Multi-Awd.","Air Force","YOUNG",0.468529336504994
+"711",2012-09-30,"Multi-Awd.","Air Force","CARTER pre-Task
+& Delivery Comp.",0.200862364411492
+"712",2012-09-30,"Multi-Awd.","Air Force","Task &
+Delivery Comp.",1.06570059499537
+"713",2012-09-30,"Multi-Awd.","Air Force","Impl. of
+863-09",2.45425555128205
+"714",2012-09-30,"Multi-Awd.","DLA","YOUNG",0.0106904108536711
+"715",2012-09-30,"Multi-Awd.","DLA","CARTER pre-Task
+& Delivery Comp.",0.0577352020183297
+"716",2012-09-30,"Multi-Awd.","DLA","Task &
+Delivery Comp.",0.0635615229842447
+"717",2012-09-30,"Multi-Awd.","DLA","Impl. of
+863-09",0.398996555390794
+"718",2012-09-30,"Multi-Awd.","MDA","CARTER pre-Task
+& Delivery Comp.",0
+"719",2012-09-30,"Multi-Awd.","MDA","Task &
+Delivery Comp.",0.123214418793121
+"720",2012-09-30,"Multi-Awd.","MDA","Impl. of
+863-09",0.00307176191947276
+"721",2012-09-30,"Multi-Awd.","Military
+Health","YOUNG",0.00123204456801565
+"722",2012-09-30,"Multi-Awd.","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0
+"723",2012-09-30,"Multi-Awd.","Military
+Health","Task &
+Delivery Comp.",0.00897674116980744
+"724",2012-09-30,"Multi-Awd.","Military
+Health","Impl. of
+863-09",0.0133870620533416
+"725",2012-09-30,"Multi-Awd.","Additional
+DoD
+Components","YOUNG",0.178999595345485
+"726",2012-09-30,"Multi-Awd.","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.415428742868912
+"727",2012-09-30,"Multi-Awd.","Additional
+DoD
+Components","Task &
+Delivery Comp.",1.11205039121615
+"728",2012-09-30,"Multi-Awd.","Additional
+DoD
+Components","Impl. of
+863-09",3.68220995698692
+"729",2012-09-30,"Other IDV","Army","YOUNG",0.00036573483678303
+"730",2012-09-30,"Other IDV","Army","CARTER pre-Task
+& Delivery Comp.",0.00465005845947894
+"731",2012-09-30,"Other IDV","Army","Task &
+Delivery Comp.",0.478585070157553
+"732",2012-09-30,"Other IDV","Army","Impl. of
+863-09",0.48998319206055
+"733",2012-09-30,"Other IDV","Navy","YOUNG",0.00540353031613634
+"734",2012-09-30,"Other IDV","Navy","CARTER pre-Task
+& Delivery Comp.",0.00464867791164659
+"735",2012-09-30,"Other IDV","Navy","Task &
+Delivery Comp.",0.0621857949850685
+"736",2012-09-30,"Other IDV","Navy","Impl. of
+863-09",1.42658363946041
+"737",2012-09-30,"Other IDV","Air Force","YOUNG",0.0199049409123674
+"738",2012-09-30,"Other IDV","Air Force","CARTER pre-Task
+& Delivery Comp.",0.0387789830295541
+"739",2012-09-30,"Other IDV","Air Force","Task &
+Delivery Comp.",0.847896052270621
+"740",2012-09-30,"Other IDV","Air Force","Impl. of
+863-09",1.85786104661724
+"741",2012-09-30,"Other IDV","DLA","YOUNG",5.37843682421996e-05
+"742",2012-09-30,"Other IDV","DLA","CARTER pre-Task
+& Delivery Comp.",-4.11904026361858e-06
+"743",2012-09-30,"Other IDV","DLA","Task &
+Delivery Comp.",0.0019094858613943
+"744",2012-09-30,"Other IDV","DLA","Impl. of
+863-09",0.398036737143446
+"745",2012-09-30,"Other IDV","Military
+Health","Impl. of
+863-09",0.0195302932859644
+"746",2012-09-30,"Other IDV","Additional
+DoD
+Components","YOUNG",0.0397902605395943
+"747",2012-09-30,"Other IDV","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.080877616167233
+"748",2012-09-30,"Other IDV","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.0928388299557203
+"749",2012-09-30,"Other IDV","Additional
+DoD
+Components","Impl. of
+863-09",0.32664755240449
+"750",2012-09-30,"Pur. Order","Army","YOUNG",0.0873456949644733
+"751",2012-09-30,"Pur. Order","Army","CARTER pre-Task
+& Delivery Comp.",0.0833910815582329
+"752",2012-09-30,"Pur. Order","Army","Task &
+Delivery Comp.",0.209617237864278
+"753",2012-09-30,"Pur. Order","Army","Impl. of
+863-09",1.36100658264854
+"754",2012-09-30,"Pur. Order","Navy","YOUNG",0.0107193235403151
+"755",2012-09-30,"Pur. Order","Navy","CARTER pre-Task
+& Delivery Comp.",0.0264418077952837
+"756",2012-09-30,"Pur. Order","Navy","Task &
+Delivery Comp.",0.0643695015034497
+"757",2012-09-30,"Pur. Order","Navy","Impl. of
+863-09",0.943557163186078
+"758",2012-09-30,"Pur. Order","Air Force","YOUNG",0.015575374626712
+"759",2012-09-30,"Pur. Order","Air Force","CARTER pre-Task
+& Delivery Comp.",0.0257680451961693
+"760",2012-09-30,"Pur. Order","Air Force","Task &
+Delivery Comp.",0.0291972436515292
+"761",2012-09-30,"Pur. Order","Air Force","Impl. of
+863-09",0.493346600782618
+"762",2012-09-30,"Pur. Order","DLA","YOUNG",0.00166847575944805
+"763",2012-09-30,"Pur. Order","DLA","CARTER pre-Task
+& Delivery Comp.",0.00219181536402018
+"764",2012-09-30,"Pur. Order","DLA","Task &
+Delivery Comp.",-0.00681330336731542
+"765",2012-09-30,"Pur. Order","DLA","Impl. of
+863-09",1.87104738698383
+"766",2012-09-30,"Pur. Order","MDA","YOUNG",-5.60083616517351e-05
+"767",2012-09-30,"Pur. Order","MDA","Task &
+Delivery Comp.",4.52784883122233e-05
+"768",2012-09-30,"Pur. Order","MDA","Impl. of
+863-09",7.54042632066728e-05
+"769",2012-09-30,"Pur. Order","Military
+Health","YOUNG",-0.000417715147770569
+"770",2012-09-30,"Pur. Order","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0.000425474647307177
+"771",2012-09-30,"Pur. Order","Military
+Health","Task &
+Delivery Comp.",0.000761773195345485
+"772",2012-09-30,"Pur. Order","Military
+Health","Impl. of
+863-09",0.00553865616311399
+"773",2012-09-30,"Pur. Order","Additional
+DoD
+Components","YOUNG",0.0155239545463907
+"774",2012-09-30,"Pur. Order","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.0105167888785913
+"775",2012-09-30,"Pur. Order","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.0246658291628051
+"776",2012-09-30,"Pur. Order","Additional
+DoD
+Components","Impl. of
+863-09",0.223051787138297
+"777",2012-09-30,"Single-Awd.","Army","YOUNG",0.883087870250232
+"778",2012-09-30,"Single-Awd.","Army","CARTER pre-Task
+& Delivery Comp.",0.518210741046236
+"779",2012-09-30,"Single-Awd.","Army","Task &
+Delivery Comp.",3.20055392038925
+"780",2012-09-30,"Single-Awd.","Army","Impl. of
+863-09",16.5892803028627
+"781",2012-09-30,"Single-Awd.","Navy","YOUNG",0.201091684347647
+"782",2012-09-30,"Single-Awd.","Navy","CARTER pre-Task
+& Delivery Comp.",0.264775283575327
+"783",2012-09-30,"Single-Awd.","Navy","Task &
+Delivery Comp.",1.70207903830707
+"784",2012-09-30,"Single-Awd.","Navy","Impl. of
+863-09",9.15295379852744
+"785",2012-09-30,"Single-Awd.","Air Force","YOUNG",0.453010720842344
+"786",2012-09-30,"Single-Awd.","Air Force","CARTER pre-Task
+& Delivery Comp.",1.0009837030172
+"787",2012-09-30,"Single-Awd.","Air Force","Task &
+Delivery Comp.",4.92558161882535
+"788",2012-09-30,"Single-Awd.","Air Force","Impl. of
+863-09",6.80289233506076
+"789",2012-09-30,"Single-Awd.","DLA","YOUNG",0.133051816280507
+"790",2012-09-30,"Single-Awd.","DLA","CARTER pre-Task
+& Delivery Comp.",0.284587794058284
+"791",2012-09-30,"Single-Awd.","DLA","Task &
+Delivery Comp.",1.36672010405725
+"792",2012-09-30,"Single-Awd.","DLA","Impl. of
+863-09",21.4148244048916
+"793",2012-09-30,"Single-Awd.","MDA","YOUNG",0.2017308412007
+"794",2012-09-30,"Single-Awd.","MDA","CARTER pre-Task
+& Delivery Comp.",0.0336703609000103
+"795",2012-09-30,"Single-Awd.","MDA","Task &
+Delivery Comp.",0.346464766594583
+"796",2012-09-30,"Single-Awd.","MDA","Impl. of
+863-09",0.240549656338173
+"797",2012-09-30,"Single-Awd.","Military
+Health","YOUNG",-0.0234617945937597
+"798",2012-09-30,"Single-Awd.","Military
+Health","CARTER pre-Task
+& Delivery Comp.",-0.00432966198125837
+"799",2012-09-30,"Single-Awd.","Military
+Health","Task &
+Delivery Comp.",-0.00823643317886933
+"800",2012-09-30,"Single-Awd.","Military
+Health","Impl. of
+863-09",0.0502333561322212
+"801",2012-09-30,"Single-Awd.","Additional
+DoD
+Components","YOUNG",0.201796379116466
+"802",2012-09-30,"Single-Awd.","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.326042457058593
+"803",2012-09-30,"Single-Awd.","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.520326637359592
+"804",2012-09-30,"Single-Awd.","Additional
+DoD
+Components","Impl. of
+863-09",2.80975369814643
+"805",2012-09-30,"Unlbd. IDV","Army","YOUNG",0.00400522561013284
+"806",2012-09-30,"Unlbd. IDV","Army","CARTER pre-Task
+& Delivery Comp.",0.0050955094223046
+"807",2012-09-30,"Unlbd. IDV","Army","Task &
+Delivery Comp.",0.00216470259499537
+"808",2012-09-30,"Unlbd. IDV","Army","Impl. of
+863-09",0.009125434373391
+"809",2012-09-30,"Unlbd. IDV","Navy","YOUNG",0.00299466294923283
+"810",2012-09-30,"Unlbd. IDV","Navy","CARTER pre-Task
+& Delivery Comp.",0.00300416648130986
+"811",2012-09-30,"Unlbd. IDV","Navy","Task &
+Delivery Comp.",0.000906235361960663
+"812",2012-09-30,"Unlbd. IDV","Navy","Impl. of
+863-09",0.00752434230254351
+"813",2012-09-30,"Unlbd. IDV","Air Force","YOUNG",7.67014416640923e-05
+"814",2012-09-30,"Unlbd. IDV","Air Force","Task &
+Delivery Comp.",-0.000696049562351972
+"815",2012-09-30,"Unlbd. IDV","Air Force","Impl. of
+863-09",0.18749550742457
+"816",2012-09-30,"Unlbd. IDV","DLA","CARTER pre-Task
+& Delivery Comp.",0.000385227051796931
+"817",2012-09-30,"Unlbd. IDV","DLA","Task &
+Delivery Comp.",0.000135364462980126
+"818",2012-09-30,"Unlbd. IDV","DLA","Impl. of
+863-09",0.00333914761610545
+"819",2012-09-30,"Unlbd. IDV","Military
+Health","Task &
+Delivery Comp.",7.68962207805581e-05
+"820",2012-09-30,"Unlbd. IDV","Military
+Health","Impl. of
+863-09",6.89095973638142e-05
+"821",2012-09-30,"Unlbd. IDV","Additional
+DoD
+Components","Task &
+Delivery Comp.",6.28632066728452e-05
+"822",2012-09-30,"Unlbd. IDV","Additional
+DoD
+Components","Impl. of
+863-09",0.0166860845330038
+"823",2013-09-30,"BPA","Army","CARTER pre-Task
+& Delivery Comp.",0.00164669704407434
+"824",2013-09-30,"BPA","Army","Task &
+Delivery Comp.",0.133197123101046
+"825",2013-09-30,"BPA","Army","Impl. of
+863-09",0.962216607822586
+"826",2013-09-30,"BPA","Navy","CARTER pre-Task
+& Delivery Comp.",0
+"827",2013-09-30,"BPA","Navy","Task &
+Delivery Comp.",-0.00122125426688331
+"828",2013-09-30,"BPA","Navy","Impl. of
+863-09",0.269496137092109
+"829",2013-09-30,"BPA","Air Force","CARTER pre-Task
+& Delivery Comp.",0
+"830",2013-09-30,"BPA","Air Force","Task &
+Delivery Comp.",-0.000109371798314207
+"831",2013-09-30,"BPA","Air Force","Impl. of
+863-09",0.0907840044247994
+"832",2013-09-30,"BPA","DLA","Task &
+Delivery Comp.",0.0232602361939677
+"833",2013-09-30,"BPA","DLA","Impl. of
+863-09",0.257214306650249
+"834",2013-09-30,"BPA","MDA","Task &
+Delivery Comp.",0
+"835",2013-09-30,"BPA","Military
+Health","Task &
+Delivery Comp.",0
+"836",2013-09-30,"BPA","Military
+Health","Impl. of
+863-09",2.9441495074642e-05
+"837",2013-09-30,"BPA","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.0820823647369757
+"838",2013-09-30,"BPA","Additional
+DoD
+Components","Impl. of
+863-09",0.327902168132629
+"839",2013-09-30,"Definitive","Army","YOUNG",2.43114873403636
+"840",2013-09-30,"Definitive","Army","CARTER pre-Task
+& Delivery Comp.",1.95635522782177
+"841",2013-09-30,"Definitive","Army","Task &
+Delivery Comp.",9.26911730732954
+"842",2013-09-30,"Definitive","Army","Impl. of
+863-09",24.1618879404969
+"843",2013-09-30,"Definitive","Navy","YOUNG",8.6467573421698
+"844",2013-09-30,"Definitive","Navy","CARTER pre-Task
+& Delivery Comp.",2.61089344907647
+"845",2013-09-30,"Definitive","Navy","Task &
+Delivery Comp.",20.126437543253
+"846",2013-09-30,"Definitive","Navy","Impl. of
+863-09",24.4189032532576
+"847",2013-09-30,"Definitive","Air Force","YOUNG",3.71131763439636
+"848",2013-09-30,"Definitive","Air Force","CARTER pre-Task
+& Delivery Comp.",1.65011679310013
+"849",2013-09-30,"Definitive","Air Force","Task &
+Delivery Comp.",5.34641252861999
+"850",2013-09-30,"Definitive","Air Force","Impl. of
+863-09",14.1363856115828
+"851",2013-09-30,"Definitive","DLA","YOUNG",0.289284349020615
+"852",2013-09-30,"Definitive","DLA","CARTER pre-Task
+& Delivery Comp.",0.0397077649788768
+"853",2013-09-30,"Definitive","DLA","Task &
+Delivery Comp.",0.137318281512034
+"854",2013-09-30,"Definitive","DLA","Impl. of
+863-09",1.81991238329014
+"855",2013-09-30,"Definitive","MDA","YOUNG",0.0038505664092617
+"856",2013-09-30,"Definitive","MDA","CARTER pre-Task
+& Delivery Comp.",0.331936469142886
+"857",2013-09-30,"Definitive","MDA","Task &
+Delivery Comp.",1.67490562651041
+"858",2013-09-30,"Definitive","MDA","Impl. of
+863-09",0.651202906336245
+"859",2013-09-30,"Definitive","Military
+Health","YOUNG",1.89574241405382
+"860",2013-09-30,"Definitive","Military
+Health","CARTER pre-Task
+& Delivery Comp.",-0.000482945122880065
+"861",2013-09-30,"Definitive","Military
+Health","Task &
+Delivery Comp.",6.80846858161927
+"862",2013-09-30,"Definitive","Military
+Health","Impl. of
+863-09",1.1013902645422
+"863",2013-09-30,"Definitive","Additional
+DoD
+Components","YOUNG",0.153365153344267
+"864",2013-09-30,"Definitive","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.240941790067736
+"865",2013-09-30,"Definitive","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.608962439836498
+"866",2013-09-30,"Definitive","Additional
+DoD
+Components","Impl. of
+863-09",1.50385701094384
+"867",2013-09-30,"FSS","Army","YOUNG",0.0197867474051996
+"868",2013-09-30,"FSS","Army","CARTER pre-Task
+& Delivery Comp.",0.115015175344064
+"869",2013-09-30,"FSS","Army","Task &
+Delivery Comp.",0.409156343180563
+"870",2013-09-30,"FSS","Army","Impl. of
+863-09",1.24801795144267
+"871",2013-09-30,"FSS","Navy","YOUNG",0.0154932681131309
+"872",2013-09-30,"FSS","Navy","CARTER pre-Task
+& Delivery Comp.",0.0195164976979791
+"873",2013-09-30,"FSS","Navy","Task &
+Delivery Comp.",0.138498273999289
+"874",2013-09-30,"FSS","Navy","Impl. of
+863-09",0.861335529118818
+"875",2013-09-30,"FSS","Air Force","YOUNG",0.0364980793981923
+"876",2013-09-30,"FSS","Air Force","CARTER pre-Task
+& Delivery Comp.",0.0566791077834874
+"877",2013-09-30,"FSS","Air Force","Task &
+Delivery Comp.",0.170603647089063
+"878",2013-09-30,"FSS","Air Force","Impl. of
+863-09",0.556432077924342
+"879",2013-09-30,"FSS","DLA","YOUNG",0.0112037339994922
+"880",2013-09-30,"FSS","DLA","CARTER pre-Task
+& Delivery Comp.",0.0134622491414644
+"881",2013-09-30,"FSS","DLA","Task &
+Delivery Comp.",0.0446213928660506
+"882",2013-09-30,"FSS","DLA","Impl. of
+863-09",0.163594846027318
+"883",2013-09-30,"FSS","MDA","YOUNG",-0.00037063827967909
+"884",2013-09-30,"FSS","MDA","CARTER pre-Task
+& Delivery Comp.",-0.000375574996547172
+"885",2013-09-30,"FSS","MDA","Task &
+Delivery Comp.",0.00685080021742663
+"886",2013-09-30,"FSS","MDA","Impl. of
+863-09",0.0139986432756169
+"887",2013-09-30,"FSS","Military
+Health","YOUNG",0.0023983584670458
+"888",2013-09-30,"FSS","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0.00168637710927186
+"889",2013-09-30,"FSS","Military
+Health","Task &
+Delivery Comp.",0.0251819077274297
+"890",2013-09-30,"FSS","Military
+Health","Impl. of
+863-09",0.0466355457549507
+"891",2013-09-30,"FSS","Additional
+DoD
+Components","YOUNG",0.0794675806730984
+"892",2013-09-30,"FSS","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.107725146540165
+"893",2013-09-30,"FSS","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.44522970203331
+"894",2013-09-30,"FSS","Additional
+DoD
+Components","Impl. of
+863-09",0.698455931449782
+"895",2013-09-30,"Multi-Awd.","Army","YOUNG",0.39454632435818
+"896",2013-09-30,"Multi-Awd.","Army","CARTER pre-Task
+& Delivery Comp.",5.03823223882512
+"897",2013-09-30,"Multi-Awd.","Army","Task &
+Delivery Comp.",3.72907694446095
+"898",2013-09-30,"Multi-Awd.","Army","Impl. of
+863-09",10.5725544236109
+"899",2013-09-30,"Multi-Awd.","Navy","YOUNG",0.750839579400833
+"900",2013-09-30,"Multi-Awd.","Navy","CARTER pre-Task
+& Delivery Comp.",0.900924669291053
+"901",2013-09-30,"Multi-Awd.","Navy","Task &
+Delivery Comp.",2.19897017080999
+"902",2013-09-30,"Multi-Awd.","Navy","Impl. of
+863-09",6.50915730548654
+"903",2013-09-30,"Multi-Awd.","Air Force","YOUNG",0.0157478438093836
+"904",2013-09-30,"Multi-Awd.","Air Force","CARTER pre-Task
+& Delivery Comp.",0.0700318505679903
+"905",2013-09-30,"Multi-Awd.","Air Force","Task &
+Delivery Comp.",0.732285049841982
+"906",2013-09-30,"Multi-Awd.","Air Force","Impl. of
+863-09",3.64246583069168
+"907",2013-09-30,"Multi-Awd.","DLA","YOUNG",0.0187156806155174
+"908",2013-09-30,"Multi-Awd.","DLA","CARTER pre-Task
+& Delivery Comp.",0.024023200474967
+"909",2013-09-30,"Multi-Awd.","DLA","Task &
+Delivery Comp.",0.0847832255243221
+"910",2013-09-30,"Multi-Awd.","DLA","Impl. of
+863-09",1.07495697504428
+"911",2013-09-30,"Multi-Awd.","MDA","YOUNG",0
+"912",2013-09-30,"Multi-Awd.","MDA","CARTER pre-Task
+& Delivery Comp.",0
+"913",2013-09-30,"Multi-Awd.","MDA","Task &
+Delivery Comp.",0.333071823469585
+"914",2013-09-30,"Multi-Awd.","MDA","Impl. of
+863-09",0.0691206190758607
+"915",2013-09-30,"Multi-Awd.","Military
+Health","YOUNG",0.000428750571239972
+"916",2013-09-30,"Multi-Awd.","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0
+"917",2013-09-30,"Multi-Awd.","Military
+Health","Task &
+Delivery Comp.",0.0829853347745506
+"918",2013-09-30,"Multi-Awd.","Military
+Health","Impl. of
+863-09",0.0242415597256017
+"919",2013-09-30,"Multi-Awd.","Additional
+DoD
+Components","YOUNG",0.0525746012384483
+"920",2013-09-30,"Multi-Awd.","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.257086544464304
+"921",2013-09-30,"Multi-Awd.","Additional
+DoD
+Components","Task &
+Delivery Comp.",1.25418782997756
+"922",2013-09-30,"Multi-Awd.","Additional
+DoD
+Components","Impl. of
+863-09",5.17870065014918
+"923",2013-09-30,"Other IDV","Army","YOUNG",-0.000208076854676551
+"924",2013-09-30,"Other IDV","Army","CARTER pre-Task
+& Delivery Comp.",0.00213427269219051
+"925",2013-09-30,"Other IDV","Army","Task &
+Delivery Comp.",0.0359558284243932
+"926",2013-09-30,"Other IDV","Army","Impl. of
+863-09",0.841520233039809
+"927",2013-09-30,"Other IDV","Navy","YOUNG",0.0053748138519346
+"928",2013-09-30,"Other IDV","Navy","CARTER pre-Task
+& Delivery Comp.",-0.000406932476896517
+"929",2013-09-30,"Other IDV","Navy","Task &
+Delivery Comp.",0.146323570800548
+"930",2013-09-30,"Other IDV","Navy","Impl. of
+863-09",2.49721390247385
+"931",2013-09-30,"Other IDV","Air Force","YOUNG",-0.000968812409972581
+"932",2013-09-30,"Other IDV","Air Force","CARTER pre-Task
+& Delivery Comp.",0.0301744862572357
+"933",2013-09-30,"Other IDV","Air Force","Task &
+Delivery Comp.",0.302276818531939
+"934",2013-09-30,"Other IDV","Air Force","Impl. of
+863-09",3.53201830949497
+"935",2013-09-30,"Other IDV","DLA","CARTER pre-Task
+& Delivery Comp.",-5.86374428760028e-05
+"936",2013-09-30,"Other IDV","DLA","Task &
+Delivery Comp.",0.00107053720361531
+"937",2013-09-30,"Other IDV","DLA","Impl. of
+863-09",1.00036043608683
+"938",2013-09-30,"Other IDV","Military
+Health","Impl. of
+863-09",0.0610832699871027
+"939",2013-09-30,"Other IDV","Additional
+DoD
+Components","YOUNG",0.0257354453208084
+"940",2013-09-30,"Other IDV","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.0336285907001117
+"941",2013-09-30,"Other IDV","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.139133635678989
+"942",2013-09-30,"Other IDV","Additional
+DoD
+Components","Impl. of
+863-09",0.716245110312379
+"943",2013-09-30,"Pur. Order","Army","YOUNG",0.0271967862808977
+"944",2013-09-30,"Pur. Order","Army","CARTER pre-Task
+& Delivery Comp.",0.0458112950499645
+"945",2013-09-30,"Pur. Order","Army","Task &
+Delivery Comp.",0.227844211819539
+"946",2013-09-30,"Pur. Order","Army","Impl. of
+863-09",1.53310295429156
+"947",2013-09-30,"Pur. Order","Navy","YOUNG",-0.00351280266040418
+"948",2013-09-30,"Pur. Order","Navy","CARTER pre-Task
+& Delivery Comp.",0.017233746001828
+"949",2013-09-30,"Pur. Order","Navy","Task &
+Delivery Comp.",0.0567632853693511
+"950",2013-09-30,"Pur. Order","Navy","Impl. of
+863-09",1.27909595661328
+"951",2013-09-30,"Pur. Order","Air Force","YOUNG",0.00550867824068244
+"952",2013-09-30,"Pur. Order","Air Force","CARTER pre-Task
+& Delivery Comp.",0.0132358078597542
+"953",2013-09-30,"Pur. Order","Air Force","Task &
+Delivery Comp.",0.0574096969117498
+"954",2013-09-30,"Pur. Order","Air Force","Impl. of
+863-09",0.520265533819742
+"955",2013-09-30,"Pur. Order","DLA","YOUNG",-0.000749282909109373
+"956",2013-09-30,"Pur. Order","DLA","CARTER pre-Task
+& Delivery Comp.",-0.0015878952005687
+"957",2013-09-30,"Pur. Order","DLA","Task &
+Delivery Comp.",-0.00771195606946278
+"958",2013-09-30,"Pur. Order","DLA","Impl. of
+863-09",3.1538769196406
+"959",2013-09-30,"Pur. Order","MDA","YOUNG",-3.26856199857825e-05
+"960",2013-09-30,"Pur. Order","MDA","Task &
+Delivery Comp.",6.5764192139738e-05
+"961",2013-09-30,"Pur. Order","MDA","Impl. of
+863-09",0.000172326840865238
+"962",2013-09-30,"Pur. Order","Military
+Health","YOUNG",5.46852640398091e-05
+"963",2013-09-30,"Pur. Order","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0.000403193062354016
+"964",2013-09-30,"Pur. Order","Military
+Health","Task &
+Delivery Comp.",0.00147692832568295
+"965",2013-09-30,"Pur. Order","Military
+Health","Impl. of
+863-09",0.0100169789199756
+"966",2013-09-30,"Pur. Order","Additional
+DoD
+Components","YOUNG",0.000546744185132528
+"967",2013-09-30,"Pur. Order","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.00572536936975729
+"968",2013-09-30,"Pur. Order","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.0292992679909617
+"969",2013-09-30,"Pur. Order","Additional
+DoD
+Components","Impl. of
+863-09",0.520286459162486
+"970",2013-09-30,"Single-Awd.","Army","YOUNG",0.309894685929623
+"971",2013-09-30,"Single-Awd.","Army","CARTER pre-Task
+& Delivery Comp.",0.174838101881487
+"972",2013-09-30,"Single-Awd.","Army","Task &
+Delivery Comp.",1.94064808040957
+"973",2013-09-30,"Single-Awd.","Army","Impl. of
+863-09",20.9432461203714
+"974",2013-09-30,"Single-Awd.","Navy","YOUNG",0.0263876729715649
+"975",2013-09-30,"Single-Awd.","Navy","CARTER pre-Task
+& Delivery Comp.",0.0400068433734132
+"976",2013-09-30,"Single-Awd.","Navy","Task &
+Delivery Comp.",0.978908356872245
+"977",2013-09-30,"Single-Awd.","Navy","Impl. of
+863-09",14.2036597163653
+"978",2013-09-30,"Single-Awd.","Air Force","YOUNG",0.0775253884329237
+"979",2013-09-30,"Single-Awd.","Air Force","CARTER pre-Task
+& Delivery Comp.",0.363641906448055
+"980",2013-09-30,"Single-Awd.","Air Force","Task &
+Delivery Comp.",3.27631623327816
+"981",2013-09-30,"Single-Awd.","Air Force","Impl. of
+863-09",13.1144812849593
+"982",2013-09-30,"Single-Awd.","DLA","YOUNG",0.00462143722128567
+"983",2013-09-30,"Single-Awd.","DLA","CARTER pre-Task
+& Delivery Comp.",0.0359935500382858
+"984",2013-09-30,"Single-Awd.","DLA","Task &
+Delivery Comp.",1.49675194902112
+"985",2013-09-30,"Single-Awd.","DLA","Impl. of
+863-09",23.7225378966001
+"986",2013-09-30,"Single-Awd.","MDA","YOUNG",0.116394468574287
+"987",2013-09-30,"Single-Awd.","MDA","CARTER pre-Task
+& Delivery Comp.",0.0253417914403372
+"988",2013-09-30,"Single-Awd.","MDA","Task &
+Delivery Comp.",0.476290562829288
+"989",2013-09-30,"Single-Awd.","MDA","Impl. of
+863-09",0.929547558404184
+"990",2013-09-30,"Single-Awd.","Military
+Health","YOUNG",4.42774449070783e-07
+"991",2013-09-30,"Single-Awd.","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0.000782937454250025
+"992",2013-09-30,"Single-Awd.","Military
+Health","Task &
+Delivery Comp.",0.00100531658728547
+"993",2013-09-30,"Single-Awd.","Military
+Health","Impl. of
+863-09",0.388107754116787
+"994",2013-09-30,"Single-Awd.","Additional
+DoD
+Components","YOUNG",-0.0856581071836092
+"995",2013-09-30,"Single-Awd.","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.185633720051996
+"996",2013-09-30,"Single-Awd.","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.210385766971159
+"997",2013-09-30,"Single-Awd.","Additional
+DoD
+Components","Impl. of
+863-09",4.5402354429022
+"998",2013-09-30,"Unlbd. IDV","Army","YOUNG",0.000272313912562202
+"999",2013-09-30,"Unlbd. IDV","Army","CARTER pre-Task
+& Delivery Comp.",0.00377350249456687
+"1000",2013-09-30,"Unlbd. IDV","Army","Task &
+Delivery Comp.",0.00326601952807962
+"1001",2013-09-30,"Unlbd. IDV","Army","Impl. of
+863-09",0.0131199480281304
+"1002",2013-09-30,"Unlbd. IDV","Navy","YOUNG",0.00158574157713009
+"1003",2013-09-30,"Unlbd. IDV","Navy","CARTER pre-Task
+& Delivery Comp.",0.000652485079516604
+"1004",2013-09-30,"Unlbd. IDV","Navy","Task &
+Delivery Comp.",0.00792067349091094
+"1005",2013-09-30,"Unlbd. IDV","Navy","Impl. of
+863-09",0.0134914953091297
+"1006",2013-09-30,"Unlbd. IDV","Air Force","YOUNG",7.29724484614603e-05
+"1007",2013-09-30,"Unlbd. IDV","Air Force","CARTER pre-Task
+& Delivery Comp.",-2.00142075759114e-05
+"1008",2013-09-30,"Unlbd. IDV","Air Force","Task &
+Delivery Comp.",-0.000275024098608713
+"1009",2013-09-30,"Unlbd. IDV","Air Force","Impl. of
+863-09",0.156539377371788
+"1010",2013-09-30,"Unlbd. IDV","DLA","Impl. of
+863-09",0.775330784871839
+"1011",2013-09-30,"Unlbd. IDV","Military
+Health","Task &
+Delivery Comp.",7.80610132019904e-05
+"1012",2013-09-30,"Unlbd. IDV","Military
+Health","Impl. of
+863-09",1.90914694830913e-05
+"1013",2013-09-30,"Unlbd. IDV","Additional
+DoD
+Components","Task &
+Delivery Comp.",8.72251548695034e-05
+"1014",2013-09-30,"Unlbd. IDV","Additional
+DoD
+Components","Impl. of
+863-09",0.0097061154171829
+"1015",2014-09-18,"BPA","Army","Impl. of
+863-09",0.5677186511727
+"1016",2014-09-18,"BPA","Navy","Impl. of
+863-09",0.3057991910161
+"1017",2014-09-18,"BPA","Air Force","Impl. of
+863-09",0.2483832398486
+"1018",2014-09-18,"BPA","DLA","Impl. of
+863-09",0.3092532960611
+"1019",2014-09-18,"BPA","Military
+Health","Impl. of
+863-09",0.0015496189954
+"1020",2014-09-18,"BPA","Additional
+DoD
+Components","Impl. of
+863-09",0.4685520821109
+"1021",2014-09-18,"Definitive","Army","Impl. of
+863-09",24.9641739566893
+"1022",2014-09-18,"Definitive","Navy","Impl. of
+863-09",30.3571499974717
+"1023",2014-09-18,"Definitive","Air Force","Impl. of
+863-09",15.295302936978
+"1024",2014-09-18,"Definitive","DLA","Impl. of
+863-09",1.8893876323488
+"1025",2014-09-18,"Definitive","MDA","Impl. of
+863-09",1.0005327644289
+"1026",2014-09-18,"Definitive","Military
+Health","Impl. of
+863-09",4.5341288049694
+"1027",2014-09-18,"Definitive","Additional
+DoD
+Components","Impl. of
+863-09",1.7878316965588
+"1028",2014-09-18,"FSS","Army","Impl. of
+863-09",0.9713164097762
+"1029",2014-09-18,"FSS","Navy","Impl. of
+863-09",0.6865330106555
+"1030",2014-09-18,"FSS","Air Force","Impl. of
+863-09",0.7207129897003
+"1031",2014-09-18,"FSS","DLA","Impl. of
+863-09",0.1536615339769
+"1032",2014-09-18,"FSS","MDA","Impl. of
+863-09",0.0137866241282
+"1033",2014-09-18,"FSS","Military
+Health","Impl. of
+863-09",0.0521218449265
+"1034",2014-09-18,"FSS","Additional
+DoD
+Components","Impl. of
+863-09",0.735656974386
+"1035",2014-09-18,"Multi-Awd.","Army","Impl. of
+863-09",9.4187588338416
+"1036",2014-09-18,"Multi-Awd.","Navy","Impl. of
+863-09",8.0175757632367
+"1037",2014-09-18,"Multi-Awd.","Air Force","Impl. of
+863-09",3.3925884746942
+"1038",2014-09-18,"Multi-Awd.","DLA","Impl. of
+863-09",0.5647083632116
+"1039",2014-09-18,"Multi-Awd.","MDA","Impl. of
+863-09",0.1953618191042
+"1040",2014-09-18,"Multi-Awd.","Military
+Health","Impl. of
+863-09",0.0205828399146
+"1041",2014-09-18,"Multi-Awd.","Additional
+DoD
+Components","Impl. of
+863-09",4.1346094296632
+"1042",2014-09-18,"Other IDV","Army","Impl. of
+863-09",0.7045263277941
+"1043",2014-09-18,"Other IDV","Navy","Impl. of
+863-09",2.6494761619579
+"1044",2014-09-18,"Other IDV","Air Force","Impl. of
+863-09",3.2269399874905
+"1045",2014-09-18,"Other IDV","DLA","Impl. of
+863-09",1.2336687488718
+"1046",2014-09-18,"Other IDV","Military
+Health","Impl. of
+863-09",0.0883698154292
+"1047",2014-09-18,"Other IDV","Additional
+DoD
+Components","Impl. of
+863-09",0.8546108141491
+"1048",2014-09-18,"Pur. Order","Army","Impl. of
+863-09",1.4405113251454
+"1049",2014-09-18,"Pur. Order","Navy","Impl. of
+863-09",1.2752524884838
+"1050",2014-09-18,"Pur. Order","Air Force","Impl. of
+863-09",0.5056106415661
+"1051",2014-09-18,"Pur. Order","DLA","Impl. of
+863-09",3.0858583334605
+"1052",2014-09-18,"Pur. Order","MDA","Impl. of
+863-09",0.0001040815
+"1053",2014-09-18,"Pur. Order","Military
+Health","Impl. of
+863-09",0.0104892674223
+"1054",2014-09-18,"Pur. Order","Additional
+DoD
+Components","Impl. of
+863-09",0.4641494370253
+"1055",2014-09-18,"Single-Awd.","Army","Impl. of
+863-09",16.2139927117804
+"1056",2014-09-18,"Single-Awd.","Navy","Impl. of
+863-09",12.7498037462404
+"1057",2014-09-18,"Single-Awd.","Air Force","Impl. of
+863-09",12.5681716480172
+"1058",2014-09-18,"Single-Awd.","DLA","Impl. of
+863-09",20.441908528502
+"1059",2014-09-18,"Single-Awd.","MDA","Impl. of
+863-09",1.4113099655241
+"1060",2014-09-18,"Single-Awd.","Military
+Health","Impl. of
+863-09",0.4870784488347
+"1061",2014-09-18,"Single-Awd.","Additional
+DoD
+Components","Impl. of
+863-09",4.4896226124763
+"1062",2014-09-18,"Unlbd. IDV","Army","Impl. of
+863-09",0.0026665021118
+"1063",2014-09-18,"Unlbd. IDV","Navy","Impl. of
+863-09",0.0596717369975
+"1064",2014-09-18,"Unlbd. IDV","Air Force","Impl. of
+863-09",0.0159580153153
+"1065",2014-09-18,"Unlbd. IDV","DLA","Impl. of
+863-09",1.3528863864413
+"1066",2014-09-18,"Unlbd. IDV","MDA","Impl. of
+863-09",0.159582669
+"1067",2014-09-18,"Unlbd. IDV","Military
+Health","Impl. of
+863-09",2.25e-05
+"1068",2014-09-18,"Unlbd. IDV","Additional
+DoD
+Components","Impl. of
+863-09",0.0037149079726
+"1069",2014-09-30,"BPA","Army","CARTER pre-Task
+& Delivery Comp.",0.00207777725
+"1070",2014-09-30,"BPA","Army","Task &
+Delivery Comp.",0.1104175650176
+"1071",2014-09-30,"BPA","Navy","CARTER pre-Task
+& Delivery Comp.",0
+"1072",2014-09-30,"BPA","Navy","Task &
+Delivery Comp.",0.0001071617115
+"1073",2014-09-30,"BPA","Air Force","CARTER pre-Task
+& Delivery Comp.",0
+"1074",2014-09-30,"BPA","Air Force","Task &
+Delivery Comp.",-0.0006015550099
+"1075",2014-09-30,"BPA","DLA","YOUNG",-4.2539102e-06
+"1076",2014-09-30,"BPA","DLA","Task &
+Delivery Comp.",-0.0002504768789
+"1077",2014-09-30,"BPA","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.0740313605711
+"1078",2014-09-30,"Definitive","Army","YOUNG",1.713080779387
+"1079",2014-09-30,"Definitive","Army","CARTER pre-Task
+& Delivery Comp.",0.9952788824732
+"1080",2014-09-30,"Definitive","Army","Task &
+Delivery Comp.",4.1464166548372
+"1081",2014-09-30,"Definitive","Navy","YOUNG",5.3162740755393
+"1082",2014-09-30,"Definitive","Navy","CARTER pre-Task
+& Delivery Comp.",2.1646330073467
+"1083",2014-09-30,"Definitive","Navy","Task &
+Delivery Comp.",9.4840035576546
+"1084",2014-09-30,"Definitive","Air Force","YOUNG",2.9310045818161
+"1085",2014-09-30,"Definitive","Air Force","CARTER pre-Task
+& Delivery Comp.",1.4804598025299
+"1086",2014-09-30,"Definitive","Air Force","Task &
+Delivery Comp.",5.4737540824834
+"1087",2014-09-30,"Definitive","DLA","YOUNG",0.1645021329127
+"1088",2014-09-30,"Definitive","DLA","CARTER pre-Task
+& Delivery Comp.",0.0642460107052
+"1089",2014-09-30,"Definitive","DLA","Task &
+Delivery Comp.",0.1116271027629
+"1090",2014-09-30,"Definitive","MDA","YOUNG",-0.0002100923149
+"1091",2014-09-30,"Definitive","MDA","CARTER pre-Task
+& Delivery Comp.",0.2789639937956
+"1092",2014-09-30,"Definitive","MDA","Task &
+Delivery Comp.",1.5432577701747
+"1093",2014-09-30,"Definitive","Military
+Health","YOUNG",0.7671680254485
+"1094",2014-09-30,"Definitive","Military
+Health","Task &
+Delivery Comp.",6.9694258148549
+"1095",2014-09-30,"Definitive","Additional
+DoD
+Components","YOUNG",-0.0476063930911
+"1096",2014-09-30,"Definitive","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.1367559567152
+"1097",2014-09-30,"Definitive","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.5146229849754
+"1098",2014-09-30,"FSS","Army","YOUNG",-0.00562843203
+"1099",2014-09-30,"FSS","Army","CARTER pre-Task
+& Delivery Comp.",0.032195480772
+"1100",2014-09-30,"FSS","Army","Task &
+Delivery Comp.",0.251875534947
+"1101",2014-09-30,"FSS","Navy","YOUNG",-0.0018307989933
+"1102",2014-09-30,"FSS","Navy","CARTER pre-Task
+& Delivery Comp.",0.0063299762273
+"1103",2014-09-30,"FSS","Navy","Task &
+Delivery Comp.",0.0774919463641
+"1104",2014-09-30,"FSS","Air Force","YOUNG",0.0054797646303
+"1105",2014-09-30,"FSS","Air Force","CARTER pre-Task
+& Delivery Comp.",0.0325440602445
+"1106",2014-09-30,"FSS","Air Force","Task &
+Delivery Comp.",0.0914192609386
+"1107",2014-09-30,"FSS","DLA","YOUNG",0.000174342558
+"1108",2014-09-30,"FSS","DLA","CARTER pre-Task
+& Delivery Comp.",0.0158173263508
+"1109",2014-09-30,"FSS","DLA","Task &
+Delivery Comp.",0.0164458096602
+"1110",2014-09-30,"FSS","MDA","YOUNG",-0.0002993068981
+"1111",2014-09-30,"FSS","MDA","CARTER pre-Task
+& Delivery Comp.",7.56286784e-05
+"1112",2014-09-30,"FSS","MDA","Task &
+Delivery Comp.",0.006838736963
+"1113",2014-09-30,"FSS","Military
+Health","YOUNG",0.001284
+"1114",2014-09-30,"FSS","Military
+Health","CARTER pre-Task
+& Delivery Comp.",0.0010789647628
+"1115",2014-09-30,"FSS","Military
+Health","Task &
+Delivery Comp.",0.0324599756275
+"1116",2014-09-30,"FSS","Additional
+DoD
+Components","YOUNG",0.0167323104786
+"1117",2014-09-30,"FSS","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.0508742746981
+"1118",2014-09-30,"FSS","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.3610666591556
+"1119",2014-09-30,"Multi-Awd.","Army","YOUNG",0.1168203632157
+"1120",2014-09-30,"Multi-Awd.","Army","CARTER pre-Task
+& Delivery Comp.",1.6879471000893
+"1121",2014-09-30,"Multi-Awd.","Army","Task &
+Delivery Comp.",1.1159858272344
+"1122",2014-09-30,"Multi-Awd.","Navy","YOUNG",0.2910952861883
+"1123",2014-09-30,"Multi-Awd.","Navy","CARTER pre-Task
+& Delivery Comp.",0.649594090349
+"1124",2014-09-30,"Multi-Awd.","Navy","Task &
+Delivery Comp.",1.7459615801795
+"1125",2014-09-30,"Multi-Awd.","Air Force","YOUNG",0.006939221444
+"1126",2014-09-30,"Multi-Awd.","Air Force","CARTER pre-Task
+& Delivery Comp.",0.0425372732936
+"1127",2014-09-30,"Multi-Awd.","Air Force","Task &
+Delivery Comp.",0.3481380648668
+"1128",2014-09-30,"Multi-Awd.","DLA","YOUNG",-0.0007231542273
+"1129",2014-09-30,"Multi-Awd.","DLA","CARTER pre-Task
+& Delivery Comp.",0.0053901198
+"1130",2014-09-30,"Multi-Awd.","DLA","Task &
+Delivery Comp.",0.0067196844645
+"1131",2014-09-30,"Multi-Awd.","MDA","CARTER pre-Task
+& Delivery Comp.",0
+"1132",2014-09-30,"Multi-Awd.","MDA","Task &
+Delivery Comp.",0.2376294429058
+"1133",2014-09-30,"Multi-Awd.","Military
+Health","YOUNG",0
+"1134",2014-09-30,"Multi-Awd.","Military
+Health","Task &
+Delivery Comp.",0.0368791288221
+"1135",2014-09-30,"Multi-Awd.","Additional
+DoD
+Components","YOUNG",-0.0427286626882
+"1136",2014-09-30,"Multi-Awd.","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.0829211251932
+"1137",2014-09-30,"Multi-Awd.","Additional
+DoD
+Components","Task &
+Delivery Comp.",1.0122133067057
+"1138",2014-09-30,"Other IDV","Army","YOUNG",-7.13717911e-05
+"1139",2014-09-30,"Other IDV","Army","CARTER pre-Task
+& Delivery Comp.",0.00016995989
+"1140",2014-09-30,"Other IDV","Army","Task &
+Delivery Comp.",0.0321799305591
+"1141",2014-09-30,"Other IDV","Navy","YOUNG",-2.93798906e-05
+"1142",2014-09-30,"Other IDV","Navy","CARTER pre-Task
+& Delivery Comp.",-2.76457798e-05
+"1143",2014-09-30,"Other IDV","Navy","Task &
+Delivery Comp.",0.0529042780946
+"1144",2014-09-30,"Other IDV","Air Force","YOUNG",-9.104723e-05
+"1145",2014-09-30,"Other IDV","Air Force","CARTER pre-Task
+& Delivery Comp.",0.01507965095
+"1146",2014-09-30,"Other IDV","Air Force","Task &
+Delivery Comp.",0.0682486662861
+"1147",2014-09-30,"Other IDV","DLA","YOUNG",-6e-11
+"1148",2014-09-30,"Other IDV","DLA","Task &
+Delivery Comp.",-0.000223036155
+"1149",2014-09-30,"Other IDV","Additional
+DoD
+Components","YOUNG",0.0066651069292
+"1150",2014-09-30,"Other IDV","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.0219870460948
+"1151",2014-09-30,"Other IDV","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.0889237142317
+"1152",2014-09-30,"Pur. Order","Army","YOUNG",-0.003335532364
+"1153",2014-09-30,"Pur. Order","Army","CARTER pre-Task
+& Delivery Comp.",0.0233590095535
+"1154",2014-09-30,"Pur. Order","Army","Task &
+Delivery Comp.",0.1194308702166
+"1155",2014-09-30,"Pur. Order","Navy","YOUNG",-0.0025099395421
+"1156",2014-09-30,"Pur. Order","Navy","CARTER pre-Task
+& Delivery Comp.",0.0022480480838
+"1157",2014-09-30,"Pur. Order","Navy","Task &
+Delivery Comp.",0.029695490497
+"1158",2014-09-30,"Pur. Order","Air Force","YOUNG",-0.000754287212
+"1159",2014-09-30,"Pur. Order","Air Force","CARTER pre-Task
+& Delivery Comp.",0.007307516721
+"1160",2014-09-30,"Pur. Order","Air Force","Task &
+Delivery Comp.",0.0409471611043
+"1161",2014-09-30,"Pur. Order","DLA","YOUNG",-0.0003727210612
+"1162",2014-09-30,"Pur. Order","DLA","CARTER pre-Task
+& Delivery Comp.",-0.0002766080705
+"1163",2014-09-30,"Pur. Order","DLA","Task &
+Delivery Comp.",-0.005630432808
+"1164",2014-09-30,"Pur. Order","MDA","CARTER pre-Task
+& Delivery Comp.",-3.9e-06
+"1165",2014-09-30,"Pur. Order","MDA","Task &
+Delivery Comp.",-9.5e-06
+"1166",2014-09-30,"Pur. Order","Military
+Health","Task &
+Delivery Comp.",0.0005404633604
+"1167",2014-09-30,"Pur. Order","Additional
+DoD
+Components","YOUNG",-0.0007828917417
+"1168",2014-09-30,"Pur. Order","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",0.0023574767261
+"1169",2014-09-30,"Pur. Order","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.0170967875375
+"1170",2014-09-30,"Single-Awd.","Army","YOUNG",-0.1307519848314
+"1171",2014-09-30,"Single-Awd.","Army","CARTER pre-Task
+& Delivery Comp.",-0.067370916282
+"1172",2014-09-30,"Single-Awd.","Army","Task &
+Delivery Comp.",1.1309082684644
+"1173",2014-09-30,"Single-Awd.","Navy","YOUNG",-0.0185773426978
+"1174",2014-09-30,"Single-Awd.","Navy","CARTER pre-Task
+& Delivery Comp.",-0.0452808381866
+"1175",2014-09-30,"Single-Awd.","Navy","Task &
+Delivery Comp.",0.2725249252234
+"1176",2014-09-30,"Single-Awd.","Air Force","YOUNG",-0.0041584062674
+"1177",2014-09-30,"Single-Awd.","Air Force","CARTER pre-Task
+& Delivery Comp.",0.4253273186168
+"1178",2014-09-30,"Single-Awd.","Air Force","Task &
+Delivery Comp.",2.0762289988509
+"1179",2014-09-30,"Single-Awd.","DLA","YOUNG",-0.0018545346798
+"1180",2014-09-30,"Single-Awd.","DLA","CARTER pre-Task
+& Delivery Comp.",-0.0051719001101
+"1181",2014-09-30,"Single-Awd.","DLA","Task &
+Delivery Comp.",0.4815343506631
+"1182",2014-09-30,"Single-Awd.","MDA","YOUNG",0.0513594812254
+"1183",2014-09-30,"Single-Awd.","MDA","CARTER pre-Task
+& Delivery Comp.",0.0034434747469
+"1184",2014-09-30,"Single-Awd.","MDA","Task &
+Delivery Comp.",0.3574913983881
+"1185",2014-09-30,"Single-Awd.","Military
+Health","YOUNG",-0.0004171221813
+"1186",2014-09-30,"Single-Awd.","Military
+Health","CARTER pre-Task
+& Delivery Comp.",-3.19562e-05
+"1187",2014-09-30,"Single-Awd.","Military
+Health","Task &
+Delivery Comp.",0.0032237225
+"1188",2014-09-30,"Single-Awd.","Additional
+DoD
+Components","YOUNG",-0.1897649506417
+"1189",2014-09-30,"Single-Awd.","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",-0.0073794772161
+"1190",2014-09-30,"Single-Awd.","Additional
+DoD
+Components","Task &
+Delivery Comp.",0.2507915645077
+"1191",2014-09-30,"Unlbd. IDV","Army","YOUNG",-0.0006242513819
+"1192",2014-09-30,"Unlbd. IDV","Army","CARTER pre-Task
+& Delivery Comp.",0.0010258985118
+"1193",2014-09-30,"Unlbd. IDV","Army","Task &
+Delivery Comp.",0.0037656362729
+"1194",2014-09-30,"Unlbd. IDV","Navy","YOUNG",0.00172001337
+"1195",2014-09-30,"Unlbd. IDV","Navy","CARTER pre-Task
+& Delivery Comp.",0.000708139
+"1196",2014-09-30,"Unlbd. IDV","Navy","Task &
+Delivery Comp.",0.0081726133698
+"1197",2014-09-30,"Unlbd. IDV","Air Force","Task &
+Delivery Comp.",-0.0001305696341
+"1198",2014-09-30,"Unlbd. IDV","DLA","Task &
+Delivery Comp.",-1.75950403e-05
+"1199",2014-09-30,"Unlbd. IDV","Military
+Health","Task &
+Delivery Comp.",7.91076797e-05
+"1200",2014-09-30,"Unlbd. IDV","Additional
+DoD
+Components","YOUNG",-5.6588e-06
+"1201",2014-09-30,"Unlbd. IDV","Additional
+DoD
+Components","CARTER pre-Task
+& Delivery Comp.",-8.7013e-07
+"1202",2014-09-30,"Unlbd. IDV","Additional
+DoD
+Components","Task &
+Delivery Comp.",7.542924e-05

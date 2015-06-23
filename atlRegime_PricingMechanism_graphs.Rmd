@@ -37,9 +37,10 @@ axis.text.size<-14
 You can also embed plots, for example:
 
 ```{r DateEntryAndProcessing, echo=FALSE}
-PlatformRegime  <- read.csv(
+PricingRegime  <- read.csv(
     unz("Data\\Defense_Summary_SP_FundingMechanismHistoryBucketPlatformSubCustomerRegime.zip",
-        "Defense_Summary_SP_FundingMechanismHistoryBucketPlatformSubCustomerRegime.csv"),
+        "Defense_Summary_SP_FundingMechanismHistoryBucketPlatformSubCustomerRegime.csv",
+        ),
     header = TRUE, sep = ",", dec = ".", strip.white = TRUE, 
     na.strings = c("NULL","NA",""),
     stringsAsFactors = TRUE
