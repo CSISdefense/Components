@@ -768,7 +768,7 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
     
     # VendorGraph<-VendorGraph+aes(size=y.variable)
     
-    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:HorseTailYears),limits=c(1,HorseTailYears))
+    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(0:HorseTailYears),limits=c(0,HorseTailYears))
     
     # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
@@ -842,8 +842,8 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
         )
     
     # VendorGraph<-VendorGraph+aes(size=y.variable)
-    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:HorseTailYears),
-                                                limits=c(1,HorseTailYears))
+    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(0:HorseTailYears),
+                                                limits=c(0,HorseTailYears))
     
     # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
@@ -916,8 +916,8 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
     VendorGraph<-VendorGraph+geom_bar(width=1/12,stat="identity",position="dodge")
     # VendorGraph<-VendorGraph+aes(size=y.variable)
     
-    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:HorseTailYears),
-                                                limits=c(1,HorseTailYears))
+    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(0:HorseTailYears),
+                                                limits=c(0,HorseTailYears))
     
     # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
@@ -994,8 +994,8 @@ for (c in unique(VendorPolicy$SubCustomer)){
             
             # VendorGraph<-VendorGraph+aes(size=y.variable)
             
-            VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:HorseTailYears)
-                                                        ,limits=c(1,HorseTailYears))
+            VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(0:HorseTailYears)
+                                                        ,limits=c(0,HorseTailYears))
             
             # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
             # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
@@ -1073,8 +1073,8 @@ for (c in unique(VendorPolicy$SubCustomer)){
     VendorGraph<-VendorGraph+geom_bar(width=1/12,stat="identity",position="dodge")
     # VendorGraph<-VendorGraph+aes(size=y.variable)
     
-    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(1:HorseTailYears)
-                                                ,limits=c(1,HorseTailYears))
+    VendorGraph<-VendorGraph+scale_x_continuous(breaks=c(0:HorseTailYears)
+                                                ,limits=c(0,HorseTailYears))
     
     # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)

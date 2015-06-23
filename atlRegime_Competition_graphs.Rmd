@@ -940,7 +940,7 @@ for (s in unique(CompPolicy$Competition.effective.only)){
     
     # CompGraph<-CompGraph+aes(size=y.variable)
     
-    CompGraph<-CompGraph+scale_x_continuous(breaks=c(1:HorseTailYears),limits=c(1,HorseTailYears))
+    CompGraph<-CompGraph+scale_x_continuous(breaks=c(0:HorseTailYears),limits=c(0,HorseTailYears))
     
     # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
@@ -1014,8 +1014,8 @@ for (s in unique(CompPolicy$Competition.effective.only)){
         )
     
     # CompGraph<-CompGraph+aes(size=y.variable)
-    CompGraph<-CompGraph+scale_x_continuous(breaks=c(1:HorseTailYears),
-                                                limits=c(1,HorseTailYears))
+    CompGraph<-CompGraph+scale_x_continuous(breaks=c(0:HorseTailYears),
+                                                limits=c(0,HorseTailYears))
     
     # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
@@ -1088,8 +1088,8 @@ for (s in unique(CompPolicy$Competition.effective.only)){
     CompGraph<-CompGraph+geom_bar(width=1/12,stat="identity",position="dodge")
     # CompGraph<-CompGraph+aes(size=y.variable)
     
-    CompGraph<-CompGraph+scale_x_continuous(breaks=c(1:HorseTailYears),
-                                                limits=c(1,HorseTailYears))
+    CompGraph<-CompGraph+scale_x_continuous(breaks=c(0:HorseTailYears),
+                                                limits=c(0,HorseTailYears))
     
     # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
@@ -1166,8 +1166,8 @@ for (c in unique(CompPolicy$SubCustomer)){
                     
             # CompGraph<-CompGraph+aes(size=y.variable)
             
-            CompGraph<-CompGraph+scale_x_continuous(breaks=c(1:HorseTailYears)
-                                                        ,limits=c(1,HorseTailYears))
+            CompGraph<-CompGraph+scale_x_continuous(breaks=c(0:HorseTailYears)
+                                                        ,limits=c(0,HorseTailYears))
             
             # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
             # CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
@@ -1245,8 +1245,8 @@ for (c in unique(CompPolicy$SubCustomer)){
     CompGraph<-CompGraph+geom_bar(width=1/12,stat="identity",position="dodge")
     # CompGraph<-CompGraph+aes(size=y.variable)
     
-    CompGraph<-CompGraph+scale_x_continuous(breaks=c(1:HorseTailYears)
-                                                ,limits=c(1,HorseTailYears))
+    CompGraph<-CompGraph+scale_x_continuous(breaks=c(0:HorseTailYears)
+                                                ,limits=c(0,HorseTailYears))
     
     # CompGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # CompGraph<-CompGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)

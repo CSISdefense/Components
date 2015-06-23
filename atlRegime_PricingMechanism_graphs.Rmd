@@ -37,8 +37,9 @@ axis.text.size<-14
 You can also embed plots, for example:
 
 ```{r DateEntryAndProcessing, echo=FALSE}
-PricingRegime  <- read.csv(
-    paste("data\\Defense_Summary_SP_FundingMechanismHistoryBucketSubCustomerRegime.csv", sep = ""),
+PlatformRegime  <- read.csv(
+    unz("Data\\Defense_Summary_SP_FundingMechanismHistoryBucketPlatformSubCustomerRegime.zip",
+        "Defense_Summary_SP_FundingMechanismHistoryBucketPlatformSubCustomerRegime.csv"),
     header = TRUE, sep = ",", dec = ".", strip.white = TRUE, 
     na.strings = c("NULL","NA",""),
     stringsAsFactors = TRUE
@@ -767,7 +768,7 @@ for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){
     
     # PricingGraph<-PricingGraph+aes(size=y.variable)
     
-    PricingGraph<-PricingGraph+scale_x_continuous(breaks=c(1:HorseTailYears),limits=c(1,HorseTailYears))
+    PricingGraph<-PricingGraph+scale_x_continuous(breaks=c(0:HorseTailYears),limits=c(0,HorseTailYears))
     
     # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
@@ -841,8 +842,8 @@ for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){
         )
     
     # PricingGraph<-PricingGraph+aes(size=y.variable)
-    PricingGraph<-PricingGraph+scale_x_continuous(breaks=c(1:HorseTailYears),
-                                                limits=c(1,HorseTailYears))
+    PricingGraph<-PricingGraph+scale_x_continuous(breaks=c(0:HorseTailYears),
+                                                limits=c(0,HorseTailYears))
     
     # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
@@ -915,8 +916,8 @@ for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){
     PricingGraph<-PricingGraph+geom_bar(width=1/12,stat="identity",position="dodge")
     # PricingGraph<-PricingGraph+aes(size=y.variable)
     
-    PricingGraph<-PricingGraph+scale_x_continuous(breaks=c(1:HorseTailYears),
-                                                limits=c(1,HorseTailYears))
+    PricingGraph<-PricingGraph+scale_x_continuous(breaks=c(0:HorseTailYears),
+                                                limits=c(0,HorseTailYears))
     
     # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
@@ -993,8 +994,8 @@ for (c in unique(PricingPolicy$SubCustomer)){
             
             # PricingGraph<-PricingGraph+aes(size=y.variable)
             
-            PricingGraph<-PricingGraph+scale_x_continuous(breaks=c(1:HorseTailYears)
-                                                        ,limits=c(1,HorseTailYears))
+            PricingGraph<-PricingGraph+scale_x_continuous(breaks=c(0:HorseTailYears)
+                                                        ,limits=c(0,HorseTailYears))
             
             # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
             # PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
@@ -1072,8 +1073,8 @@ for (c in unique(PricingPolicy$SubCustomer)){
     PricingGraph<-PricingGraph+geom_bar(width=1/12,stat="identity",position="dodge")
     # PricingGraph<-PricingGraph+aes(size=y.variable)
     
-    PricingGraph<-PricingGraph+scale_x_continuous(breaks=c(1:HorseTailYears)
-                                                ,limits=c(1,HorseTailYears))
+    PricingGraph<-PricingGraph+scale_x_continuous(breaks=c(0:HorseTailYears)
+                                                ,limits=c(0,HorseTailYears))
     
     # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
