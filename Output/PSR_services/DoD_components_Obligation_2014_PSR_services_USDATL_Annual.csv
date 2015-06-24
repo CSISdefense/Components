@@ -1,0 +1,171 @@
+"","Fiscal.Year","ServicesCategory.sum","SubCustomer.component","USDATL","Obligation.2014"
+"1",2007-09-30,"Services (Non-R&D)","Army","YOUNG",12.2924091860366
+"2",2007-09-30,"Services (Non-R&D)","Navy","YOUNG",6.84004916667191
+"3",2007-09-30,"Services (Non-R&D)","Air Force","YOUNG",5.06523208058143
+"4",2007-09-30,"Services (Non-R&D)","DLA","YOUNG",0.328040917779773
+"5",2007-09-30,"Services (Non-R&D)","MDA","YOUNG",0.00640101041643282
+"6",2007-09-30,"Services (Non-R&D)","Military
+Health","YOUNG",0.000855793433606465
+"7",2007-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","YOUNG",1.03176354644741
+"8",2008-09-30,"Services (Non-R&D)","Army","YOUNG",49.1679477180911
+"9",2008-09-30,"Services (Non-R&D)","Navy","YOUNG",24.2983059186746
+"10",2008-09-30,"Services (Non-R&D)","Air Force","YOUNG",18.2615554863774
+"11",2008-09-30,"Services (Non-R&D)","DLA","YOUNG",1.07324254754881
+"12",2008-09-30,"Services (Non-R&D)","MDA","YOUNG",0.0806281968438178
+"13",2008-09-30,"Services (Non-R&D)","Military
+Health","YOUNG",0.388742430629067
+"14",2008-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","YOUNG",8.5262254227115
+"15",2009-09-30,"Services (Non-R&D)","Army","YOUNG",40.9169605615068
+"16",2009-09-30,"Services (Non-R&D)","Army","CARTER",27.578690242336
+"17",2009-09-30,"Services (Non-R&D)","Navy","YOUNG",17.8644039187811
+"18",2009-09-30,"Services (Non-R&D)","Navy","CARTER",13.252018383622
+"19",2009-09-30,"Services (Non-R&D)","Air Force","YOUNG",14.938038338526
+"20",2009-09-30,"Services (Non-R&D)","Air Force","CARTER",8.30849734661182
+"21",2009-09-30,"Services (Non-R&D)","DLA","YOUNG",0.820424698246374
+"22",2009-09-30,"Services (Non-R&D)","DLA","CARTER",0.316400982701884
+"23",2009-09-30,"Services (Non-R&D)","MDA","YOUNG",0.246218626964711
+"24",2009-09-30,"Services (Non-R&D)","MDA","CARTER",0.00297117306776359
+"25",2009-09-30,"Services (Non-R&D)","Military
+Health","YOUNG",1.55904633487768
+"26",2009-09-30,"Services (Non-R&D)","Military
+Health","CARTER",0.0316875700801039
+"27",2009-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","YOUNG",7.02001274942628
+"28",2009-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","CARTER",3.54058541105218
+"29",2010-09-30,"Services (Non-R&D)","Army","YOUNG",15.6837645009307
+"30",2010-09-30,"Services (Non-R&D)","Army","CARTER",55.3867379977642
+"31",2010-09-30,"Services (Non-R&D)","Navy","YOUNG",6.99499660078092
+"32",2010-09-30,"Services (Non-R&D)","Navy","CARTER",23.7394840712335
+"33",2010-09-30,"Services (Non-R&D)","Air Force","YOUNG",5.99105905208601
+"34",2010-09-30,"Services (Non-R&D)","Air Force","CARTER",17.3319330917522
+"35",2010-09-30,"Services (Non-R&D)","DLA","YOUNG",0.490121682167309
+"36",2010-09-30,"Services (Non-R&D)","DLA","CARTER",1.18634916745828
+"37",2010-09-30,"Services (Non-R&D)","MDA","YOUNG",0.168701147742833
+"38",2010-09-30,"Services (Non-R&D)","MDA","CARTER",0.109908114698331
+"39",2010-09-30,"Services (Non-R&D)","Military
+Health","YOUNG",1.64731550951006
+"40",2010-09-30,"Services (Non-R&D)","Military
+Health","CARTER",0.598089725181857
+"41",2010-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","YOUNG",1.79778959678006
+"42",2010-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","CARTER",10.7812792179397
+"43",2011-09-30,"Services (Non-R&D)","Army","YOUNG",7.82909848473563
+"44",2011-09-30,"Services (Non-R&D)","Army","CARTER",58.895442972052
+"45",2011-09-30,"Services (Non-R&D)","Navy","YOUNG",5.18435407134914
+"46",2011-09-30,"Services (Non-R&D)","Navy","CARTER",28.8872669703315
+"47",2011-09-30,"Services (Non-R&D)","Air Force","YOUNG",4.40876633237516
+"48",2011-09-30,"Services (Non-R&D)","Air Force","CARTER",19.1071518948489
+"49",2011-09-30,"Services (Non-R&D)","DLA","YOUNG",0.316551132784305
+"50",2011-09-30,"Services (Non-R&D)","DLA","CARTER",1.23209253334033
+"51",2011-09-30,"Services (Non-R&D)","MDA","YOUNG",0.0931407320499371
+"52",2011-09-30,"Services (Non-R&D)","MDA","CARTER",0.306734899160722
+"53",2011-09-30,"Services (Non-R&D)","Military
+Health","YOUNG",1.87252021194922
+"54",2011-09-30,"Services (Non-R&D)","Military
+Health","CARTER",1.80090134937054
+"55",2011-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","YOUNG",1.23669308296265
+"56",2011-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","CARTER",15.2487698807753
+"57",2012-09-30,"Services (Non-R&D)","Army","YOUNG",4.08152611925651
+"58",2012-09-30,"Services (Non-R&D)","Army","CARTER",20.6757320836898
+"59",2012-09-30,"Services (Non-R&D)","Army","KENDALL",34.9036292841211
+"60",2012-09-30,"Services (Non-R&D)","Navy","YOUNG",3.96147229461435
+"61",2012-09-30,"Services (Non-R&D)","Navy","CARTER",10.4971464919164
+"62",2012-09-30,"Services (Non-R&D)","Navy","KENDALL",17.977701716296
+"63",2012-09-30,"Services (Non-R&D)","Air Force","YOUNG",3.08513038041396
+"64",2012-09-30,"Services (Non-R&D)","Air Force","CARTER",9.48070159251498
+"65",2012-09-30,"Services (Non-R&D)","Air Force","KENDALL",13.4069172006758
+"66",2012-09-30,"Services (Non-R&D)","DLA","YOUNG",0.304238741993616
+"67",2012-09-30,"Services (Non-R&D)","DLA","CARTER",0.486262198609824
+"68",2012-09-30,"Services (Non-R&D)","DLA","KENDALL",0.762295685438987
+"69",2012-09-30,"Services (Non-R&D)","MDA","YOUNG",0.0170681689115436
+"70",2012-09-30,"Services (Non-R&D)","MDA","CARTER",0.485347181320152
+"71",2012-09-30,"Services (Non-R&D)","MDA","KENDALL",0.0588871175265163
+"72",2012-09-30,"Services (Non-R&D)","Military
+Health","YOUNG",1.84187001302646
+"73",2012-09-30,"Services (Non-R&D)","Military
+Health","CARTER",5.00947578653074
+"74",2012-09-30,"Services (Non-R&D)","Military
+Health","KENDALL",0.131166833590773
+"75",2012-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","YOUNG",0.864210559561322
+"76",2012-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","CARTER",5.70483911277871
+"77",2012-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","KENDALL",10.2457593592627
+"78",2013-09-30,"Services (Non-R&D)","Army","YOUNG",2.42025126944775
+"79",2013-09-30,"Services (Non-R&D)","Army","CARTER",14.1411988558567
+"80",2013-09-30,"Services (Non-R&D)","Army","KENDALL",34.9204161305018
+"81",2013-09-30,"Services (Non-R&D)","Navy","YOUNG",1.38935706929948
+"82",2013-09-30,"Services (Non-R&D)","Navy","CARTER",6.67438304054311
+"83",2013-09-30,"Services (Non-R&D)","Navy","KENDALL",19.9038693807132
+"84",2013-09-30,"Services (Non-R&D)","Air Force","YOUNG",2.07235195660404
+"85",2013-09-30,"Services (Non-R&D)","Air Force","CARTER",4.21061229006083
+"86",2013-09-30,"Services (Non-R&D)","Air Force","KENDALL",16.5483902222619
+"87",2013-09-30,"Services (Non-R&D)","DLA","YOUNG",0.321532080453031
+"88",2013-09-30,"Services (Non-R&D)","DLA","CARTER",0.261178748199452
+"89",2013-09-30,"Services (Non-R&D)","DLA","KENDALL",1.2622061801827
+"90",2013-09-30,"Services (Non-R&D)","MDA","YOUNG",0.00137709071036864
+"91",2013-09-30,"Services (Non-R&D)","MDA","CARTER",0.354630055110897
+"92",2013-09-30,"Services (Non-R&D)","MDA","KENDALL",0.189762867856809
+"93",2013-09-30,"Services (Non-R&D)","Military
+Health","YOUNG",1.89860229691185
+"94",2013-09-30,"Services (Non-R&D)","Military
+Health","CARTER",6.8126867069152
+"95",2013-09-30,"Services (Non-R&D)","Military
+Health","KENDALL",1.67560049821834
+"96",2013-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","YOUNG",0.217668316946481
+"97",2013-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","CARTER",2.77105675859389
+"98",2013-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","KENDALL",10.4205340464414
+"99",2014-09-30,"Services (Non-R&D)","Army","YOUNG",1.310315162529
+"100",2014-09-30,"Services (Non-R&D)","Army","CARTER",6.2715850779274
+"101",2014-09-30,"Services (Non-R&D)","Army","KENDALL",36.5469812193052
+"102",2014-09-30,"Services (Non-R&D)","Navy","YOUNG",0.6876346983434
+"103",2014-09-30,"Services (Non-R&D)","Navy","CARTER",5.1307798628519
+"104",2014-09-30,"Services (Non-R&D)","Navy","KENDALL",23.5318718816615
+"105",2014-09-30,"Services (Non-R&D)","Air Force","YOUNG",1.7519340276766
+"106",2014-09-30,"Services (Non-R&D)","Air Force","CARTER",3.2559683817748
+"107",2014-09-30,"Services (Non-R&D)","Air Force","KENDALL",20.0132876713032
+"108",2014-09-30,"Services (Non-R&D)","DLA","YOUNG",0.1632188025469
+"109",2014-09-30,"Services (Non-R&D)","DLA","CARTER",0.1909645319785
+"110",2014-09-30,"Services (Non-R&D)","DLA","KENDALL",1.4341174618124
+"111",2014-09-30,"Services (Non-R&D)","MDA","YOUNG",-0.0013025623246
+"112",2014-09-30,"Services (Non-R&D)","MDA","CARTER",0.2450181950449
+"113",2014-09-30,"Services (Non-R&D)","MDA","KENDALL",0.3117012319936
+"114",2014-09-30,"Services (Non-R&D)","Military
+Health","YOUNG",0.7680349032672
+"115",2014-09-30,"Services (Non-R&D)","Military
+Health","CARTER",6.9766310005649
+"116",2014-09-30,"Services (Non-R&D)","Military
+Health","KENDALL",5.2284385704698
+"117",2014-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","YOUNG",-0.0927544900446
+"118",2014-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","CARTER",1.9816730492303
+"119",2014-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","KENDALL",10.7742627958383

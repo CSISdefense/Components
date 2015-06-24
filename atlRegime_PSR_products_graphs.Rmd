@@ -1,5 +1,5 @@
 ---
-title: "ATLregime Produce/Service/R&D"
+title: "ATLregime Products"
 author: "Greg Sanders"
 date: "Friday, March 20, 2015"
 output: html_document
@@ -65,10 +65,9 @@ PSRRegime  <- read.csv(
     )
 
 
-
-
 PSRRegime<-apply_lookups(Path,PSRRegime)
-names(PSRRegime)
+PSRRegime<-subset(PSRRegime,ServicesCategory.sum=="Products (All)")
+
 str(PSRRegime)
 PSRRegime$USDATL<-factor(PSRRegime$USDATL,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","KENDALL" ),ordered=TRUE )
 PSRRegime<-subset(PSRRegime,USDATL %in% c("YOUNG","CARTER","KENDALL"))
@@ -178,7 +177,7 @@ png(
 # debug(LatticePercentLineWrapper)
 
 PSRGraph<-LatticePercentLineWrapper(
-    "Produce/Service/R&D"
+    "Product Area"
     ,""#Produce/Service/R&D by DoD Component and Starting Regime"
     ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
@@ -236,7 +235,7 @@ png(
 # debug(LatticePercentLineWrapper)
 
 PSRGraph<-LatticePercentLineWrapper(
-    "Produce/Service/R&D"
+    "Product Area"
     ,""#Produce/Service/R&D by DoD Component and Starting Regime"
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
@@ -270,6 +269,7 @@ while(!(dev.cur()[[1]]==1)){
 
 
 ```{r PSRATLpolicy}
+rm(PSRUSDATL)
 PSRPolicy<-PSRRegime
 PSRPolicy$ATLpolicy<-as.character(PSRRegime$USDATL)
 PSRPolicy$ATLpolicy[PSRPolicy$USDATL=="CARTER"]<-"CARTER pre-\nSection 808"
@@ -379,7 +379,7 @@ png(
 
 
 PSRGraph<-LatticePercentLineWrapper(
-    "Produce/Service/R&D"
+    "Product Area"
     ,""#Produce/Service/R&D by DoD Component and Starting Regime"
     ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
@@ -436,7 +436,7 @@ png(
 
 
 PSRGraph<-LatticePercentLineWrapper(
-    "Produce/Service/R&D"
+    "Product Area"
     ,""#Produce/Service/R&D by DoD Component and Starting Regime"
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
@@ -493,7 +493,7 @@ png(
 
 
 PSRGraph<-LatticePercentLineWrapper(
-    VAR.name="Produce/Service/R&D"
+    VAR.name="Product Area"
     ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
     ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
     ,VAR.Y.label="% of DoD Obligations"
@@ -555,7 +555,7 @@ png(
 
 
 PSRGraph<-LatticePercentLineWrapper(
-    VAR.name="Produce/Service/R&D"
+    VAR.name="Product Area"
     ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
     ,VAR.X.label="Fiscal Year of Obligation"
     ,VAR.Y.label="% of DoD Obligations"
@@ -615,7 +615,7 @@ for (c in unique(PSRPolicy$SubCustomer)){
         )
     
     PSRGraph<-LatticePercentLineWrapper(
-        VAR.name="Produce/Service/R&D"
+        VAR.name="Product Area"
         ,VAR.proper.name=""#paste(c,"Produce/Service/R&D by Starting Regime")
         ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
         ,VAR.Y.label=paste("% of ",c," Obligations")
@@ -678,7 +678,7 @@ for (c in unique(PSRPolicy$SubCustomer)){
         )
     
     PSRGraph<-LatticePercentLineWrapper(
-        VAR.name="Produce/Service/R&D"
+        VAR.name="Product Area"
         ,VAR.proper.name=""#paste(c,"Produce/Service/R&D by Starting Regime")
         ,VAR.X.label="Fiscal Year of Obligation"
         ,VAR.Y.label=paste("% of ",c," Obligations")
@@ -760,7 +760,7 @@ for (s in unique(PSRPolicy$ ServicesCategory.sum)){
     PSRPolicy$Graph[PSRPolicy$ ServicesCategory.sum==s]<-TRUE
     
     PSRGraph<-LatticePercentLineWrapper(
-        VAR.name="Produce/Service/R&D"
+        VAR.name="Product Area"
         ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label="% of DoD Obligations"
@@ -835,7 +835,7 @@ for (s in unique(PSRPolicy$ ServicesCategory.sum)){
     PSRPolicy$Graph[PSRPolicy$ ServicesCategory.sum==s]<-TRUE
     
     PSRGraph<-LatticePercentLineWrapper(
-        VAR.name="Produce/Service/R&D"
+        VAR.name="Product Area"
         ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label="% of Component Obligations"
@@ -910,7 +910,7 @@ for (s in unique(PSRPolicy$ ServicesCategory.sum)){
     PSRPolicy$Graph[PSRPolicy$ ServicesCategory.sum==s]<-TRUE
     
     PSRGraph<-LatticePlotWrapper(
-        VAR.name="Produce/Service/R&D"
+        VAR.name="Product Area"
         ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(s,"Constant 2014 $ Obligated, Billions")
@@ -987,7 +987,7 @@ for (c in unique(PSRPolicy$SubCustomer)){
             
             
             PSRGraph<-LatticePercentLineWrapper(
-                VAR.name="Produce/Service/R&D"
+                VAR.name="Product Area"
                 ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
                 ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
                 ,VAR.Y.label=paste("% of",c,"Obligations")
@@ -1019,6 +1019,7 @@ for (c in unique(PSRPolicy$SubCustomer)){
             #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
             PSRGraph
             print(PSRGraph)
+            rm(PSRGraph)
             #     PSRGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
             while(!(dev.cur()[[1]]==1)){
                 dev.off()
@@ -1066,7 +1067,7 @@ for (c in unique(PSRPolicy$SubCustomer)){
         )
     
     PSRGraph<-LatticePlotWrapper(
-        VAR.name="Produce/Service/R&D"
+        VAR.name="Product Area"
         ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(c,s,"Constant 2014 $ Obligated, Billions")
@@ -1098,6 +1099,7 @@ for (c in unique(PSRPolicy$SubCustomer)){
     #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     PSRGraph
     print(PSRGraph)
+    rm(PSRGraph)
     #     PSRGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
     while(!(dev.cur()[[1]]==1)){
         dev.off()
@@ -1173,7 +1175,7 @@ write.csv(PSRRegimeTable,paste("Output\\PSR_sum\\",
                                   ,".csv",
                                   sep=""))
 
-
+rm(PSRRegimeTable)
 #Annual
 PSRPolicyTable<-ddply(PSRPolicy, c("Fiscal.Year"
                                          ,"ServicesCategory.sum"
@@ -1227,6 +1229,6 @@ write.csv(PSRPolicyTable,paste("Output\\PSR_sum\\",
                                         )
                                   ,".csv",
                                   sep=""))
-
+rm(PSRPolicyTable)
 
 ```

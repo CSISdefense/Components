@@ -1,0 +1,141 @@
+"","Fiscal.Year","ServicesCategory.sum","SubCustomer.component","ATLpolicy","Obligation.2014"
+"1",2007-09-30,"Services (Non-R&D)","Army","YOUNG",12.2924091860366
+"2",2007-09-30,"Services (Non-R&D)","Navy","YOUNG",6.84004916667191
+"3",2007-09-30,"Services (Non-R&D)","Air Force","YOUNG",5.06523208058143
+"4",2007-09-30,"Services (Non-R&D)","DLA","YOUNG",0.328040917779773
+"5",2007-09-30,"Services (Non-R&D)","MDA","YOUNG",0.00640101041643282
+"6",2007-09-30,"Services (Non-R&D)","Military
+Health","YOUNG",0.000855793433606465
+"7",2007-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","YOUNG",1.03176354644741
+"8",2008-09-30,"Services (Non-R&D)","Army","YOUNG",49.1679477180911
+"9",2008-09-30,"Services (Non-R&D)","Navy","YOUNG",24.2983059186746
+"10",2008-09-30,"Services (Non-R&D)","Air Force","YOUNG",18.2615554863774
+"11",2008-09-30,"Services (Non-R&D)","DLA","YOUNG",1.07324254754881
+"12",2008-09-30,"Services (Non-R&D)","MDA","YOUNG",0.0806281968438178
+"13",2008-09-30,"Services (Non-R&D)","Military
+Health","YOUNG",0.388742430629067
+"14",2008-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","YOUNG",8.5262254227115
+"15",2009-04-26,"Services (Non-R&D)","Army","YOUNG",28.1789442070903
+"16",2009-04-26,"Services (Non-R&D)","Navy","YOUNG",14.1421839273436
+"17",2009-04-26,"Services (Non-R&D)","Air Force","YOUNG",11.57981757493
+"18",2009-04-26,"Services (Non-R&D)","DLA","YOUNG",0.501088025081186
+"19",2009-04-26,"Services (Non-R&D)","MDA","YOUNG",0.178937677267807
+"20",2009-04-26,"Services (Non-R&D)","Military
+Health","YOUNG",1.15826011051093
+"21",2009-04-26,"Services (Non-R&D)","Additional
+DoD
+Components","YOUNG",6.27820527697554
+"22",2009-09-30,"Services (Non-R&D)","Army","YOUNG",12.7380163544165
+"23",2009-09-30,"Services (Non-R&D)","Navy","YOUNG",3.72221999143754
+"24",2009-09-30,"Services (Non-R&D)","Air Force","YOUNG",3.35822076359602
+"25",2009-09-30,"Services (Non-R&D)","DLA","YOUNG",0.319336673165187
+"26",2009-09-30,"Services (Non-R&D)","MDA","YOUNG",0.0672809496969041
+"27",2009-09-30,"Services (Non-R&D)","Military
+Health","YOUNG",0.400786224366746
+"28",2009-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","YOUNG",0.741807472450747
+"29",2010-09-30,"Services (Non-R&D)","Army","YOUNG",15.6837645009307
+"30",2010-09-30,"Services (Non-R&D)","Navy","YOUNG",6.99499660078092
+"31",2010-09-30,"Services (Non-R&D)","Air Force","YOUNG",5.99105905208601
+"32",2010-09-30,"Services (Non-R&D)","DLA","YOUNG",0.490121682167309
+"33",2010-09-30,"Services (Non-R&D)","MDA","YOUNG",0.168701147742833
+"34",2010-09-30,"Services (Non-R&D)","Military
+Health","YOUNG",1.64731550951006
+"35",2010-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","YOUNG",1.79778959678006
+"36",2011-09-30,"Services (Non-R&D)","Army","YOUNG",7.82909848473563
+"37",2011-09-30,"Services (Non-R&D)","Army","BBP1",37.6066430467268
+"38",2011-09-30,"Services (Non-R&D)","Navy","YOUNG",5.18435407134914
+"39",2011-09-30,"Services (Non-R&D)","Navy","BBP1",20.0075932025388
+"40",2011-09-30,"Services (Non-R&D)","Air Force","YOUNG",4.40876633237516
+"41",2011-09-30,"Services (Non-R&D)","Air Force","BBP1",12.2048160543328
+"42",2011-09-30,"Services (Non-R&D)","DLA","YOUNG",0.316551132784305
+"43",2011-09-30,"Services (Non-R&D)","DLA","BBP1",0.723059169827948
+"44",2011-09-30,"Services (Non-R&D)","MDA","YOUNG",0.0931407320499371
+"45",2011-09-30,"Services (Non-R&D)","MDA","BBP1",0.204406420866555
+"46",2011-09-30,"Services (Non-R&D)","Military
+Health","YOUNG",1.87252021194922
+"47",2011-09-30,"Services (Non-R&D)","Military
+Health","BBP1",0.336706184001259
+"48",2011-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","YOUNG",1.23669308296265
+"49",2011-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","BBP1",11.2823630984945
+"50",2012-07-30,"Services (Non-R&D)","Army","BBP1",28.3413875746679
+"51",2012-07-30,"Services (Non-R&D)","Navy","BBP1",15.3617895301256
+"52",2012-07-30,"Services (Non-R&D)","Air Force","BBP1",15.6551170061439
+"53",2012-07-30,"Services (Non-R&D)","DLA","BBP1",0.713376377550716
+"54",2012-07-30,"Services (Non-R&D)","MDA","BBP1",0.434043172814334
+"55",2012-07-30,"Services (Non-R&D)","Military
+Health","BBP1",1.86324402037895
+"56",2012-07-30,"Services (Non-R&D)","Additional
+DoD
+Components","BBP1",11.0595867295438
+"57",2012-09-30,"Services (Non-R&D)","Army","YOUNG",4.08152611925651
+"58",2012-09-30,"Services (Non-R&D)","Army","BBP1",16.7506741808877
+"59",2012-09-30,"Services (Non-R&D)","Navy","YOUNG",3.96147229461435
+"60",2012-09-30,"Services (Non-R&D)","Navy","BBP1",8.8592480764082
+"61",2012-09-30,"Services (Non-R&D)","Air Force","YOUNG",3.08513038041396
+"62",2012-09-30,"Services (Non-R&D)","Air Force","BBP1",4.72030219183534
+"63",2012-09-30,"Services (Non-R&D)","DLA","YOUNG",0.304238741993616
+"64",2012-09-30,"Services (Non-R&D)","DLA","BBP1",0.289800318917001
+"65",2012-09-30,"Services (Non-R&D)","MDA","YOUNG",0.0170681689115436
+"66",2012-09-30,"Services (Non-R&D)","MDA","BBP1",0.0495199641025641
+"67",2012-09-30,"Services (Non-R&D)","Military
+Health","YOUNG",1.84187001302646
+"68",2012-09-30,"Services (Non-R&D)","Military
+Health","BBP1",0.22947648746782
+"69",2012-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","YOUNG",0.864210559561322
+"70",2012-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","BBP1",2.70767531892689
+"71",2013-09-30,"Services (Non-R&D)","Army","YOUNG",2.42025126944775
+"72",2013-09-30,"Services (Non-R&D)","Army","BBP1",40.0904953611548
+"73",2013-09-30,"Services (Non-R&D)","Navy","YOUNG",1.38935706929948
+"74",2013-09-30,"Services (Non-R&D)","Navy","BBP1",23.4528034978405
+"75",2013-09-30,"Services (Non-R&D)","Air Force","YOUNG",2.07235195660404
+"76",2013-09-30,"Services (Non-R&D)","Air Force","BBP1",18.9532687596316
+"77",2013-09-30,"Services (Non-R&D)","DLA","YOUNG",0.321532080453031
+"78",2013-09-30,"Services (Non-R&D)","DLA","BBP1",1.35725371335981
+"79",2013-09-30,"Services (Non-R&D)","MDA","YOUNG",0.00137709071036864
+"80",2013-09-30,"Services (Non-R&D)","MDA","BBP1",0.529159410873464
+"81",2013-09-30,"Services (Non-R&D)","Military
+Health","YOUNG",1.89860229691185
+"82",2013-09-30,"Services (Non-R&D)","Military
+Health","BBP1",5.53573706620301
+"83",2013-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","YOUNG",0.217668316946481
+"84",2013-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","BBP1",11.7005779200927
+"85",2014-09-30,"Services (Non-R&D)","Army","YOUNG",1.310315162529
+"86",2014-09-30,"Services (Non-R&D)","Army","BBP1",32.7267029549641
+"87",2014-09-30,"Services (Non-R&D)","Navy","YOUNG",0.6876346983434
+"88",2014-09-30,"Services (Non-R&D)","Navy","BBP1",23.3026352919573
+"89",2014-09-30,"Services (Non-R&D)","Air Force","YOUNG",1.7519340276766
+"90",2014-09-30,"Services (Non-R&D)","Air Force","BBP1",19.8043076091032
+"91",2014-09-30,"Services (Non-R&D)","DLA","YOUNG",0.1632188025469
+"92",2014-09-30,"Services (Non-R&D)","DLA","BBP1",1.274882076336
+"93",2014-09-30,"Services (Non-R&D)","MDA","YOUNG",-0.0013025623246
+"94",2014-09-30,"Services (Non-R&D)","MDA","BBP1",0.5517508867528
+"95",2014-09-30,"Services (Non-R&D)","Military
+Health","YOUNG",0.7680349032672
+"96",2014-09-30,"Services (Non-R&D)","Military
+Health","BBP1",9.0282834693756
+"97",2014-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","YOUNG",-0.0927544900446
+"98",2014-09-30,"Services (Non-R&D)","Additional
+DoD
+Components","BBP1",11.2483357453744

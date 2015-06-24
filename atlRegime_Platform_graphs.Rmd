@@ -940,6 +940,7 @@ for (s in unique(PlatformPolicy$ PlatformPortfolio.AnD)){
     #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     PlatformGraph
     print(PlatformGraph)
+    rm(PlatformGraph)
     #     PlatformGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
     while(!(dev.cur()[[1]]==1)){
         dev.off()
@@ -958,8 +959,8 @@ OldGraph<-PlatformPolicy$Graph
 for (c in unique(PlatformPolicy$SubCustomer)){ 
     PlatformSubCustomer<-subset(PlatformPolicy,SubCustomer==c)
     for (s in unique(PlatformPolicy$ PlatformPortfolio.AnD)){    
-        PlatformSubCustomer$Graph[PlatformSubCustomer$ PlatformPortfolio.AnD!=s]<-FALSE
-        PlatformSubCustomer$Graph[PlatformSubCustomer$ PlatformPortfolio.AnD==s]<-TRUE
+        PlatformSubCustomer$Graph[PlatformSubCustomer$PlatformPortfolio.AnD!=s]<-FALSE
+        PlatformSubCustomer$Graph[PlatformSubCustomer$PlatformPortfolio.AnD==s]<-TRUE
         if(any(PlatformSubCustomer$Graph==TRUE)){
             png(
                 paste( "Output\\Platform\\",c,"\\",
@@ -1018,6 +1019,7 @@ for (c in unique(PlatformPolicy$SubCustomer)){
             #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
             PlatformGraph
             print(PlatformGraph)
+            rm(PlatformGraph)
             #     PlatformGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
             while(!(dev.cur()[[1]]==1)){
                 dev.off()

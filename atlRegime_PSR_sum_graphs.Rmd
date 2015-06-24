@@ -1,5 +1,5 @@
 ---
-title: "ATLregime Produce/Service/R&D"
+title: "ATLregime Product/Service/R&D"
 author: "Greg Sanders"
 date: "Friday, March 20, 2015"
 output: html_document
@@ -178,8 +178,8 @@ png(
 # debug(LatticePercentLineWrapper)
 
 PSRGraph<-LatticePercentLineWrapper(
-    "Produce/Service/R&D"
-    ,""#Produce/Service/R&D by DoD Component and Starting Regime"
+    "Product/Service/R&D"
+    ,""#Product/Service/R&D by DoD Component and Starting Regime"
     ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
     ,Coloration
@@ -236,8 +236,8 @@ png(
 # debug(LatticePercentLineWrapper)
 
 PSRGraph<-LatticePercentLineWrapper(
-    "Produce/Service/R&D"
-    ,""#Produce/Service/R&D by DoD Component and Starting Regime"
+    "Product/Service/R&D"
+    ,""#Product/Service/R&D by DoD Component and Starting Regime"
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
@@ -270,6 +270,7 @@ while(!(dev.cur()[[1]]==1)){
 
 
 ```{r PSRATLpolicy}
+rm(PSRUSDATL)
 PSRPolicy<-PSRRegime
 PSRPolicy$ATLpolicy<-as.character(PSRRegime$USDATL)
 PSRPolicy$ATLpolicy[PSRPolicy$USDATL=="CARTER"]<-"CARTER\npre-BBP"
@@ -379,8 +380,8 @@ png(
 
 
 PSRGraph<-LatticePercentLineWrapper(
-    "Produce/Service/R&D"
-    ,""#Produce/Service/R&D by DoD Component and Starting Regime"
+    "Product/Service/R&D"
+    ,""#Product/Service/R&D by DoD Component and Starting Regime"
     ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
     ,Coloration
@@ -436,8 +437,8 @@ png(
 
 
 PSRGraph<-LatticePercentLineWrapper(
-    "Produce/Service/R&D"
-    ,""#Produce/Service/R&D by DoD Component and Starting Regime"
+    "Product/Service/R&D"
+    ,""#Product/Service/R&D by DoD Component and Starting Regime"
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
@@ -493,8 +494,8 @@ png(
 
 
 PSRGraph<-LatticePercentLineWrapper(
-    VAR.name="Produce/Service/R&D"
-    ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+    VAR.name="Product/Service/R&D"
+    ,""#VAR.proper.name=""#Overall DoD Product/Service/R&D by Starting Regime"
     ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
     ,VAR.Y.label="% of DoD Obligations"
     ,VAR.Coloration=Coloration
@@ -555,8 +556,8 @@ png(
 
 
 PSRGraph<-LatticePercentLineWrapper(
-    VAR.name="Produce/Service/R&D"
-    ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+    VAR.name="Product/Service/R&D"
+    ,""#VAR.proper.name=""#Overall DoD Product/Service/R&D by Starting Regime"
     ,VAR.X.label="Fiscal Year of Obligation"
     ,VAR.Y.label="% of DoD Obligations"
     ,VAR.Coloration=Coloration
@@ -615,8 +616,8 @@ for (c in unique(PSRPolicy$SubCustomer)){
         )
     
     PSRGraph<-LatticePercentLineWrapper(
-        VAR.name="Produce/Service/R&D"
-        ,VAR.proper.name=""#paste(c,"Produce/Service/R&D by Starting Regime")
+        VAR.name="Product/Service/R&D"
+        ,VAR.proper.name=""#paste(c,"Product/Service/R&D by Starting Regime")
         ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
         ,VAR.Y.label=paste("% of ",c," Obligations")
         ,VAR.Coloration=Coloration
@@ -678,8 +679,8 @@ for (c in unique(PSRPolicy$SubCustomer)){
         )
     
     PSRGraph<-LatticePercentLineWrapper(
-        VAR.name="Produce/Service/R&D"
-        ,VAR.proper.name=""#paste(c,"Produce/Service/R&D by Starting Regime")
+        VAR.name="Product/Service/R&D"
+        ,VAR.proper.name=""#paste(c,"Product/Service/R&D by Starting Regime")
         ,VAR.X.label="Fiscal Year of Obligation"
         ,VAR.Y.label=paste("% of ",c," Obligations")
         ,VAR.Coloration=Coloration
@@ -760,8 +761,8 @@ for (s in unique(PSRPolicy$ ServicesCategory.sum)){
     PSRPolicy$Graph[PSRPolicy$ ServicesCategory.sum==s]<-TRUE
     
     PSRGraph<-LatticePercentLineWrapper(
-        VAR.name="Produce/Service/R&D"
-        ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+        VAR.name="Product/Service/R&D"
+        ,""#VAR.proper.name=""#Overall DoD Product/Service/R&D by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label="% of DoD Obligations"
         ,VAR.Coloration=Coloration
@@ -835,8 +836,8 @@ for (s in unique(PSRPolicy$ ServicesCategory.sum)){
     PSRPolicy$Graph[PSRPolicy$ ServicesCategory.sum==s]<-TRUE
     
     PSRGraph<-LatticePercentLineWrapper(
-        VAR.name="Produce/Service/R&D"
-        ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+        VAR.name="Product/Service/R&D"
+        ,""#VAR.proper.name=""#Overall DoD Product/Service/R&D by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label="% of Component Obligations"
         ,VAR.Coloration=Coloration
@@ -910,8 +911,8 @@ for (s in unique(PSRPolicy$ ServicesCategory.sum)){
     PSRPolicy$Graph[PSRPolicy$ ServicesCategory.sum==s]<-TRUE
     
     PSRGraph<-LatticePlotWrapper(
-        VAR.name="Produce/Service/R&D"
-        ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+        VAR.name="Product/Service/R&D"
+        ,""#VAR.proper.name=""#Overall DoD Product/Service/R&D by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(s,"Constant 2014 $ Obligated, Billions")
         ,VAR.Coloration=Coloration
@@ -987,8 +988,8 @@ for (c in unique(PSRPolicy$SubCustomer)){
             
             
             PSRGraph<-LatticePercentLineWrapper(
-                VAR.name="Produce/Service/R&D"
-                ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+                VAR.name="Product/Service/R&D"
+                ,""#VAR.proper.name=""#Overall DoD Product/Service/R&D by Starting Regime"
                 ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
                 ,VAR.Y.label=paste("% of",c,"Obligations")
                 ,VAR.Coloration=Coloration
@@ -1020,6 +1021,7 @@ for (c in unique(PSRPolicy$SubCustomer)){
             PSRGraph
             print(PSRGraph)
             #     PSRGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+            rm(PSRGraph)
             while(!(dev.cur()[[1]]==1)){
                 dev.off()
                 }
@@ -1066,8 +1068,8 @@ for (c in unique(PSRPolicy$SubCustomer)){
         )
     
     PSRGraph<-LatticePlotWrapper(
-        VAR.name="Produce/Service/R&D"
-        ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+        VAR.name="Product/Service/R&D"
+        ,""#VAR.proper.name=""#Overall DoD Product/Service/R&D by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(c,s,"Constant 2014 $ Obligated, Billions")
         ,VAR.Coloration=Coloration

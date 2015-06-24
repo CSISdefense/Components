@@ -1,0 +1,1234 @@
+---
+title: "ATLregime Services"
+author: "Greg Sanders"
+date: "Friday, March 20, 2015"
+output: html_document
+---
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r Setup, echo=FALSE}
+require(ggplot2)
+require(stringr)
+require(plyr)
+require(lubridate)
+options(error=recover)
+setwd("K:\\Development\\Components")
+# setwd("C:\\Users\\Greg Sanders\\Documents\\Development\\Components")
+Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
+# Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
+source(paste(Path,"lookups.r",sep=""))
+source(paste(Path,"helper.r",sep=""))
+
+axis.text.size<-12
+strip.text.size<-12
+legend.text.size<-8
+# table.text.size<-5.75
+title.text.size<-12
+geom.text.size<-12
+
+main.text.size<-2
+note.text.size<-1.40
+
+
+Coloration<-read.csv(
+    paste(Path,"Lookups\\","lookup_coloration.csv",sep=""),
+    header=TRUE, sep=",", na.strings="", dec=".", strip.white=TRUE, 
+    stringsAsFactors=FALSE
+    )
+
+Coloration<-ddply(Coloration
+                  , c(.(R), .(G), .(B))
+                  , transform
+                  , ColorRGB=as.character(
+                      if(min(is.na(c(R,G,B)))) {NA} 
+                      else {rgb(max(R),max(G),max(B),max=255)}
+                      )
+                  )
+```
+
+You can also embed plots, for example:
+
+
+
+```{r DateEntryAndProcessing, echo=FALSE}
+zipfile<-unz("Data\\Defense_Summary_SP_FundingMechanismHistoryBucketPSRSubCustomerRegime.zip",
+        "Defense_Summary_SP_FundingMechanismHistoryBucketPSRSubCustomerRegime.csv")
+
+PSRRegime  <- read.csv(
+    "Data//Defense_Vendor_SP_VendorSizeHistoryBucketSubCustomerRegime.csv",
+    header = TRUE, sep = ",", dec = ".", strip.white = TRUE, 
+    na.strings = c("NULL","NA",""),
+    stringsAsFactors = TRUE
+    )
+
+
+PSRRegime<-apply_lookups(Path,PSRRegime)
+PSRRegime<-subset(PSRRegime,ServicesCategory.sum=="Services (Non-R&D)")
+
+str(PSRRegime)
+PSRRegime$USDATL<-factor(PSRRegime$USDATL,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","KENDALL" ),ordered=TRUE )
+PSRRegime<-subset(PSRRegime,USDATL %in% c("YOUNG","CARTER","KENDALL"))
+
+PSRRegime$Graph<-TRUE
+
+PSRRegime$SignedQuarter<-as.Date(
+    paste(as.numeric(format(PSRRegime$SignedMonth, "%Y"))+
+              floor(as.numeric(format(PSRRegime$SignedMonth,"%m"))/10),
+          (floor((as.numeric(format(PSRRegime$SignedMonth, "%m"))-1)/3)*3+4) %% 12,
+          1
+          ,sep="-"),"%Y-%m-%d")-1
+
+PSRRegime$SubCustomer.component<-droplevels(PSRRegime$SubCustomer.component)
+PSRRegime$SubCustomer.component<-factor(PSRRegime$SubCustomer.component,
+                                           levels=c("Army","Navy","Air Force","DLA",
+                                                    "MDA","MilitaryHealth",
+                                                    "Additional DoD Components"),
+                                           labels=c("Army","Navy","Air Force","DLA",
+                                                    "MDA","Military\nHealth",
+                                                    "Additional\nDoD\nComponents"),
+                                           ordered=TRUE)
+
+```
+
+
+```{r PSRATLregime}
+ATLregimeFYear<-aggregate(PSRRegime$Obligation.2014
+                          , by=list(PSRRegime$Fiscal.Year,
+                                    #                                                   PSRRegime$SubCustomer.component,
+                                    PSRRegime$USDATL)
+                          ,FUN = "sum"
+                          ,na.rm =TRUE
+                          )
+
+names(ATLregimeFYear)<-c("Fiscal.Year","USDATL","AnnualRegimeObligations")
+PSRUSDATL<-subset(PSRRegime,join(PSRRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
+
+
+ATLregimeDetails<-data.frame(USDATL= 'GANSLER+',
+                             StartDate=as.Date('1997/11/10',format='%Y/%m/%d'),
+                             EndDate=as.Date('2001/05/10',format='%Y/%m/%d'))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'ALDRIDGE',
+                                                    StartDate=as.Date('2001/05/10',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2003/05/22' ,format='%Y/%m/%d') ))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'WYNNE',
+                                                    StartDate=as.Date('2003/05/23' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2005/06/05' ,format='%Y/%m/%d')))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KRIEG',
+                                                    StartDate=as.Date('2005/06/06' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2007/07/19' ,format='%Y/%m/%d')))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'YOUNG',
+                                                    StartDate=as.Date('2007/07/20' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2009/04/26',format='%Y/%m/%d')))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'CARTER',
+                                                    StartDate=as.Date('2009/04/27',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2011/11/02',format='%Y/%m/%d')))
+ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
+                                                    StartDate=as.Date('2011/11/03',format='%Y/%m/%d'),
+                                                    EndDate=max(PSRRegime$SignedQuarter)))
+
+
+
+ATLregimeDetails$StartFiscalYear<-ymd(paste(year(ATLregimeDetails$StartDate)+
+                                                ifelse(month(ATLregimeDetails$StartDate)<10,-1,0)
+                                            ,"-10-1",sep=""))
+
+
+
+PSRUSDATL<-join(PSRUSDATL,ATLregimeDetails,match="first")
+
+
+PSRUSDATL$Fiscal.Year[PSRUSDATL$Fiscal.Year>PSRUSDATL$EndDate&
+                             PSRUSDATL$SignedMonth<=PSRUSDATL$EndDate]<-
+    PSRUSDATL$EndDate[PSRUSDATL$Fiscal.Year>PSRUSDATL$EndDate&
+                             PSRUSDATL$SignedMonth<=PSRUSDATL$EndDate]
+
+PSRUSDATL$Fiscal.Year[PSRUSDATL$Fiscal.Year<PSRUSDATL$StartDate]<-
+    PSRUSDATL$StartDate[PSRUSDATL$Fiscal.Year<PSRUSDATL$StartDate]
+
+
+```
+
+
+
+```{r PSRUSDATLmonthlyComponents}        
+
+png(
+    paste( "Output\\PSR_services\\",paste("DoD_components"
+                                         ,"Obligation_2014"
+                                         ,"PSR_services"
+                                         ,"USDATL"
+                                         ,"6monthMovingAverage"
+                                         ,sep="_"
+                                         )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=10
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+# debug(LatticePercentLineWrapper)
+
+PSRGraph<-LatticePercentLineWrapper(
+    "Product Area"
+    ,""#Produce/Service/R&D by DoD Component and Starting Regime"
+    ,"Month of Obligation (6 Month Lagging Average)"
+    ,"% of Component Obligations"
+    ,Coloration
+    ,PSRUSDATL
+    ,NULL
+    ,"SignedMonth"
+    ,"Obligation.2014"
+    ,"ServicesCategory.sum"
+    ,"SubCustomer.component"
+    ,"USDATL"
+    ,"StartDate"
+    ,"EndDate"
+    ,MovingAverage=6
+    )
+
+PSRGraph<-PSRGraph+aes(size=y.variable)
+# PSRGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+PSRGraph<-PSRGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+PSRGraph<-PSRGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year")) 
+PSRGraph
+print(PSRGraph)
+#     PSRGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+```
+
+
+
+```{r PSRUSDATLannualComponents}        
+
+png(
+    paste( "Output\\PSR_services\\",paste("DoD_components"
+                                         ,"Obligation_2014"
+                                         ,"PSR_services"
+                                         ,"USDATL"
+                                         ,"Annual"
+                                         ,sep="_"
+                                         )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=10
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+# debug(LatticePercentLineWrapper)
+
+PSRGraph<-LatticePercentLineWrapper(
+    "Product Area"
+    ,""#Produce/Service/R&D by DoD Component and Starting Regime"
+    ,"Fiscal Year of Obligation"
+    ,"% of Component Obligations"
+    ,Coloration
+    ,PSRUSDATL
+    ,NULL
+    ,"Fiscal.Year"
+    ,"Obligation.2014"
+    ,"ServicesCategory.sum"
+    ,"SubCustomer.component"
+    ,"USDATL"
+    ,"StartDate"
+    ,"EndDate"
+    )
+
+PSRGraph<-PSRGraph+aes(size=y.variable)
+# PSRGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+PSRGraph<-PSRGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+PSRGraph<-PSRGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+PSRGraph
+print(PSRGraph)
+#     PSRGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+```
+
+
+
+```{r PSRATLpolicy}
+rm(PSRUSDATL)
+PSRPolicy<-PSRRegime
+PSRPolicy$ATLpolicy<-as.character(PSRRegime$USDATL)
+PSRPolicy$ATLpolicy[PSRPolicy$USDATL=="CARTER"]<-"CARTER pre-\nSection 808"
+PSRPolicy$ATLpolicy[PSRPolicy$BBP1==1]<-"BBP1"
+PSRPolicy$ATLpolicy[PSRPolicy$ServicesRestriction==1]<-"Section 808\nFY12 NDAA\nImplem."
+
+# PSRPolicy$ATLpolicy[PSRPolicy$ITFsmallBusiness==1]<-"Small Business\nTask Force"
+# PSRPolicy$ATLpolicy[PSRPolicy$BBP2==1]<-"BBP2"
+
+PSRPolicy$ATLpolicy[PSRPolicy$BBP3==1]<-"BBP3"
+
+PSRPolicy$ATLpolicy<-factor(PSRPolicy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER\npre-BBP","BBP1","Section 808\nFY12 NDAA\nImplem.","BBP3" ),ordered=TRUE )
+# 
+# ATLpolicyFYear<-aggregate(PSRPolicy$Obligation.2014
+#                           , by=list(PSRPolicy$Fiscal.Year,
+#                                     #                                                   PSRRegime$SubCustomer.component,
+#                                     PSRPolicy$ATLpolicy)
+#                           ,FUN = "sum"
+#                           ,na.rm =TRUE
+#                           )
+# 
+# 
+# 
+# names(ATLpolicyFYear)<-c("Fiscal.Year","ATLpolicy","AnnualPolicyObligations")
+# PSRPolicy<-subset(PSRPolicy,join(PSRPolicy,ATLpolicyFYear)$AnnualPolicyObligations>=50)
+# 
+
+ATLpolicyDetails<-data.frame(ATLpolicy= 'GANSLER+',
+                             StartDate=as.Date('1997/11/10',format='%Y/%m/%d'),
+                             EndDate=as.Date('2001/05/10',format='%Y/%m/%d'))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'ALDRIDGE',
+                                                    StartDate=as.Date('2001/05/10',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2003/05/22' ,format='%Y/%m/%d') ))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'WYNNE',
+                                                    StartDate=as.Date('2003/05/23' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2005/06/05' ,format='%Y/%m/%d')))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'KRIEG',
+                                                    StartDate=as.Date('2005/06/06' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2007/07/19' ,format='%Y/%m/%d')))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'YOUNG',
+                                                    StartDate=as.Date('2007/07/20' ,format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2009/04/26',format='%Y/%m/%d')))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'CARTER\npre-BBP',
+                                                    StartDate=as.Date('2009/04/27',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2010/09/22',format='%Y/%m/%d')))
+# ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'Small Business\nTask Force',
+#                                                     StartDate=as.Date('2010/09/23',format='%Y/%m/%d'),
+#                                                     EndDate=as.Date('2013/04/23',format='%Y/%m/%d')))
+
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP1',
+                                                    StartDate=as.Date('2010/11/03',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2012/07/30',format='%Y/%m/%d')))
+# ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'WSARA regs',
+#                                                     StartDate=as.Date('2011/03/16',format='%Y/%m/%d'),
+#                                                     EndDate=as.Date('2013/04/23',format='%Y/%m/%d')))
+# ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP2',
+#                                                     StartDate=as.Date('2013/04/24',format='%Y/%m/%d'),
+#                                                     EndDate=as.Date('2014/09/18',format='%Y/%m/%d')))
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'Section 808\nFY12 NDAA\nImplem.',
+                                                    StartDate=as.Date('2012/07/31',format='%Y/%m/%d'),
+                                                    EndDate=as.Date('2014/09/18',format='%Y/%m/%d')))
+
+ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP3',
+                                                    StartDate=as.Date('2014/09/19',format='%Y/%m/%d'),
+                                                    EndDate=max(PSRRegime$SignedQuarter)))
+
+
+
+
+ATLpolicyDetails$StartFiscalYear<-ymd(
+    paste(year(ATLpolicyDetails$StartDate)+
+              ifelse(month(ATLpolicyDetails$StartDate)<10,-1,0)
+          ,"-10-1",sep=""))
+
+
+PSRPolicy<-join(PSRPolicy,ATLpolicyDetails,match="first")
+
+PSRPolicy<-subset(PSRPolicy,ATLpolicy!='BBP3') #Not enough to include
+
+PSRPolicy$Fiscal.Year[PSRPolicy$Fiscal.Year>PSRPolicy$EndDate&
+                             PSRPolicy$SignedMonth<=PSRPolicy$EndDate]<-
+    PSRPolicy$EndDate[PSRPolicy$Fiscal.Year>PSRPolicy$EndDate&
+                             PSRPolicy$SignedMonth<=PSRPolicy$EndDate]
+
+```
+
+```{r PSRPolicyMonthlyComponents}        
+
+png(
+    paste( "Output\\PSR_services\\",paste("DoD_components"
+                                         ,"Obligation_2014"
+                                         ,"PSR_services"
+                                         ,"ATLpolicy"
+                                         ,"6monthMovingAverage"
+                                         ,sep="_"
+                                         )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=10
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+
+PSRGraph<-LatticePercentLineWrapper(
+    "Product Area"
+    ,""#Produce/Service/R&D by DoD Component and Starting Regime"
+    ,"Month of Obligation (6 Month Lagging Average)"
+    ,"% of Component Obligations"
+    ,Coloration
+    ,PSRPolicy
+    ,NULL
+    ,"SignedMonth"
+    ,"Obligation.2014"
+    ,"ServicesCategory.sum"
+    ,"SubCustomer.component"
+    ,"ATLpolicy"
+    ,"StartDate"
+    ,"EndDate"
+    ,MovingAverage=6
+    )
+
+PSRGraph<-PSRGraph+aes(size=y.variable)
+# PSRGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+PSRGraph<-PSRGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+PSRGraph<-PSRGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+PSRGraph
+print(PSRGraph)
+#     PSRGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+```
+
+
+```{r PSRPolicyAnnualComponents}
+
+png(
+    paste( "Output\\PSR_services\\",
+           paste("DoD_components"
+                 ,"Obligation_2014"
+                 ,"PSR_services"
+                 ,"ATLpolicy"
+                 ,"Annual"
+                 ,sep="_"
+                 )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=10
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+
+PSRGraph<-LatticePercentLineWrapper(
+    "Product Area"
+    ,""#Produce/Service/R&D by DoD Component and Starting Regime"
+    ,"Fiscal Year of Obligation"
+    ,"% of Component Obligations"
+    ,Coloration
+    ,PSRPolicy
+    ,NULL
+    ,"Fiscal.Year"
+    ,"Obligation.2014"
+    ,"ServicesCategory.sum"
+    ,"SubCustomer.component"
+    ,"ATLpolicy"
+    ,"StartDate"
+    ,"EndDate"
+    )
+
+PSRGraph<-PSRGraph+aes(size=y.variable)
+# PSRGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+PSRGraph<-PSRGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+PSRGraph<-PSRGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+PSRGraph
+print(PSRGraph)
+#     PSRGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+
+```
+
+```{r PSRPolicyMonthlySummary}
+
+
+png(
+    paste( "Output\\PSR_services\\",
+           paste("DoD_Summary"
+                 ,"Obligation_2014"
+                 ,"PSR_services"
+                 ,"ATLpolicy"
+                 ,"6monthMovingAverage"
+                 ,sep="_"
+                 )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=3.5
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+
+PSRGraph<-LatticePercentLineWrapper(
+    VAR.name="Product Area"
+    ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+    ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
+    ,VAR.Y.label="% of DoD Obligations"
+    ,VAR.Coloration=Coloration
+    
+    
+    ,VAR.long.DF=PSRPolicy
+    ,VAR.ncol=NA
+    ,VAR.x.variable="SignedMonth"
+    ,VAR.y.variable="Obligation.2014"
+    ,VAR.y.series=    "ServicesCategory.sum"
+    ,VAR.facet.primary="ATLpolicy"
+    ,VAR.facet.secondary=NA
+    ,"StartDate"
+    ,"EndDate"
+    ,MovingAverage=6
+    )
+
+PSRGraph<-PSRGraph+aes(size=y.variable)
+# PSRGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+PSRGraph<-PSRGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+PSRGraph<-PSRGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+PSRGraph
+print(PSRGraph)
+#     PSRGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+
+```
+
+
+
+```{r PSRPolicyAnnualSummary}
+
+
+png(
+    paste( "Output\\PSR_services\\",
+           paste("DoD_Summary"
+                 ,"Obligation_2014"
+                 ,"PSR_services"
+                 ,"ATLpolicy"
+                 ,"Annual"
+                 ,sep="_"
+                 )
+           ,".png"
+           , sep=""
+           )
+    , type="cairo"
+    , width=7.5
+    , height=3.5
+    , units='in'
+    , pointsize=12
+    , res=150
+    )
+
+
+PSRGraph<-LatticePercentLineWrapper(
+    VAR.name="Product Area"
+    ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+    ,VAR.X.label="Fiscal Year of Obligation"
+    ,VAR.Y.label="% of DoD Obligations"
+    ,VAR.Coloration=Coloration
+    
+    
+    ,VAR.long.DF=PSRPolicy
+    ,VAR.ncol=NA
+    ,VAR.x.variable="Fiscal.Year"
+    ,VAR.y.variable="Obligation.2014"
+    ,VAR.y.series=    "ServicesCategory.sum"
+    ,VAR.facet.primary="ATLpolicy"
+    ,VAR.facet.secondary=NA
+    ,"StartDate"
+    ,"EndDate"
+    )
+
+PSRGraph<-PSRGraph+aes(size=y.variable)
+# PSRGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+PSRGraph<-PSRGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+PSRGraph<-PSRGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+PSRGraph
+print(PSRGraph)
+#     PSRGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+while(!(dev.cur()[[1]]==1)){
+    dev.off()
+    }
+
+
+```
+
+
+
+```{r PSRPolicyMonthlyComponentSolitary}
+
+for (c in unique(PSRPolicy$SubCustomer)){    
+    png(
+        paste( "Output\\PSR_services\\",c,"\\",CleanFileName(paste(
+            c
+            ,"Obligation_2014"
+            ,"PSR_services"
+            ,"ATLpolicy"
+            ,"6monthMovingAverage"
+            ,sep="_"
+            ))
+            ,".png"
+            , sep=""
+            )
+        , type="cairo"
+        , width=10
+        , height=5
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    PSRGraph<-LatticePercentLineWrapper(
+        VAR.name="Product Area"
+        ,VAR.proper.name=""#paste(c,"Produce/Service/R&D by Starting Regime")
+        ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
+        ,VAR.Y.label=paste("% of ",c," Obligations")
+        ,VAR.Coloration=Coloration
+        
+        
+        ,VAR.long.DF=subset(PSRPolicy,SubCustomer==c)
+        ,VAR.ncol=NA
+        ,VAR.x.variable="SignedMonth"
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series=    "ServicesCategory.sum"
+        ,VAR.facet.primary="ATLpolicy"
+        ,VAR.facet.secondary=NA
+        ,"StartDate"
+        ,"EndDate"
+        ,MovingAverage=6
+        )
+    
+    PSRGraph<-PSRGraph+aes(size=y.variable)+scale_size_continuous(name="Constant 2014 $ Obligated, Billions")
+    # PSRGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    PSRGraph<-PSRGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    PSRGraph<-PSRGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+        scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    PSRGraph
+    print(PSRGraph)
+    rm(PSRGraph)
+    #     PSRGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+
+```
+
+
+```{r PSRPolicyAnnualComponentSolitary}
+
+for (c in unique(PSRPolicy$SubCustomer)){    
+    png(
+        paste("Output\\PSR_services\\",c,"\\",
+              CleanFileName(paste(
+            c
+            ,"Obligation_2014"
+            ,"PSR_services"
+            ,"ATLpolicy"
+            ,"Annual"
+            ,sep="_"
+            ))
+            ,".png"
+            , sep=""
+            )
+        , type="cairo"
+        , width=10
+        , height=5
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    PSRGraph<-LatticePercentLineWrapper(
+        VAR.name="Product Area"
+        ,VAR.proper.name=""#paste(c,"Produce/Service/R&D by Starting Regime")
+        ,VAR.X.label="Fiscal Year of Obligation"
+        ,VAR.Y.label=paste("% of ",c," Obligations")
+        ,VAR.Coloration=Coloration
+        
+        
+        ,VAR.long.DF=subset(PSRPolicy,SubCustomer==c)
+        ,VAR.ncol=NA
+        ,VAR.x.variable="Fiscal.Year"
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series=    "ServicesCategory.sum"
+        ,VAR.facet.primary="ATLpolicy"
+        ,VAR.facet.secondary=NA
+        ,"StartDate"
+        ,"EndDate"
+        )
+    
+    PSRGraph<-PSRGraph+aes(size=y.variable)+scale_size_continuous(name="Constant 2014 $ Obligated, Billions")
+    # PSRGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    PSRGraph<-PSRGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    PSRGraph<-PSRGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+        scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    PSRGraph
+    print(PSRGraph)
+    rm(PSRGraph)
+    #     PSRGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+
+```
+
+
+```{r PrepareHorseTail}
+PSRPolicy$SinceFirstFiscalYear<-as.numeric(as.duration(
+    ymd(PSRPolicy$SignedMonth)-PSRPolicy$StartFiscalYear)
+    /dyears(1)
+    )
+
+HorseTailYears<-6
+
+
+```
+
+
+
+```{r PSRPolicySeriesHorseTailSummary}
+
+OldGraph<-PSRPolicy$Graph
+
+for (s in unique(PSRPolicy$ ServicesCategory.sum)){    
+    png(
+        paste( "Output\\PSR_services\\",
+               CleanFileName(paste(
+                   "DoD"
+                   ,"Category"
+                   ,"Percent"
+                   ,s
+                   ,"PSR_services"
+                   ,"HorseTail"
+                   ,"3monthMovingAverage"
+                   ,sep="_"
+                   ))
+               ,".png"
+               , sep=""
+               )
+        , type="cairo"
+        , width=7.5
+        , height=4
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    PSRPolicy$Graph[PSRPolicy$ ServicesCategory.sum!=s]<-FALSE
+    PSRPolicy$Graph[PSRPolicy$ ServicesCategory.sum==s]<-TRUE
+    
+    PSRGraph<-LatticePercentLineWrapper(
+        VAR.name="Product Area"
+        ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
+        ,VAR.Y.label="% of DoD Obligations"
+        ,VAR.Coloration=Coloration
+        , HorseTail=TRUE
+        
+        ,VAR.long.DF=PSRPolicy
+        ,VAR.ncol=1
+        ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series=    "ATLpolicy"
+        ,VAR.facet.primary="ServicesCategory.sum"
+        ,VAR.facet.secondary=NA
+        #     ,"StartDate"
+        #     ,"EndDate"
+        ,MovingAverage=3
+        ,MovingSides=1
+        )
+    
+    # PSRGraph<-PSRGraph+aes(size=y.variable)
+    
+    PSRGraph<-PSRGraph+scale_x_continuous(breaks=c(0:HorseTailYears),limits=c(0,HorseTailYears))
+    
+    # PSRGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    # PSRGraph<-PSRGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    PSRGraph<-PSRGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))
+#     +
+    #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    PSRGraph
+    print(PSRGraph)
+    #     PSRGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+PSRPolicy$Graph<-OldGraph
+
+```
+
+
+```{r PSRPolicySeriesHorseTailComponents}
+
+OldGraph<-PSRPolicy$Graph
+
+for (s in unique(PSRPolicy$ ServicesCategory.sum)){    
+    png(
+        paste( "Output\\PSR_services\\",
+               CleanFileName(paste(
+                   "DoD_components"
+                   ,"Category"
+                   ,"Percent"
+                   ,s
+                   ,"PSR_services"
+                   ,"HorseTail"
+                   ,"3monthMovingAverage"
+                   ,sep="_"
+                   ))
+               ,".png"
+               , sep=""
+               )
+        , type="cairo"
+        , width=7.5
+        , height=10
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    PSRPolicy$Graph[PSRPolicy$ ServicesCategory.sum!=s]<-FALSE
+    PSRPolicy$Graph[PSRPolicy$ ServicesCategory.sum==s]<-TRUE
+    
+    PSRGraph<-LatticePercentLineWrapper(
+        VAR.name="Product Area"
+        ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
+        ,VAR.Y.label="% of Component Obligations"
+        ,VAR.Coloration=Coloration
+        , HorseTail=TRUE
+        
+        ,VAR.long.DF=PSRPolicy
+        ,VAR.ncol=1
+        ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series=    "ATLpolicy"
+        ,VAR.facet.primary="ServicesCategory.sum"
+        ,VAR.facet.secondary="SubCustomer"
+        #     ,"StartDate"
+        #     ,"EndDate"
+        ,MovingAverage=3
+        ,MovingSides=1
+        )
+    
+    # PSRGraph<-PSRGraph+aes(size=y.variable)
+    PSRGraph<-PSRGraph+scale_x_continuous(breaks=c(0:HorseTailYears),
+                                                limits=c(0,HorseTailYears))
+    
+    # PSRGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    # PSRGraph<-PSRGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    PSRGraph<-PSRGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))
+    #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    PSRGraph
+    print(PSRGraph)
+    #     PSRGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+PSRPolicy$Graph<-OldGraph
+
+```
+
+
+```{r PSRPolicySeriesSpendingBarSummary}
+
+
+OldGraph<-PSRPolicy$Graph
+
+for (s in unique(PSRPolicy$ ServicesCategory.sum)){    
+    png(
+        paste( "Output\\PSR_services\\",
+               CleanFileName(paste(
+                   "DoD"
+                   ,"Category"
+                   ,"Obligation_2014"
+                   ,s
+                   ,"PSR_services"
+                   ,"Bar"
+                   ,"3monthMovingAverage"
+                   ,sep="_"
+                   ))
+               ,".png"
+               , sep=""
+               )
+        , type="cairo"
+        , width=7.5
+        , height=4
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    PSRPolicy$Graph[PSRPolicy$ ServicesCategory.sum!=s]<-FALSE
+    PSRPolicy$Graph[PSRPolicy$ ServicesCategory.sum==s]<-TRUE
+    
+    PSRGraph<-LatticePlotWrapper(
+        VAR.name="Product Area"
+        ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
+        ,VAR.Y.label=paste(s,"Constant 2014 $ Obligated, Billions")
+        ,VAR.Coloration=Coloration
+        ,VAR.long.DF=PSRPolicy
+        ,VAR.ncol=1
+        ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series="ATLpolicy"
+        ,VAR.facet.primary="ATLpolicy"
+        ,VAR.facet.secondary=NA
+        #     ,"StartDate"
+        #     ,"EndDate"
+        ,MovingAverage=3
+        ,MovingSides=1
+        ,DataLabels=FALSE
+        )
+    PSRGraph<-PSRGraph+geom_bar(width=1/12,stat="identity",position="dodge")
+    # PSRGraph<-PSRGraph+aes(size=y.variable)
+    
+    PSRGraph<-PSRGraph+scale_x_continuous(breaks=c(0:HorseTailYears),
+                                                limits=c(0,HorseTailYears))
+    
+    # PSRGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    # PSRGraph<-PSRGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    # PSRGraph<-PSRGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+    #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    PSRGraph
+    print(PSRGraph)
+    #     PSRGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+PSRPolicy$Graph<-OldGraph
+
+```
+
+
+
+```{r PSRPolicySeriesHorseTailComponentSolitary}
+
+OldGraph<-PSRPolicy$Graph
+for (c in unique(PSRPolicy$SubCustomer)){ 
+    PSRSubCustomer<-subset(PSRPolicy,SubCustomer==c)
+    for (s in unique(PSRPolicy$ ServicesCategory.sum)){    
+        PSRSubCustomer$Graph[PSRSubCustomer$ ServicesCategory.sum!=s]<-FALSE
+        PSRSubCustomer$Graph[PSRSubCustomer$ ServicesCategory.sum==s]<-TRUE
+        if(any(PSRSubCustomer$Graph==TRUE)){
+            png(
+                paste( "Output\\PSR_services\\",c,"\\",
+                       CleanFileName(paste(
+                           c
+                           ,"Category"
+                           ,"Percent"
+                           ,s
+                           ,"PSR_services"
+                           ,"HorseTail"
+                           ,"3monthMovingAverage"
+                           ,sep="_"
+                           ))
+                       ,".png"
+                       , sep=""
+                       )
+                , type="cairo"
+                , width=7.5
+                , height=4
+                , units='in'
+                , pointsize=12
+                , res=150
+                )
+            
+            
+            PSRGraph<-LatticePercentLineWrapper(
+                VAR.name="Product Area"
+                ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+                ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
+                ,VAR.Y.label=paste("% of",c,"Obligations")
+                ,VAR.Coloration=Coloration
+                , HorseTail=TRUE
+                
+                ,VAR.long.DF=PSRSubCustomer
+                ,VAR.ncol=1
+                ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+                ,VAR.y.variable="Obligation.2014"
+                ,VAR.y.series=    "ATLpolicy"
+                ,VAR.facet.primary="ServicesCategory.sum"
+                ,VAR.facet.secondary=NA
+                #     ,"StartDate"
+                #     ,"EndDate"
+                ,MovingAverage=3
+                ,MovingSides=1
+                )
+            
+            # PSRGraph<-PSRGraph+aes(size=y.variable)
+            
+            PSRGraph<-PSRGraph+scale_x_continuous(breaks=c(0:HorseTailYears)
+                                                        ,limits=c(0,HorseTailYears))
+            
+            # PSRGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+            # PSRGraph<-PSRGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+            # PSRGraph<-PSRGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+            #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+            #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+            PSRGraph
+            print(PSRGraph)
+            rm(PSRGraph)
+            #     PSRGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+            while(!(dev.cur()[[1]]==1)){
+                dev.off()
+                }
+            }
+        }
+    }
+PSRPolicy$Graph<-OldGraph
+
+```
+
+
+
+
+```{r PSRPolicySeriesSpendingBarComponentSolitary}
+
+OldGraph<-PSRPolicy$Graph
+for (c in unique(PSRPolicy$SubCustomer)){ 
+    PSRSubCustomer<-subset(PSRPolicy,SubCustomer==c)
+    for (s in unique(PSRPolicy$ ServicesCategory.sum)){    
+        PSRSubCustomer$Graph[PSRSubCustomer$ ServicesCategory.sum!=s]<-FALSE
+        PSRSubCustomer$Graph[PSRSubCustomer$ ServicesCategory.sum==s]<-TRUE
+        if(any(PSRSubCustomer$Graph==TRUE)){
+    png(
+        paste( "Output\\PSR_services\\",c,"\\",
+               CleanFileName(paste(
+                   c
+                   ,"Category"
+                   ,"Obligation_2014"
+                   ,s
+                   ,"PSR_services"
+                   ,"Bar"
+                   ,"3monthMovingAverage"
+                   ,sep="_"
+                   ))
+               ,".png"
+               , sep=""
+               )
+        , type="cairo"
+        , width=7.5
+        , height=4
+        , units='in'
+        , pointsize=12
+        , res=150
+        )
+    
+    PSRGraph<-LatticePlotWrapper(
+        VAR.name="Product Area"
+        ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+        ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
+        ,VAR.Y.label=paste(c,s,"Constant 2014 $ Obligated, Billions")
+        ,VAR.Coloration=Coloration
+        ,VAR.long.DF=PSRSubCustomer
+        ,VAR.ncol=1
+        ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
+        ,VAR.y.variable="Obligation.2014"
+        ,VAR.y.series="ATLpolicy"
+        ,VAR.facet.primary="ATLpolicy"
+        ,VAR.facet.secondary=NA
+        #     ,"StartDate"
+        #     ,"EndDate"
+        ,MovingAverage=3
+        ,MovingSides=1
+        ,DataLabels=FALSE
+        )
+#     browser()
+    PSRGraph<-PSRGraph+geom_bar(width=1/12,stat="identity",position="dodge")
+    # PSRGraph<-PSRGraph+aes(size=y.variable)
+    
+    PSRGraph<-PSRGraph+scale_x_continuous(breaks=c(0:HorseTailYears)
+                                                ,limits=c(0,HorseTailYears))
+    
+    # PSRGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
+    # PSRGraph<-PSRGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
+    # PSRGraph<-PSRGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+    #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
+    PSRGraph
+    print(PSRGraph)
+    rm(PSRGraph)
+    #     PSRGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
+
+        }
+    }
+PSRPolicy$Graph<-OldGraph
+
+```
+
+
+```{r DataTables}
+
+#Annual
+PSRRegimeTable<-ddply(PSRRegime, 
+                         .(
+                             Fiscal.Year,
+                             ServicesCategory.sum,
+                             SubCustomer.component,
+                             USDATL
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014)
+                         )
+
+write.csv(PSRRegimeTable,paste("Output\\PSR_services\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"PSR_services"
+                                        ,"USDATL"
+                                        ,"Annual"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+#Monthly
+
+PSRRegimeTable<-ddply(PSRRegime, 
+                         .(
+                             SignedMonth,
+                             ServicesCategory.sum,
+                             SubCustomer.component,
+                             USDATL
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014)
+                         )
+
+
+PSRRegimeTable<-ddply(PSRRegimeTable, 
+                         .( ServicesCategory.sum,
+                           SubCustomer.component,
+                           USDATL),
+                         .fun=TransformFilter,
+                         MovingAverage=3,
+                         MovingSides=1,
+                         Source="Obligation.2014"
+                         )
+
+
+write.csv(PSRRegimeTable,paste("Output\\PSR_services\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"PSR_services"
+                                        ,"USDATL"
+                                        ,"Monthly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+rm(PSRRegimeTable)
+#Annual
+PSRPolicyTable<-ddply(PSRPolicy, c("Fiscal.Year"
+                                         ,"ServicesCategory.sum"
+                                         ,"SubCustomer.component"
+                                         ,"ATLpolicy")
+                         ,summarise
+                         ,Obligation.2014=sum(Obligation.2014)
+                         )
+
+
+write.csv(PSRPolicyTable,paste("Output\\PSR_services\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"PSR_services"
+                                        ,"ATLpolicy"
+                                        ,"Annual"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+#Monthly
+
+PSRPolicyTable<-ddply(PSRPolicy, c("SignedMonth"
+                                         ,"ServicesCategory.sum"
+                                         ,"SubCustomer.component"
+                                         ,"ATLpolicy")
+                         ,summarise
+                         ,Obligation.2014=sum(Obligation.2014)
+                         )
+
+PSRPolicyTable<-ddply(PSRPolicyTable, 
+                         .( ServicesCategory.sum,
+                           SubCustomer.component,
+                           ATLpolicy),
+                         .fun=TransformFilter,
+                         MovingAverage=3,
+                         MovingSides=1,
+                         Source="Obligation.2014"
+                         )
+
+
+write.csv(PSRPolicyTable,paste("Output\\PSR_services\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"PSR_services"
+                                        ,"ATLpolicy"
+                                        ,"Monthly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+rm(PSRPolicyTable)
+
+```
