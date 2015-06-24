@@ -58,7 +58,7 @@ zipfile<-unz("Data\\Defense_Summary_SP_FundingMechanismHistoryBucketPSRSubCustom
         "Defense_Summary_SP_FundingMechanismHistoryBucketPSRSubCustomerRegime.csv")
 
 PSRRegime  <- read.csv(
-    "Data//Defense_Vendor_SP_VendorSizeHistoryBucketSubCustomerRegime.csv",
+    "Data//Defense_Summary_SP_FundingMechanismHistoryBucketPlatformSubCustomerRegime.csv",
     header = TRUE, sep = ",", dec = ".", strip.white = TRUE, 
     na.strings = c("NULL","NA",""),
     stringsAsFactors = TRUE
@@ -186,7 +186,7 @@ PSRGraph<-LatticePercentLineWrapper(
     ,NULL
     ,"SignedMonth"
     ,"Obligation.2014"
-    ,"ServicesCategory.sum"
+    ,"ProductOrServiceArea"
     ,"SubCustomer.component"
     ,"USDATL"
     ,"StartDate"
@@ -244,7 +244,7 @@ PSRGraph<-LatticePercentLineWrapper(
     ,NULL
     ,"Fiscal.Year"
     ,"Obligation.2014"
-    ,"ServicesCategory.sum"
+    ,"ProductOrServiceArea"
     ,"SubCustomer.component"
     ,"USDATL"
     ,"StartDate"
@@ -388,7 +388,7 @@ PSRGraph<-LatticePercentLineWrapper(
     ,NULL
     ,"SignedMonth"
     ,"Obligation.2014"
-    ,"ServicesCategory.sum"
+    ,"ProductOrServiceArea"
     ,"SubCustomer.component"
     ,"ATLpolicy"
     ,"StartDate"
@@ -445,7 +445,7 @@ PSRGraph<-LatticePercentLineWrapper(
     ,NULL
     ,"Fiscal.Year"
     ,"Obligation.2014"
-    ,"ServicesCategory.sum"
+    ,"ProductOrServiceArea"
     ,"SubCustomer.component"
     ,"ATLpolicy"
     ,"StartDate"
@@ -504,7 +504,7 @@ PSRGraph<-LatticePercentLineWrapper(
     ,VAR.ncol=NA
     ,VAR.x.variable="SignedMonth"
     ,VAR.y.variable="Obligation.2014"
-    ,VAR.y.series=    "ServicesCategory.sum"
+    ,VAR.y.series=    "ProductOrServiceArea"
     ,VAR.facet.primary="ATLpolicy"
     ,VAR.facet.secondary=NA
     ,"StartDate"
@@ -566,7 +566,7 @@ PSRGraph<-LatticePercentLineWrapper(
     ,VAR.ncol=NA
     ,VAR.x.variable="Fiscal.Year"
     ,VAR.y.variable="Obligation.2014"
-    ,VAR.y.series=    "ServicesCategory.sum"
+    ,VAR.y.series=    "ProductOrServiceArea"
     ,VAR.facet.primary="ATLpolicy"
     ,VAR.facet.secondary=NA
     ,"StartDate"
@@ -626,7 +626,7 @@ for (c in unique(PSRPolicy$SubCustomer)){
         ,VAR.ncol=NA
         ,VAR.x.variable="SignedMonth"
         ,VAR.y.variable="Obligation.2014"
-        ,VAR.y.series=    "ServicesCategory.sum"
+        ,VAR.y.series=    "ProductOrServiceArea"
         ,VAR.facet.primary="ATLpolicy"
         ,VAR.facet.secondary=NA
         ,"StartDate"
@@ -689,7 +689,7 @@ for (c in unique(PSRPolicy$SubCustomer)){
         ,VAR.ncol=NA
         ,VAR.x.variable="Fiscal.Year"
         ,VAR.y.variable="Obligation.2014"
-        ,VAR.y.series=    "ServicesCategory.sum"
+        ,VAR.y.series=    "ProductOrServiceArea"
         ,VAR.facet.primary="ATLpolicy"
         ,VAR.facet.secondary=NA
         ,"StartDate"
@@ -732,7 +732,7 @@ HorseTailYears<-6
 
 OldGraph<-PSRPolicy$Graph
 
-for (s in unique(PSRPolicy$ ServicesCategory.sum)){    
+for (s in unique(PSRPolicy$ ProductOrServiceArea)){    
     png(
         paste( "Output\\PSR_services\\",
                CleanFileName(paste(
@@ -756,8 +756,8 @@ for (s in unique(PSRPolicy$ ServicesCategory.sum)){
         , res=150
         )
     
-    PSRPolicy$Graph[PSRPolicy$ ServicesCategory.sum!=s]<-FALSE
-    PSRPolicy$Graph[PSRPolicy$ ServicesCategory.sum==s]<-TRUE
+    PSRPolicy$Graph[PSRPolicy$ ProductOrServiceArea!=s]<-FALSE
+    PSRPolicy$Graph[PSRPolicy$ ProductOrServiceArea==s]<-TRUE
     
     PSRGraph<-LatticePercentLineWrapper(
         VAR.name="Product Area"
@@ -772,7 +772,7 @@ for (s in unique(PSRPolicy$ ServicesCategory.sum)){
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
         ,VAR.y.series=    "ATLpolicy"
-        ,VAR.facet.primary="ServicesCategory.sum"
+        ,VAR.facet.primary="ProductOrServiceArea"
         ,VAR.facet.secondary=NA
         #     ,"StartDate"
         #     ,"EndDate"
@@ -807,7 +807,7 @@ PSRPolicy$Graph<-OldGraph
 
 OldGraph<-PSRPolicy$Graph
 
-for (s in unique(PSRPolicy$ ServicesCategory.sum)){    
+for (s in unique(PSRPolicy$ ProductOrServiceArea)){    
     png(
         paste( "Output\\PSR_services\\",
                CleanFileName(paste(
@@ -831,8 +831,8 @@ for (s in unique(PSRPolicy$ ServicesCategory.sum)){
         , res=150
         )
     
-    PSRPolicy$Graph[PSRPolicy$ ServicesCategory.sum!=s]<-FALSE
-    PSRPolicy$Graph[PSRPolicy$ ServicesCategory.sum==s]<-TRUE
+    PSRPolicy$Graph[PSRPolicy$ ProductOrServiceArea!=s]<-FALSE
+    PSRPolicy$Graph[PSRPolicy$ ProductOrServiceArea==s]<-TRUE
     
     PSRGraph<-LatticePercentLineWrapper(
         VAR.name="Product Area"
@@ -847,7 +847,7 @@ for (s in unique(PSRPolicy$ ServicesCategory.sum)){
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
         ,VAR.y.series=    "ATLpolicy"
-        ,VAR.facet.primary="ServicesCategory.sum"
+        ,VAR.facet.primary="ProductOrServiceArea"
         ,VAR.facet.secondary="SubCustomer"
         #     ,"StartDate"
         #     ,"EndDate"
@@ -882,7 +882,7 @@ PSRPolicy$Graph<-OldGraph
 
 OldGraph<-PSRPolicy$Graph
 
-for (s in unique(PSRPolicy$ ServicesCategory.sum)){    
+for (s in unique(PSRPolicy$ ProductOrServiceArea)){    
     png(
         paste( "Output\\PSR_services\\",
                CleanFileName(paste(
@@ -906,8 +906,8 @@ for (s in unique(PSRPolicy$ ServicesCategory.sum)){
         , res=150
         )
     
-    PSRPolicy$Graph[PSRPolicy$ ServicesCategory.sum!=s]<-FALSE
-    PSRPolicy$Graph[PSRPolicy$ ServicesCategory.sum==s]<-TRUE
+    PSRPolicy$Graph[PSRPolicy$ ProductOrServiceArea!=s]<-FALSE
+    PSRPolicy$Graph[PSRPolicy$ ProductOrServiceArea==s]<-TRUE
     
     PSRGraph<-LatticePlotWrapper(
         VAR.name="Product Area"
@@ -958,9 +958,9 @@ PSRPolicy$Graph<-OldGraph
 OldGraph<-PSRPolicy$Graph
 for (c in unique(PSRPolicy$SubCustomer)){ 
     PSRSubCustomer<-subset(PSRPolicy,SubCustomer==c)
-    for (s in unique(PSRPolicy$ ServicesCategory.sum)){    
-        PSRSubCustomer$Graph[PSRSubCustomer$ ServicesCategory.sum!=s]<-FALSE
-        PSRSubCustomer$Graph[PSRSubCustomer$ ServicesCategory.sum==s]<-TRUE
+    for (s in unique(PSRPolicy$ ProductOrServiceArea)){    
+        PSRSubCustomer$Graph[PSRSubCustomer$ ProductOrServiceArea!=s]<-FALSE
+        PSRSubCustomer$Graph[PSRSubCustomer$ ProductOrServiceArea==s]<-TRUE
         if(any(PSRSubCustomer$Graph==TRUE)){
             png(
                 paste( "Output\\PSR_services\\",c,"\\",
@@ -999,7 +999,7 @@ for (c in unique(PSRPolicy$SubCustomer)){
                 ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
                 ,VAR.y.variable="Obligation.2014"
                 ,VAR.y.series=    "ATLpolicy"
-                ,VAR.facet.primary="ServicesCategory.sum"
+                ,VAR.facet.primary="ProductOrServiceArea"
                 ,VAR.facet.secondary=NA
                 #     ,"StartDate"
                 #     ,"EndDate"
@@ -1039,9 +1039,9 @@ PSRPolicy$Graph<-OldGraph
 OldGraph<-PSRPolicy$Graph
 for (c in unique(PSRPolicy$SubCustomer)){ 
     PSRSubCustomer<-subset(PSRPolicy,SubCustomer==c)
-    for (s in unique(PSRPolicy$ ServicesCategory.sum)){    
-        PSRSubCustomer$Graph[PSRSubCustomer$ ServicesCategory.sum!=s]<-FALSE
-        PSRSubCustomer$Graph[PSRSubCustomer$ ServicesCategory.sum==s]<-TRUE
+    for (s in unique(PSRPolicy$ ProductOrServiceArea)){    
+        PSRSubCustomer$Graph[PSRSubCustomer$ ProductOrServiceArea!=s]<-FALSE
+        PSRSubCustomer$Graph[PSRSubCustomer$ ProductOrServiceArea==s]<-TRUE
         if(any(PSRSubCustomer$Graph==TRUE)){
     png(
         paste( "Output\\PSR_services\\",c,"\\",
@@ -1119,7 +1119,7 @@ PSRPolicy$Graph<-OldGraph
 PSRRegimeTable<-ddply(PSRRegime, 
                          .(
                              Fiscal.Year,
-                             ServicesCategory.sum,
+                             ProductOrServiceArea,
                              SubCustomer.component,
                              USDATL
                              ),
@@ -1144,7 +1144,7 @@ write.csv(PSRRegimeTable,paste("Output\\PSR_services\\",
 PSRRegimeTable<-ddply(PSRRegime, 
                          .(
                              SignedMonth,
-                             ServicesCategory.sum,
+                             ProductOrServiceArea,
                              SubCustomer.component,
                              USDATL
                              ),
@@ -1154,7 +1154,7 @@ PSRRegimeTable<-ddply(PSRRegime,
 
 
 PSRRegimeTable<-ddply(PSRRegimeTable, 
-                         .( ServicesCategory.sum,
+                         .( ProductOrServiceArea,
                            SubCustomer.component,
                            USDATL),
                          .fun=TransformFilter,
@@ -1178,7 +1178,7 @@ write.csv(PSRRegimeTable,paste("Output\\PSR_services\\",
 rm(PSRRegimeTable)
 #Annual
 PSRPolicyTable<-ddply(PSRPolicy, c("Fiscal.Year"
-                                         ,"ServicesCategory.sum"
+                                         ,"ProductOrServiceArea"
                                          ,"SubCustomer.component"
                                          ,"ATLpolicy")
                          ,summarise
@@ -1201,7 +1201,7 @@ write.csv(PSRPolicyTable,paste("Output\\PSR_services\\",
 #Monthly
 
 PSRPolicyTable<-ddply(PSRPolicy, c("SignedMonth"
-                                         ,"ServicesCategory.sum"
+                                         ,"ProductOrServiceArea"
                                          ,"SubCustomer.component"
                                          ,"ATLpolicy")
                          ,summarise
@@ -1209,7 +1209,7 @@ PSRPolicyTable<-ddply(PSRPolicy, c("SignedMonth"
                          )
 
 PSRPolicyTable<-ddply(PSRPolicyTable, 
-                         .( ServicesCategory.sum,
+                         .( ProductOrServiceArea,
                            SubCustomer.component,
                            ATLpolicy),
                          .fun=TransformFilter,
