@@ -261,506 +261,2456 @@ Components","YOUNG",0.0652067566572851
 DoD
 Components","YOUNG",0.0258752763476943
 "188",2009-09-30,"Aircraft and Drones","Army","YOUNG",0.720026146146352
-"189",2009-09-30,"Aircraft and Drones","Navy","YOUNG",4.4368477203832
-"190",2009-09-30,"Aircraft and Drones","Air Force","YOUNG",2.68833571853215
-"191",2009-09-30,"Aircraft and Drones","DLA","YOUNG",0.00762884601645378
-"192",2009-09-30,"Aircraft and Drones","Additional
+"189",2009-09-30,"Aircraft and Drones","Army","CARTER
+pre-BBP",1.98063017175796
+"190",2009-09-30,"Aircraft and Drones","Navy","YOUNG",4.4368477203832
+"191",2009-09-30,"Aircraft and Drones","Navy","CARTER
+pre-BBP",1.93015427763585
+"192",2009-09-30,"Aircraft and Drones","Air Force","YOUNG",2.68833571853215
+"193",2009-09-30,"Aircraft and Drones","Air Force","CARTER
+pre-BBP",3.61280530117991
+"194",2009-09-30,"Aircraft and Drones","DLA","YOUNG",0.00762884601645378
+"195",2009-09-30,"Aircraft and Drones","DLA","CARTER
+pre-BBP",2.41169179307209
+"196",2009-09-30,"Aircraft and Drones","Additional
 DoD
 Components","YOUNG",0.131953696200476
-"193",2009-09-30,"Electronics and Communications","Army","YOUNG",3.03284054008443
-"194",2009-09-30,"Electronics and Communications","Navy","YOUNG",0.93023247705131
-"195",2009-09-30,"Electronics and Communications","Air Force","YOUNG",0.723857449599481
-"196",2009-09-30,"Electronics and Communications","DLA","YOUNG",0.0960912289781338
-"197",2009-09-30,"Electronics and Communications","MDA","YOUNG",0.000147750043299415
-"198",2009-09-30,"Electronics and Communications","Military
+"197",2009-09-30,"Aircraft and Drones","Additional
+DoD
+Components","CARTER
+pre-BBP",0.271365359623295
+"198",2009-09-30,"Electronics and Communications","Army","YOUNG",3.03284054008443
+"199",2009-09-30,"Electronics and Communications","Army","CARTER
+pre-BBP",7.82020451073825
+"200",2009-09-30,"Electronics and Communications","Navy","YOUNG",0.93023247705131
+"201",2009-09-30,"Electronics and Communications","Navy","CARTER
+pre-BBP",6.00929149522624
+"202",2009-09-30,"Electronics and Communications","Air Force","YOUNG",0.723857449599481
+"203",2009-09-30,"Electronics and Communications","Air Force","CARTER
+pre-BBP",3.77829364495562
+"204",2009-09-30,"Electronics and Communications","DLA","YOUNG",0.0960912289781338
+"205",2009-09-30,"Electronics and Communications","DLA","CARTER
+pre-BBP",0.794628099859277
+"206",2009-09-30,"Electronics and Communications","MDA","YOUNG",0.000147750043299415
+"207",2009-09-30,"Electronics and Communications","MDA","CARTER
+pre-BBP",0.00175000395107166
+"208",2009-09-30,"Electronics and Communications","Military
 Health","YOUNG",0.000161626098722667
-"199",2009-09-30,"Electronics and Communications","Additional
+"209",2009-09-30,"Electronics and Communications","Military
+Health","CARTER
+pre-BBP",0.000862732171465685
+"210",2009-09-30,"Electronics and Communications","Additional
 DoD
 Components","YOUNG",0.557747519733709
-"200",2009-09-30,"Facilities and Construction","Army","YOUNG",4.09856824546439
-"201",2009-09-30,"Facilities and Construction","Navy","YOUNG",0.695715199447932
-"202",2009-09-30,"Facilities and Construction","Air Force","YOUNG",0.483886316497077
-"203",2009-09-30,"Facilities and Construction","DLA","YOUNG",0.143177018586274
-"204",2009-09-30,"Facilities and Construction","MDA","YOUNG",0.00017029361333622
-"205",2009-09-30,"Facilities and Construction","Military
+"211",2009-09-30,"Electronics and Communications","Additional
+DoD
+Components","CARTER
+pre-BBP",2.35379447448582
+"212",2009-09-30,"Facilities and Construction","Army","YOUNG",4.09856824546439
+"213",2009-09-30,"Facilities and Construction","Army","CARTER
+pre-BBP",22.4886947956051
+"214",2009-09-30,"Facilities and Construction","Navy","YOUNG",0.695715199447932
+"215",2009-09-30,"Facilities and Construction","Navy","CARTER
+pre-BBP",7.08984780782637
+"216",2009-09-30,"Facilities and Construction","Air Force","YOUNG",0.483886316497077
+"217",2009-09-30,"Facilities and Construction","Air Force","CARTER
+pre-BBP",4.49067766992856
+"218",2009-09-30,"Facilities and Construction","DLA","YOUNG",0.143177018586274
+"219",2009-09-30,"Facilities and Construction","DLA","CARTER
+pre-BBP",0.885942710759905
+"220",2009-09-30,"Facilities and Construction","MDA","YOUNG",0.00017029361333622
+"221",2009-09-30,"Facilities and Construction","MDA","CARTER
+pre-BBP",0.000474470870318251
+"222",2009-09-30,"Facilities and Construction","Military
 Health","YOUNG",1.5425319333189e-05
-"206",2009-09-30,"Facilities and Construction","Additional
+"223",2009-09-30,"Facilities and Construction","Military
+Health","CARTER
+pre-BBP",6.39403875297684e-05
+"224",2009-09-30,"Facilities and Construction","Additional
 DoD
 Components","YOUNG",0.0337189684780256
-"207",2009-09-30,"Land Vehicles","Army","YOUNG",1.76471225929855
-"208",2009-09-30,"Land Vehicles","Navy","YOUNG",0.944220751125785
-"209",2009-09-30,"Land Vehicles","Air Force","YOUNG",0.0203345356462438
-"210",2009-09-30,"Land Vehicles","DLA","YOUNG",0.00627249420870318
-"211",2009-09-30,"Land Vehicles","MDA","YOUNG",-1.08248538644728e-05
-"212",2009-09-30,"Land Vehicles","Additional
+"225",2009-09-30,"Facilities and Construction","Additional
+DoD
+Components","CARTER
+pre-BBP",0.192906413108898
+"226",2009-09-30,"Land Vehicles","Army","YOUNG",1.76471225929855
+"227",2009-09-30,"Land Vehicles","Army","CARTER
+pre-BBP",8.81449717797142
+"228",2009-09-30,"Land Vehicles","Navy","YOUNG",0.944220751125785
+"229",2009-09-30,"Land Vehicles","Navy","CARTER
+pre-BBP",0.300176835754492
+"230",2009-09-30,"Land Vehicles","Air Force","YOUNG",0.0203345356462438
+"231",2009-09-30,"Land Vehicles","Air Force","CARTER
+pre-BBP",0.0569776372050227
+"232",2009-09-30,"Land Vehicles","DLA","YOUNG",0.00627249420870318
+"233",2009-09-30,"Land Vehicles","DLA","CARTER
+pre-BBP",0.739690069224941
+"234",2009-09-30,"Land Vehicles","MDA","YOUNG",-1.08248538644728e-05
+"235",2009-09-30,"Land Vehicles","Additional
 DoD
 Components","YOUNG",0.000771866053258281
-"213",2009-09-30,"Missile and Space Systems","Army","YOUNG",1.11723219084217
-"214",2009-09-30,"Missile and Space Systems","Navy","YOUNG",0.235867375622429
-"215",2009-09-30,"Missile and Space Systems","Air Force","YOUNG",1.95015538721585
-"216",2009-09-30,"Missile and Space Systems","DLA","YOUNG",-0.000160125200259796
-"217",2009-09-30,"Missile and Space Systems","MDA","YOUNG",0.66539928780039
-"218",2009-09-30,"Missile and Space Systems","Additional
+"236",2009-09-30,"Land Vehicles","Additional
+DoD
+Components","CARTER
+pre-BBP",0.111924154849535
+"237",2009-09-30,"Missile and Space Systems","Army","YOUNG",1.11723219084217
+"238",2009-09-30,"Missile and Space Systems","Army","CARTER
+pre-BBP",1.02517935455726
+"239",2009-09-30,"Missile and Space Systems","Navy","YOUNG",0.235867375622429
+"240",2009-09-30,"Missile and Space Systems","Navy","CARTER
+pre-BBP",0.41444340147218
+"241",2009-09-30,"Missile and Space Systems","Air Force","YOUNG",1.95015538721585
+"242",2009-09-30,"Missile and Space Systems","Air Force","CARTER
+pre-BBP",1.316689788937
+"243",2009-09-30,"Missile and Space Systems","DLA","YOUNG",-0.000160125200259796
+"244",2009-09-30,"Missile and Space Systems","DLA","CARTER
+pre-BBP",0.0631546535397272
+"245",2009-09-30,"Missile and Space Systems","MDA","YOUNG",0.66539928780039
+"246",2009-09-30,"Missile and Space Systems","MDA","CARTER
+pre-BBP",0.0649120864148084
+"247",2009-09-30,"Missile and Space Systems","Additional
 DoD
 Components","YOUNG",5.48465143970556e-05
-"219",2009-09-30,"Other Products","Army","YOUNG",0.43496938887205
-"220",2009-09-30,"Other Products","Navy","YOUNG",0.138177780244642
-"221",2009-09-30,"Other Products","Air Force","YOUNG",0.011933410294436
-"222",2009-09-30,"Other Products","DLA","YOUNG",0.0119690319008443
-"223",2009-09-30,"Other Products","Additional
+"248",2009-09-30,"Missile and Space Systems","Additional
+DoD
+Components","CARTER
+pre-BBP",0.0149998810132063
+"249",2009-09-30,"Other Products","Army","YOUNG",0.43496938887205
+"250",2009-09-30,"Other Products","Army","CARTER
+pre-BBP",2.49823346978783
+"251",2009-09-30,"Other Products","Navy","YOUNG",0.138177780244642
+"252",2009-09-30,"Other Products","Navy","CARTER
+pre-BBP",0.857203369690409
+"253",2009-09-30,"Other Products","Air Force","YOUNG",0.011933410294436
+"254",2009-09-30,"Other Products","Air Force","CARTER
+pre-BBP",0.270536925254384
+"255",2009-09-30,"Other Products","DLA","YOUNG",0.0119690319008443
+"256",2009-09-30,"Other Products","DLA","CARTER
+pre-BBP",11.64633894357
+"257",2009-09-30,"Other Products","MDA","CARTER
+pre-BBP",1.82128166269755e-05
+"258",2009-09-30,"Other Products","Additional
 DoD
 Components","YOUNG",-0.00257685680883308
-"224",2009-09-30,"Other R&D and Knowledge Based","Army","YOUNG",3.26783595822689
-"225",2009-09-30,"Other R&D and Knowledge Based","Navy","YOUNG",1.81005199099372
-"226",2009-09-30,"Other R&D and Knowledge Based","Air Force","YOUNG",1.15360021405066
-"227",2009-09-30,"Other R&D and Knowledge Based","DLA","YOUNG",0.100137768423901
-"228",2009-09-30,"Other R&D and Knowledge Based","MDA","YOUNG",0.0469814935483871
-"229",2009-09-30,"Other R&D and Knowledge Based","Military
+"259",2009-09-30,"Other Products","Additional
+DoD
+Components","CARTER
+pre-BBP",0.026352390961247
+"260",2009-09-30,"Other R&D and Knowledge Based","Army","YOUNG",3.26783595822689
+"261",2009-09-30,"Other R&D and Knowledge Based","Army","CARTER
+pre-BBP",4.58209846082485
+"262",2009-09-30,"Other R&D and Knowledge Based","Navy","YOUNG",1.81005199099372
+"263",2009-09-30,"Other R&D and Knowledge Based","Navy","CARTER
+pre-BBP",2.42078028644728
+"264",2009-09-30,"Other R&D and Knowledge Based","Air Force","YOUNG",1.15360021405066
+"265",2009-09-30,"Other R&D and Knowledge Based","Air Force","CARTER
+pre-BBP",2.06363395325828
+"266",2009-09-30,"Other R&D and Knowledge Based","DLA","YOUNG",0.100137768423901
+"267",2009-09-30,"Other R&D and Knowledge Based","DLA","CARTER
+pre-BBP",0.0969261868261529
+"268",2009-09-30,"Other R&D and Knowledge Based","MDA","YOUNG",0.0469814935483871
+"269",2009-09-30,"Other R&D and Knowledge Based","MDA","CARTER
+pre-BBP",0.00279172582810132
+"270",2009-09-30,"Other R&D and Knowledge Based","Military
 Health","YOUNG",0
-"230",2009-09-30,"Other R&D and Knowledge Based","Additional
+"271",2009-09-30,"Other R&D and Knowledge Based","Military
+Health","CARTER
+pre-BBP",0.00385750803204157
+"272",2009-09-30,"Other R&D and Knowledge Based","Additional
 DoD
 Components","YOUNG",0.298666205109331
-"231",2009-09-30,"Other Services","Army","YOUNG",3.16617498761637
-"232",2009-09-30,"Other Services","Navy","YOUNG",0.255741329725049
-"233",2009-09-30,"Other Services","Air Force","YOUNG",0.311078807198528
-"234",2009-09-30,"Other Services","DLA","YOUNG",0.000364188785451396
-"235",2009-09-30,"Other Services","Military
+"273",2009-09-30,"Other R&D and Knowledge Based","Additional
+DoD
+Components","CARTER
+pre-BBP",0.752475641134445
+"274",2009-09-30,"Other Services","Army","YOUNG",3.16617498761637
+"275",2009-09-30,"Other Services","Army","CARTER
+pre-BBP",1.46401356793678
+"276",2009-09-30,"Other Services","Navy","YOUNG",0.255741329725049
+"277",2009-09-30,"Other Services","Navy","CARTER
+pre-BBP",0.832578744219528
+"278",2009-09-30,"Other Services","Air Force","YOUNG",0.311078807198528
+"279",2009-09-30,"Other Services","Air Force","CARTER
+pre-BBP",0.376588786577181
+"280",2009-09-30,"Other Services","DLA","YOUNG",0.000364188785451396
+"281",2009-09-30,"Other Services","DLA","CARTER
+pre-BBP",0.00613619468499675
+"282",2009-09-30,"Other Services","Military
 Health","YOUNG",0.400754411517645
-"236",2009-09-30,"Other Services","Additional
+"283",2009-09-30,"Other Services","Military
+Health","CARTER
+pre-BBP",0.0278049485602944
+"284",2009-09-30,"Other Services","Additional
 DoD
 Components","YOUNG",0.0516040026737389
-"237",2009-09-30,"Ships & Submarines","Army","YOUNG",0.013917095410262
-"238",2009-09-30,"Ships & Submarines","Navy","YOUNG",0.966207227538428
-"239",2009-09-30,"Ships & Submarines","Air Force","YOUNG",0.000599960619181641
-"240",2009-09-30,"Ships & Submarines","DLA","YOUNG",0.00829294374323447
-"241",2009-09-30,"Ships & Submarines","Additional
+"285",2009-09-30,"Other Services","Additional
+DoD
+Components","CARTER
+pre-BBP",1.38903486878112
+"286",2009-09-30,"Ships & Submarines","Army","YOUNG",0.013917095410262
+"287",2009-09-30,"Ships & Submarines","Army","CARTER
+pre-BBP",0.156386588612254
+"288",2009-09-30,"Ships & Submarines","Navy","YOUNG",0.966207227538428
+"289",2009-09-30,"Ships & Submarines","Navy","CARTER
+pre-BBP",1.97559045202425
+"290",2009-09-30,"Ships & Submarines","Air Force","YOUNG",0.000599960619181641
+"291",2009-09-30,"Ships & Submarines","Air Force","CARTER
+pre-BBP",0.004689052370643
+"292",2009-09-30,"Ships & Submarines","DLA","YOUNG",0.00829294374323447
+"293",2009-09-30,"Ships & Submarines","DLA","CARTER
+pre-BBP",0.298772328750812
+"294",2009-09-30,"Ships & Submarines","Additional
 DoD
 Components","YOUNG",0.00142543226888937
-"242",2009-09-30,"Unlabeled","Army","YOUNG",0
-"243",2009-09-30,"Weapons and Ammunition","Army","YOUNG",1.26833183626326
-"244",2009-09-30,"Weapons and Ammunition","Navy","YOUNG",0.587376866378004
-"245",2009-09-30,"Weapons and Ammunition","Air Force","YOUNG",0.0920939799307209
-"246",2009-09-30,"Weapons and Ammunition","DLA","YOUNG",3.52673738904525e-07
-"247",2009-09-30,"Weapons and Ammunition","MDA","YOUNG",0.00848686899761853
-"248",2009-09-30,"Weapons and Ammunition","Additional
+"295",2009-09-30,"Ships & Submarines","Additional
+DoD
+Components","CARTER
+pre-BBP",0.053156908594934
+"296",2009-09-30,"Unlabeled","Army","YOUNG",0
+"297",2009-09-30,"Unlabeled","Army","CARTER
+pre-BBP",-3.15306343364365e-07
+"298",2009-09-30,"Unlabeled","Navy","CARTER
+pre-BBP",5.29016453777874e-05
+"299",2009-09-30,"Unlabeled","Additional
+DoD
+Components","CARTER
+pre-BBP",-1.30740528252869e-05
+"300",2009-09-30,"Weapons and Ammunition","Army","YOUNG",1.26833183626326
+"301",2009-09-30,"Weapons and Ammunition","Army","CARTER
+pre-BBP",2.0826805388071
+"302",2009-09-30,"Weapons and Ammunition","Navy","YOUNG",0.587376866378004
+"303",2009-09-30,"Weapons and Ammunition","Navy","CARTER
+pre-BBP",0.572562443526737
+"304",2009-09-30,"Weapons and Ammunition","Air Force","YOUNG",0.0920939799307209
+"305",2009-09-30,"Weapons and Ammunition","Air Force","CARTER
+pre-BBP",0.372090596027279
+"306",2009-09-30,"Weapons and Ammunition","DLA","YOUNG",3.52673738904525e-07
+"307",2009-09-30,"Weapons and Ammunition","DLA","CARTER
+pre-BBP",0.0701759566789348
+"308",2009-09-30,"Weapons and Ammunition","MDA","YOUNG",0.00848686899761853
+"309",2009-09-30,"Weapons and Ammunition","Additional
 DoD
 Components","YOUNG",0.00450188785451396
-"249",2010-09-30,"Aircraft and Drones","Army","YOUNG",3.86786318793325
-"250",2010-09-30,"Aircraft and Drones","Navy","YOUNG",5.66910795331622
-"251",2010-09-30,"Aircraft and Drones","Air Force","YOUNG",6.07279017689345
-"252",2010-09-30,"Aircraft and Drones","DLA","YOUNG",0.116879883472401
-"253",2010-09-30,"Aircraft and Drones","Additional
+"310",2009-09-30,"Weapons and Ammunition","Additional
+DoD
+Components","CARTER
+pre-BBP",0.0159647162481057
+"311",2010-09-22,"Aircraft and Drones","Army","CARTER
+pre-BBP",4.42306051283697
+"312",2010-09-22,"Aircraft and Drones","Navy","CARTER
+pre-BBP",6.92049938384681
+"313",2010-09-22,"Aircraft and Drones","Air Force","CARTER
+pre-BBP",13.0965633864142
+"314",2010-09-22,"Aircraft and Drones","DLA","CARTER
+pre-BBP",4.8410422597347
+"315",2010-09-22,"Aircraft and Drones","Additional
+DoD
+Components","CARTER
+pre-BBP",1.01633565304878
+"316",2010-09-22,"Electronics and Communications","Army","CARTER
+pre-BBP",17.332952939474
+"317",2010-09-22,"Electronics and Communications","Navy","CARTER
+pre-BBP",12.0490533304343
+"318",2010-09-22,"Electronics and Communications","Air Force","CARTER
+pre-BBP",7.374145214003
+"319",2010-09-22,"Electronics and Communications","DLA","CARTER
+pre-BBP",1.80100073289474
+"320",2010-09-22,"Electronics and Communications","MDA","CARTER
+pre-BBP",0.0116582875374412
+"321",2010-09-22,"Electronics and Communications","Military
+Health","CARTER
+pre-BBP",0.00209628659606333
+"322",2010-09-22,"Electronics and Communications","Additional
+DoD
+Components","CARTER
+pre-BBP",5.66932692581301
+"323",2010-09-22,"Facilities and Construction","Army","CARTER
+pre-BBP",34.6432646062794
+"324",2010-09-22,"Facilities and Construction","Navy","CARTER
+pre-BBP",10.3623251585677
+"325",2010-09-22,"Facilities and Construction","Air Force","CARTER
+pre-BBP",5.86410737601626
+"326",2010-09-22,"Facilities and Construction","DLA","CARTER
+pre-BBP",2.14595378314078
+"327",2010-09-22,"Facilities and Construction","MDA","CARTER
+pre-BBP",0.0209899074347454
+"328",2010-09-22,"Facilities and Construction","Military
+Health","CARTER
+pre-BBP",0.000529718699186992
+"329",2010-09-22,"Facilities and Construction","Additional
+DoD
+Components","CARTER
+pre-BBP",0.408666239612751
+"330",2010-09-22,"Land Vehicles","Army","CARTER
+pre-BBP",16.5087253681215
+"331",2010-09-22,"Land Vehicles","Navy","CARTER
+pre-BBP",3.48317740619384
+"332",2010-09-22,"Land Vehicles","Air Force","CARTER
+pre-BBP",0.113397346352161
+"333",2010-09-22,"Land Vehicles","DLA","CARTER
+pre-BBP",1.42813609241549
+"334",2010-09-22,"Land Vehicles","MDA","CARTER
+pre-BBP",4.86711596063329e-06
+"335",2010-09-22,"Land Vehicles","Additional
+DoD
+Components","CARTER
+pre-BBP",-0.102546755316645
+"336",2010-09-22,"Missile and Space Systems","Army","CARTER
+pre-BBP",3.74876986286906
+"337",2010-09-22,"Missile and Space Systems","Navy","CARTER
+pre-BBP",2.6845358406611
+"338",2010-09-22,"Missile and Space Systems","Air Force","CARTER
+pre-BBP",2.33965445907146
+"339",2010-09-22,"Missile and Space Systems","DLA","CARTER
+pre-BBP",0.0997641670838682
+"340",2010-09-22,"Missile and Space Systems","MDA","CARTER
+pre-BBP",1.00905566256953
+"341",2010-09-22,"Missile and Space Systems","Additional
+DoD
+Components","CARTER
+pre-BBP",0.00273533934531451
+"342",2010-09-22,"Other Products","Army","CARTER
+pre-BBP",4.25915666054771
+"343",2010-09-22,"Other Products","Navy","CARTER
+pre-BBP",1.33441267578092
+"344",2010-09-22,"Other Products","Air Force","CARTER
+pre-BBP",0.357083249122807
+"345",2010-09-22,"Other Products","DLA","CARTER
+pre-BBP",23.8814272120026
+"346",2010-09-22,"Other Products","MDA","CARTER
+pre-BBP",3.58670303808301e-05
+"347",2010-09-22,"Other Products","Additional
+DoD
+Components","CARTER
+pre-BBP",0.0652249666880616
+"348",2010-09-22,"Other R&D and Knowledge Based","Army","CARTER
+pre-BBP",12.9411981187848
+"349",2010-09-22,"Other R&D and Knowledge Based","Navy","CARTER
+pre-BBP",6.65548453720582
+"350",2010-09-22,"Other R&D and Knowledge Based","Air Force","CARTER
+pre-BBP",5.52045020775567
+"351",2010-09-22,"Other R&D and Knowledge Based","DLA","CARTER
+pre-BBP",0.172866053776209
+"352",2010-09-22,"Other R&D and Knowledge Based","MDA","CARTER
+pre-BBP",0.0435047541827129
+"353",2010-09-22,"Other R&D and Knowledge Based","Military
+Health","CARTER
+pre-BBP",0.00778303801882756
+"354",2010-09-22,"Other R&D and Knowledge Based","Additional
+DoD
+Components","CARTER
+pre-BBP",2.33455433408216
+"355",2010-09-22,"Other Services","Army","CARTER
+pre-BBP",7.49147632563115
+"356",2010-09-22,"Other Services","Navy","CARTER
+pre-BBP",2.11213870065255
+"357",2010-09-22,"Other Services","Air Force","CARTER
+pre-BBP",1.0680241211917
+"358",2010-09-22,"Other Services","DLA","CARTER
+pre-BBP",0.0178485542789902
+"359",2010-09-22,"Other Services","MDA","CARTER
+pre-BBP",0.00162719666238768
+"360",2010-09-22,"Other Services","Military
+Health","CARTER
+pre-BBP",0.590111012152332
+"361",2010-09-22,"Other Services","Additional
+DoD
+Components","CARTER
+pre-BBP",5.23832076607831
+"362",2010-09-22,"Ships & Submarines","Army","CARTER
+pre-BBP",0.269199996726573
+"363",2010-09-22,"Ships & Submarines","Navy","CARTER
+pre-BBP",5.93470415910355
+"364",2010-09-22,"Ships & Submarines","Air Force","CARTER
+pre-BBP",0.00673182316003423
+"365",2010-09-22,"Ships & Submarines","DLA","CARTER
+pre-BBP",1.168076814003
+"366",2010-09-22,"Ships & Submarines","Additional
+DoD
+Components","CARTER
+pre-BBP",0.139581033140779
+"367",2010-09-22,"Unlabeled","Army","CARTER
+pre-BBP",-3.33807231493368e-06
+"368",2010-09-22,"Unlabeled","Navy","CARTER
+pre-BBP",0
+"369",2010-09-22,"Unlabeled","DLA","CARTER
+pre-BBP",-1.82640564826701e-05
+"370",2010-09-22,"Unlabeled","Additional
+DoD
+Components","CARTER
+pre-BBP",-0.000236528572956782
+"371",2010-09-22,"Weapons and Ammunition","Army","CARTER
+pre-BBP",4.72895638660676
+"372",2010-09-22,"Weapons and Ammunition","Navy","CARTER
+pre-BBP",1.26631471971545
+"373",2010-09-22,"Weapons and Ammunition","Air Force","CARTER
+pre-BBP",1.42325347981386
+"374",2010-09-22,"Weapons and Ammunition","DLA","CARTER
+pre-BBP",0.18758536419555
+"375",2010-09-22,"Weapons and Ammunition","Additional
+DoD
+Components","CARTER
+pre-BBP",0.0405178108044502
+"376",2010-09-30,"Aircraft and Drones","Army","YOUNG",3.86786318793325
+"377",2010-09-30,"Aircraft and Drones","Navy","YOUNG",5.66910795331622
+"378",2010-09-30,"Aircraft and Drones","Air Force","YOUNG",6.07279017689345
+"379",2010-09-30,"Aircraft and Drones","DLA","YOUNG",0.116879883472401
+"380",2010-09-30,"Aircraft and Drones","Additional
 DoD
 Components","YOUNG",-0.0930423154792469
-"254",2010-09-30,"Electronics and Communications","Army","YOUNG",3.96856799426615
-"255",2010-09-30,"Electronics and Communications","Navy","YOUNG",2.16451779811724
-"256",2010-09-30,"Electronics and Communications","Air Force","YOUNG",1.20986552134146
-"257",2010-09-30,"Electronics and Communications","DLA","YOUNG",0.0709014455070603
-"258",2010-09-30,"Electronics and Communications","MDA","YOUNG",0.000290909830979889
-"259",2010-09-30,"Electronics and Communications","Military
+"381",2010-09-30,"Electronics and Communications","Army","YOUNG",3.96856799426615
+"382",2010-09-30,"Electronics and Communications","Navy","YOUNG",2.16451779811724
+"383",2010-09-30,"Electronics and Communications","Air Force","YOUNG",1.20986552134146
+"384",2010-09-30,"Electronics and Communications","DLA","YOUNG",0.0709014455070603
+"385",2010-09-30,"Electronics and Communications","MDA","YOUNG",0.000290909830979889
+"386",2010-09-30,"Electronics and Communications","Military
 Health","YOUNG",0.000215163168592212
-"260",2010-09-30,"Electronics and Communications","Additional
+"387",2010-09-30,"Electronics and Communications","Additional
 DoD
 Components","YOUNG",1.47531994821352
-"261",2010-09-30,"Facilities and Construction","Army","YOUNG",3.91070898732349
-"262",2010-09-30,"Facilities and Construction","Navy","YOUNG",1.21412406351091
-"263",2010-09-30,"Facilities and Construction","Air Force","YOUNG",0.858728053465982
-"264",2010-09-30,"Facilities and Construction","DLA","YOUNG",0.303728048373984
-"265",2010-09-30,"Facilities and Construction","MDA","YOUNG",0.000230271127513907
-"266",2010-09-30,"Facilities and Construction","Military
+"388",2010-09-30,"Facilities and Construction","Army","YOUNG",3.91070898732349
+"389",2010-09-30,"Facilities and Construction","Navy","YOUNG",1.21412406351091
+"390",2010-09-30,"Facilities and Construction","Air Force","YOUNG",0.858728053465982
+"391",2010-09-30,"Facilities and Construction","DLA","YOUNG",0.303728048373984
+"392",2010-09-30,"Facilities and Construction","MDA","YOUNG",0.000230271127513907
+"393",2010-09-30,"Facilities and Construction","Military
 Health","YOUNG",-1.71009841677364e-06
-"267",2010-09-30,"Facilities and Construction","Additional
+"394",2010-09-30,"Facilities and Construction","Additional
 DoD
 Components","YOUNG",0.00799956961916988
-"268",2010-09-30,"Land Vehicles","Army","YOUNG",1.23959882637997
-"269",2010-09-30,"Land Vehicles","Navy","YOUNG",0.417010523705605
-"270",2010-09-30,"Land Vehicles","Air Force","YOUNG",0.0278343727535302
-"271",2010-09-30,"Land Vehicles","DLA","YOUNG",-0.00107310479246898
-"272",2010-09-30,"Land Vehicles","MDA","YOUNG",9.12548138639281e-05
-"273",2010-09-30,"Land Vehicles","Additional
+"395",2010-09-30,"Land Vehicles","Army","YOUNG",1.23959882637997
+"396",2010-09-30,"Land Vehicles","Navy","YOUNG",0.417010523705605
+"397",2010-09-30,"Land Vehicles","Air Force","YOUNG",0.0278343727535302
+"398",2010-09-30,"Land Vehicles","DLA","YOUNG",-0.00107310479246898
+"399",2010-09-30,"Land Vehicles","MDA","YOUNG",9.12548138639281e-05
+"400",2010-09-30,"Land Vehicles","Additional
 DoD
 Components","YOUNG",-0.00244678893881044
-"274",2010-09-30,"Missile and Space Systems","Army","YOUNG",2.6628016368528
-"275",2010-09-30,"Missile and Space Systems","Navy","YOUNG",1.14842646283697
-"276",2010-09-30,"Missile and Space Systems","Air Force","YOUNG",2.77201101881686
-"277",2010-09-30,"Missile and Space Systems","DLA","YOUNG",-0.000200033697047497
-"278",2010-09-30,"Missile and Space Systems","MDA","YOUNG",1.84678624652332
-"279",2010-09-30,"Missile and Space Systems","Additional
+"401",2010-09-30,"Missile and Space Systems","Army","YOUNG",2.6628016368528
+"402",2010-09-30,"Missile and Space Systems","Navy","YOUNG",1.14842646283697
+"403",2010-09-30,"Missile and Space Systems","Air Force","YOUNG",2.77201101881686
+"404",2010-09-30,"Missile and Space Systems","DLA","YOUNG",-0.000200033697047497
+"405",2010-09-30,"Missile and Space Systems","MDA","YOUNG",1.84678624652332
+"406",2010-09-30,"Missile and Space Systems","Additional
 DoD
 Components","YOUNG",0.0026662331728712
-"280",2010-09-30,"Other Products","Army","YOUNG",0.270479207916132
-"281",2010-09-30,"Other Products","Navy","YOUNG",0.175572883652974
-"282",2010-09-30,"Other Products","Air Force","YOUNG",0.00308651354300385
-"283",2010-09-30,"Other Products","DLA","YOUNG",0.547912804888746
-"284",2010-09-30,"Other Products","Additional
+"407",2010-09-30,"Other Products","Army","YOUNG",0.270479207916132
+"408",2010-09-30,"Other Products","Navy","YOUNG",0.175572883652974
+"409",2010-09-30,"Other Products","Air Force","YOUNG",0.00308651354300385
+"410",2010-09-30,"Other Products","DLA","YOUNG",0.547912804888746
+"411",2010-09-30,"Other Products","Additional
 DoD
 Components","YOUNG",0.00304479168806162
-"285",2010-09-30,"Other R&D and Knowledge Based","Army","YOUNG",3.74666384311083
-"286",2010-09-30,"Other R&D and Knowledge Based","Navy","YOUNG",3.91965009439452
-"287",2010-09-30,"Other R&D and Knowledge Based","Air Force","YOUNG",1.80729331090073
-"288",2010-09-30,"Other R&D and Knowledge Based","DLA","YOUNG",0.100840780091998
-"289",2010-09-30,"Other R&D and Knowledge Based","MDA","YOUNG",0.110491417490372
-"290",2010-09-30,"Other R&D and Knowledge Based","Military
+"412",2010-09-30,"Other R&D and Knowledge Based","Army","YOUNG",3.74666384311083
+"413",2010-09-30,"Other R&D and Knowledge Based","Navy","YOUNG",3.91965009439452
+"414",2010-09-30,"Other R&D and Knowledge Based","Air Force","YOUNG",1.80729331090073
+"415",2010-09-30,"Other R&D and Knowledge Based","DLA","YOUNG",0.100840780091998
+"416",2010-09-30,"Other R&D and Knowledge Based","MDA","YOUNG",0.110491417490372
+"417",2010-09-30,"Other R&D and Knowledge Based","Military
 Health","YOUNG",0.00296609223363286
-"291",2010-09-30,"Other R&D and Knowledge Based","Additional
+"418",2010-09-30,"Other R&D and Knowledge Based","Additional
 DoD
 Components","YOUNG",0.841656893570817
-"292",2010-09-30,"Other Services","Army","YOUNG",4.67845948065897
-"293",2010-09-30,"Other Services","Navy","YOUNG",0.624853104075738
-"294",2010-09-30,"Other Services","Air Force","YOUNG",1.56188800714591
-"295",2010-09-30,"Other Services","DLA","YOUNG",0.017271590864356
-"296",2010-09-30,"Other Services","Military
+"419",2010-09-30,"Other Services","Army","YOUNG",4.67845948065897
+"420",2010-09-30,"Other Services","Navy","YOUNG",0.624853104075738
+"421",2010-09-30,"Other Services","Air Force","YOUNG",1.56188800714591
+"422",2010-09-30,"Other Services","DLA","YOUNG",0.017271590864356
+"423",2010-09-30,"Other Services","Military
 Health","YOUNG",1.64425003002781
-"297",2010-09-30,"Other Services","Additional
+"424",2010-09-30,"Other Services","Additional
 DoD
 Components","YOUNG",0.0120375244223363
-"298",2010-09-30,"Ships & Submarines","Army","YOUNG",0.00788351401369277
-"299",2010-09-30,"Ships & Submarines","Navy","YOUNG",4.96402519416988
-"300",2010-09-30,"Ships & Submarines","Air Force","YOUNG",0.000149804567821994
-"301",2010-09-30,"Ships & Submarines","DLA","YOUNG",0.00248764830979889
-"302",2010-09-30,"Ships & Submarines","Additional
+"425",2010-09-30,"Ships & Submarines","Army","YOUNG",0.00788351401369277
+"426",2010-09-30,"Ships & Submarines","Navy","YOUNG",4.96402519416988
+"427",2010-09-30,"Ships & Submarines","Air Force","YOUNG",0.000149804567821994
+"428",2010-09-30,"Ships & Submarines","DLA","YOUNG",0.00248764830979889
+"429",2010-09-30,"Ships & Submarines","Additional
 DoD
 Components","YOUNG",-0.0110006115853659
-"303",2010-09-30,"Unlabeled","Army","YOUNG",0.000414007317073171
-"304",2010-09-30,"Unlabeled","Navy","YOUNG",0
-"305",2010-09-30,"Unlabeled","DLA","YOUNG",0
-"306",2010-09-30,"Weapons and Ammunition","Army","YOUNG",2.320270807638
-"307",2010-09-30,"Weapons and Ammunition","Navy","YOUNG",0.324869658804022
-"308",2010-09-30,"Weapons and Ammunition","Air Force","YOUNG",0.154189407969619
-"309",2010-09-30,"Weapons and Ammunition","DLA","YOUNG",0.000913669683354728
-"310",2010-09-30,"Weapons and Ammunition","MDA","YOUNG",0.0187840559157039
-"311",2010-09-30,"Weapons and Ammunition","Additional
+"430",2010-09-30,"Unlabeled","Army","YOUNG",0.000414007317073171
+"431",2010-09-30,"Unlabeled","Navy","YOUNG",0
+"432",2010-09-30,"Unlabeled","DLA","YOUNG",0
+"433",2010-09-30,"Weapons and Ammunition","Army","YOUNG",2.320270807638
+"434",2010-09-30,"Weapons and Ammunition","Navy","YOUNG",0.324869658804022
+"435",2010-09-30,"Weapons and Ammunition","Air Force","YOUNG",0.154189407969619
+"436",2010-09-30,"Weapons and Ammunition","DLA","YOUNG",0.000913669683354728
+"437",2010-09-30,"Weapons and Ammunition","MDA","YOUNG",0.0187840559157039
+"438",2010-09-30,"Weapons and Ammunition","Additional
 DoD
 Components","YOUNG",0.0014445546961917
-"312",2011-09-30,"Aircraft and Drones","Army","YOUNG",4.18900530329417
-"313",2011-09-30,"Aircraft and Drones","Navy","YOUNG",10.356647373846
-"314",2011-09-30,"Aircraft and Drones","Air Force","YOUNG",1.97796596514897
-"315",2011-09-30,"Aircraft and Drones","DLA","YOUNG",0.00791441671212757
-"316",2011-09-30,"Aircraft and Drones","Additional
+"439",2011-09-30,"Aircraft and Drones","Army","YOUNG",4.18900530329417
+"440",2011-09-30,"Aircraft and Drones","Army","CARTER
+pre-BBP",2.07518646972304
+"441",2011-09-30,"Aircraft and Drones","Army","BBP1",4.16502895605329
+"442",2011-09-30,"Aircraft and Drones","Navy","YOUNG",10.356647373846
+"443",2011-09-30,"Aircraft and Drones","Navy","CARTER
+pre-BBP",4.31132200225556
+"444",2011-09-30,"Aircraft and Drones","Navy","BBP1",4.17782431334452
+"445",2011-09-30,"Aircraft and Drones","Air Force","YOUNG",1.97796596514897
+"446",2011-09-30,"Aircraft and Drones","Air Force","CARTER
+pre-BBP",5.83180221226395
+"447",2011-09-30,"Aircraft and Drones","Air Force","BBP1",12.2572447838649
+"448",2011-09-30,"Aircraft and Drones","DLA","YOUNG",0.00791441671212757
+"449",2011-09-30,"Aircraft and Drones","DLA","CARTER
+pre-BBP",0.265832347733949
+"450",2011-09-30,"Aircraft and Drones","DLA","BBP1",4.51011440443768
+"451",2011-09-30,"Aircraft and Drones","MDA","BBP1",2.96119597146454e-05
+"452",2011-09-30,"Aircraft and Drones","Additional
 DoD
 Components","YOUNG",-0.0685386375472094
-"317",2011-09-30,"Electronics and Communications","Army","YOUNG",1.84517077974192
-"318",2011-09-30,"Electronics and Communications","Navy","YOUNG",1.35869427239824
-"319",2011-09-30,"Electronics and Communications","Air Force","YOUNG",0.710892467341586
-"320",2011-09-30,"Electronics and Communications","DLA","YOUNG",0.0416515928661351
-"321",2011-09-30,"Electronics and Communications","MDA","YOUNG",2.62043642467478e-05
-"322",2011-09-30,"Electronics and Communications","Military
+"453",2011-09-30,"Aircraft and Drones","Additional
+DoD
+Components","CARTER
+pre-BBP",0.361214609924465
+"454",2011-09-30,"Aircraft and Drones","Additional
+DoD
+Components","BBP1",0.702182375629459
+"455",2011-09-30,"Electronics and Communications","Army","YOUNG",1.84517077974192
+"456",2011-09-30,"Electronics and Communications","Army","CARTER
+pre-BBP",4.67157449064205
+"457",2011-09-30,"Electronics and Communications","Army","BBP1",10.4548449840327
+"458",2011-09-30,"Electronics and Communications","Navy","YOUNG",1.35869427239824
+"459",2011-09-30,"Electronics and Communications","Navy","CARTER
+pre-BBP",3.35461521103651
+"460",2011-09-30,"Electronics and Communications","Navy","BBP1",10.1566989412925
+"461",2011-09-30,"Electronics and Communications","Air Force","YOUNG",0.710892467341586
+"462",2011-09-30,"Electronics and Communications","Air Force","CARTER
+pre-BBP",3.08719318125262
+"463",2011-09-30,"Electronics and Communications","Air Force","BBP1",5.36871824769198
+"464",2011-09-30,"Electronics and Communications","DLA","YOUNG",0.0416515928661351
+"465",2011-09-30,"Electronics and Communications","DLA","CARTER
+pre-BBP",0.33119151877885
+"466",2011-09-30,"Electronics and Communications","DLA","BBP1",1.57067518765212
+"467",2011-09-30,"Electronics and Communications","MDA","YOUNG",2.62043642467478e-05
+"468",2011-09-30,"Electronics and Communications","MDA","CARTER
+pre-BBP",0.000241211246328158
+"469",2011-09-30,"Electronics and Communications","MDA","BBP1",0.0081592630193034
+"470",2011-09-30,"Electronics and Communications","Military
 Health","YOUNG",0.00317067280738565
-"323",2011-09-30,"Electronics and Communications","Additional
+"471",2011-09-30,"Electronics and Communications","Military
+Health","CARTER
+pre-BBP",0.000439951772975241
+"472",2011-09-30,"Electronics and Communications","Military
+Health","BBP1",0.00280736516995384
+"473",2011-09-30,"Electronics and Communications","Additional
 DoD
 Components","YOUNG",0.918792217352077
-"324",2011-09-30,"Facilities and Construction","Army","YOUNG",2.05436141719471
-"325",2011-09-30,"Facilities and Construction","Navy","YOUNG",0.542443425167856
-"326",2011-09-30,"Facilities and Construction","Air Force","YOUNG",0.681699386624003
-"327",2011-09-30,"Facilities and Construction","DLA","YOUNG",0.229474939257239
-"328",2011-09-30,"Facilities and Construction","MDA","YOUNG",7.70313050776332e-05
-"329",2011-09-30,"Facilities and Construction","Military
+"474",2011-09-30,"Electronics and Communications","Additional
+DoD
+Components","CARTER
+pre-BBP",2.2192917491817
+"475",2011-09-30,"Electronics and Communications","Additional
+DoD
+Components","BBP1",4.92996293518674
+"476",2011-09-30,"Facilities and Construction","Army","YOUNG",2.05436141719471
+"477",2011-09-30,"Facilities and Construction","Army","CARTER
+pre-BBP",4.73899365566513
+"478",2011-09-30,"Facilities and Construction","Army","BBP1",25.434949781924
+"479",2011-09-30,"Facilities and Construction","Navy","YOUNG",0.542443425167856
+"480",2011-09-30,"Facilities and Construction","Navy","CARTER
+pre-BBP",1.98907976434117
+"481",2011-09-30,"Facilities and Construction","Navy","BBP1",8.81251730460554
+"482",2011-09-30,"Facilities and Construction","Air Force","YOUNG",0.681699386624003
+"483",2011-09-30,"Facilities and Construction","Air Force","CARTER
+pre-BBP",1.01524702440201
+"484",2011-09-30,"Facilities and Construction","Air Force","BBP1",4.39166600131137
+"485",2011-09-30,"Facilities and Construction","DLA","YOUNG",0.229474939257239
+"486",2011-09-30,"Facilities and Construction","DLA","CARTER
+pre-BBP",0.481372360585397
+"487",2011-09-30,"Facilities and Construction","DLA","BBP1",1.84332327271297
+"488",2011-09-30,"Facilities and Construction","MDA","YOUNG",7.70313050776332e-05
+"489",2011-09-30,"Facilities and Construction","MDA","CARTER
+pre-BBP",0.0142401499370541
+"490",2011-09-30,"Facilities and Construction","MDA","BBP1",0.0064306303294167
+"491",2011-09-30,"Facilities and Construction","Military
 Health","YOUNG",-6.82227234578263e-06
-"330",2011-09-30,"Facilities and Construction","Additional
+"492",2011-09-30,"Facilities and Construction","Military
+Health","CARTER
+pre-BBP",-8.71905161561057e-08
+"493",2011-09-30,"Facilities and Construction","Military
+Health","BBP1",0.000700131955518254
+"494",2011-09-30,"Facilities and Construction","Additional
 DoD
 Components","YOUNG",0.0145519396873689
-"331",2011-09-30,"Land Vehicles","Army","YOUNG",0.58254491180235
-"332",2011-09-30,"Land Vehicles","Navy","YOUNG",0.139539515757449
-"333",2011-09-30,"Land Vehicles","Air Force","YOUNG",0.024842883497692
-"334",2011-09-30,"Land Vehicles","DLA","YOUNG",0.000149776101552665
-"335",2011-09-30,"Land Vehicles","Additional
+"495",2011-09-30,"Facilities and Construction","Additional
+DoD
+Components","CARTER
+pre-BBP",0.0406284252937474
+"496",2011-09-30,"Facilities and Construction","Additional
+DoD
+Components","BBP1",0.312802337715065
+"497",2011-09-30,"Land Vehicles","Army","YOUNG",0.58254491180235
+"498",2011-09-30,"Land Vehicles","Army","CARTER
+pre-BBP",3.55594099603441
+"499",2011-09-30,"Land Vehicles","Army","BBP1",9.48475740121695
+"500",2011-09-30,"Land Vehicles","Navy","YOUNG",0.139539515757449
+"501",2011-09-30,"Land Vehicles","Navy","CARTER
+pre-BBP",1.74397270195132
+"502",2011-09-30,"Land Vehicles","Navy","BBP1",1.88835889695762
+"503",2011-09-30,"Land Vehicles","Air Force","YOUNG",0.024842883497692
+"504",2011-09-30,"Land Vehicles","Air Force","CARTER
+pre-BBP",0.0134934164498531
+"505",2011-09-30,"Land Vehicles","Air Force","BBP1",0.126326111214855
+"506",2011-09-30,"Land Vehicles","DLA","YOUNG",0.000149776101552665
+"507",2011-09-30,"Land Vehicles","DLA","CARTER
+pre-BBP",0.0855227452056232
+"508",2011-09-30,"Land Vehicles","DLA","BBP1",1.05899098566932
+"509",2011-09-30,"Land Vehicles","MDA","BBP1",0.000488122177926983
+"510",2011-09-30,"Land Vehicles","Additional
 DoD
 Components","YOUNG",-0.00194581679605539
-"336",2011-09-30,"Missile and Space Systems","Army","YOUNG",1.34259352843055
-"337",2011-09-30,"Missile and Space Systems","Navy","YOUNG",0.641893859525808
-"338",2011-09-30,"Missile and Space Systems","Air Force","YOUNG",2.25232370610575
-"339",2011-09-30,"Missile and Space Systems","DLA","YOUNG",0.000757741397398237
-"340",2011-09-30,"Missile and Space Systems","MDA","YOUNG",1.00961224966429
-"341",2011-09-30,"Missile and Space Systems","Additional
+"511",2011-09-30,"Land Vehicles","Additional
+DoD
+Components","CARTER
+pre-BBP",-0.185236325377675
+"512",2011-09-30,"Land Vehicles","Additional
+DoD
+Components","BBP1",0.0796342617289131
+"513",2011-09-30,"Missile and Space Systems","Army","YOUNG",1.34259352843055
+"514",2011-09-30,"Missile and Space Systems","Army","CARTER
+pre-BBP",1.70898747170583
+"515",2011-09-30,"Missile and Space Systems","Army","BBP1",2.66727106985942
+"516",2011-09-30,"Missile and Space Systems","Navy","YOUNG",0.641893859525808
+"517",2011-09-30,"Missile and Space Systems","Navy","CARTER
+pre-BBP",0.876238077528326
+"518",2011-09-30,"Missile and Space Systems","Navy","BBP1",2.00619828502937
+"519",2011-09-30,"Missile and Space Systems","Air Force","YOUNG",2.25232370610575
+"520",2011-09-30,"Missile and Space Systems","Air Force","CARTER
+pre-BBP",1.38292811247377
+"521",2011-09-30,"Missile and Space Systems","Air Force","BBP1",2.26533503094838
+"522",2011-09-30,"Missile and Space Systems","DLA","YOUNG",0.000757741397398237
+"523",2011-09-30,"Missile and Space Systems","DLA","CARTER
+pre-BBP",0.0133203623164079
+"524",2011-09-30,"Missile and Space Systems","DLA","BBP1",0.0848177803399077
+"525",2011-09-30,"Missile and Space Systems","MDA","YOUNG",1.00961224966429
+"526",2011-09-30,"Missile and Space Systems","MDA","CARTER
+pre-BBP",1.15764938150441
+"527",2011-09-30,"Missile and Space Systems","MDA","BBP1",0.689155051961813
+"528",2011-09-30,"Missile and Space Systems","Additional
 DoD
 Components","YOUNG",0.000787646076374318
-"342",2011-09-30,"Other Products","Army","YOUNG",0.0948646140684012
-"343",2011-09-30,"Other Products","Navy","YOUNG",0.181249142047839
-"344",2011-09-30,"Other Products","Air Force","YOUNG",0.000561348153587914
-"345",2011-09-30,"Other Products","DLA","YOUNG",0.265711905350399
-"346",2011-09-30,"Other Products","Additional
+"529",2011-09-30,"Missile and Space Systems","Additional
+DoD
+Components","CARTER
+pre-BBP",0.14221738326689
+"530",2011-09-30,"Missile and Space Systems","Additional
+DoD
+Components","BBP1",0.00334054041124633
+"531",2011-09-30,"Other Products","Army","YOUNG",0.0948646140684012
+"532",2011-09-30,"Other Products","Army","CARTER
+pre-BBP",0.47247920118548
+"533",2011-09-30,"Other Products","Army","BBP1",3.6747259322073
+"534",2011-09-30,"Other Products","Navy","YOUNG",0.181249142047839
+"535",2011-09-30,"Other Products","Navy","CARTER
+pre-BBP",0.14107387210449
+"536",2011-09-30,"Other Products","Navy","BBP1",1.27525563123164
+"537",2011-09-30,"Other Products","Air Force","YOUNG",0.000561348153587914
+"538",2011-09-30,"Other Products","Air Force","CARTER
+pre-BBP",0.112693230822493
+"539",2011-09-30,"Other Products","Air Force","BBP1",0.298483724863617
+"540",2011-09-30,"Other Products","DLA","YOUNG",0.265711905350399
+"541",2011-09-30,"Other Products","DLA","CARTER
+pre-BBP",2.4548808472094
+"542",2011-09-30,"Other Products","DLA","BBP1",22.3949096192824
+"543",2011-09-30,"Other Products","MDA","BBP1",0.000111531147712967
+"544",2011-09-30,"Other Products","Military
+Health","BBP1",5.26143096936634e-05
+"545",2011-09-30,"Other Products","Additional
 DoD
 Components","YOUNG",0.00344836600923206
-"347",2011-09-30,"Other R&D and Knowledge Based","Army","YOUNG",1.80400348688628
-"348",2011-09-30,"Other R&D and Knowledge Based","Navy","YOUNG",3.38335073997062
-"349",2011-09-30,"Other R&D and Knowledge Based","Air Force","YOUNG",1.06354560198279
-"350",2011-09-30,"Other R&D and Knowledge Based","DLA","YOUNG",0.0591618752937474
-"351",2011-09-30,"Other R&D and Knowledge Based","MDA","YOUNG",0.0530493033990768
-"352",2011-09-30,"Other R&D and Knowledge Based","Military
+"546",2011-09-30,"Other Products","Additional
+DoD
+Components","CARTER
+pre-BBP",0.000140846454049517
+"547",2011-09-30,"Other Products","Additional
+DoD
+Components","BBP1",0.03964989388376
+"548",2011-09-30,"Other R&D and Knowledge Based","Army","YOUNG",1.80400348688628
+"549",2011-09-30,"Other R&D and Knowledge Based","Army","CARTER
+pre-BBP",6.11649384505875
+"550",2011-09-30,"Other R&D and Knowledge Based","Army","BBP1",9.48516178402224
+"551",2011-09-30,"Other R&D and Knowledge Based","Navy","YOUNG",3.38335073997062
+"552",2011-09-30,"Other R&D and Knowledge Based","Navy","CARTER
+pre-BBP",3.77279346135124
+"553",2011-09-30,"Other R&D and Knowledge Based","Navy","BBP1",4.88727666240034
+"554",2011-09-30,"Other R&D and Knowledge Based","Air Force","YOUNG",1.06354560198279
+"555",2011-09-30,"Other R&D and Knowledge Based","Air Force","CARTER
+pre-BBP",3.27994665292698
+"556",2011-09-30,"Other R&D and Knowledge Based","Air Force","BBP1",3.25698946309274
+"557",2011-09-30,"Other R&D and Knowledge Based","DLA","YOUNG",0.0591618752937474
+"558",2011-09-30,"Other R&D and Knowledge Based","DLA","CARTER
+pre-BBP",0.0909745120646244
+"559",2011-09-30,"Other R&D and Knowledge Based","DLA","BBP1",0.0804604026227444
+"560",2011-09-30,"Other R&D and Knowledge Based","MDA","YOUNG",0.0530493033990768
+"561",2011-09-30,"Other R&D and Knowledge Based","MDA","CARTER
+pre-BBP",0.0610220829521611
+"562",2011-09-30,"Other R&D and Knowledge Based","MDA","BBP1",0.193589363082249
+"563",2011-09-30,"Other R&D and Knowledge Based","Military
 Health","YOUNG",0.00168575888585816
-"353",2011-09-30,"Other R&D and Knowledge Based","Additional
+"564",2011-09-30,"Other R&D and Knowledge Based","Military
+Health","CARTER
+pre-BBP",0.00265315073436844
+"565",2011-09-30,"Other R&D and Knowledge Based","Military
+Health","BBP1",0.0124880075744859
+"566",2011-09-30,"Other R&D and Knowledge Based","Additional
 DoD
 Components","YOUNG",0.633087314603441
-"354",2011-09-30,"Other Services","Army","YOUNG",2.27779076774024
-"355",2011-09-30,"Other Services","Navy","YOUNG",0.566278294261435
-"356",2011-09-30,"Other Services","Air Force","YOUNG",1.52305714938103
-"357",2011-09-30,"Other Services","DLA","YOUNG",0.00449759672681494
-"358",2011-09-30,"Other Services","Military
+"567",2011-09-30,"Other R&D and Knowledge Based","Additional
+DoD
+Components","CARTER
+pre-BBP",1.19075984284515
+"568",2011-09-30,"Other R&D and Knowledge Based","Additional
+DoD
+Components","BBP1",1.36346544408309
+"569",2011-09-30,"Other Services","Army","YOUNG",2.27779076774024
+"570",2011-09-30,"Other Services","Army","CARTER
+pre-BBP",7.49139229463911
+"571",2011-09-30,"Other Services","Army","BBP1",3.54761182387747
+"572",2011-09-30,"Other Services","Navy","YOUNG",0.566278294261435
+"573",2011-09-30,"Other Services","Navy","CARTER
+pre-BBP",0.897401638942509
+"574",2011-09-30,"Other Services","Navy","BBP1",1.54548747690936
+"575",2011-09-30,"Other Services","Air Force","YOUNG",1.52305714938103
+"576",2011-09-30,"Other Services","Air Force","CARTER
+pre-BBP",0.583436090998741
+"577",2011-09-30,"Other Services","Air Force","BBP1",0.889667246496013
+"578",2011-09-30,"Other Services","DLA","YOUNG",0.00449759672681494
+"579",2011-09-30,"Other Services","DLA","CARTER
+pre-BBP",0.0375873903378095
+"580",2011-09-30,"Other Services","DLA","BBP1",0.0089797973562736
+"581",2011-09-30,"Other Services","MDA","CARTER
+pre-BBP",0.000446420247587075
+"582",2011-09-30,"Other Services","MDA","BBP1",1.33437159043223e-05
+"583",2011-09-30,"Other Services","Military
 Health","YOUNG",1.870771141282
-"359",2011-09-30,"Other Services","Additional
+"584",2011-09-30,"Other Services","Military
+Health","CARTER
+pre-BBP",1.46132165479438
+"585",2011-09-30,"Other Services","Military
+Health","BBP1",0.324009243107428
+"586",2011-09-30,"Other Services","Additional
 DoD
 Components","YOUNG",-0.0134239776017625
-"360",2011-09-30,"Ships & Submarines","Army","YOUNG",0.0062228449538397
-"361",2011-09-30,"Ships & Submarines","Navy","YOUNG",6.18910848101133
-"362",2011-09-30,"Ships & Submarines","Air Force","YOUNG",1.81982794796475e-05
-"363",2011-09-30,"Ships & Submarines","DLA","YOUNG",-0.000428858476710029
-"364",2011-09-30,"Ships & Submarines","Additional
+"587",2011-09-30,"Other Services","Additional
+DoD
+Components","CARTER
+pre-BBP",1.31754593831305
+"588",2011-09-30,"Other Services","Additional
+DoD
+Components","BBP1",6.90545833404847
+"589",2011-09-30,"Ships & Submarines","Army","YOUNG",0.0062228449538397
+"590",2011-09-30,"Ships & Submarines","Army","CARTER
+pre-BBP",0.0321931192194713
+"591",2011-09-30,"Ships & Submarines","Army","BBP1",0.148458605486781
+"592",2011-09-30,"Ships & Submarines","Navy","YOUNG",6.18910848101133
+"593",2011-09-30,"Ships & Submarines","Navy","CARTER
+pre-BBP",4.01544771479228
+"594",2011-09-30,"Ships & Submarines","Navy","BBP1",8.51693102764373
+"595",2011-09-30,"Ships & Submarines","Air Force","YOUNG",1.81982794796475e-05
+"596",2011-09-30,"Ships & Submarines","Air Force","CARTER
+pre-BBP",0.00181074477549308
+"597",2011-09-30,"Ships & Submarines","Air Force","BBP1",0.00494588725346202
+"598",2011-09-30,"Ships & Submarines","DLA","YOUNG",-0.000428858476710029
+"599",2011-09-30,"Ships & Submarines","DLA","CARTER
+pre-BBP",0.119411140012589
+"600",2011-09-30,"Ships & Submarines","DLA","BBP1",1.15042694531053
+"601",2011-09-30,"Ships & Submarines","Additional
 DoD
 Components","YOUNG",-0.00272486974402014
-"365",2011-09-30,"Unlabeled","Army","YOUNG",0
-"366",2011-09-30,"Weapons and Ammunition","Army","YOUNG",2.53744472870331
-"367",2011-09-30,"Weapons and Ammunition","Navy","YOUNG",0.234223223331935
-"368",2011-09-30,"Weapons and Ammunition","Air Force","YOUNG",0.058885558948804
-"369",2011-09-30,"Weapons and Ammunition","DLA","YOUNG",0
-"370",2011-09-30,"Weapons and Ammunition","MDA","YOUNG",0.00749520874947545
-"371",2011-09-30,"Weapons and Ammunition","Additional
+"602",2011-09-30,"Ships & Submarines","Additional
+DoD
+Components","CARTER
+pre-BBP",0.0114592289236257
+"603",2011-09-30,"Ships & Submarines","Additional
+DoD
+Components","BBP1",0.126887225986152
+"604",2011-09-30,"Unlabeled","Army","YOUNG",0
+"605",2011-09-30,"Unlabeled","Army","BBP1",-2.29352496852707e-05
+"606",2011-09-30,"Unlabeled","Navy","BBP1",-1.00090117498951e-05
+"607",2011-09-30,"Weapons and Ammunition","Army","YOUNG",2.53744472870331
+"608",2011-09-30,"Weapons and Ammunition","Army","CARTER
+pre-BBP",1.21334339210029
+"609",2011-09-30,"Weapons and Ammunition","Army","BBP1",3.73008562679396
+"610",2011-09-30,"Weapons and Ammunition","Navy","YOUNG",0.234223223331935
+"611",2011-09-30,"Weapons and Ammunition","Navy","CARTER
+pre-BBP",0.453903763365506
+"612",2011-09-30,"Weapons and Ammunition","Navy","BBP1",1.4508944002308
+"613",2011-09-30,"Weapons and Ammunition","Air Force","YOUNG",0.058885558948804
+"614",2011-09-30,"Weapons and Ammunition","Air Force","CARTER
+pre-BBP",0.455151719492237
+"615",2011-09-30,"Weapons and Ammunition","Air Force","BBP1",0.978580981210659
+"616",2011-09-30,"Weapons and Ammunition","DLA","YOUNG",0
+"617",2011-09-30,"Weapons and Ammunition","DLA","CARTER
+pre-BBP",0.0141641644565673
+"618",2011-09-30,"Weapons and Ammunition","DLA","BBP1",0.181162207784306
+"619",2011-09-30,"Weapons and Ammunition","MDA","YOUNG",0.00749520874947545
+"620",2011-09-30,"Weapons and Ammunition","MDA","CARTER
+pre-BBP",0.110458030843475
+"621",2011-09-30,"Weapons and Ammunition","MDA","BBP1",0.000204454469156525
+"622",2011-09-30,"Weapons and Ammunition","Additional
 DoD
 Components","YOUNG",-0.000424584441879983
-"372",2012-09-30,"Aircraft and Drones","Army","YOUNG",1.97533319672536
-"373",2012-09-30,"Aircraft and Drones","Navy","YOUNG",8.00596387201112
-"374",2012-09-30,"Aircraft and Drones","Air Force","YOUNG",0.815098537246422
-"375",2012-09-30,"Aircraft and Drones","DLA","YOUNG",0.0118252790237875
-"376",2012-09-30,"Aircraft and Drones","Additional
+"623",2011-09-30,"Weapons and Ammunition","Additional
+DoD
+Components","CARTER
+pre-BBP",0.00892822446496013
+"624",2011-09-30,"Weapons and Ammunition","Additional
+DoD
+Components","BBP1",0.053992069785984
+"625",2012-07-30,"Aircraft and Drones","Army","BBP1",7.70215795261044
+"626",2012-07-30,"Aircraft and Drones","Navy","BBP1",5.86398179420245
+"627",2012-07-30,"Aircraft and Drones","Air Force","BBP1",21.9688673242611
+"628",2012-07-30,"Aircraft and Drones","DLA","BBP1",3.28737961871074
+"629",2012-07-30,"Aircraft and Drones","Additional
+DoD
+Components","BBP1",0.880879582010092
+"630",2012-07-30,"Electronics and Communications","Army","BBP1",7.71695588991865
+"631",2012-07-30,"Electronics and Communications","Navy","BBP1",6.88408069734322
+"632",2012-07-30,"Electronics and Communications","Air Force","BBP1",5.75721635438832
+"633",2012-07-30,"Electronics and Communications","DLA","BBP1",1.26225710677582
+"634",2012-07-30,"Electronics and Communications","MDA","BBP1",0.0428792226547215
+"635",2012-07-30,"Electronics and Communications","Military
+Health","BBP1",0.0329261385542169
+"636",2012-07-30,"Electronics and Communications","Additional
+DoD
+Components","BBP1",4.07319921451962
+"637",2012-07-30,"Facilities and Construction","Army","BBP1",14.9244503680568
+"638",2012-07-30,"Facilities and Construction","Navy","BBP1",5.44996942340645
+"639",2012-07-30,"Facilities and Construction","Air Force","BBP1",2.49394965369169
+"640",2012-07-30,"Facilities and Construction","DLA","BBP1",1.37983569163783
+"641",2012-07-30,"Facilities and Construction","MDA","BBP1",0.00577360753784368
+"642",2012-07-30,"Facilities and Construction","Military
+Health","BBP1",0.00432633346720214
+"643",2012-07-30,"Facilities and Construction","Additional
+DoD
+Components","BBP1",0.212630692338585
+"644",2012-07-30,"Land Vehicles","Army","BBP1",5.02952609042323
+"645",2012-07-30,"Land Vehicles","Navy","BBP1",1.3126690661106
+"646",2012-07-30,"Land Vehicles","Air Force","BBP1",0.104535258716919
+"647",2012-07-30,"Land Vehicles","DLA","BBP1",0.922336253753475
+"648",2012-07-30,"Land Vehicles","MDA","BBP1",0.000106336113685511
+"649",2012-07-30,"Land Vehicles","Military
+Health","BBP1",2.12388013592833e-05
+"650",2012-07-30,"Land Vehicles","Additional
+DoD
+Components","BBP1",0.017478181639378
+"651",2012-07-30,"Missile and Space Systems","Army","BBP1",2.72219481045207
+"652",2012-07-30,"Missile and Space Systems","Navy","BBP1",3.20060882546597
+"653",2012-07-30,"Missile and Space Systems","Air Force","BBP1",3.00437641150242
+"654",2012-07-30,"Missile and Space Systems","DLA","BBP1",0.0430142118834312
+"655",2012-07-30,"Missile and Space Systems","MDA","BBP1",2.02199419101019
+"656",2012-07-30,"Missile and Space Systems","Additional
+DoD
+Components","BBP1",0.00627636239316239
+"657",2012-07-30,"Other Products","Army","BBP1",1.81048105638966
+"658",2012-07-30,"Other Products","Navy","BBP1",0.624306403284935
+"659",2012-07-30,"Other Products","Air Force","BBP1",0.15907500510761
+"660",2012-07-30,"Other Products","DLA","BBP1",22.6220772788487
+"661",2012-07-30,"Other Products","MDA","BBP1",5.95716198125837e-06
+"662",2012-07-30,"Other Products","Military
+Health","BBP1",0.000239002533209762
+"663",2012-07-30,"Other Products","Additional
+DoD
+Components","BBP1",0.00991579019668417
+"664",2012-07-30,"Other R&D and Knowledge Based","Army","BBP1",7.9905807952837
+"665",2012-07-30,"Other R&D and Knowledge Based","Navy","BBP1",4.38422943488827
+"666",2012-07-30,"Other R&D and Knowledge Based","Air Force","BBP1",3.55843896210483
+"667",2012-07-30,"Other R&D and Knowledge Based","DLA","BBP1",0.13462233678303
+"668",2012-07-30,"Other R&D and Knowledge Based","MDA","BBP1",0.724042275646175
+"669",2012-07-30,"Other R&D and Knowledge Based","Military
+Health","BBP1",0.00867225222943055
+"670",2012-07-30,"Other R&D and Knowledge Based","Additional
+DoD
+Components","BBP1",1.50301321268664
+"671",2012-07-30,"Other Services","Army","BBP1",3.6416739823911
+"672",2012-07-30,"Other Services","Navy","BBP1",1.69272267043044
+"673",2012-07-30,"Other Services","Air Force","BBP1",0.902431864071671
+"674",2012-07-30,"Other Services","DLA","BBP1",0.0170809804242611
+"675",2012-07-30,"Other Services","Military
+Health","BBP1",1.83467088105241
+"676",2012-07-30,"Other Services","Additional
+DoD
+Components","BBP1",7.10253136330965
+"677",2012-07-30,"Ships & Submarines","Army","BBP1",0.100140257017815
+"678",2012-07-30,"Ships & Submarines","Navy","BBP1",5.66793101866955
+"679",2012-07-30,"Ships & Submarines","Air Force","BBP1",0.00340643851302646
+"680",2012-07-30,"Ships & Submarines","DLA","BBP1",1.15389504876944
+"681",2012-07-30,"Ships & Submarines","Additional
+DoD
+Components","BBP1",0.102557851529194
+"682",2012-07-30,"Unlabeled","Army","BBP1",-3.55396972505406e-06
+"683",2012-07-30,"Weapons and Ammunition","Army","BBP1",3.06563257007517
+"684",2012-07-30,"Weapons and Ammunition","Navy","BBP1",0.748667337287612
+"685",2012-07-30,"Weapons and Ammunition","Air Force","BBP1",1.49265704704974
+"686",2012-07-30,"Weapons and Ammunition","DLA","BBP1",0.154810195860365
+"687",2012-07-30,"Weapons and Ammunition","MDA","BBP1",-0.000111918216455566
+"688",2012-07-30,"Weapons and Ammunition","Additional
+DoD
+Components","BBP1",0.0452699486767583
+"689",2012-09-30,"Aircraft and Drones","Army","YOUNG",1.97533319672536
+"690",2012-09-30,"Aircraft and Drones","Army","CARTER
+pre-BBP",1.68296510293482
+"691",2012-09-30,"Aircraft and Drones","Army","BBP1",0.9152598386263
+"692",2012-09-30,"Aircraft and Drones","Army","Section 808
+FY12 NDAA
+Implem.",0.756966942662959
+"693",2012-09-30,"Aircraft and Drones","Navy","YOUNG",8.00596387201112
+"694",2012-09-30,"Aircraft and Drones","Navy","CARTER
+pre-BBP",4.59672064687468
+"695",2012-09-30,"Aircraft and Drones","Navy","BBP1",0.6137941038616
+"696",2012-09-30,"Aircraft and Drones","Navy","Section 808
+FY12 NDAA
+Implem.",1.14974344230254
+"697",2012-09-30,"Aircraft and Drones","Air Force","YOUNG",0.815098537246422
+"698",2012-09-30,"Aircraft and Drones","Air Force","CARTER
+pre-BBP",2.20447569211204
+"699",2012-09-30,"Aircraft and Drones","Air Force","BBP1",1.73781368932139
+"700",2012-09-30,"Aircraft and Drones","Air Force","Section 808
+FY12 NDAA
+Implem.",2.57991646591494
+"701",2012-09-30,"Aircraft and Drones","DLA","YOUNG",0.0118252790237875
+"702",2012-09-30,"Aircraft and Drones","DLA","CARTER
+pre-BBP",0.0178973317475028
+"703",2012-09-30,"Aircraft and Drones","DLA","BBP1",0.00993258746782
+"704",2012-09-30,"Aircraft and Drones","DLA","Section 808
+FY12 NDAA
+Implem.",1.44537114066522
+"705",2012-09-30,"Aircraft and Drones","Additional
 DoD
 Components","YOUNG",-0.0618186432602204
-"377",2012-09-30,"Electronics and Communications","Army","YOUNG",0.688001468787972
-"378",2012-09-30,"Electronics and Communications","Navy","YOUNG",0.704608070909278
-"379",2012-09-30,"Electronics and Communications","Air Force","YOUNG",0.420676272464216
-"380",2012-09-30,"Electronics and Communications","DLA","YOUNG",0.0283827500566368
-"381",2012-09-30,"Electronics and Communications","MDA","YOUNG",-5.60897435897436e-05
-"382",2012-09-30,"Electronics and Communications","Military
+"706",2012-09-30,"Aircraft and Drones","Additional
+DoD
+Components","CARTER
+pre-BBP",0.0052064765420657
+"707",2012-09-30,"Aircraft and Drones","Additional
+DoD
+Components","BBP1",0.0459017790443827
+"708",2012-09-30,"Aircraft and Drones","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.12321496931315
+"709",2012-09-30,"Electronics and Communications","Army","YOUNG",0.688001468787972
+"710",2012-09-30,"Electronics and Communications","Army","CARTER
+pre-BBP",1.60925788874472
+"711",2012-09-30,"Electronics and Communications","Army","BBP1",0.887275225744002
+"712",2012-09-30,"Electronics and Communications","Army","Section 808
+FY12 NDAA
+Implem.",3.88233873567089
+"713",2012-09-30,"Electronics and Communications","Navy","YOUNG",0.704608070909278
+"714",2012-09-30,"Electronics and Communications","Navy","CARTER
+pre-BBP",1.79535043001751
+"715",2012-09-30,"Electronics and Communications","Navy","BBP1",0.877323654731748
+"716",2012-09-30,"Electronics and Communications","Navy","Section 808
+FY12 NDAA
+Implem.",3.27996636425703
+"717",2012-09-30,"Electronics and Communications","Air Force","YOUNG",0.420676272464216
+"718",2012-09-30,"Electronics and Communications","Air Force","CARTER
+pre-BBP",1.75867960677582
+"719",2012-09-30,"Electronics and Communications","Air Force","BBP1",0.537971309382453
+"720",2012-09-30,"Electronics and Communications","Air Force","Section 808
+FY12 NDAA
+Implem.",1.58004844085058
+"721",2012-09-30,"Electronics and Communications","DLA","YOUNG",0.0283827500566368
+"722",2012-09-30,"Electronics and Communications","DLA","CARTER
+pre-BBP",0.0926284643291113
+"723",2012-09-30,"Electronics and Communications","DLA","BBP1",0.0237313640304809
+"724",2012-09-30,"Electronics and Communications","DLA","Section 808
+FY12 NDAA
+Implem.",0.582009827360725
+"725",2012-09-30,"Electronics and Communications","MDA","YOUNG",-5.60897435897436e-05
+"726",2012-09-30,"Electronics and Communications","MDA","CARTER
+pre-BBP",0.000303757666563691
+"727",2012-09-30,"Electronics and Communications","MDA","BBP1",0.000912635742971888
+"728",2012-09-30,"Electronics and Communications","MDA","Section 808
+FY12 NDAA
+Implem.",0.00199189784780146
+"729",2012-09-30,"Electronics and Communications","Military
 Health","YOUNG",9.28271856657399e-05
-"383",2012-09-30,"Electronics and Communications","Additional
+"730",2012-09-30,"Electronics and Communications","Military
+Health","CARTER
+pre-BBP",0.000765005488621151
+"731",2012-09-30,"Electronics and Communications","Military
+Health","BBP1",0.0107149086190918
+"732",2012-09-30,"Electronics and Communications","Military
+Health","Section 808
+FY12 NDAA
+Implem.",0.0318056458861085
+"733",2012-09-30,"Electronics and Communications","Additional
 DoD
 Components","YOUNG",0.574059676161054
-"384",2012-09-30,"Facilities and Construction","Army","YOUNG",1.56825108898157
-"385",2012-09-30,"Facilities and Construction","Navy","YOUNG",0.317767312418906
-"386",2012-09-30,"Facilities and Construction","Air Force","YOUNG",0.451286395077747
-"387",2012-09-30,"Facilities and Construction","DLA","YOUNG",0.237756802378746
-"388",2012-09-30,"Facilities and Construction","MDA","YOUNG",-2.84419730202863e-05
-"389",2012-09-30,"Facilities and Construction","Military
+"734",2012-09-30,"Electronics and Communications","Additional
+DoD
+Components","CARTER
+pre-BBP",1.42846006472032
+"735",2012-09-30,"Electronics and Communications","Additional
+DoD
+Components","BBP1",0.468971089310988
+"736",2012-09-30,"Electronics and Communications","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",1.43154339041293
+"737",2012-09-30,"Facilities and Construction","Army","YOUNG",1.56825108898157
+"738",2012-09-30,"Facilities and Construction","Army","CARTER
+pre-BBP",2.0597200571002
+"739",2012-09-30,"Facilities and Construction","Army","BBP1",-0.0341098961178045
+"740",2012-09-30,"Facilities and Construction","Army","Section 808
+FY12 NDAA
+Implem.",10.3309725356709
+"741",2012-09-30,"Facilities and Construction","Navy","YOUNG",0.317767312418906
+"742",2012-09-30,"Facilities and Construction","Navy","CARTER
+pre-BBP",0.623701300906189
+"743",2012-09-30,"Facilities and Construction","Navy","BBP1",0.245928909391412
+"744",2012-09-30,"Facilities and Construction","Navy","Section 808
+FY12 NDAA
+Implem.",3.82140142277829
+"745",2012-09-30,"Facilities and Construction","Air Force","YOUNG",0.451286395077747
+"746",2012-09-30,"Facilities and Construction","Air Force","CARTER
+pre-BBP",0.302902716424673
+"747",2012-09-30,"Facilities and Construction","Air Force","BBP1",0.175724959478941
+"748",2012-09-30,"Facilities and Construction","Air Force","Section 808
+FY12 NDAA
+Implem.",2.0797825343425
+"749",2012-09-30,"Facilities and Construction","DLA","YOUNG",0.237756802378746
+"750",2012-09-30,"Facilities and Construction","DLA","CARTER
+pre-BBP",0.106513647101225
+"751",2012-09-30,"Facilities and Construction","DLA","BBP1",-0.00094062828750901
+"752",2012-09-30,"Facilities and Construction","DLA","Section 808
+FY12 NDAA
+Implem.",0.462246922150448
+"753",2012-09-30,"Facilities and Construction","MDA","YOUNG",-2.84419730202863e-05
+"754",2012-09-30,"Facilities and Construction","MDA","CARTER
+pre-BBP",0.00647299701369581
+"755",2012-09-30,"Facilities and Construction","MDA","BBP1",0.00104603319946453
+"756",2012-09-30,"Facilities and Construction","MDA","Section 808
+FY12 NDAA
+Implem.",0.000291842148079498
+"757",2012-09-30,"Facilities and Construction","Military
 Health","YOUNG",0.00109972458037277
-"390",2012-09-30,"Facilities and Construction","Additional
+"758",2012-09-30,"Facilities and Construction","Military
+Health","CARTER
+pre-BBP",0.00064860125630728
+"759",2012-09-30,"Facilities and Construction","Military
+Health","BBP1",3.34407784986098e-05
+"760",2012-09-30,"Facilities and Construction","Military
+Health","Section 808
+FY12 NDAA
+Implem.",0.00373935811965812
+"761",2012-09-30,"Facilities and Construction","Additional
 DoD
 Components","YOUNG",0.011706002553805
-"391",2012-09-30,"Land Vehicles","Army","YOUNG",0.471984655730615
-"392",2012-09-30,"Land Vehicles","Navy","YOUNG",-0.00188221278962002
-"393",2012-09-30,"Land Vehicles","Air Force","YOUNG",0.00484045064360004
-"394",2012-09-30,"Land Vehicles","DLA","YOUNG",0.000134735742971887
-"395",2012-09-30,"Land Vehicles","Additional
+"762",2012-09-30,"Facilities and Construction","Additional
+DoD
+Components","CARTER
+pre-BBP",0.0232504561009165
+"763",2012-09-30,"Facilities and Construction","Additional
+DoD
+Components","BBP1",0.0321251776233138
+"764",2012-09-30,"Facilities and Construction","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.133661445412419
+"765",2012-09-30,"Land Vehicles","Army","YOUNG",0.471984655730615
+"766",2012-09-30,"Land Vehicles","Army","CARTER
+pre-BBP",0.530446660149521
+"767",2012-09-30,"Land Vehicles","Army","BBP1",0.607580480764082
+"768",2012-09-30,"Land Vehicles","Army","Section 808
+FY12 NDAA
+Implem.",1.08908680511791
+"769",2012-09-30,"Land Vehicles","Navy","YOUNG",-0.00188221278962002
+"770",2012-09-30,"Land Vehicles","Navy","CARTER
+pre-BBP",0.323863890526207
+"771",2012-09-30,"Land Vehicles","Navy","BBP1",0.210583536237257
+"772",2012-09-30,"Land Vehicles","Navy","Section 808
+FY12 NDAA
+Implem.",0.230256160189476
+"773",2012-09-30,"Land Vehicles","Air Force","YOUNG",0.00484045064360004
+"774",2012-09-30,"Land Vehicles","Air Force","CARTER
+pre-BBP",0.0030517999897024
+"775",2012-09-30,"Land Vehicles","Air Force","BBP1",0.00785902819483061
+"776",2012-09-30,"Land Vehicles","Air Force","Section 808
+FY12 NDAA
+Implem.",0.0294405320770261
+"777",2012-09-30,"Land Vehicles","DLA","YOUNG",0.000134735742971887
+"778",2012-09-30,"Land Vehicles","DLA","CARTER
+pre-BBP",0.000682574750283184
+"779",2012-09-30,"Land Vehicles","DLA","BBP1",0.00243451762949233
+"780",2012-09-30,"Land Vehicles","DLA","Section 808
+FY12 NDAA
+Implem.",0.252640405478324
+"781",2012-09-30,"Land Vehicles","MDA","BBP1",4.87591391205849e-06
+"782",2012-09-30,"Land Vehicles","MDA","Section 808
+FY12 NDAA
+Implem.",3.95955411389146e-05
+"783",2012-09-30,"Land Vehicles","Additional
 DoD
 Components","YOUNG",-0.00504003007929153
-"396",2012-09-30,"Missile and Space Systems","Army","YOUNG",1.11038685943775
-"397",2012-09-30,"Missile and Space Systems","Navy","YOUNG",0.165806698681907
-"398",2012-09-30,"Missile and Space Systems","Air Force","YOUNG",2.03768261982288
-"399",2012-09-30,"Missile and Space Systems","DLA","YOUNG",-6.17856039542787e-06
-"400",2012-09-30,"Missile and Space Systems","MDA","YOUNG",0.341508018803419
-"401",2012-09-30,"Missile and Space Systems","Additional
+"784",2012-09-30,"Land Vehicles","Additional
+DoD
+Components","CARTER
+pre-BBP",0.042398224189064
+"785",2012-09-30,"Land Vehicles","Additional
+DoD
+Components","BBP1",0.00202336010709505
+"786",2012-09-30,"Land Vehicles","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.00360145569972196
+"787",2012-09-30,"Missile and Space Systems","Army","YOUNG",1.11038685943775
+"788",2012-09-30,"Missile and Space Systems","Army","CARTER
+pre-BBP",1.99674564066523
+"789",2012-09-30,"Missile and Space Systems","Army","BBP1",0.689944871547729
+"790",2012-09-30,"Missile and Space Systems","Army","Section 808
+FY12 NDAA
+Implem.",0.249278524827515
+"791",2012-09-30,"Missile and Space Systems","Navy","YOUNG",0.165806698681907
+"792",2012-09-30,"Missile and Space Systems","Navy","CARTER
+pre-BBP",0.415052785840799
+"793",2012-09-30,"Missile and Space Systems","Navy","BBP1",0.148230396725363
+"794",2012-09-30,"Missile and Space Systems","Navy","Section 808
+FY12 NDAA
+Implem.",0.243957519153537
+"795",2012-09-30,"Missile and Space Systems","Air Force","YOUNG",2.03768261982288
+"796",2012-09-30,"Missile and Space Systems","Air Force","CARTER
+pre-BBP",1.80102734709093
+"797",2012-09-30,"Missile and Space Systems","Air Force","BBP1",0.674282050736278
+"798",2012-09-30,"Missile and Space Systems","Air Force","Section 808
+FY12 NDAA
+Implem.",0.350624187344249
+"799",2012-09-30,"Missile and Space Systems","DLA","YOUNG",-6.17856039542787e-06
+"800",2012-09-30,"Missile and Space Systems","DLA","CARTER
+pre-BBP",-0.000873738039336834
+"801",2012-09-30,"Missile and Space Systems","DLA","BBP1",2.75741015343425e-05
+"802",2012-09-30,"Missile and Space Systems","DLA","Section 808
+FY12 NDAA
+Implem.",0.0328981224693646
+"803",2012-09-30,"Missile and Space Systems","MDA","YOUNG",0.341508018803419
+"804",2012-09-30,"Missile and Space Systems","MDA","CARTER
+pre-BBP",0.997501355339306
+"805",2012-09-30,"Missile and Space Systems","MDA","BBP1",0.234128155246628
+"806",2012-09-30,"Missile and Space Systems","MDA","Section 808
+FY12 NDAA
+Implem.",0.0950422078055813
+"807",2012-09-30,"Missile and Space Systems","Additional
 DoD
 Components","YOUNG",0.00577586232107919
-"402",2012-09-30,"Other Products","Army","YOUNG",0.0443188789311091
-"403",2012-09-30,"Other Products","Navy","YOUNG",0.148816584110802
-"404",2012-09-30,"Other Products","Air Force","YOUNG",0.00318404287920914
-"405",2012-09-30,"Other Products","DLA","YOUNG",0.110964572237669
-"406",2012-09-30,"Other Products","Military
+"808",2012-09-30,"Missile and Space Systems","Additional
+DoD
+Components","CARTER
+pre-BBP",-0.0238397932550716
+"809",2012-09-30,"Missile and Space Systems","Additional
+DoD
+Components","BBP1",0
+"810",2012-09-30,"Missile and Space Systems","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.00070836000411904
+"811",2012-09-30,"Other Products","Army","YOUNG",0.0443188789311091
+"812",2012-09-30,"Other Products","Army","CARTER
+pre-BBP",0.143486661002986
+"813",2012-09-30,"Other Products","Army","BBP1",0.0547246762125425
+"814",2012-09-30,"Other Products","Army","Section 808
+FY12 NDAA
+Implem.",0.769035772392133
+"815",2012-09-30,"Other Products","Navy","YOUNG",0.148816584110802
+"816",2012-09-30,"Other Products","Navy","CARTER
+pre-BBP",0.0412635419421275
+"817",2012-09-30,"Other Products","Navy","BBP1",0.0122896078673669
+"818",2012-09-30,"Other Products","Navy","Section 808
+FY12 NDAA
+Implem.",0.404651350159613
+"819",2012-09-30,"Other Products","Air Force","YOUNG",0.00318404287920914
+"820",2012-09-30,"Other Products","Air Force","CARTER
+pre-BBP",0.00499906218721038
+"821",2012-09-30,"Other Products","Air Force","BBP1",-0.0128156953454845
+"822",2012-09-30,"Other Products","Air Force","Section 808
+FY12 NDAA
+Implem.",0.0866250272989394
+"823",2012-09-30,"Other Products","DLA","YOUNG",0.110964572237669
+"824",2012-09-30,"Other Products","DLA","CARTER
+pre-BBP",0.42538832429204
+"825",2012-09-30,"Other Products","DLA","BBP1",0.289141862527031
+"826",2012-09-30,"Other Products","DLA","Section 808
+FY12 NDAA
+Implem.",8.62139938260735
+"827",2012-09-30,"Other Products","MDA","BBP1",0
+"828",2012-09-30,"Other Products","MDA","Section 808
+FY12 NDAA
+Implem.",5.09731232622799e-06
+"829",2012-09-30,"Other Products","Military
 Health","YOUNG",3.34271238801359e-05
-"407",2012-09-30,"Other Products","Additional
+"830",2012-09-30,"Other Products","Military
+Health","CARTER
+pre-BBP",0.000141493965606014
+"831",2012-09-30,"Other Products","Military
+Health","BBP1",-1.08636597672742e-06
+"832",2012-09-30,"Other Products","Military
+Health","Section 808
+FY12 NDAA
+Implem.",0.000917892431263516
+"833",2012-09-30,"Other Products","Additional
 DoD
 Components","YOUNG",0.00245462870971064
-"408",2012-09-30,"Other R&D and Knowledge Based","Army","YOUNG",1.18482231778396
-"409",2012-09-30,"Other R&D and Knowledge Based","Navy","YOUNG",2.47649099346102
-"410",2012-09-30,"Other R&D and Knowledge Based","Air Force","YOUNG",0.686288669127793
-"411",2012-09-30,"Other R&D and Knowledge Based","DLA","YOUNG",0.0304088700030893
-"412",2012-09-30,"Other R&D and Knowledge Based","MDA","YOUNG",0.0180112129337864
-"413",2012-09-30,"Other R&D and Knowledge Based","Military
+"834",2012-09-30,"Other Products","Additional
+DoD
+Components","CARTER
+pre-BBP",0.000887141736175471
+"835",2012-09-30,"Other Products","Additional
+DoD
+Components","BBP1",0.000599246287714962
+"836",2012-09-30,"Other Products","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.0348848745855216
+"837",2012-09-30,"Other R&D and Knowledge Based","Army","YOUNG",1.18482231778396
+"838",2012-09-30,"Other R&D and Knowledge Based","Army","CARTER
+pre-BBP",2.95916141188343
+"839",2012-09-30,"Other R&D and Knowledge Based","Army","BBP1",2.35669433008959
+"840",2012-09-30,"Other R&D and Knowledge Based","Army","Section 808
+FY12 NDAA
+Implem.",2.85133143186078
+"841",2012-09-30,"Other R&D and Knowledge Based","Navy","YOUNG",2.47649099346102
+"842",2012-09-30,"Other R&D and Knowledge Based","Navy","CARTER
+pre-BBP",2.33997202670168
+"843",2012-09-30,"Other R&D and Knowledge Based","Navy","BBP1",1.01263649416126
+"844",2012-09-30,"Other R&D and Knowledge Based","Navy","Section 808
+FY12 NDAA
+Implem.",1.25299877369993
+"845",2012-09-30,"Other R&D and Knowledge Based","Air Force","YOUNG",0.686288669127793
+"846",2012-09-30,"Other R&D and Knowledge Based","Air Force","CARTER
+pre-BBP",1.46096691787663
+"847",2012-09-30,"Other R&D and Knowledge Based","Air Force","BBP1",0.499669258922871
+"848",2012-09-30,"Other R&D and Knowledge Based","Air Force","Section 808
+FY12 NDAA
+Implem.",1.04090459367727
+"849",2012-09-30,"Other R&D and Knowledge Based","DLA","YOUNG",0.0304088700030893
+"850",2012-09-30,"Other R&D and Knowledge Based","DLA","CARTER
+pre-BBP",0.037453537956956
+"851",2012-09-30,"Other R&D and Knowledge Based","DLA","BBP1",0.00600167977551231
+"852",2012-09-30,"Other R&D and Knowledge Based","DLA","Section 808
+FY12 NDAA
+Implem.",0.0654437940582844
+"853",2012-09-30,"Other R&D and Knowledge Based","MDA","YOUNG",0.0180112129337864
+"854",2012-09-30,"Other R&D and Knowledge Based","MDA","CARTER
+pre-BBP",0.0524831110184327
+"855",2012-09-30,"Other R&D and Knowledge Based","MDA","BBP1",0.0432559575532901
+"856",2012-09-30,"Other R&D and Knowledge Based","MDA","Section 808
+FY12 NDAA
+Implem.",0.00672191012254145
+"857",2012-09-30,"Other R&D and Knowledge Based","Military
 Health","YOUNG",0.0109438974358974
-"414",2012-09-30,"Other R&D and Knowledge Based","Additional
+"858",2012-09-30,"Other R&D and Knowledge Based","Military
+Health","CARTER
+pre-BBP",0.0092307437648028
+"859",2012-09-30,"Other R&D and Knowledge Based","Military
+Health","BBP1",0.0109806601173926
+"860",2012-09-30,"Other R&D and Knowledge Based","Military
+Health","Section 808
+FY12 NDAA
+Implem.",0.0281726246936464
+"861",2012-09-30,"Other R&D and Knowledge Based","Additional
 DoD
 Components","YOUNG",0.427883085645145
-"415",2012-09-30,"Other Services","Army","YOUNG",0.38469832605293
-"416",2012-09-30,"Other Services","Navy","YOUNG",0.485752844125219
-"417",2012-09-30,"Other Services","Air Force","YOUNG",1.30043964693646
-"418",2012-09-30,"Other Services","DLA","YOUNG",0.0239294641849449
-"419",2012-09-30,"Other Services","Military
+"862",2012-09-30,"Other R&D and Knowledge Based","Additional
+DoD
+Components","CARTER
+pre-BBP",0.711076668726187
+"863",2012-09-30,"Other R&D and Knowledge Based","Additional
+DoD
+Components","BBP1",0.195507113541345
+"864",2012-09-30,"Other R&D and Knowledge Based","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.542692005653383
+"865",2012-09-30,"Other Services","Army","YOUNG",0.38469832605293
+"866",2012-09-30,"Other Services","Army","CARTER
+pre-BBP",4.67135176186799
+"867",2012-09-30,"Other Services","Army","BBP1",0.588741786633714
+"868",2012-09-30,"Other Services","Army","Section 808
+FY12 NDAA
+Implem.",0.865560991700134
+"869",2012-09-30,"Other Services","Navy","YOUNG",0.485752844125219
+"870",2012-09-30,"Other Services","Navy","CARTER
+pre-BBP",0.468152557151684
+"871",2012-09-30,"Other Services","Navy","BBP1",0.113923520914427
+"872",2012-09-30,"Other Services","Navy","Section 808
+FY12 NDAA
+Implem.",0.467781088054783
+"873",2012-09-30,"Other Services","Air Force","YOUNG",1.30043964693646
+"874",2012-09-30,"Other Services","Air Force","CARTER
+pre-BBP",0.238024723962517
+"875",2012-09-30,"Other Services","Air Force","BBP1",0.182147045216765
+"876",2012-09-30,"Other Services","Air Force","Section 808
+FY12 NDAA
+Implem.",0.123794994150963
+"877",2012-09-30,"Other Services","DLA","YOUNG",0.0239294641849449
+"878",2012-09-30,"Other Services","DLA","CARTER
+pre-BBP",0.0228170988157759
+"879",2012-09-30,"Other Services","DLA","BBP1",0.000254870054577283
+"880",2012-09-30,"Other Services","DLA","Section 808
+FY12 NDAA
+Implem.",0.0109854360930903
+"881",2012-09-30,"Other Services","Military
 Health","YOUNG",1.83405890673463
-"420",2012-09-30,"Other Services","Additional
+"882",2012-09-30,"Other Services","Military
+Health","CARTER
+pre-BBP",3.03901796117805
+"883",2012-09-30,"Other Services","Military
+Health","BBP1",0.160656990485017
+"884",2012-09-30,"Other Services","Military
+Health","Section 808
+FY12 NDAA
+Implem.",0.0148026724024302
+"885",2012-09-30,"Other Services","Additional
 DoD
 Components","YOUNG",-0.000290974070641541
-"421",2012-09-30,"Ships & Submarines","Army","YOUNG",0.0045087171866955
-"422",2012-09-30,"Ships & Submarines","Navy","YOUNG",5.58658757655236
-"423",2012-09-30,"Ships & Submarines","Air Force","YOUNG",1.85490680671404e-05
-"424",2012-09-30,"Ships & Submarines","DLA","YOUNG",-0.000199620018535681
-"425",2012-09-30,"Ships & Submarines","Military
+"886",2012-09-30,"Other Services","Additional
+DoD
+Components","CARTER
+pre-BBP",0.393067145175574
+"887",2012-09-30,"Other Services","Additional
+DoD
+Components","BBP1",0.0332934228915663
+"888",2012-09-30,"Other Services","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.919737771897848
+"889",2012-09-30,"Ships & Submarines","Army","YOUNG",0.0045087171866955
+"890",2012-09-30,"Ships & Submarines","Army","CARTER
+pre-BBP",0.0204838522912161
+"891",2012-09-30,"Ships & Submarines","Army","BBP1",0.0362219400370714
+"892",2012-09-30,"Ships & Submarines","Army","Section 808
+FY12 NDAA
+Implem.",0.146325780383071
+"893",2012-09-30,"Ships & Submarines","Navy","YOUNG",5.58658757655236
+"894",2012-09-30,"Ships & Submarines","Navy","CARTER
+pre-BBP",4.74668827917825
+"895",2012-09-30,"Ships & Submarines","Navy","BBP1",0.682133889517043
+"896",2012-09-30,"Ships & Submarines","Navy","Section 808
+FY12 NDAA
+Implem.",0.717896691957574
+"897",2012-09-30,"Ships & Submarines","Air Force","YOUNG",1.85490680671404e-05
+"898",2012-09-30,"Ships & Submarines","Air Force","CARTER
+pre-BBP",0.00167129894964473
+"899",2012-09-30,"Ships & Submarines","Air Force","BBP1",-8.38692410668314e-05
+"900",2012-09-30,"Ships & Submarines","Air Force","Section 808
+FY12 NDAA
+Implem.",0.00921433801874163
+"901",2012-09-30,"Ships & Submarines","DLA","YOUNG",-0.000199620018535681
+"902",2012-09-30,"Ships & Submarines","DLA","CARTER
+pre-BBP",-0.00220636334054165
+"903",2012-09-30,"Ships & Submarines","DLA","BBP1",-0.000839299546905571
+"904",2012-09-30,"Ships & Submarines","DLA","Section 808
+FY12 NDAA
+Implem.",0.342764165873751
+"905",2012-09-30,"Ships & Submarines","Military
 Health","YOUNG",0
-"426",2012-09-30,"Ships & Submarines","Additional
+"906",2012-09-30,"Ships & Submarines","Additional
 DoD
 Components","YOUNG",-0.00032866733601071
-"427",2012-09-30,"Unlabeled","Army","YOUNG",0
-"428",2012-09-30,"Weapons and Ammunition","Army","YOUNG",0.570350704355885
-"429",2012-09-30,"Weapons and Ammunition","Navy","YOUNG",0.193460060632273
-"430",2012-09-30,"Weapons and Ammunition","Air Force","YOUNG",0.0309942949953661
-"431",2012-09-30,"Weapons and Ammunition","DLA","YOUNG",-5.61682627947688e-07
-"432",2012-09-30,"Weapons and Ammunition","MDA","YOUNG",-0.00141642509525281
-"433",2012-09-30,"Weapons and Ammunition","Additional
+"907",2012-09-30,"Ships & Submarines","Additional
+DoD
+Components","CARTER
+pre-BBP",0.0240178739882607
+"908",2012-09-30,"Ships & Submarines","Additional
+DoD
+Components","BBP1",0.00276622727834415
+"909",2012-09-30,"Ships & Submarines","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.0145382875090104
+"910",2012-09-30,"Unlabeled","Army","YOUNG",0
+"911",2012-09-30,"Weapons and Ammunition","Army","YOUNG",0.570350704355885
+"912",2012-09-30,"Weapons and Ammunition","Army","CARTER
+pre-BBP",0.851892681103903
+"913",2012-09-30,"Weapons and Ammunition","Army","BBP1",0.166846587364844
+"914",2012-09-30,"Weapons and Ammunition","Army","Section 808
+FY12 NDAA
+Implem.",0.797870553578416
+"915",2012-09-30,"Weapons and Ammunition","Navy","YOUNG",0.193460060632273
+"916",2012-09-30,"Weapons and Ammunition","Navy","CARTER
+pre-BBP",0.296652995396973
+"917",2012-09-30,"Weapons and Ammunition","Navy","BBP1",0.128899821624961
+"918",2012-09-30,"Weapons and Ammunition","Navy","Section 808
+FY12 NDAA
+Implem.",0.252839748862115
+"919",2012-09-30,"Weapons and Ammunition","Air Force","YOUNG",0.0309942949953661
+"920",2012-09-30,"Weapons and Ammunition","Air Force","CARTER
+pre-BBP",0.295441390021625
+"921",2012-09-30,"Weapons and Ammunition","Air Force","BBP1",0.0922707071053445
+"922",2012-09-30,"Weapons and Ammunition","Air Force","Section 808
+FY12 NDAA
+Implem.",0.102242013932654
+"923",2012-09-30,"Weapons and Ammunition","DLA","YOUNG",-5.61682627947688e-07
+"924",2012-09-30,"Weapons and Ammunition","DLA","CARTER
+pre-BBP",-0.000563129945422717
+"925",2012-09-30,"Weapons and Ammunition","DLA","BBP1",0.000153538842549686
+"926",2012-09-30,"Weapons and Ammunition","DLA","Section 808
+FY12 NDAA
+Implem.",0.0426796666769643
+"927",2012-09-30,"Weapons and Ammunition","MDA","YOUNG",-0.00141642509525281
+"928",2012-09-30,"Weapons and Ammunition","MDA","CARTER
+pre-BBP",0.0151920245082896
+"929",2012-09-30,"Weapons and Ammunition","MDA","BBP1",-3.73969931006076e-05
+"930",2012-09-30,"Weapons and Ammunition","Additional
 DoD
 Components","YOUNG",-0.00163153666975595
-"434",2013-09-30,"Aircraft and Drones","Army","YOUNG",0.137573282278968
-"435",2013-09-30,"Aircraft and Drones","Navy","YOUNG",2.91633950415396
-"436",2013-09-30,"Aircraft and Drones","Air Force","YOUNG",0.367265518657764
-"437",2013-09-30,"Aircraft and Drones","DLA","YOUNG",-0.00125942738245151
-"438",2013-09-30,"Aircraft and Drones","Additional
+"931",2012-09-30,"Weapons and Ammunition","Additional
+DoD
+Components","CARTER
+pre-BBP",-0.00132479263721553
+"932",2012-09-30,"Weapons and Ammunition","Additional
+DoD
+Components","BBP1",0.00122333062506436
+"933",2012-09-30,"Weapons and Ammunition","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.00975028958912573
+"934",2013-09-30,"Aircraft and Drones","Army","YOUNG",0.137573282278968
+"935",2013-09-30,"Aircraft and Drones","Army","CARTER
+pre-BBP",0.83653056531045
+"936",2013-09-30,"Aircraft and Drones","Army","BBP1",4.58319960376754
+"937",2013-09-30,"Aircraft and Drones","Army","Section 808
+FY12 NDAA
+Implem.",5.92553969301615
+"938",2013-09-30,"Aircraft and Drones","Navy","YOUNG",2.91633950415396
+"939",2013-09-30,"Aircraft and Drones","Navy","CARTER
+pre-BBP",2.93739768072753
+"940",2013-09-30,"Aircraft and Drones","Navy","BBP1",14.6036863845538
+"941",2013-09-30,"Aircraft and Drones","Navy","Section 808
+FY12 NDAA
+Implem.",8.5419859540329
+"942",2013-09-30,"Aircraft and Drones","Air Force","YOUNG",0.367265518657764
+"943",2013-09-30,"Aircraft and Drones","Air Force","CARTER
+pre-BBP",1.25916965925449
+"944",2013-09-30,"Aircraft and Drones","Air Force","BBP1",8.53013517729197
+"945",2013-09-30,"Aircraft and Drones","Air Force","Section 808
+FY12 NDAA
+Implem.",11.0964673441101
+"946",2013-09-30,"Aircraft and Drones","DLA","YOUNG",-0.00125942738245151
+"947",2013-09-30,"Aircraft and Drones","DLA","CARTER
+pre-BBP",-0.0177073715082766
+"948",2013-09-30,"Aircraft and Drones","DLA","BBP1",-0.0207742769199756
+"949",2013-09-30,"Aircraft and Drones","DLA","Section 808
+FY12 NDAA
+Implem.",3.92899806257642
+"950",2013-09-30,"Aircraft and Drones","Additional
 DoD
 Components","YOUNG",-0.051127230133137
-"439",2013-09-30,"Electronics and Communications","Army","YOUNG",0.239422351559155
-"440",2013-09-30,"Electronics and Communications","Navy","YOUNG",0.396835972251244
-"441",2013-09-30,"Electronics and Communications","Air Force","YOUNG",0.253020493766528
-"442",2013-09-30,"Electronics and Communications","DLA","YOUNG",0.0176740013328933
-"443",2013-09-30,"Electronics and Communications","MDA","YOUNG",-1.73313801157713e-05
-"444",2013-09-30,"Electronics and Communications","Military
+"951",2013-09-30,"Aircraft and Drones","Additional
+DoD
+Components","CARTER
+pre-BBP",-0.0446887493637656
+"952",2013-09-30,"Aircraft and Drones","Additional
+DoD
+Components","BBP1",-0.0823117684571951
+"953",2013-09-30,"Aircraft and Drones","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.844686389851833
+"954",2013-09-30,"Electronics and Communications","Army","YOUNG",0.239422351559155
+"955",2013-09-30,"Electronics and Communications","Army","CARTER
+pre-BBP",0.719114947204225
+"956",2013-09-30,"Electronics and Communications","Army","BBP1",2.31364601376815
+"957",2013-09-30,"Electronics and Communications","Army","Section 808
+FY12 NDAA
+Implem.",8.42741594992353
+"958",2013-09-30,"Electronics and Communications","Navy","YOUNG",0.396835972251244
+"959",2013-09-30,"Electronics and Communications","Navy","CARTER
+pre-BBP",1.1736904611762
+"960",2013-09-30,"Electronics and Communications","Navy","BBP1",1.91318126951478
+"961",2013-09-30,"Electronics and Communications","Navy","Section 808
+FY12 NDAA
+Implem.",9.02068258741515
+"962",2013-09-30,"Electronics and Communications","Air Force","YOUNG",0.253020493766528
+"963",2013-09-30,"Electronics and Communications","Air Force","CARTER
+pre-BBP",0.742045136109069
+"964",2013-09-30,"Electronics and Communications","Air Force","BBP1",2.00278608491916
+"965",2013-09-30,"Electronics and Communications","Air Force","Section 808
+FY12 NDAA
+Implem.",5.31275384528669
+"966",2013-09-30,"Electronics and Communications","DLA","YOUNG",0.0176740013328933
+"967",2013-09-30,"Electronics and Communications","DLA","CARTER
+pre-BBP",0.0254435169278968
+"968",2013-09-30,"Electronics and Communications","DLA","BBP1",0.0780301388005484
+"969",2013-09-30,"Electronics and Communications","DLA","Section 808
+FY12 NDAA
+Implem.",1.70364204172245
+"970",2013-09-30,"Electronics and Communications","MDA","YOUNG",-1.73313801157713e-05
+"971",2013-09-30,"Electronics and Communications","MDA","CARTER
+pre-BBP",0.000320391083578755
+"972",2013-09-30,"Electronics and Communications","MDA","BBP1",0.0392830788136488
+"973",2013-09-30,"Electronics and Communications","MDA","Section 808
+FY12 NDAA
+Implem.",0.0186695727734335
+"974",2013-09-30,"Electronics and Communications","Military
 Health","YOUNG",-0.000201857355031989
-"445",2013-09-30,"Electronics and Communications","Additional
+"975",2013-09-30,"Electronics and Communications","Military
+Health","CARTER
+pre-BBP",0.000687211658373108
+"976",2013-09-30,"Electronics and Communications","Military
+Health","BBP1",0.0207548871533462
+"977",2013-09-30,"Electronics and Communications","Military
+Health","Section 808
+FY12 NDAA
+Implem.",0.0525222050874378
+"978",2013-09-30,"Electronics and Communications","Additional
 DoD
 Components","YOUNG",0.168245035561592
-"446",2013-09-30,"Facilities and Construction","Army","YOUNG",1.0836760598167
-"447",2013-09-30,"Facilities and Construction","Navy","YOUNG",0.136576730486544
-"448",2013-09-30,"Facilities and Construction","Air Force","YOUNG",0.302528167075251
-"449",2013-09-30,"Facilities and Construction","DLA","YOUNG",0.293081165935209
-"450",2013-09-30,"Facilities and Construction","MDA","YOUNG",-5.2457702853661e-06
-"451",2013-09-30,"Facilities and Construction","Military
+"979",2013-09-30,"Electronics and Communications","Additional
+DoD
+Components","CARTER
+pre-BBP",0.829485350255916
+"980",2013-09-30,"Electronics and Communications","Additional
+DoD
+Components","BBP1",1.52327503842612
+"981",2013-09-30,"Electronics and Communications","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",4.19566290643272
+"982",2013-09-30,"Facilities and Construction","Army","YOUNG",1.0836760598167
+"983",2013-09-30,"Facilities and Construction","Army","CARTER
+pre-BBP",1.93847167549365
+"984",2013-09-30,"Facilities and Construction","Army","BBP1",1.78140449307119
+"985",2013-09-30,"Facilities and Construction","Army","Section 808
+FY12 NDAA
+Implem.",17.677177417701
+"986",2013-09-30,"Facilities and Construction","Navy","YOUNG",0.136576730486544
+"987",2013-09-30,"Facilities and Construction","Navy","CARTER
+pre-BBP",0.386377098272063
+"988",2013-09-30,"Facilities and Construction","Navy","BBP1",1.01608504117884
+"989",2013-09-30,"Facilities and Construction","Navy","Section 808
+FY12 NDAA
+Implem.",7.0304877076729
+"990",2013-09-30,"Facilities and Construction","Air Force","YOUNG",0.302528167075251
+"991",2013-09-30,"Facilities and Construction","Air Force","CARTER
+pre-BBP",0.225026937479029
+"992",2013-09-30,"Facilities and Construction","Air Force","BBP1",0.46167952996994
+"993",2013-09-30,"Facilities and Construction","Air Force","Section 808
+FY12 NDAA
+Implem.",3.30418559565563
+"994",2013-09-30,"Facilities and Construction","DLA","YOUNG",0.293081165935209
+"995",2013-09-30,"Facilities and Construction","DLA","CARTER
+pre-BBP",0.117648131616634
+"996",2013-09-30,"Facilities and Construction","DLA","BBP1",0.0879930847365695
+"997",2013-09-30,"Facilities and Construction","DLA","Section 808
+FY12 NDAA
+Implem.",1.672541322392
+"998",2013-09-30,"Facilities and Construction","MDA","YOUNG",-5.2457702853661e-06
+"999",2013-09-30,"Facilities and Construction","MDA","CARTER
+pre-BBP",0.00130221427947598
+"1000",2013-09-30,"Facilities and Construction","MDA","BBP1",0.0086356369931959
+"1001",2013-09-30,"Facilities and Construction","MDA","Section 808
+FY12 NDAA
+Implem.",0.000648154923326902
+"1002",2013-09-30,"Facilities and Construction","Military
 Health","YOUNG",0.00110061964770996
-"452",2013-09-30,"Facilities and Construction","Additional
+"1003",2013-09-30,"Facilities and Construction","Military
+Health","CARTER
+pre-BBP",0.000290662860465116
+"1004",2013-09-30,"Facilities and Construction","Military
+Health","BBP1",0.00184029084218544
+"1005",2013-09-30,"Facilities and Construction","Military
+Health","Section 808
+FY12 NDAA
+Implem.",0.00475396780481365
+"1006",2013-09-30,"Facilities and Construction","Additional
 DoD
 Components","YOUNG",0.00480238245394536
-"453",2013-09-30,"Land Vehicles","Army","YOUNG",0.0270239518236011
-"454",2013-09-30,"Land Vehicles","Navy","YOUNG",-0.00335660409363258
-"455",2013-09-30,"Land Vehicles","Air Force","YOUNG",0.000435915996039403
-"456",2013-09-30,"Land Vehicles","DLA","YOUNG",0.000167224788768153
-"457",2013-09-30,"Land Vehicles","MDA","YOUNG",0
-"458",2013-09-30,"Land Vehicles","Additional
+"1007",2013-09-30,"Facilities and Construction","Additional
+DoD
+Components","CARTER
+pre-BBP",0.0184084887097593
+"1008",2013-09-30,"Facilities and Construction","Additional
+DoD
+Components","BBP1",0.0564834546762466
+"1009",2013-09-30,"Facilities and Construction","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.319716207600081
+"1010",2013-09-30,"Land Vehicles","Army","YOUNG",0.0270239518236011
+"1011",2013-09-30,"Land Vehicles","Army","CARTER
+pre-BBP",0.318200895874886
+"1012",2013-09-30,"Land Vehicles","Army","BBP1",1.53685530494729
+"1013",2013-09-30,"Land Vehicles","Army","Section 808
+FY12 NDAA
+Implem.",3.80830275398995
+"1014",2013-09-30,"Land Vehicles","Navy","YOUNG",-0.00335660409363258
+"1015",2013-09-30,"Land Vehicles","Navy","CARTER
+pre-BBP",-0.0245431801707119
+"1016",2013-09-30,"Land Vehicles","Navy","BBP1",0.141049552464913
+"1017",2013-09-30,"Land Vehicles","Navy","Section 808
+FY12 NDAA
+Implem.",0.303668329510511
+"1018",2013-09-30,"Land Vehicles","Air Force","YOUNG",0.000435915996039403
+"1019",2013-09-30,"Land Vehicles","Air Force","CARTER
+pre-BBP",0.00289947573443688
+"1020",2013-09-30,"Land Vehicles","Air Force","BBP1",-0.0044583242772418
+"1021",2013-09-30,"Land Vehicles","Air Force","Section 808
+FY12 NDAA
+Implem.",0.539643355552656
+"1022",2013-09-30,"Land Vehicles","DLA","YOUNG",0.000167224788768153
+"1023",2013-09-30,"Land Vehicles","DLA","CARTER
+pre-BBP",-0.000117691515080735
+"1024",2013-09-30,"Land Vehicles","DLA","BBP1",0.000794960229206865
+"1025",2013-09-30,"Land Vehicles","DLA","Section 808
+FY12 NDAA
+Implem.",0.867231363812126
+"1026",2013-09-30,"Land Vehicles","MDA","YOUNG",0
+"1027",2013-09-30,"Land Vehicles","MDA","BBP1",8.15341322230121e-05
+"1028",2013-09-30,"Land Vehicles","MDA","Section 808
+FY12 NDAA
+Implem.",0.000480460500355438
+"1029",2013-09-30,"Land Vehicles","Military
+Health","Section 808
+FY12 NDAA
+Implem.",3.50360515893165e-05
+"1030",2013-09-30,"Land Vehicles","Additional
 DoD
 Components","YOUNG",-0.00449381175017772
-"459",2013-09-30,"Missile and Space Systems","Army","YOUNG",0.569565622286686
-"460",2013-09-30,"Missile and Space Systems","Navy","YOUNG",0.0700359083750381
-"461",2013-09-30,"Missile and Space Systems","Air Force","YOUNG",1.45454073376582
-"462",2013-09-30,"Missile and Space Systems","DLA","YOUNG",-0.000691936863511729
-"463",2013-09-30,"Missile and Space Systems","MDA","YOUNG",0.11978960883985
-"464",2013-09-30,"Missile and Space Systems","Additional
+"1031",2013-09-30,"Land Vehicles","Additional
+DoD
+Components","CARTER
+pre-BBP",0.00393132386574591
+"1032",2013-09-30,"Land Vehicles","Additional
+DoD
+Components","BBP1",-0.00158414320970854
+"1033",2013-09-30,"Land Vehicles","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.0279888320750482
+"1034",2013-09-30,"Missile and Space Systems","Army","YOUNG",0.569565622286686
+"1035",2013-09-30,"Missile and Space Systems","Army","CARTER
+pre-BBP",0.414315144512237
+"1036",2013-09-30,"Missile and Space Systems","Army","BBP1",1.56642511447487
+"1037",2013-09-30,"Missile and Space Systems","Army","Section 808
+FY12 NDAA
+Implem.",2.17383603486889
+"1038",2013-09-30,"Missile and Space Systems","Navy","YOUNG",0.0700359083750381
+"1039",2013-09-30,"Missile and Space Systems","Navy","CARTER
+pre-BBP",0.244049703449985
+"1040",2013-09-30,"Missile and Space Systems","Navy","BBP1",2.34063470136123
+"1041",2013-09-30,"Missile and Space Systems","Navy","Section 808
+FY12 NDAA
+Implem.",1.65847910638052
+"1042",2013-09-30,"Missile and Space Systems","Air Force","YOUNG",1.45454073376582
+"1043",2013-09-30,"Missile and Space Systems","Air Force","CARTER
+pre-BBP",0.417954536366304
+"1044",2013-09-30,"Missile and Space Systems","Air Force","BBP1",0.34673902178562
+"1045",2013-09-30,"Missile and Space Systems","Air Force","Section 808
+FY12 NDAA
+Implem.",2.41052386949487
+"1046",2013-09-30,"Missile and Space Systems","DLA","YOUNG",-0.000691936863511729
+"1047",2013-09-30,"Missile and Space Systems","DLA","CARTER
+pre-BBP",-0.00104322351233878
+"1048",2013-09-30,"Missile and Space Systems","DLA","BBP1",-0.000768235355742866
+"1049",2013-09-30,"Missile and Space Systems","DLA","Section 808
+FY12 NDAA
+Implem.",0.0398235327147355
+"1050",2013-09-30,"Missile and Space Systems","MDA","YOUNG",0.11978960883985
+"1051",2013-09-30,"Missile and Space Systems","MDA","CARTER
+pre-BBP",0.833602450294811
+"1052",2013-09-30,"Missile and Space Systems","MDA","BBP1",1.58096261512176
+"1053",2013-09-30,"Missile and Space Systems","MDA","Section 808
+FY12 NDAA
+Implem.",1.04083757874683
+"1054",2013-09-30,"Missile and Space Systems","Additional
 DoD
 Components","YOUNG",2.77940812430184e-05
-"465",2013-09-30,"Other Products","Army","YOUNG",0.0185574322252463
-"466",2013-09-30,"Other Products","Navy","YOUNG",0.0735764901640093
-"467",2013-09-30,"Other Products","Air Force","YOUNG",4.36170212247384e-05
-"468",2013-09-30,"Other Products","DLA","YOUNG",0.00235545401990454
-"469",2013-09-30,"Other Products","Additional
+"1055",2013-09-30,"Missile and Space Systems","Additional
+DoD
+Components","CARTER
+pre-BBP",-0.000908499822179344
+"1056",2013-09-30,"Missile and Space Systems","Additional
+DoD
+Components","BBP1",0.000271920038590434
+"1057",2013-09-30,"Missile and Space Systems","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.00339372179100234
+"1058",2013-09-30,"Other Products","Army","YOUNG",0.0185574322252463
+"1059",2013-09-30,"Other Products","Army","CARTER
+pre-BBP",0.116833543822484
+"1060",2013-09-30,"Other Products","Army","BBP1",0.225739534888595
+"1061",2013-09-30,"Other Products","Army","Section 808
+FY12 NDAA
+Implem.",1.9466214926147
+"1062",2013-09-30,"Other Products","Navy","YOUNG",0.0735764901640093
+"1063",2013-09-30,"Other Products","Navy","CARTER
+pre-BBP",0.0380522642921702
+"1064",2013-09-30,"Other Products","Navy","BBP1",0.07473936760719
+"1065",2013-09-30,"Other Products","Navy","Section 808
+FY12 NDAA
+Implem.",0.974796775668325
+"1066",2013-09-30,"Other Products","Air Force","YOUNG",4.36170212247384e-05
+"1067",2013-09-30,"Other Products","Air Force","CARTER
+pre-BBP",-0.000700287794962933
+"1068",2013-09-30,"Other Products","Air Force","BBP1",0.00868678376774652
+"1069",2013-09-30,"Other Products","Air Force","Section 808
+FY12 NDAA
+Implem.",0.206272622127653
+"1070",2013-09-30,"Other Products","DLA","YOUNG",0.00235545401990454
+"1071",2013-09-30,"Other Products","DLA","CARTER
+pre-BBP",-0.0440725171147557
+"1072",2013-09-30,"Other Products","DLA","BBP1",1.79887153563309
+"1073",2013-09-30,"Other Products","DLA","Section 808
+FY12 NDAA
+Implem.",21.5347530877451
+"1074",2013-09-30,"Other Products","MDA","Section 808
+FY12 NDAA
+Implem.",0.000109271845942927
+"1075",2013-09-30,"Other Products","Military
+Health","CARTER
+pre-BBP",0.000123706022443384
+"1076",2013-09-30,"Other Products","Military
+Health","BBP1",0
+"1077",2013-09-30,"Other Products","Military
+Health","Section 808
+FY12 NDAA
+Implem.",0.00248839401381131
+"1078",2013-09-30,"Other Products","Additional
 DoD
 Components","YOUNG",0.000544336868183203
-"470",2013-09-30,"Other R&D and Knowledge Based","Army","YOUNG",0.461398578814563
-"471",2013-09-30,"Other R&D and Knowledge Based","Navy","YOUNG",0.615948543531736
-"472",2013-09-30,"Other R&D and Knowledge Based","Air Force","YOUNG",0.315738477611658
-"473",2013-09-30,"Other R&D and Knowledge Based","DLA","YOUNG",0.00547020920544328
-"474",2013-09-30,"Other R&D and Knowledge Based","MDA","YOUNG",0.000109258454046918
-"475",2013-09-30,"Other R&D and Knowledge Based","Military
+"1079",2013-09-30,"Other Products","Additional
+DoD
+Components","CARTER
+pre-BBP",-0.00274072582542907
+"1080",2013-09-30,"Other Products","Additional
+DoD
+Components","BBP1",-0.00227707860383873
+"1081",2013-09-30,"Other Products","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.0290615588056261
+"1082",2013-09-30,"Other R&D and Knowledge Based","Army","YOUNG",0.461398578814563
+"1083",2013-09-30,"Other R&D and Knowledge Based","Army","CARTER
+pre-BBP",1.74585170559663
+"1084",2013-09-30,"Other R&D and Knowledge Based","Army","BBP1",5.2733567495684
+"1085",2013-09-30,"Other R&D and Knowledge Based","Army","Section 808
+FY12 NDAA
+Implem.",7.30069643642896
+"1086",2013-09-30,"Other R&D and Knowledge Based","Navy","YOUNG",0.615948543531736
+"1087",2013-09-30,"Other R&D and Knowledge Based","Navy","CARTER
+pre-BBP",1.53296976182746
+"1088",2013-09-30,"Other R&D and Knowledge Based","Navy","BBP1",2.46929746873058
+"1089",2013-09-30,"Other R&D and Knowledge Based","Navy","Section 808
+FY12 NDAA
+Implem.",4.23695833397349
+"1090",2013-09-30,"Other R&D and Knowledge Based","Air Force","YOUNG",0.315738477611658
+"1091",2013-09-30,"Other R&D and Knowledge Based","Air Force","CARTER
+pre-BBP",0.745869662812938
+"1092",2013-09-30,"Other R&D and Knowledge Based","Air Force","BBP1",1.41440071929572
+"1093",2013-09-30,"Other R&D and Knowledge Based","Air Force","Section 808
+FY12 NDAA
+Implem.",3.95328452000234
+"1094",2013-09-30,"Other R&D and Knowledge Based","DLA","YOUNG",0.00547020920544328
+"1095",2013-09-30,"Other R&D and Knowledge Based","DLA","CARTER
+pre-BBP",0.0236351343425409
+"1096",2013-09-30,"Other R&D and Knowledge Based","DLA","BBP1",0.0257042586957449
+"1097",2013-09-30,"Other R&D and Knowledge Based","DLA","Section 808
+FY12 NDAA
+Implem.",0.316694436736569
+"1098",2013-09-30,"Other R&D and Knowledge Based","MDA","YOUNG",0.000109258454046918
+"1099",2013-09-30,"Other R&D and Knowledge Based","MDA","CARTER
+pre-BBP",0.0150115512207779
+"1100",2013-09-30,"Other R&D and Knowledge Based","MDA","BBP1",0.751789976517721
+"1101",2013-09-30,"Other R&D and Knowledge Based","MDA","Section 808
+FY12 NDAA
+Implem.",0.215457679090078
+"1102",2013-09-30,"Other R&D and Knowledge Based","Military
 Health","YOUNG",0.00303444379760333
-"476",2013-09-30,"Other R&D and Knowledge Based","Additional
+"1103",2013-09-30,"Other R&D and Knowledge Based","Military
+Health","CARTER
+pre-BBP",0.00417857021255205
+"1104",2013-09-30,"Other R&D and Knowledge Based","Military
+Health","BBP1",0.097620606640195
+"1105",2013-09-30,"Other R&D and Knowledge Based","Military
+Health","Section 808
+FY12 NDAA
+Implem.",0.145596305886869
+"1106",2013-09-30,"Other R&D and Knowledge Based","Additional
 DoD
 Components","YOUNG",0.1275110007843
-"477",2013-09-30,"Other Services","Army","YOUNG",0.209156448671372
-"478",2013-09-30,"Other Services","Navy","YOUNG",0.347430739708236
-"479",2013-09-30,"Other Services","Air Force","YOUNG",1.12419812935006
-"480",2013-09-30,"Other Services","DLA","YOUNG",0.00612950092424089
-"481",2013-09-30,"Other Services","MDA","YOUNG",-2.28495988625977e-05
-"482",2013-09-30,"Other Services","Military
+"1107",2013-09-30,"Other R&D and Knowledge Based","Additional
+DoD
+Components","CARTER
+pre-BBP",0.453844377900274
+"1108",2013-09-30,"Other R&D and Knowledge Based","Additional
+DoD
+Components","BBP1",1.17176299459835
+"1109",2013-09-30,"Other R&D and Knowledge Based","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",1.58249825088271
+"1110",2013-09-30,"Other Services","Army","YOUNG",0.209156448671372
+"1111",2013-09-30,"Other Services","Army","CARTER
+pre-BBP",4.68846219628577
+"1112",2013-09-30,"Other Services","Army","BBP1",1.78483329250858
+"1113",2013-09-30,"Other Services","Army","Section 808
+FY12 NDAA
+Implem.",2.81497074264923
+"1114",2013-09-30,"Other Services","Navy","YOUNG",0.347430739708236
+"1115",2013-09-30,"Other Services","Navy","CARTER
+pre-BBP",0.423902682876308
+"1116",2013-09-30,"Other Services","Navy","BBP1",0.679292722605464
+"1117",2013-09-30,"Other Services","Navy","Section 808
+FY12 NDAA
+Implem.",1.60334364622322
+"1118",2013-09-30,"Other Services","Air Force","YOUNG",1.12419812935006
+"1119",2013-09-30,"Other Services","Air Force","CARTER
+pre-BBP",0.0986601188987509
+"1120",2013-09-30,"Other Services","Air Force","BBP1",0.395173037461867
+"1121",2013-09-30,"Other Services","Air Force","Section 808
+FY12 NDAA
+Implem.",1.94438839272794
+"1122",2013-09-30,"Other Services","DLA","YOUNG",0.00612950092424089
+"1123",2013-09-30,"Other Services","DLA","CARTER
+pre-BBP",0.00148002643505636
+"1124",2013-09-30,"Other Services","DLA","BBP1",0.00769323513394943
+"1125",2013-09-30,"Other Services","DLA","Section 808
+FY12 NDAA
+Implem.",0.0536857185885041
+"1126",2013-09-30,"Other Services","MDA","YOUNG",-2.28495988625977e-05
+"1127",2013-09-30,"Other Services","MDA","Section 808
+FY12 NDAA
+Implem.",0.00321693510713923
+"1128",2013-09-30,"Other Services","Military
 Health","YOUNG",1.89469144504032
-"483",2013-09-30,"Other Services","Additional
+"1129",2013-09-30,"Other Services","Military
+Health","CARTER
+pre-BBP",2.94951568614675
+"1130",2013-09-30,"Other Services","Military
+Health","BBP1",4.9697603936337
+"1131",2013-09-30,"Other Services","Military
+Health","Section 808
+FY12 NDAA
+Implem.",0.30294167454707
+"1132",2013-09-30,"Other Services","Additional
 DoD
 Components","YOUNG",-0.0146603145592566
-"484",2013-09-30,"Ships & Submarines","Army","YOUNG",0.00481245103290342
-"485",2013-09-30,"Ships & Submarines","Navy","YOUNG",4.69715696901412
-"486",2013-09-30,"Ships & Submarines","DLA","YOUNG",5.1860139839545e-05
-"487",2013-09-30,"Ships & Submarines","Additional
+"1133",2013-09-30,"Other Services","Additional
+DoD
+Components","CARTER
+pre-BBP",0.38922233410521
+"1134",2013-09-30,"Other Services","Additional
+DoD
+Components","BBP1",0.364115367380116
+"1135",2013-09-30,"Other Services","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",5.32263243503768
+"1136",2013-09-30,"Ships & Submarines","Army","YOUNG",0.00481245103290342
+"1137",2013-09-30,"Ships & Submarines","Army","CARTER
+pre-BBP",0.0205146962844521
+"1138",2013-09-30,"Ships & Submarines","Army","BBP1",0.0294643435069564
+"1139",2013-09-30,"Ships & Submarines","Army","Section 808
+FY12 NDAA
+Implem.",0.13981284512288
+"1140",2013-09-30,"Ships & Submarines","Navy","YOUNG",4.69715696901412
+"1141",2013-09-30,"Ships & Submarines","Navy","CARTER
+pre-BBP",1.44305724590342
+"1142",2013-09-30,"Ships & Submarines","Navy","BBP1",4.3366634183009
+"1143",2013-09-30,"Ships & Submarines","Navy","Section 808
+FY12 NDAA
+Implem.",6.98709924360394
+"1144",2013-09-30,"Ships & Submarines","Air Force","CARTER
+pre-BBP",0.0013957120645882
+"1145",2013-09-30,"Ships & Submarines","Air Force","BBP1",0.000575890317457094
+"1146",2013-09-30,"Ships & Submarines","Air Force","Section 808
+FY12 NDAA
+Implem.",0.0049684082598761
+"1147",2013-09-30,"Ships & Submarines","DLA","YOUNG",5.1860139839545e-05
+"1148",2013-09-30,"Ships & Submarines","DLA","CARTER
+pre-BBP",-0.000350830658982431
+"1149",2013-09-30,"Ships & Submarines","DLA","BBP1",-0.00193535913293389
+"1150",2013-09-30,"Ships & Submarines","DLA","Section 808
+FY12 NDAA
+Implem.",1.48825502040571
+"1151",2013-09-30,"Ships & Submarines","Additional
 DoD
 Components","YOUNG",-0.00254325425469686
-"488",2013-09-30,"Weapons and Ammunition","Army","YOUNG",0.431451336558952
-"489",2013-09-30,"Weapons and Ammunition","Navy","YOUNG",0.192381361832741
-"490",2013-09-30,"Weapons and Ammunition","Air Force","YOUNG",0.027930731071697
-"491",2013-09-30,"Weapons and Ammunition","DLA","YOUNG",9.78658474662334e-05
-"492",2013-09-30,"Weapons and Ammunition","MDA","YOUNG",-1.17294607494668e-05
-"493",2013-09-30,"Weapons and Ammunition","Additional
+"1152",2013-09-30,"Ships & Submarines","Additional
+DoD
+Components","CARTER
+pre-BBP",-0.000765232775667716
+"1153",2013-09-30,"Ships & Submarines","Additional
+DoD
+Components","BBP1",0.00577960427734335
+"1154",2013-09-30,"Ships & Submarines","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.0628810279115467
+"1155",2013-09-30,"Unlabeled","Army","Section 808
+FY12 NDAA
+Implem.",-0.00018778026810196
+"1156",2013-09-30,"Weapons and Ammunition","Army","YOUNG",0.431451336558952
+"1157",2013-09-30,"Weapons and Ammunition","Army","CARTER
+pre-BBP",0.48624600437321
+"1158",2013-09-30,"Weapons and Ammunition","Army","BBP1",0.523596243042856
+"1159",2013-09-30,"Weapons and Ammunition","Army","Section 808
+FY12 NDAA
+Implem.",2.24448689416127
+"1160",2013-09-30,"Weapons and Ammunition","Navy","YOUNG",0.192381361832741
+"1161",2013-09-30,"Weapons and Ammunition","Navy","CARTER
+pre-BBP",0.0764673930032497
+"1162",2013-09-30,"Weapons and Ammunition","Navy","BBP1",0.302344784768762
+"1163",2013-09-30,"Weapons and Ammunition","Navy","Section 808
+FY12 NDAA
+Implem.",0.8278771671634
+"1164",2013-09-30,"Weapons and Ammunition","Air Force","YOUNG",0.027930731071697
+"1165",2013-09-30,"Weapons and Ammunition","Air Force","CARTER
+pre-BBP",0.184250952420534
+"1166",2013-09-30,"Weapons and Ammunition","Air Force","BBP1",0.654811313354727
+"1167",2013-09-30,"Weapons and Ammunition","Air Force","Section 808
+FY12 NDAA
+Implem.",1.55856245600457
+"1168",2013-09-30,"Weapons and Ammunition","DLA","YOUNG",9.78658474662334e-05
+"1169",2013-09-30,"Weapons and Ammunition","DLA","CARTER
+pre-BBP",-2.3023276124708e-05
+"1170",2013-09-30,"Weapons and Ammunition","DLA","BBP1",0.0013517398613791
+"1171",2013-09-30,"Weapons and Ammunition","DLA","Section 808
+FY12 NDAA
+Implem.",0.171940626341119
+"1172",2013-09-30,"Weapons and Ammunition","MDA","YOUNG",-1.17294607494668e-05
+"1173",2013-09-30,"Weapons and Ammunition","MDA","CARTER
+pre-BBP",0.00172021529399817
+"1174",2013-09-30,"Weapons and Ammunition","Additional
 DoD
 Components","YOUNG",-0.0022745214738499
-"494",2014-09-30,"Aircraft and Drones","Army","YOUNG",0.1112697205216
-"495",2014-09-30,"Aircraft and Drones","Navy","YOUNG",0.5311874818456
-"496",2014-09-30,"Aircraft and Drones","Air Force","YOUNG",0.3173257825702
-"497",2014-09-30,"Aircraft and Drones","DLA","YOUNG",-0.0006211714658
-"498",2014-09-30,"Aircraft and Drones","Additional
+"1175",2013-09-30,"Weapons and Ammunition","Additional
+DoD
+Components","CARTER
+pre-BBP",-0.000881420246775668
+"1176",2013-09-30,"Weapons and Ammunition","Additional
+DoD
+Components","BBP1",0.00915273798405606
+"1177",2013-09-30,"Weapons and Ammunition","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.0174015777426627
+"1178",2014-09-18,"Aircraft and Drones","Army","Section 808
+FY12 NDAA
+Implem.",4.8014175436349
+"1179",2014-09-18,"Aircraft and Drones","Navy","Section 808
+FY12 NDAA
+Implem.",12.150370300095
+"1180",2014-09-18,"Aircraft and Drones","Air Force","Section 808
+FY12 NDAA
+Implem.",10.6763054986877
+"1181",2014-09-18,"Aircraft and Drones","DLA","Section 808
+FY12 NDAA
+Implem.",3.7515562279061
+"1182",2014-09-18,"Aircraft and Drones","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.8729838123262
+"1183",2014-09-18,"Electronics and Communications","Army","Section 808
+FY12 NDAA
+Implem.",7.2471020958637
+"1184",2014-09-18,"Electronics and Communications","Navy","Section 808
+FY12 NDAA
+Implem.",8.9995999240172
+"1185",2014-09-18,"Electronics and Communications","Air Force","Section 808
+FY12 NDAA
+Implem.",5.7248310160979
+"1186",2014-09-18,"Electronics and Communications","DLA","Section 808
+FY12 NDAA
+Implem.",1.4135443582166
+"1187",2014-09-18,"Electronics and Communications","MDA","Section 808
+FY12 NDAA
+Implem.",0.03194335827
+"1188",2014-09-18,"Electronics and Communications","Military
+Health","Section 808
+FY12 NDAA
+Implem.",0.0760297744068
+"1189",2014-09-18,"Electronics and Communications","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",4.636143751406
+"1190",2014-09-18,"Facilities and Construction","Army","Section 808
+FY12 NDAA
+Implem.",15.2504311799833
+"1191",2014-09-18,"Facilities and Construction","Navy","Section 808
+FY12 NDAA
+Implem.",6.4334913551222
+"1192",2014-09-18,"Facilities and Construction","Air Force","Section 808
+FY12 NDAA
+Implem.",3.2984302700878
+"1193",2014-09-18,"Facilities and Construction","DLA","Section 808
+FY12 NDAA
+Implem.",1.8970668021122
+"1194",2014-09-18,"Facilities and Construction","MDA","Section 808
+FY12 NDAA
+Implem.",0.0013335909782
+"1195",2014-09-18,"Facilities and Construction","Military
+Health","Section 808
+FY12 NDAA
+Implem.",0.0018228606358
+"1196",2014-09-18,"Facilities and Construction","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.1887451298855
+"1197",2014-09-18,"Land Vehicles","Army","Section 808
+FY12 NDAA
+Implem.",3.430526952351
+"1198",2014-09-18,"Land Vehicles","Navy","Section 808
+FY12 NDAA
+Implem.",0.3874491128468
+"1199",2014-09-18,"Land Vehicles","Air Force","Section 808
+FY12 NDAA
+Implem.",0.1355656691237
+"1200",2014-09-18,"Land Vehicles","DLA","Section 808
+FY12 NDAA
+Implem.",0.9757621250466
+"1201",2014-09-18,"Land Vehicles","MDA","Section 808
+FY12 NDAA
+Implem.",0
+"1202",2014-09-18,"Land Vehicles","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.0122571283615
+"1203",2014-09-18,"Missile and Space Systems","Army","Section 808
+FY12 NDAA
+Implem.",2.4687724867804
+"1204",2014-09-18,"Missile and Space Systems","Navy","Section 808
+FY12 NDAA
+Implem.",3.5746336847025
+"1205",2014-09-18,"Missile and Space Systems","Air Force","Section 808
+FY12 NDAA
+Implem.",3.8234926394846
+"1206",2014-09-18,"Missile and Space Systems","DLA","Section 808
+FY12 NDAA
+Implem.",0.0243229220701
+"1207",2014-09-18,"Missile and Space Systems","MDA","Section 808
+FY12 NDAA
+Implem.",1.9747019020258
+"1208",2014-09-18,"Missile and Space Systems","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.0158206040208
+"1209",2014-09-18,"Other Products","Army","Section 808
+FY12 NDAA
+Implem.",1.8738202579516
+"1210",2014-09-18,"Other Products","Navy","Section 808
+FY12 NDAA
+Implem.",0.792779471675
+"1211",2014-09-18,"Other Products","Air Force","Section 808
+FY12 NDAA
+Implem.",0.1800203180556
+"1212",2014-09-18,"Other Products","DLA","Section 808
+FY12 NDAA
+Implem.",18.8655747774088
+"1213",2014-09-18,"Other Products","Military
+Health","Section 808
+FY12 NDAA
+Implem.",0.0016269767969
+"1214",2014-09-18,"Other Products","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.0590977193509
+"1215",2014-09-18,"Other R&D and Knowledge Based","Army","Section 808
+FY12 NDAA
+Implem.",8.1075384848098
+"1216",2014-09-18,"Other R&D and Knowledge Based","Navy","Section 808
+FY12 NDAA
+Implem.",5.8890806081618
+"1217",2014-09-18,"Other R&D and Knowledge Based","Air Force","Section 808
+FY12 NDAA
+Implem.",4.8152323853056
+"1218",2014-09-18,"Other R&D and Knowledge Based","DLA","Section 808
+FY12 NDAA
+Implem.",0.4019930530708
+"1219",2014-09-18,"Other R&D and Knowledge Based","MDA","Section 808
+FY12 NDAA
+Implem.",0.3889277192194
+"1220",2014-09-18,"Other R&D and Knowledge Based","Military
+Health","Section 808
+FY12 NDAA
+Implem.",0.2644760867794
+"1221",2014-09-18,"Other R&D and Knowledge Based","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",2.3633276463403
+"1222",2014-09-18,"Other Services","Army","Section 808
+FY12 NDAA
+Implem.",2.7214409000472
+"1223",2014-09-18,"Other Services","Navy","Section 808
+FY12 NDAA
+Implem.",1.942218283473
+"1224",2014-09-18,"Other Services","Air Force","Section 808
+FY12 NDAA
+Implem.",3.396489623075
+"1225",2014-09-18,"Other Services","DLA","Section 808
+FY12 NDAA
+Implem.",0.0622631397715
+"1226",2014-09-18,"Other Services","MDA","Section 808
+FY12 NDAA
+Implem.",0.0030389702148
+"1227",2014-09-18,"Other Services","Military
+Health","Section 808
+FY12 NDAA
+Implem.",1.8758289461973
+"1228",2014-09-18,"Other Services","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",3.9959680162633
+"1229",2014-09-18,"Ships & Submarines","Army","Section 808
+FY12 NDAA
+Implem.",0.1158867154824
+"1230",2014-09-18,"Ships & Submarines","Navy","Section 808
+FY12 NDAA
+Implem.",7.4931593187945
+"1231",2014-09-18,"Ships & Submarines","Air Force","Section 808
+FY12 NDAA
+Implem.",0.003400718325
+"1232",2014-09-18,"Ships & Submarines","DLA","Section 808
+FY12 NDAA
+Implem.",1.3875807837352
+"1233",2014-09-18,"Ships & Submarines","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.0917517144535
+"1234",2014-09-18,"Unlabeled","Army","Section 808
+FY12 NDAA
+Implem.",7.25e-08
+"1235",2014-09-18,"Weapons and Ammunition","Army","Section 808
+FY12 NDAA
+Implem.",2.7980229118855
+"1236",2014-09-18,"Weapons and Ammunition","Navy","Section 808
+FY12 NDAA
+Implem.",0.8799659233827
+"1237",2014-09-18,"Weapons and Ammunition","Air Force","Section 808
+FY12 NDAA
+Implem.",0.7700008729086
+"1238",2014-09-18,"Weapons and Ammunition","DLA","Section 808
+FY12 NDAA
+Implem.",0.1228609086665
+"1239",2014-09-18,"Weapons and Ammunition","Additional
+DoD
+Components","Section 808
+FY12 NDAA
+Implem.",0.0326475952951
+"1240",2014-09-30,"Aircraft and Drones","Army","YOUNG",0.1112697205216
+"1241",2014-09-30,"Aircraft and Drones","Army","CARTER
+pre-BBP",0.3396169089366
+"1242",2014-09-30,"Aircraft and Drones","Army","BBP1",4.1398030993451
+"1243",2014-09-30,"Aircraft and Drones","Navy","YOUNG",0.5311874818456
+"1244",2014-09-30,"Aircraft and Drones","Navy","CARTER
+pre-BBP",0.4056573224356
+"1245",2014-09-30,"Aircraft and Drones","Navy","BBP1",5.2299420833628
+"1246",2014-09-30,"Aircraft and Drones","Air Force","YOUNG",0.3173257825702
+"1247",2014-09-30,"Aircraft and Drones","Air Force","CARTER
+pre-BBP",1.1102256647563
+"1248",2014-09-30,"Aircraft and Drones","Air Force","BBP1",7.2174582789347
+"1249",2014-09-30,"Aircraft and Drones","DLA","YOUNG",-0.0006211714658
+"1250",2014-09-30,"Aircraft and Drones","DLA","CARTER
+pre-BBP",-0.0026018733512
+"1251",2014-09-30,"Aircraft and Drones","DLA","BBP1",-0.0178413039447
+"1252",2014-09-30,"Aircraft and Drones","Additional
 DoD
 Components","YOUNG",-0.1733130070885
-"499",2014-09-30,"Electronics and Communications","Army","YOUNG",0.0939493907417
-"500",2014-09-30,"Electronics and Communications","Navy","YOUNG",0.1540991445735
-"501",2014-09-30,"Electronics and Communications","Air Force","YOUNG",0.1209017226386
-"502",2014-09-30,"Electronics and Communications","DLA","YOUNG",-0.0006288674697
-"503",2014-09-30,"Electronics and Communications","Additional
+"1253",2014-09-30,"Aircraft and Drones","Additional
+DoD
+Components","CARTER
+pre-BBP",-0.0688097930944
+"1254",2014-09-30,"Aircraft and Drones","Additional
+DoD
+Components","BBP1",-0.0355938612709
+"1255",2014-09-30,"Electronics and Communications","Army","YOUNG",0.0939493907417
+"1256",2014-09-30,"Electronics and Communications","Army","CARTER
+pre-BBP",0.1751289888148
+"1257",2014-09-30,"Electronics and Communications","Army","BBP1",1.2769607324216
+"1258",2014-09-30,"Electronics and Communications","Navy","YOUNG",0.1540991445735
+"1259",2014-09-30,"Electronics and Communications","Navy","CARTER
+pre-BBP",0.9625438031869
+"1260",2014-09-30,"Electronics and Communications","Navy","BBP1",1.0896221037458
+"1261",2014-09-30,"Electronics and Communications","Air Force","YOUNG",0.1209017226386
+"1262",2014-09-30,"Electronics and Communications","Air Force","CARTER
+pre-BBP",0.5840612453984
+"1263",2014-09-30,"Electronics and Communications","Air Force","BBP1",1.1006185794787
+"1264",2014-09-30,"Electronics and Communications","DLA","YOUNG",-0.0006288674697
+"1265",2014-09-30,"Electronics and Communications","DLA","CARTER
+pre-BBP",0.0033983614406
+"1266",2014-09-30,"Electronics and Communications","DLA","BBP1",0.0174764797084
+"1267",2014-09-30,"Electronics and Communications","MDA","CARTER
+pre-BBP",0.00013067828
+"1268",2014-09-30,"Electronics and Communications","MDA","BBP1",0.0213901116203
+"1269",2014-09-30,"Electronics and Communications","Military
+Health","CARTER
+pre-BBP",0.00034044938
+"1270",2014-09-30,"Electronics and Communications","Military
+Health","BBP1",0.02731166395
+"1271",2014-09-30,"Electronics and Communications","Additional
 DoD
 Components","YOUNG",0.0340709023465
-"504",2014-09-30,"Facilities and Construction","Army","YOUNG",0.8519307207323
-"505",2014-09-30,"Facilities and Construction","Navy","YOUNG",0.0620136932394
-"506",2014-09-30,"Facilities and Construction","Air Force","YOUNG",0.2101474167857
-"507",2014-09-30,"Facilities and Construction","DLA","YOUNG",0.1710053503286
-"508",2014-09-30,"Facilities and Construction","Additional
+"1272",2014-09-30,"Electronics and Communications","Additional
+DoD
+Components","CARTER
+pre-BBP",0.4213453830302
+"1273",2014-09-30,"Electronics and Communications","Additional
+DoD
+Components","BBP1",1.2350452328304
+"1274",2014-09-30,"Facilities and Construction","Army","YOUNG",0.8519307207323
+"1275",2014-09-30,"Facilities and Construction","Army","CARTER
+pre-BBP",0.8455828861082
+"1276",2014-09-30,"Facilities and Construction","Army","BBP1",1.0276329218848
+"1277",2014-09-30,"Facilities and Construction","Navy","YOUNG",0.0620136932394
+"1278",2014-09-30,"Facilities and Construction","Navy","CARTER
+pre-BBP",0.1404618017693
+"1279",2014-09-30,"Facilities and Construction","Navy","BBP1",0.5832061878115
+"1280",2014-09-30,"Facilities and Construction","Air Force","YOUNG",0.2101474167857
+"1281",2014-09-30,"Facilities and Construction","Air Force","CARTER
+pre-BBP",0.2533041881122
+"1282",2014-09-30,"Facilities and Construction","Air Force","BBP1",0.2747369999217
+"1283",2014-09-30,"Facilities and Construction","DLA","YOUNG",0.1710053503286
+"1284",2014-09-30,"Facilities and Construction","DLA","CARTER
+pre-BBP",0.1131502946715
+"1285",2014-09-30,"Facilities and Construction","DLA","BBP1",0.0724188403408
+"1286",2014-09-30,"Facilities and Construction","MDA","CARTER
+pre-BBP",0.001374854674
+"1287",2014-09-30,"Facilities and Construction","MDA","BBP1",0.0064489478516
+"1288",2014-09-30,"Facilities and Construction","Military
+Health","BBP1",1.91184004e-05
+"1289",2014-09-30,"Facilities and Construction","Additional
 DoD
 Components","YOUNG",-0.0022092763541
-"509",2014-09-30,"Land Vehicles","Army","YOUNG",-0.0137412918529
-"510",2014-09-30,"Land Vehicles","Navy","YOUNG",-0.0113598085543
-"511",2014-09-30,"Land Vehicles","Air Force","YOUNG",-0.0006476049911
-"512",2014-09-30,"Land Vehicles","DLA","YOUNG",-5.27013203e-05
-"513",2014-09-30,"Land Vehicles","Additional
+"1290",2014-09-30,"Facilities and Construction","Additional
+DoD
+Components","CARTER
+pre-BBP",0.0162960888984
+"1291",2014-09-30,"Facilities and Construction","Additional
+DoD
+Components","BBP1",0.0444721370169
+"1292",2014-09-30,"Land Vehicles","Army","YOUNG",-0.0137412918529
+"1293",2014-09-30,"Land Vehicles","Army","CARTER
+pre-BBP",0.1634515898363
+"1294",2014-09-30,"Land Vehicles","Army","BBP1",0.3057249290792
+"1295",2014-09-30,"Land Vehicles","Navy","YOUNG",-0.0113598085543
+"1296",2014-09-30,"Land Vehicles","Navy","CARTER
+pre-BBP",-0.0011855068645
+"1297",2014-09-30,"Land Vehicles","Navy","BBP1",-0.0074890174234
+"1298",2014-09-30,"Land Vehicles","Air Force","YOUNG",-0.0006476049911
+"1299",2014-09-30,"Land Vehicles","Air Force","CARTER
+pre-BBP",0.0022917073088
+"1300",2014-09-30,"Land Vehicles","Air Force","BBP1",-0.0003174038559
+"1301",2014-09-30,"Land Vehicles","DLA","YOUNG",-5.27013203e-05
+"1302",2014-09-30,"Land Vehicles","DLA","CARTER
+pre-BBP",-0.0014051643872
+"1303",2014-09-30,"Land Vehicles","DLA","BBP1",-0.0007605530071
+"1304",2014-09-30,"Land Vehicles","MDA","BBP1",5.443284e-05
+"1305",2014-09-30,"Land Vehicles","Additional
 DoD
 Components","YOUNG",-0.0012815852233
-"514",2014-09-30,"Missile and Space Systems","Army","YOUNG",0.4309586183716
-"515",2014-09-30,"Missile and Space Systems","Navy","YOUNG",0.0647160240474
-"516",2014-09-30,"Missile and Space Systems","Air Force","YOUNG",1.052965724024
-"517",2014-09-30,"Missile and Space Systems","DLA","YOUNG",-0.0003817942406
-"518",2014-09-30,"Missile and Space Systems","MDA","YOUNG",0.0514851290848
-"519",2014-09-30,"Missile and Space Systems","Additional
+"1306",2014-09-30,"Land Vehicles","Additional
+DoD
+Components","CARTER
+pre-BBP",0.0017953680073
+"1307",2014-09-30,"Land Vehicles","Additional
+DoD
+Components","BBP1",-0.0011187207623
+"1308",2014-09-30,"Missile and Space Systems","Army","YOUNG",0.4309586183716
+"1309",2014-09-30,"Missile and Space Systems","Army","CARTER
+pre-BBP",0.1421545302848
+"1310",2014-09-30,"Missile and Space Systems","Army","BBP1",0.4650122054489
+"1311",2014-09-30,"Missile and Space Systems","Navy","YOUNG",0.0647160240474
+"1312",2014-09-30,"Missile and Space Systems","Navy","CARTER
+pre-BBP",0.2043250135132
+"1313",2014-09-30,"Missile and Space Systems","Navy","BBP1",0.4818922977377
+"1314",2014-09-30,"Missile and Space Systems","Air Force","YOUNG",1.052965724024
+"1315",2014-09-30,"Missile and Space Systems","Air Force","CARTER
+pre-BBP",0.4095580300629
+"1316",2014-09-30,"Missile and Space Systems","Air Force","BBP1",0.436132768202
+"1317",2014-09-30,"Missile and Space Systems","DLA","YOUNG",-0.0003817942406
+"1318",2014-09-30,"Missile and Space Systems","DLA","CARTER
+pre-BBP",-0.0006492323673
+"1319",2014-09-30,"Missile and Space Systems","DLA","BBP1",-0.0008811025722
+"1320",2014-09-30,"Missile and Space Systems","MDA","YOUNG",0.0514851290848
+"1321",2014-09-30,"Missile and Space Systems","MDA","CARTER
+pre-BBP",0.595931719027
+"1322",2014-09-30,"Missile and Space Systems","MDA","BBP1",1.1913483969032
+"1323",2014-09-30,"Missile and Space Systems","Additional
 DoD
 Components","YOUNG",-0.0043443242765
-"520",2014-09-30,"Other Products","Army","YOUNG",0.0020264052483
-"521",2014-09-30,"Other Products","Navy","YOUNG",0.0057666655959
-"522",2014-09-30,"Other Products","Air Force","YOUNG",-0.000205829626
-"523",2014-09-30,"Other Products","DLA","YOUNG",-0.0001017470713
-"524",2014-09-30,"Other Products","Additional
+"1324",2014-09-30,"Missile and Space Systems","Additional
+DoD
+Components","CARTER
+pre-BBP",-0.0085592716349
+"1325",2014-09-30,"Missile and Space Systems","Additional
+DoD
+Components","BBP1",0.0009536945351
+"1326",2014-09-30,"Other Products","Army","YOUNG",0.0020264052483
+"1327",2014-09-30,"Other Products","Army","CARTER
+pre-BBP",0.0669003061797
+"1328",2014-09-30,"Other Products","Army","BBP1",0.1146304047085
+"1329",2014-09-30,"Other Products","Navy","YOUNG",0.0057666655959
+"1330",2014-09-30,"Other Products","Navy","CARTER
+pre-BBP",0.0046757648112
+"1331",2014-09-30,"Other Products","Navy","BBP1",0.0457117511829
+"1332",2014-09-30,"Other Products","Air Force","YOUNG",-0.000205829626
+"1333",2014-09-30,"Other Products","Air Force","CARTER
+pre-BBP",-0.0002093820427
+"1334",2014-09-30,"Other Products","Air Force","BBP1",0.0079000916969
+"1335",2014-09-30,"Other Products","DLA","YOUNG",-0.0001017470713
+"1336",2014-09-30,"Other Products","DLA","CARTER
+pre-BBP",-6.77575478e-05
+"1337",2014-09-30,"Other Products","DLA","BBP1",0.6162898777592
+"1338",2014-09-30,"Other Products","Additional
 DoD
 Components","YOUNG",-0.000483610352
-"525",2014-09-30,"Other R&D and Knowledge Based","Army","YOUNG",0.1482301633593
-"526",2014-09-30,"Other R&D and Knowledge Based","Navy","YOUNG",0.2663287451479
-"527",2014-09-30,"Other R&D and Knowledge Based","Air Force","YOUNG",0.0663768242636
-"528",2014-09-30,"Other R&D and Knowledge Based","DLA","YOUNG",-0.0026613056724
-"529",2014-09-30,"Other R&D and Knowledge Based","MDA","YOUNG",-0.0006151533333
-"530",2014-09-30,"Other R&D and Knowledge Based","Military
+"1339",2014-09-30,"Other Products","Additional
+DoD
+Components","CARTER
+pre-BBP",-0.0034781399518
+"1340",2014-09-30,"Other Products","Additional
+DoD
+Components","BBP1",-0.0042547321601
+"1341",2014-09-30,"Other R&D and Knowledge Based","Army","YOUNG",0.1482301633593
+"1342",2014-09-30,"Other R&D and Knowledge Based","Army","CARTER
+pre-BBP",1.0170366435888
+"1343",2014-09-30,"Other R&D and Knowledge Based","Army","BBP1",2.3074759774425
+"1344",2014-09-30,"Other R&D and Knowledge Based","Navy","YOUNG",0.2663287451479
+"1345",2014-09-30,"Other R&D and Knowledge Based","Navy","CARTER
+pre-BBP",1.1855226313887
+"1346",2014-09-30,"Other R&D and Knowledge Based","Navy","BBP1",1.7554095316777
+"1347",2014-09-30,"Other R&D and Knowledge Based","Air Force","YOUNG",0.0663768242636
+"1348",2014-09-30,"Other R&D and Knowledge Based","Air Force","CARTER
+pre-BBP",0.4935022048554
+"1349",2014-09-30,"Other R&D and Knowledge Based","Air Force","BBP1",0.8290015717664
+"1350",2014-09-30,"Other R&D and Knowledge Based","DLA","YOUNG",-0.0026613056724
+"1351",2014-09-30,"Other R&D and Knowledge Based","DLA","CARTER
+pre-BBP",0.015120967994
+"1352",2014-09-30,"Other R&D and Knowledge Based","DLA","BBP1",0.0028843377247
+"1353",2014-09-30,"Other R&D and Knowledge Based","MDA","YOUNG",-0.0006151533333
+"1354",2014-09-30,"Other R&D and Knowledge Based","MDA","CARTER
+pre-BBP",0.0039682942219
+"1355",2014-09-30,"Other R&D and Knowledge Based","MDA","BBP1",0.9877719932117
+"1356",2014-09-30,"Other R&D and Knowledge Based","Military
 Health","YOUNG",0.001284
-"531",2014-09-30,"Other R&D and Knowledge Based","Additional
+"1357",2014-09-30,"Other R&D and Knowledge Based","Military
+Health","CARTER
+pre-BBP",0.0010108691328
+"1358",2014-09-30,"Other R&D and Knowledge Based","Military
+Health","BBP1",0.0502985254481
+"1359",2014-09-30,"Other R&D and Knowledge Based","Additional
 DoD
 Components","YOUNG",-0.0412092061993
-"532",2014-09-30,"Other Services","Army","YOUNG",-0.1473120529431
-"533",2014-09-30,"Other Services","Navy","YOUNG",0.0803875651504
-"534",2014-09-30,"Other Services","Air Force","YOUNG",1.1347399503347
-"535",2014-09-30,"Other Services","DLA","YOUNG",-0.0045415818594
-"536",2014-09-30,"Other Services","Military
+"1360",2014-09-30,"Other R&D and Knowledge Based","Additional
+DoD
+Components","CARTER
+pre-BBP",0.3330739881831
+"1361",2014-09-30,"Other R&D and Knowledge Based","Additional
+DoD
+Components","BBP1",0.8555443603101
+"1362",2014-09-30,"Other Services","Army","YOUNG",-0.1473120529431
+"1363",2014-09-30,"Other Services","Army","CARTER
+pre-BBP",1.5404224187153
+"1364",2014-09-30,"Other Services","Army","BBP1",0.5273289434784
+"1365",2014-09-30,"Other Services","Navy","YOUNG",0.0803875651504
+"1366",2014-09-30,"Other Services","Navy","CARTER
+pre-BBP",0.3392624741056
+"1367",2014-09-30,"Other Services","Navy","BBP1",0.5011950716813
+"1368",2014-09-30,"Other Services","Air Force","YOUNG",1.1347399503347
+"1369",2014-09-30,"Other Services","Air Force","CARTER
+pre-BBP",0.0349748254006
+"1370",2014-09-30,"Other Services","Air Force","BBP1",0.3556847336156
+"1371",2014-09-30,"Other Services","DLA","YOUNG",-0.0045415818594
+"1372",2014-09-30,"Other Services","DLA","CARTER
+pre-BBP",3.28437803e-05
+"1373",2014-09-30,"Other Services","DLA","BBP1",0.0039939120455
+"1374",2014-09-30,"Other Services","Military
 Health","YOUNG",0.7667509032672
-"537",2014-09-30,"Other Services","Additional
+"1375",2014-09-30,"Other Services","Military
+Health","CARTER
+pre-BBP",3.121294553251
+"1376",2014-09-30,"Other Services","Military
+Health","BBP1",6.817938537521
+"1377",2014-09-30,"Other Services","Additional
 DoD
 Components","YOUNG",-0.0654884522479
-"538",2014-09-30,"Ships & Submarines","Army","YOUNG",-0.0005267657774
-"539",2014-09-30,"Ships & Submarines","Navy","YOUNG",4.2608674213226
-"540",2014-09-30,"Ships & Submarines","DLA","YOUNG",-5.20509e-05
-"541",2014-09-30,"Ships & Submarines","Additional
+"1378",2014-09-30,"Other Services","Additional
+DoD
+Components","CARTER
+pre-BBP",0.1785313182146
+"1379",2014-09-30,"Other Services","Additional
+DoD
+Components","BBP1",0.2808053431307
+"1380",2014-09-30,"Ships & Submarines","Army","YOUNG",-0.0005267657774
+"1381",2014-09-30,"Ships & Submarines","Army","CARTER
+pre-BBP",0.0073313087373
+"1382",2014-09-30,"Ships & Submarines","Army","BBP1",0.0056833693083
+"1383",2014-09-30,"Ships & Submarines","Navy","YOUNG",4.2608674213226
+"1384",2014-09-30,"Ships & Submarines","Navy","CARTER
+pre-BBP",1.3972020717839
+"1385",2014-09-30,"Ships & Submarines","Navy","BBP1",7.2686900977199
+"1386",2014-09-30,"Ships & Submarines","Air Force","CARTER
+pre-BBP",0.0013824253303
+"1387",2014-09-30,"Ships & Submarines","Air Force","BBP1",0.0001806694757
+"1388",2014-09-30,"Ships & Submarines","DLA","YOUNG",-5.20509e-05
+"1389",2014-09-30,"Ships & Submarines","DLA","CARTER
+pre-BBP",9.69633980000001e-06
+"1390",2014-09-30,"Ships & Submarines","DLA","BBP1",-0.0012491214383
+"1391",2014-09-30,"Ships & Submarines","Additional
 DoD
 Components","YOUNG",-0.0020131196172
-"542",2014-09-30,"Weapons and Ammunition","Army","YOUNG",0.2127046618029
-"543",2014-09-30,"Weapons and Ammunition","Navy","YOUNG",0.1721349816054
-"544",2014-09-30,"Weapons and Ammunition","Air Force","YOUNG",0.0368158411813
-"545",2014-09-30,"Weapons and Ammunition","DLA","YOUNG",-0.0002423187969
-"546",2014-09-30,"Weapons and Ammunition","MDA","YOUNG",-1.98937391e-05
-"547",2014-09-30,"Weapons and Ammunition","Additional
+"1392",2014-09-30,"Ships & Submarines","Additional
+DoD
+Components","CARTER
+pre-BBP",0.0005583003697
+"1393",2014-09-30,"Ships & Submarines","Additional
+DoD
+Components","BBP1",0.0270980411144
+"1394",2014-09-30,"Weapons and Ammunition","Army","YOUNG",0.2127046618029
+"1395",2014-09-30,"Weapons and Ammunition","Army","CARTER
+pre-BBP",0.1855553554812
+"1396",2014-09-30,"Weapons and Ammunition","Army","BBP1",0.4009350770284
+"1397",2014-09-30,"Weapons and Ammunition","Navy","YOUNG",0.1721349816054
+"1398",2014-09-30,"Weapons and Ammunition","Navy","CARTER
+pre-BBP",0.0255732266956
+"1399",2014-09-30,"Weapons and Ammunition","Navy","BBP1",0.3953617336021
+"1400",2014-09-30,"Weapons and Ammunition","Air Force","YOUNG",0.0368158411813
+"1401",2014-09-30,"Weapons and Ammunition","Air Force","CARTER
+pre-BBP",0.0728996529032
+"1402",2014-09-30,"Weapons and Ammunition","Air Force","BBP1",0.0677718033794
+"1403",2014-09-30,"Weapons and Ammunition","DLA","YOUNG",-0.0002423187969
+"1404",2014-09-30,"Weapons and Ammunition","DLA","CARTER
+pre-BBP",-0.0001645797466
+"1405",2014-09-30,"Weapons and Ammunition","DLA","BBP1",-0.0001368432289
+"1406",2014-09-30,"Weapons and Ammunition","MDA","YOUNG",-1.98937391e-05
+"1407",2014-09-30,"Weapons and Ammunition","Additional
 DoD
 Components","YOUNG",-0.0012194605426
+"1408",2014-09-30,"Weapons and Ammunition","Additional
+DoD
+Components","CARTER
+pre-BBP",-0.0041938442917
+"1409",2014-09-30,"Weapons and Ammunition","Additional
+DoD
+Components","BBP1",0.0068312831703
