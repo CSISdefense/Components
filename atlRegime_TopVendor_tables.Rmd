@@ -50,19 +50,39 @@ Coloration<-ddply(Coloration
 
 
 
- choice.layout <-read.csv(
-                paste(Path,"Lookups\\Choice_Layout.csv",sep=""),
-                header=TRUE, sep=",", dec=".", strip.white=TRUE, 
-                stringsAsFactors=FALSE
-        )
-        
-        which.layout<-choice.layout$Layout.Name=="portrait single"
-#         which.layout<-choice.layout$Layout.Name=="portrait small"
+choice.layout <-read.csv(
+    paste(Path,"Lookups\\Choice_Layout.csv",sep=""),
+    header=TRUE, sep=",", dec=".", strip.white=TRUE, 
+    stringsAsFactors=FALSE
+    )
+
+# which.layout<-choice.layout$Layout.Name=="portrait single"
+# which.layout<-choice.layout$Layout.Name=="portrait small"
 #         which.layout<-choice.layout$Layout.Name=="small wide"
 # which.layout<-choice.layout$Layout.Name=="tiny wide"
-        # which.layout<-choice.layout$Layout.Name=="portrait grid"
-        # which.layout<-choice.layout$Layout.Name=="single column"
-        # which.layout<-choice.layout$Layout.Name=="landscape grid"
+# which.layout<-choice.layout$Layout.Name=="portrait grid"
+# which.layout<-choice.layout$Layout.Name=="single column"
+# which.layout<-choice.layout$Layout.Name=="landscape grid"
+which.layout<-choice.layout$Layout.Name=="top 10 table"
+
+
+graph.width<-unit(
+    c(1), 
+    c("npc")
+    )
+graph.height<-unit(
+    c(1), 
+    c("npc")
+    )  
+
+
+Layout<-grid.layout(
+    nrow = 1, 
+    ncol = 1,
+    widths = graph.width,
+    heights = graph.height
+    )
+
 ```
 
 You can also embed plots, for example:
@@ -151,22 +171,24 @@ VendorUSDATL<-join(VendorUSDATL,ATLregimeDetails,match="first")
 ```{r ATLbreakout}
 
 VendorUSDATLcomponents<-ddply(VendorUSDATL, c(
-#                                          ,"Vendor.Size.sum"
-"ParentID"
-                                         ,"SubCustomer.component"
-                                         ,"USDATL"
-,"ParentID"
-,"JointVenture","UnrankedVendor")
-                         ,summarise
-                         ,Obligation.2014=sum(Obligation.2014)
-                         )
+    #                                          ,"Vendor.Size.sum"
+    "ParentID"
+    ,"SubCustomer"
+    ,"SubCustomer.component"
+    ,"USDATL"
+    ,"ParentID"
+    ,"JointVenture","UnrankedVendor")
+    ,summarise
+    ,Obligation.2014=sum(Obligation.2014)
+    )
 
 VendorUSDATLcomponents<-ddply(VendorUSDATLcomponents, c(
-    "SubCustomer.component","USDATL","UnrankedVendor"
+    "SubCustomer",
+    "SubCustomer.component","SubCustomer","USDATL","UnrankedVendor"
     )
-                         ,transform
-                         ,VendorRank=rank(-Obligation.2014)
-                         )
+    ,transform
+    ,VendorRank=rank(-Obligation.2014)
+    )
 
 VendorUSDATLcomponents$VendorRank[VendorUSDATLcomponents$UnrankedVendor==TRUE]<-NA
 
@@ -178,30 +200,30 @@ detach(VendorUSDATLcomponents)
 
 
 write.csv(VendorUSDATLcomponents,paste("Output\\Top_Vendor\\",
-                                  paste("DoD_components"
-                                        ,"Obligation_2014"
-                                        ,"Top_Vendors"
-                                        ,"ATLregime"
-                                        ,sep="_"
-                                        )
-                                  ,".csv",
-                                  sep=""))
+                                       paste("DoD_components"
+                                             ,"Obligation_2014"
+                                             ,"Top_Vendors"
+                                             ,"ATLregime"
+                                             ,sep="_"
+                                             )
+                                       ,".csv",
+                                       sep=""))
 
 VendorUSDATLsummary<-ddply(VendorUSDATL, c(
     "ParentID"
     ,"USDATL"
     ,"ParentID"
     ,"JointVenture","UnrankedVendor")
-                         ,summarise
-                         ,Obligation.2014=sum(Obligation.2014)
-                         )
+    ,summarise
+    ,Obligation.2014=sum(Obligation.2014)
+    )
 
 VendorUSDATLsummary<-ddply(VendorUSDATLsummary, c(
     "USDATL","UnrankedVendor"
     )
-                         ,transform
-                         ,VendorRank=rank(-Obligation.2014)
-                         )
+    ,transform
+    ,VendorRank=rank(-Obligation.2014)
+    )
 
 VendorUSDATLsummary$VendorRank[VendorUSDATLsummary$UnrankedVendor==TRUE]<-NA
 
@@ -212,14 +234,14 @@ detach(VendorUSDATLsummary)
 
 
 write.csv(VendorUSDATLsummary,paste("Output\\Top_Vendor\\",
-                                  paste("DoD_summary"
-                                        ,"Obligation_2014"
-                                        ,"Top_Vendors"
-                                        ,"ATLregime"
-                                        ,sep="_"
-                                        )
-                                  ,".csv",
-                                  sep=""))
+                                    paste("DoD_summary"
+                                          ,"Obligation_2014"
+                                          ,"Top_Vendors"
+                                          ,"ATLregime"
+                                          ,sep="_"
+                                          )
+                                    ,".csv",
+                                    sep=""))
 ```
 
 
@@ -414,46 +436,47 @@ VendorPolicy<-subset(VendorPolicy,ATLpolicy!='BBP3') #Not enough to include
 ```{r ATLpolicyBreakout}
 
 VendorPolicycomponents<-ddply(VendorPolicy, c(
-#                                          ,"Vendor.Size.sum"
-"ParentID"
-                                         ,"SubCustomer.component"
-                                         ,"ATLpolicy"
-,"ParentID"
-,"JointVenture","UnrankedVendor")
-                         ,summarise
-                         ,Obligation.2014=sum(Obligation.2014)
-                         )
+    #                                          ,"Vendor.Size.sum"
+    "ParentID"
+    ,"SubCustomer"
+    ,"SubCustomer.component"
+    ,"ATLpolicy"
+    ,"ParentID"
+    ,"JointVenture","UnrankedVendor")
+    ,summarise
+    ,Obligation.2014=sum(Obligation.2014)
+    )
 attach(VendorPolicycomponents)
 VendorPolicycomponents<-VendorPolicycomponents[order(ATLpolicy,SubCustomer.component,-Obligation.2014),]
 detach(VendorPolicycomponents)
 
 VendorPolicycomponents<-ddply(VendorPolicycomponents, c(
-    "SubCustomer.component","ATLpolicy","UnrankedVendor"
+    "SubCustomer.component","SubCustomer","ATLpolicy","UnrankedVendor"
     )
-                         ,transform
-                         ,VendorRank=rank(-Obligation.2014)
-                         )
+    ,transform
+    ,VendorRank=rank(-Obligation.2014)
+    )
 
 
 
 write.csv(VendorPolicycomponents,paste("Output\\Top_Vendor\\",
-                                  paste("DoD_components"
-                                        ,"Obligation_2014"
-                                        ,"Top_Vendors"
-                                        ,"ATLpolicy"
-                                        ,sep="_"
-                                        )
-                                  ,".csv",
-                                  sep=""))
+                                       paste("DoD_components"
+                                             ,"Obligation_2014"
+                                             ,"Top_Vendors"
+                                             ,"ATLpolicy"
+                                             ,sep="_"
+                                             )
+                                       ,".csv",
+                                       sep=""))
 
 VendorPolicysummary<-ddply(VendorPolicy, c(
     "ParentID"
     ,"ATLpolicy"
     ,"ParentID"
     ,"JointVenture","UnrankedVendor")
-                         ,summarise
-                         ,Obligation.2014=sum(Obligation.2014)
-                         )
+    ,summarise
+    ,Obligation.2014=sum(Obligation.2014)
+    )
 
 
 
@@ -465,175 +488,95 @@ detach(VendorPolicysummary)
 VendorPolicysummary<-ddply(VendorPolicysummary, c(
     "ATLpolicy","UnrankedVendor"
     )
-                         ,transform
-                         ,VendorRank=rank(-Obligation.2014)
-                         )
+    ,transform
+    ,VendorRank=rank(-Obligation.2014)
+    )
 
 
 
 
 
 write.csv(VendorPolicysummary,paste("Output\\Top_Vendor\\",
-                                  paste("DoD_summary"
-                                        ,"Obligation_2014"
-                                        ,"Top_Vendors"
-                                        ,"ATLpolicy"
-                                        ,sep="_"
-                                        )
-                                  ,".csv",
-                                  sep=""))
+                                    paste("DoD_summary"
+                                          ,"Obligation_2014"
+                                          ,"Top_Vendors"
+                                          ,"ATLpolicy"
+                                          ,sep="_"
+                                          )
+                                    ,".csv",
+                                    sep=""))
 ```
 
 
 
 ```{r VendorPolicyAnnualSummary}
 
-# 
-# png(
-#     paste( "Output\\Top_Vendor\\",
-#            paste("DoD_Summary"
-#                  ,"Obligation_2014"
-#                  ,"Vendor_Size_sum"
-#                  ,"ATLpolicy"
-#                  ,"Annual"
-#                  ,sep="_"
-#                  )
-#            ,".png"
-#            , sep=""
-#            )
-#     , type="cairo"
-#     , width=7.5
-#     , height=3.5
-#     , units='in'
-#     , pointsize=12
-#     , res=150
-#     )
-# 
-debug(CreateTopVendorListWrapper)
-CreateTopVendorListWrapper(
-    choice.layout
-    ,which.layout
-    ,"Vendors"
-    ,"Constant 2014 $ millions"
-    ,VendorPolicysummary#VAR.long.DF
-    ,"ParentID"
-    ,"VendorRank"
-    ,"Obligation.2014"
-    ,10#VAR.top.count
-    #,NA#VAR.year
-    #,VAR.x.offset
-)
-
-
-debug(CreateTopVendorList)
-CreateTopVendorList(
-    VAR.choice.layout=choice.layout
-    ,VAR.which.layout=which.layout
-    ,VAR.long.DF=VendorPolicysummary
-    ,name.variable="ParentID"
-    ,value.variable="Obligation.2014"
-    ,VAR.row =1
-    ,VAR.col=1
-    ,VAR.top.count=10
-    ,VAR.year=NA
-    #,VAR.x.offset=0
-    ,name.label="Constant 2014 $ millions"
-)
-
-# VendorGraph<-LatticePercentLineWrapper(
-#     VAR.name="Vendor Size"
-#     ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
-#     ,VAR.X.label="Fiscal Year of Obligation"
-#     ,VAR.Y.label="% of DoD Obligations"
-#     ,VAR.Coloration=Coloration
-#     
-#     
-#     ,VAR.long.DF=VendorPolicy
-#     ,VAR.ncol=NA
-#     ,VAR.x.variable="Fiscal.Year"
-#     ,VAR.y.variable="Obligation.2014"
-#     ,VAR.y.series=    "Vendor.Size.sum"
-#     ,VAR.facet.primary="ATLpolicy"
-#     ,VAR.facet.secondary=NA
-#     ,"StartDate"
-#     ,"EndDate"
-#     )
-# 
-# VendorGraph<-VendorGraph+aes(size=y.variable)
-# # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-# VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-# VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-#     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
-#     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
-# VendorGraph
-# print(VendorGraph)
-# #     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
-# while(!(dev.cur()[[1]]==1)){
-#     dev.off()
-#     }
-
+for (r in unique(VendorPolicysummary$ATLpolicy)){
+    
+    
+    new_page(paste("DoD_summary",r,"Top10_Vendors",sep="_"),
+             choice.layout,
+             which.layout,
+             "Output\\Top_Vendor\\",
+             "Defense",
+             "Summary",
+             Layout)
+    
+    CreateTopVendorList(
+        VAR.choice.layout=choice.layout
+        ,VAR.which.layout=which.layout
+        ,VAR.long.DF=subset(VendorPolicysummary,ATLpolicy==r)
+        ,name.variable="ParentID"
+        ,value.variable="Obligation.2014"
+        ,VAR.row =1
+        ,VAR.col=1
+        ,VAR.top.count=10
+        ,VAR.year=NA
+        #,VAR.x.offset=0
+        ,name.label="Constant 2014 $ millions"
+        )
+    
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
 
 ```
 
 
 
 ```{r VendorPolicyMonthlyComponentSolitary}
-# 
-# for (c in unique(VendorPolicy$SubCustomer)){    
-#     png(
-#         paste( "Output\\Top_Vendor\\",c,"\\",CleanFileName(paste(
-#             c
-#             ,"Obligation_2014"
-#             ,"Vendor_Size_sum"
-#             ,"ATLpolicy"
-#             ,"6monthMovingAverage"
-#             ,sep="_"
-#             ))
-#             ,".png"
-#             , sep=""
-#             )
-#         , type="cairo"
-#         , width=10
-#         , height=5
-#         , units='in'
-#         , pointsize=12
-#         , res=150
-#         )
-#     
-#     VendorGraph<-LatticePercentLineWrapper(
-#         VAR.name="Vendor Size"
-#         ,VAR.proper.name=""#paste(c,"Vendor Size by Starting Regime")
-#         ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
-#         ,VAR.Y.label=paste("% of ",c," Obligations")
-#         ,VAR.Coloration=Coloration
-#         
-#         
-#         ,VAR.long.DF=subset(VendorPolicy,SubCustomer==c)
-#         ,VAR.ncol=NA
-#         ,VAR.x.variable="SignedMonth"
-#         ,VAR.y.variable="Obligation.2014"
-#         ,VAR.y.series=    "Vendor.Size.sum"
-#         ,VAR.facet.primary="ATLpolicy"
-#         ,VAR.facet.secondary=NA
-#         ,"StartDate"
-#         ,"EndDate"
-#         ,MovingAverage=6
-#         )
-#     
-#     VendorGraph<-VendorGraph+aes(size=y.variable)+scale_size_continuous(name="Constant 2014 $ Obligated, Billions")
-#     # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-#     VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-#     VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-#         theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
-#         scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
-#     VendorGraph
-#     print(VendorGraph)
-#     rm(VendorGraph)
-#     #     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
-#     while(!(dev.cur()[[1]]==1)){
-#         dev.off()
-#         }
-#     }
+
+for (c in unique(VendorPolicycomponents$SubCustomer)){    
+    
+    for (r in unique(VendorPolicycomponents$ATLpolicy)){        
+        new_page(paste(c,r,"Top10_Vendors",sep="_"),
+                 choice.layout,
+                 which.layout,
+                 paste("Output\\Top_Vendor","\\",c,"\\",sep=""),
+                 "Defense",
+                 "Summary",
+                 Layout)
+        
+        CreateTopVendorList(
+            VAR.choice.layout=choice.layout
+            ,VAR.which.layout=which.layout
+            ,VAR.long.DF=subset(VendorPolicycomponents,ATLpolicy==r&SubCustomer==c)
+            ,name.variable="ParentID"
+            ,value.variable="Obligation.2014"
+            ,VAR.row =1
+            ,VAR.col=1
+            ,VAR.top.count=10
+            ,VAR.year=NA
+            #,VAR.x.offset=0
+            ,name.label="Constant 2014 $ millions"
+            )
+        
+        while(!(dev.cur()[[1]]==1)){
+            dev.off()
+            }
+        }
+    }
 
 
 
