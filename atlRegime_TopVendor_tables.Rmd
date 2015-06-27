@@ -170,7 +170,7 @@ VendorUSDATL<-join(VendorUSDATL,ATLregimeDetails,match="first")
 
 ```{r ATLbreakout}
 
-VendorUSDATLcomponents<-ddply(VendorUSDATL, c(
+VendorRegimeComponents<-ddply(VendorUSDATL, c(
     #                                          ,"Vendor.Size.sum"
     "ParentID"
     ,"SubCustomer"
@@ -182,7 +182,7 @@ VendorUSDATLcomponents<-ddply(VendorUSDATL, c(
     ,Obligation.2014=sum(Obligation.2014)
     )
 
-VendorUSDATLcomponents<-ddply(VendorUSDATLcomponents, c(
+VendorRegimeComponents<-ddply(VendorRegimeComponents, c(
     "SubCustomer",
     "SubCustomer.component","SubCustomer","USDATL","UnrankedVendor"
     )
@@ -190,26 +190,26 @@ VendorUSDATLcomponents<-ddply(VendorUSDATLcomponents, c(
     ,VendorRank=rank(-Obligation.2014)
     )
 
-VendorUSDATLcomponents$VendorRank[VendorUSDATLcomponents$UnrankedVendor==TRUE]<-NA
+VendorRegimeComponents$VendorRank[VendorRegimeComponents$UnrankedVendor==TRUE]<-NA
 
-attach(VendorUSDATLcomponents)
-VendorUSDATLcomponents<-VendorUSDATLcomponents[order(USDATL,SubCustomer.component,-Obligation.2014),]
-detach(VendorUSDATLcomponents)
-
-
+attach(VendorRegimeComponents)
+VendorRegimeComponents<-VendorRegimeComponents[order(USDATL,SubCustomer.component,UnrankedVendor,-Obligation.2014),]
+detach(VendorRegimeComponents)
 
 
-write.csv(VendorUSDATLcomponents,paste("Output\\Top_Vendor\\",
+
+
+write.csv(VendorRegimeComponents,paste("Output\\Top_Vendor\\",
                                        paste("DoD_components"
                                              ,"Obligation_2014"
                                              ,"Top_Vendors"
-                                             ,"ATLregime"
+                                             ,"USDATL"
                                              ,sep="_"
                                              )
                                        ,".csv",
                                        sep=""))
 
-VendorUSDATLsummary<-ddply(VendorUSDATL, c(
+VendorRegimeSummary<-ddply(VendorUSDATL, c(
     "ParentID"
     ,"USDATL"
     ,"ParentID"
@@ -218,26 +218,26 @@ VendorUSDATLsummary<-ddply(VendorUSDATL, c(
     ,Obligation.2014=sum(Obligation.2014)
     )
 
-VendorUSDATLsummary<-ddply(VendorUSDATLsummary, c(
+VendorRegimeSummary<-ddply(VendorRegimeSummary, c(
     "USDATL","UnrankedVendor"
     )
     ,transform
     ,VendorRank=rank(-Obligation.2014)
     )
 
-VendorUSDATLsummary$VendorRank[VendorUSDATLsummary$UnrankedVendor==TRUE]<-NA
+VendorRegimeSummary$VendorRank[VendorRegimeSummary$UnrankedVendor==TRUE]<-NA
 
-attach(VendorUSDATLsummary)
-VendorUSDATLsummary<-VendorUSDATLsummary[order(USDATL,-Obligation.2014),]
-detach(VendorUSDATLsummary)
+attach(VendorRegimeSummary)
+VendorRegimeSummary<-VendorRegimeSummary[order(USDATL,UnrankedVendor,-Obligation.2014),]
+detach(VendorRegimeSummary)
 
 
-
-write.csv(VendorUSDATLsummary,paste("Output\\Top_Vendor\\",
+debug(CreateTopVendorList)
+write.csv(VendorRegimeSummary,paste("Output\\Top_Vendor\\",
                                     paste("DoD_summary"
                                           ,"Obligation_2014"
                                           ,"Top_Vendors"
-                                          ,"ATLregime"
+                                          ,"USDATL"
                                           ,sep="_"
                                           )
                                     ,".csv",
@@ -246,122 +246,83 @@ write.csv(VendorUSDATLsummary,paste("Output\\Top_Vendor\\",
 
 
 
-```{r VendorUSDATLmonthlyComponents}        
-# 
-# png(
-#     paste( "Output\\Top_Vendor\\",paste("DoD_components"
-#                                          ,"Obligation_2014"
-#                                          ,"Vendor_Size_sum"
-#                                          ,"USDATL"
-#                                          ,"6monthMovingAverage"
-#                                          ,sep="_"
-#                                          )
-#            ,".png"
-#            , sep=""
-#            )
-#     , type="cairo"
-#     , width=7.5
-#     , height=10
-#     , units='in'
-#     , pointsize=12
-#     , res=150
-#     )
-# 
-# # debug(LatticePercentLineWrapper)
-# 
-# VendorGraph<-LatticePercentLineWrapper(
-#     "Vendor Size"
-#     ,""#Vendor Size by DoD Component and Starting Regime"
-#     ,"Month of Obligation (6 Month Lagging Average)"
-#     ,"% of Component Obligations"
-#     ,Coloration
-#     ,VendorUSDATL
-#     ,NULL
-#     ,"SignedMonth"
-#     ,"Obligation.2014"
-#     ,"Vendor.Size.sum"
-#     ,"SubCustomer.component"
-#     ,"USDATL"
-#     ,"StartDate"
-#     ,"EndDate"
-#     ,MovingAverage=6
-#     )
-# 
-# VendorGraph<-VendorGraph+aes(size=y.variable)
-# # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-# VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-# VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-#     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
-#     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year")) 
-# VendorGraph
-# print(VendorGraph)
-# #     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
-# while(!(dev.cur()[[1]]==1)){
-#     dev.off()
-#     }
+```{r VendorRegimeSummary}
+
+for (r in unique(VendorRegimeSummary$USDATL)){
+    
+    
+    new_page(paste("DoD_summary","USDATL",r,"Top10_Vendors",sep="_"),
+             choice.layout,
+             which.layout,
+             "Output\\Top_Vendor\\",
+             "Defense",
+             "Summary",
+             Layout)
+    
+    CreateTopVendorList(
+        VAR.choice.layout=choice.layout
+        ,VAR.which.layout=which.layout
+        ,VAR.long.DF=subset(VendorRegimeSummary,USDATL==r)
+        ,name.variable="ParentID"
+        ,value.variable="Obligation.2014"
+        ,VAR.row =1
+        ,VAR.col=1
+        ,VAR.top.count=10
+        ,VAR.year=NA
+        #,VAR.x.offset=0
+        ,name.label="Constant 2014 $ millions"
+        ,rank.variable="VendorRank"
+        )
+    
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }
 
 ```
 
 
 
-```{r VendorUSDATLannualComponents}        
-# 
-# png(
-#     paste( "Output\\Top_Vendor\\",paste("DoD_components"
-#                                          ,"Obligation_2014"
-#                                          ,"Vendor_Size_sum"
-#                                          ,"USDATL"
-#                                          ,"Annual"
-#                                          ,sep="_"
-#                                          )
-#            ,".png"
-#            , sep=""
-#            )
-#     , type="cairo"
-#     , width=7.5
-#     , height=10
-#     , units='in'
-#     , pointsize=12
-#     , res=150
-#     )
-# 
-# # debug(LatticePercentLineWrapper)
-# 
-# VendorGraph<-LatticePercentLineWrapper(
-#     "Vendor Size"
-#     ,""#Vendor Size by DoD Component and Starting Regime"
-#     ,"Fiscal Year of Obligation"
-#     ,"% of Component Obligations"
-#     ,Coloration
-#     ,VendorUSDATL
-#     ,NULL
-#     ,"Fiscal.Year"
-#     ,"Obligation.2014"
-#     ,"Vendor.Size.sum"
-#     ,"SubCustomer.component"
-#     ,"USDATL"
-#     ,"StartDate"
-#     ,"EndDate"
-#     )
-# 
-# VendorGraph<-VendorGraph+aes(size=y.variable)
-# # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-# VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
-# VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-#     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
-#     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
-# VendorGraph
-# print(VendorGraph)
-# #     VendorGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
-# while(!(dev.cur()[[1]]==1)){
-#     dev.off()
-#     }
+```{r VendorRegimeComponent}
+
+for (c in unique(VendorRegimeComponents$SubCustomer)){    
+    
+    for (r in unique(VendorRegimeComponents$USDATL)){        
+        new_page(paste(c,"USDATL",r,"Top10_Vendors",sep="_"),
+                 choice.layout,
+                 which.layout,
+                 paste("Output\\Top_Vendor","\\",c,"\\",sep=""),
+                 "Defense",
+                 "Summary",
+                 Layout)
+        
+        CreateTopVendorList(
+            VAR.choice.layout=choice.layout
+            ,VAR.which.layout=which.layout
+            ,VAR.long.DF=subset(VendorRegimeComponents,USDATL==r&SubCustomer==c)
+            ,name.variable="ParentID"
+            ,value.variable="Obligation.2014"
+            ,VAR.row =1
+            ,VAR.col=1
+            ,VAR.top.count=10
+            ,VAR.year=NA
+            #,VAR.x.offset=0
+            ,name.label="Constant 2014 $ millions"
+            ,rank.variable="VendorRank"
+            )
+        
+        while(!(dev.cur()[[1]]==1)){
+            dev.off()
+            }
+        }
+    }
+
+
 
 ```
 
 
-
-```{r VendorATLpolicy}
+```{r VendorATLRegime}
 VendorPolicy<-VendorRegime
 VendorPolicy$ATLpolicy<-as.character(VendorRegime$USDATL)
 VendorPolicy$ATLpolicy[VendorPolicy$USDATL=="CARTER"]<-"CARTER\n pre-IFT"
@@ -435,7 +396,7 @@ VendorPolicy<-subset(VendorPolicy,ATLpolicy!='BBP3') #Not enough to include
 
 ```{r ATLpolicyBreakout}
 
-VendorPolicycomponents<-ddply(VendorPolicy, c(
+VendorPolicyComponents<-ddply(VendorPolicy, c(
     #                                          ,"Vendor.Size.sum"
     "ParentID"
     ,"SubCustomer"
@@ -446,11 +407,11 @@ VendorPolicycomponents<-ddply(VendorPolicy, c(
     ,summarise
     ,Obligation.2014=sum(Obligation.2014)
     )
-attach(VendorPolicycomponents)
-VendorPolicycomponents<-VendorPolicycomponents[order(ATLpolicy,SubCustomer.component,-Obligation.2014),]
-detach(VendorPolicycomponents)
+attach(VendorPolicyComponents)
+VendorPolicyComponents<-VendorPolicyComponents[order(ATLpolicy,SubCustomer.component,-Obligation.2014),]
+detach(VendorPolicyComponents)
 
-VendorPolicycomponents<-ddply(VendorPolicycomponents, c(
+VendorPolicyComponents<-ddply(VendorPolicyComponents, c(
     "SubCustomer.component","SubCustomer","ATLpolicy","UnrankedVendor"
     )
     ,transform
@@ -459,7 +420,7 @@ VendorPolicycomponents<-ddply(VendorPolicycomponents, c(
 
 
 
-write.csv(VendorPolicycomponents,paste("Output\\Top_Vendor\\",
+write.csv(VendorPolicyComponents,paste("Output\\Top_Vendor\\",
                                        paste("DoD_components"
                                              ,"Obligation_2014"
                                              ,"Top_Vendors"
@@ -469,7 +430,7 @@ write.csv(VendorPolicycomponents,paste("Output\\Top_Vendor\\",
                                        ,".csv",
                                        sep=""))
 
-VendorPolicysummary<-ddply(VendorPolicy, c(
+VendorPolicySummary<-ddply(VendorPolicy, c(
     "ParentID"
     ,"ATLpolicy"
     ,"ParentID"
@@ -481,11 +442,11 @@ VendorPolicysummary<-ddply(VendorPolicy, c(
 
 
 
-attach(VendorPolicysummary)
-VendorPolicysummary<-VendorPolicysummary[order(ATLpolicy,-Obligation.2014),]
-detach(VendorPolicysummary)
+attach(VendorPolicySummary)
+VendorPolicySummary<-VendorPolicySummary[order(ATLpolicy,-Obligation.2014),]
+detach(VendorPolicySummary)
 
-VendorPolicysummary<-ddply(VendorPolicysummary, c(
+VendorPolicySummary<-ddply(VendorPolicySummary, c(
     "ATLpolicy","UnrankedVendor"
     )
     ,transform
@@ -496,7 +457,7 @@ VendorPolicysummary<-ddply(VendorPolicysummary, c(
 
 
 
-write.csv(VendorPolicysummary,paste("Output\\Top_Vendor\\",
+write.csv(VendorPolicySummary,paste("Output\\Top_Vendor\\",
                                     paste("DoD_summary"
                                           ,"Obligation_2014"
                                           ,"Top_Vendors"
@@ -509,12 +470,12 @@ write.csv(VendorPolicysummary,paste("Output\\Top_Vendor\\",
 
 
 
-```{r VendorPolicyAnnualSummary}
+```{r VendorPolicySummary}
 
-for (r in unique(VendorPolicysummary$ATLpolicy)){
+for (r in unique(VendorPolicySummary$ATLpolicy)){
     
     
-    new_page(paste("DoD_summary",r,"Top10_Vendors",sep="_"),
+    new_page(paste("DoD_summary","ATLpolicy",r,"Top10_Vendors",sep="_"),
              choice.layout,
              which.layout,
              "Output\\Top_Vendor\\",
@@ -525,7 +486,7 @@ for (r in unique(VendorPolicysummary$ATLpolicy)){
     CreateTopVendorList(
         VAR.choice.layout=choice.layout
         ,VAR.which.layout=which.layout
-        ,VAR.long.DF=subset(VendorPolicysummary,ATLpolicy==r)
+        ,VAR.long.DF=subset(VendorPolicySummary,ATLpolicy==r)
         ,name.variable="ParentID"
         ,value.variable="Obligation.2014"
         ,VAR.row =1
@@ -534,6 +495,7 @@ for (r in unique(VendorPolicysummary$ATLpolicy)){
         ,VAR.year=NA
         #,VAR.x.offset=0
         ,name.label="Constant 2014 $ millions"
+        ,rank.variable="VendorRank"
         )
     
     while(!(dev.cur()[[1]]==1)){
@@ -545,12 +507,12 @@ for (r in unique(VendorPolicysummary$ATLpolicy)){
 
 
 
-```{r VendorPolicyMonthlyComponentSolitary}
+```{r VendorPolicyComponent}
 
-for (c in unique(VendorPolicycomponents$SubCustomer)){    
+for (c in unique(VendorPolicyComponents$SubCustomer)){    
     
-    for (r in unique(VendorPolicycomponents$ATLpolicy)){        
-        new_page(paste(c,r,"Top10_Vendors",sep="_"),
+    for (r in unique(VendorPolicyComponents$ATLpolicy)){        
+        new_page(paste(c,"ATLpolicy",r,"Top10_Vendors",sep="_"),
                  choice.layout,
                  which.layout,
                  paste("Output\\Top_Vendor","\\",c,"\\",sep=""),
@@ -561,7 +523,7 @@ for (c in unique(VendorPolicycomponents$SubCustomer)){
         CreateTopVendorList(
             VAR.choice.layout=choice.layout
             ,VAR.which.layout=which.layout
-            ,VAR.long.DF=subset(VendorPolicycomponents,ATLpolicy==r&SubCustomer==c)
+            ,VAR.long.DF=subset(VendorPolicyComponents,ATLpolicy==r&SubCustomer==c)
             ,name.variable="ParentID"
             ,value.variable="Obligation.2014"
             ,VAR.row =1
@@ -570,6 +532,7 @@ for (c in unique(VendorPolicycomponents$SubCustomer)){
             ,VAR.year=NA
             #,VAR.x.offset=0
             ,name.label="Constant 2014 $ millions"
+            ,rank.variable="VendorRank"
             )
         
         while(!(dev.cur()[[1]]==1)){

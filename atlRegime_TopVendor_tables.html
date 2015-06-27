@@ -174,179 +174,835 @@ ATLregimeDetails$StartFiscalYear&lt;-ymd(paste(year(ATLregimeDetails$StartDate)+
 
 VendorUSDATL&lt;-join(VendorUSDATL,ATLregimeDetails,match=&quot;first&quot;)</code></pre>
 <pre><code>## Joining by: USDATL</code></pre>
-<pre class="r"><code>VendorUSDATLcomponents&lt;-ddply(VendorUSDATL, c(
-#                                          ,&quot;Vendor.Size.sum&quot;
-&quot;ParentID&quot;
-                                         ,&quot;SubCustomer.component&quot;
-                                         ,&quot;USDATL&quot;
-,&quot;ParentID&quot;
-,&quot;JointVenture&quot;,&quot;UnrankedVendor&quot;)
-                         ,summarise
-                         ,Obligation.2014=sum(Obligation.2014)
-                         )
-
-VendorUSDATLcomponents&lt;-ddply(VendorUSDATLcomponents, c(
-    &quot;SubCustomer.component&quot;,&quot;USDATL&quot;,&quot;UnrankedVendor&quot;
+<pre class="r"><code>VendorRegimeComponents&lt;-ddply(VendorUSDATL, c(
+    #                                          ,&quot;Vendor.Size.sum&quot;
+    &quot;ParentID&quot;
+    ,&quot;SubCustomer&quot;
+    ,&quot;SubCustomer.component&quot;
+    ,&quot;USDATL&quot;
+    ,&quot;ParentID&quot;
+    ,&quot;JointVenture&quot;,&quot;UnrankedVendor&quot;)
+    ,summarise
+    ,Obligation.2014=sum(Obligation.2014)
     )
-                         ,transform
-                         ,VendorRank=rank(-Obligation.2014)
-                         )
 
-VendorUSDATLcomponents$VendorRank[VendorUSDATLcomponents$UnrankedVendor==TRUE]&lt;-NA
+VendorRegimeComponents&lt;-ddply(VendorRegimeComponents, c(
+    &quot;SubCustomer&quot;,
+    &quot;SubCustomer.component&quot;,&quot;SubCustomer&quot;,&quot;USDATL&quot;,&quot;UnrankedVendor&quot;
+    )
+    ,transform
+    ,VendorRank=rank(-Obligation.2014)
+    )
 
-attach(VendorUSDATLcomponents)
-VendorUSDATLcomponents&lt;-VendorUSDATLcomponents[order(USDATL,SubCustomer.component,-Obligation.2014),]
-detach(VendorUSDATLcomponents)
+VendorRegimeComponents$VendorRank[VendorRegimeComponents$UnrankedVendor==TRUE]&lt;-NA
+
+attach(VendorRegimeComponents)
+VendorRegimeComponents&lt;-VendorRegimeComponents[order(USDATL,SubCustomer.component,UnrankedVendor,-Obligation.2014),]
+detach(VendorRegimeComponents)
 
 
 
 
-write.csv(VendorUSDATLcomponents,paste(&quot;Output\\Top_Vendor\\&quot;,
-                                  paste(&quot;DoD_components&quot;
-                                        ,&quot;Obligation_2014&quot;
-                                        ,&quot;Top_Vendors&quot;
-                                        ,&quot;ATLregime&quot;
-                                        ,sep=&quot;_&quot;
-                                        )
-                                  ,&quot;.csv&quot;,
-                                  sep=&quot;&quot;))
+write.csv(VendorRegimeComponents,paste(&quot;Output\\Top_Vendor\\&quot;,
+                                       paste(&quot;DoD_components&quot;
+                                             ,&quot;Obligation_2014&quot;
+                                             ,&quot;Top_Vendors&quot;
+                                             ,&quot;USDATL&quot;
+                                             ,sep=&quot;_&quot;
+                                             )
+                                       ,&quot;.csv&quot;,
+                                       sep=&quot;&quot;))
 
-VendorUSDATLsummary&lt;-ddply(VendorUSDATL, c(
+VendorRegimeSummary&lt;-ddply(VendorUSDATL, c(
     &quot;ParentID&quot;
     ,&quot;USDATL&quot;
     ,&quot;ParentID&quot;
     ,&quot;JointVenture&quot;,&quot;UnrankedVendor&quot;)
-                         ,summarise
-                         ,Obligation.2014=sum(Obligation.2014)
-                         )
+    ,summarise
+    ,Obligation.2014=sum(Obligation.2014)
+    )
 
-VendorUSDATLsummary&lt;-ddply(VendorUSDATLsummary, c(
+VendorRegimeSummary&lt;-ddply(VendorRegimeSummary, c(
     &quot;USDATL&quot;,&quot;UnrankedVendor&quot;
     )
-                         ,transform
-                         ,VendorRank=rank(-Obligation.2014)
-                         )
+    ,transform
+    ,VendorRank=rank(-Obligation.2014)
+    )
 
-VendorUSDATLsummary$VendorRank[VendorUSDATLsummary$UnrankedVendor==TRUE]&lt;-NA
+VendorRegimeSummary$VendorRank[VendorRegimeSummary$UnrankedVendor==TRUE]&lt;-NA
 
-attach(VendorUSDATLsummary)
-VendorUSDATLsummary&lt;-VendorUSDATLsummary[order(USDATL,-Obligation.2014),]
-detach(VendorUSDATLsummary)
+attach(VendorRegimeSummary)
+VendorRegimeSummary&lt;-VendorRegimeSummary[order(USDATL,UnrankedVendor,-Obligation.2014),]
+detach(VendorRegimeSummary)
 
 
 
-write.csv(VendorUSDATLsummary,paste(&quot;Output\\Top_Vendor\\&quot;,
-                                  paste(&quot;DoD_summary&quot;
-                                        ,&quot;Obligation_2014&quot;
-                                        ,&quot;Top_Vendors&quot;
-                                        ,&quot;ATLregime&quot;
-                                        ,sep=&quot;_&quot;
-                                        )
-                                  ,&quot;.csv&quot;,
-                                  sep=&quot;&quot;))</code></pre>
-<pre class="r"><code># 
-# png(
-#     paste( &quot;Output\\Top_Vendor\\&quot;,paste(&quot;DoD_components&quot;
-#                                          ,&quot;Obligation_2014&quot;
-#                                          ,&quot;Vendor_Size_sum&quot;
-#                                          ,&quot;USDATL&quot;
-#                                          ,&quot;6monthMovingAverage&quot;
-#                                          ,sep=&quot;_&quot;
-#                                          )
-#            ,&quot;.png&quot;
-#            , sep=&quot;&quot;
-#            )
-#     , type=&quot;cairo&quot;
-#     , width=7.5
-#     , height=10
-#     , units='in'
-#     , pointsize=12
-#     , res=150
-#     )
-# 
-# # debug(LatticePercentLineWrapper)
-# 
-# VendorGraph&lt;-LatticePercentLineWrapper(
-#     &quot;Vendor Size&quot;
-#     ,&quot;&quot;#Vendor Size by DoD Component and Starting Regime&quot;
-#     ,&quot;Month of Obligation (6 Month Lagging Average)&quot;
-#     ,&quot;% of Component Obligations&quot;
-#     ,Coloration
-#     ,VendorUSDATL
-#     ,NULL
-#     ,&quot;SignedMonth&quot;
-#     ,&quot;Obligation.2014&quot;
-#     ,&quot;Vendor.Size.sum&quot;
-#     ,&quot;SubCustomer.component&quot;
-#     ,&quot;USDATL&quot;
-#     ,&quot;StartDate&quot;
-#     ,&quot;EndDate&quot;
-#     ,MovingAverage=6
-#     )
-# 
-# VendorGraph&lt;-VendorGraph+aes(size=y.variable)
-# # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-# VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
-# VendorGraph&lt;-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-#     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
-#     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;)) 
-# VendorGraph
-# print(VendorGraph)
-# #     VendorGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
-# while(!(dev.cur()[[1]]==1)){
-#     dev.off()
-#     }</code></pre>
-<pre class="r"><code># 
-# png(
-#     paste( &quot;Output\\Top_Vendor\\&quot;,paste(&quot;DoD_components&quot;
-#                                          ,&quot;Obligation_2014&quot;
-#                                          ,&quot;Vendor_Size_sum&quot;
-#                                          ,&quot;USDATL&quot;
-#                                          ,&quot;Annual&quot;
-#                                          ,sep=&quot;_&quot;
-#                                          )
-#            ,&quot;.png&quot;
-#            , sep=&quot;&quot;
-#            )
-#     , type=&quot;cairo&quot;
-#     , width=7.5
-#     , height=10
-#     , units='in'
-#     , pointsize=12
-#     , res=150
-#     )
-# 
-# # debug(LatticePercentLineWrapper)
-# 
-# VendorGraph&lt;-LatticePercentLineWrapper(
-#     &quot;Vendor Size&quot;
-#     ,&quot;&quot;#Vendor Size by DoD Component and Starting Regime&quot;
-#     ,&quot;Fiscal Year of Obligation&quot;
-#     ,&quot;% of Component Obligations&quot;
-#     ,Coloration
-#     ,VendorUSDATL
-#     ,NULL
-#     ,&quot;Fiscal.Year&quot;
-#     ,&quot;Obligation.2014&quot;
-#     ,&quot;Vendor.Size.sum&quot;
-#     ,&quot;SubCustomer.component&quot;
-#     ,&quot;USDATL&quot;
-#     ,&quot;StartDate&quot;
-#     ,&quot;EndDate&quot;
-#     )
-# 
-# VendorGraph&lt;-VendorGraph+aes(size=y.variable)
-# # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-# VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
-# VendorGraph&lt;-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-#     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
-#     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
-# VendorGraph
-# print(VendorGraph)
-# #     VendorGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
-# while(!(dev.cur()[[1]]==1)){
-#     dev.off()
-#     }</code></pre>
+write.csv(VendorRegimeSummary,paste(&quot;Output\\Top_Vendor\\&quot;,
+                                    paste(&quot;DoD_summary&quot;
+                                          ,&quot;Obligation_2014&quot;
+                                          ,&quot;Top_Vendors&quot;
+                                          ,&quot;USDATL&quot;
+                                          ,sep=&quot;_&quot;
+                                          )
+                                    ,&quot;.csv&quot;,
+                                    sep=&quot;&quot;))</code></pre>
+<pre class="r"><code>for (r in unique(VendorRegimeSummary$USDATL)){
+    
+    
+    new_page(paste(&quot;DoD_summary&quot;,&quot;USDATL&quot;,r,&quot;Top10_Vendors&quot;,sep=&quot;_&quot;),
+             choice.layout,
+             which.layout,
+             &quot;Output\\Top_Vendor\\&quot;,
+             &quot;Defense&quot;,
+             &quot;Summary&quot;,
+             Layout)
+    
+    CreateTopVendorList(
+        VAR.choice.layout=choice.layout
+        ,VAR.which.layout=which.layout
+        ,VAR.long.DF=subset(VendorRegimeSummary,USDATL==r)
+        ,name.variable=&quot;ParentID&quot;
+        ,value.variable=&quot;Obligation.2014&quot;
+        ,VAR.row =1
+        ,VAR.col=1
+        ,VAR.top.count=10
+        ,VAR.year=NA
+        #,VAR.x.offset=0
+        ,name.label=&quot;Constant 2014 $ millions&quot;
+        ,rank.variable=&quot;VendorRank&quot;
+        )
+    
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }</code></pre>
+<pre><code>## text[GRID.text.1] 
+## text[GRID.text.2] 
+## lines[GRID.lines.3] 
+## text[GRID.text.4] 
+## text[GRID.text.5] 
+## text[GRID.text.6] 
+## text[GRID.text.7] 
+## text[GRID.text.8] 
+## text[GRID.text.9] 
+## text[GRID.text.10] 
+## text[GRID.text.11] 
+## text[GRID.text.12] 
+## text[GRID.text.13] 
+## text[GRID.text.14] 
+## text[GRID.text.15] 
+## text[GRID.text.16] 
+## text[GRID.text.17] 
+## text[GRID.text.18] 
+## text[GRID.text.19] 
+## text[GRID.text.20] 
+## text[GRID.text.21] 
+## text[GRID.text.22] 
+## text[GRID.text.23] 
+## lines[GRID.lines.24] 
+## text[GRID.text.25] 
+## text[GRID.text.26] 
+## lines[GRID.lines.27] 
+## text[GRID.text.28] 
+## text[GRID.text.29]</code></pre>
+<pre><code>## text[GRID.text.30] 
+## text[GRID.text.31] 
+## lines[GRID.lines.32] 
+## text[GRID.text.33] 
+## text[GRID.text.34] 
+## text[GRID.text.35] 
+## text[GRID.text.36] 
+## text[GRID.text.37] 
+## text[GRID.text.38] 
+## text[GRID.text.39] 
+## text[GRID.text.40] 
+## text[GRID.text.41] 
+## text[GRID.text.42] 
+## text[GRID.text.43] 
+## text[GRID.text.44] 
+## text[GRID.text.45] 
+## text[GRID.text.46] 
+## text[GRID.text.47] 
+## text[GRID.text.48] 
+## text[GRID.text.49] 
+## text[GRID.text.50] 
+## text[GRID.text.51] 
+## text[GRID.text.52] 
+## lines[GRID.lines.53] 
+## text[GRID.text.54] 
+## text[GRID.text.55] 
+## lines[GRID.lines.56] 
+## text[GRID.text.57] 
+## text[GRID.text.58]</code></pre>
+<pre><code>## text[GRID.text.59] 
+## text[GRID.text.60] 
+## lines[GRID.lines.61] 
+## text[GRID.text.62] 
+## text[GRID.text.63] 
+## text[GRID.text.64] 
+## text[GRID.text.65] 
+## text[GRID.text.66] 
+## text[GRID.text.67] 
+## text[GRID.text.68] 
+## text[GRID.text.69] 
+## text[GRID.text.70] 
+## text[GRID.text.71] 
+## text[GRID.text.72] 
+## text[GRID.text.73] 
+## text[GRID.text.74] 
+## text[GRID.text.75] 
+## text[GRID.text.76] 
+## text[GRID.text.77] 
+## text[GRID.text.78] 
+## text[GRID.text.79] 
+## text[GRID.text.80] 
+## text[GRID.text.81] 
+## lines[GRID.lines.82] 
+## text[GRID.text.83] 
+## text[GRID.text.84] 
+## lines[GRID.lines.85] 
+## text[GRID.text.86] 
+## text[GRID.text.87]</code></pre>
+<pre class="r"><code>for (c in unique(VendorRegimeComponents$SubCustomer)){    
+    
+    for (r in unique(VendorRegimeComponents$USDATL)){        
+        new_page(paste(c,&quot;USDATL&quot;,r,&quot;Top10_Vendors&quot;,sep=&quot;_&quot;),
+                 choice.layout,
+                 which.layout,
+                 paste(&quot;Output\\Top_Vendor&quot;,&quot;\\&quot;,c,&quot;\\&quot;,sep=&quot;&quot;),
+                 &quot;Defense&quot;,
+                 &quot;Summary&quot;,
+                 Layout)
+        
+        CreateTopVendorList(
+            VAR.choice.layout=choice.layout
+            ,VAR.which.layout=which.layout
+            ,VAR.long.DF=subset(VendorRegimeComponents,USDATL==r&amp;SubCustomer==c)
+            ,name.variable=&quot;ParentID&quot;
+            ,value.variable=&quot;Obligation.2014&quot;
+            ,VAR.row =1
+            ,VAR.col=1
+            ,VAR.top.count=10
+            ,VAR.year=NA
+            #,VAR.x.offset=0
+            ,name.label=&quot;Constant 2014 $ millions&quot;
+            ,rank.variable=&quot;VendorRank&quot;
+            )
+        
+        while(!(dev.cur()[[1]]==1)){
+            dev.off()
+            }
+        }
+    }</code></pre>
+<pre><code>## text[GRID.text.88] 
+## text[GRID.text.89] 
+## lines[GRID.lines.90] 
+## text[GRID.text.91] 
+## text[GRID.text.92] 
+## text[GRID.text.93] 
+## text[GRID.text.94] 
+## text[GRID.text.95] 
+## text[GRID.text.96] 
+## text[GRID.text.97] 
+## text[GRID.text.98] 
+## text[GRID.text.99] 
+## text[GRID.text.100] 
+## text[GRID.text.101] 
+## text[GRID.text.102] 
+## text[GRID.text.103] 
+## text[GRID.text.104] 
+## text[GRID.text.105] 
+## text[GRID.text.106] 
+## text[GRID.text.107] 
+## text[GRID.text.108] 
+## text[GRID.text.109] 
+## text[GRID.text.110] 
+## lines[GRID.lines.111] 
+## text[GRID.text.112] 
+## text[GRID.text.113] 
+## lines[GRID.lines.114] 
+## text[GRID.text.115] 
+## text[GRID.text.116]</code></pre>
+<pre><code>## text[GRID.text.117] 
+## text[GRID.text.118] 
+## lines[GRID.lines.119] 
+## text[GRID.text.120] 
+## text[GRID.text.121] 
+## text[GRID.text.122] 
+## text[GRID.text.123] 
+## text[GRID.text.124] 
+## text[GRID.text.125] 
+## text[GRID.text.126] 
+## text[GRID.text.127] 
+## text[GRID.text.128] 
+## text[GRID.text.129] 
+## text[GRID.text.130] 
+## text[GRID.text.131] 
+## text[GRID.text.132] 
+## text[GRID.text.133] 
+## text[GRID.text.134] 
+## text[GRID.text.135] 
+## text[GRID.text.136] 
+## text[GRID.text.137] 
+## text[GRID.text.138] 
+## text[GRID.text.139] 
+## lines[GRID.lines.140] 
+## text[GRID.text.141] 
+## text[GRID.text.142] 
+## lines[GRID.lines.143] 
+## text[GRID.text.144] 
+## text[GRID.text.145]</code></pre>
+<pre><code>## text[GRID.text.146] 
+## text[GRID.text.147] 
+## lines[GRID.lines.148] 
+## text[GRID.text.149] 
+## text[GRID.text.150] 
+## text[GRID.text.151] 
+## text[GRID.text.152] 
+## text[GRID.text.153] 
+## text[GRID.text.154] 
+## text[GRID.text.155] 
+## text[GRID.text.156] 
+## text[GRID.text.157] 
+## text[GRID.text.158] 
+## text[GRID.text.159] 
+## text[GRID.text.160] 
+## text[GRID.text.161] 
+## text[GRID.text.162] 
+## text[GRID.text.163] 
+## text[GRID.text.164] 
+## text[GRID.text.165] 
+## text[GRID.text.166] 
+## text[GRID.text.167] 
+## text[GRID.text.168] 
+## lines[GRID.lines.169] 
+## text[GRID.text.170] 
+## text[GRID.text.171] 
+## lines[GRID.lines.172] 
+## text[GRID.text.173] 
+## text[GRID.text.174]</code></pre>
+<pre><code>## text[GRID.text.175] 
+## text[GRID.text.176] 
+## lines[GRID.lines.177] 
+## text[GRID.text.178] 
+## text[GRID.text.179] 
+## text[GRID.text.180] 
+## text[GRID.text.181] 
+## text[GRID.text.182] 
+## text[GRID.text.183] 
+## text[GRID.text.184] 
+## text[GRID.text.185] 
+## text[GRID.text.186] 
+## text[GRID.text.187] 
+## text[GRID.text.188] 
+## text[GRID.text.189] 
+## text[GRID.text.190] 
+## text[GRID.text.191] 
+## text[GRID.text.192] 
+## text[GRID.text.193] 
+## text[GRID.text.194] 
+## text[GRID.text.195] 
+## text[GRID.text.196] 
+## text[GRID.text.197] 
+## lines[GRID.lines.198] 
+## text[GRID.text.199] 
+## text[GRID.text.200] 
+## lines[GRID.lines.201] 
+## text[GRID.text.202] 
+## text[GRID.text.203]</code></pre>
+<pre><code>## text[GRID.text.204] 
+## text[GRID.text.205] 
+## lines[GRID.lines.206] 
+## text[GRID.text.207] 
+## text[GRID.text.208] 
+## text[GRID.text.209] 
+## text[GRID.text.210] 
+## text[GRID.text.211] 
+## text[GRID.text.212] 
+## text[GRID.text.213] 
+## text[GRID.text.214] 
+## text[GRID.text.215] 
+## text[GRID.text.216] 
+## text[GRID.text.217] 
+## text[GRID.text.218] 
+## text[GRID.text.219] 
+## text[GRID.text.220] 
+## text[GRID.text.221] 
+## text[GRID.text.222] 
+## text[GRID.text.223] 
+## text[GRID.text.224] 
+## text[GRID.text.225] 
+## text[GRID.text.226] 
+## lines[GRID.lines.227] 
+## text[GRID.text.228] 
+## text[GRID.text.229] 
+## lines[GRID.lines.230] 
+## text[GRID.text.231] 
+## text[GRID.text.232]</code></pre>
+<pre><code>## text[GRID.text.233] 
+## text[GRID.text.234] 
+## lines[GRID.lines.235] 
+## text[GRID.text.236] 
+## text[GRID.text.237] 
+## text[GRID.text.238] 
+## text[GRID.text.239] 
+## text[GRID.text.240] 
+## text[GRID.text.241] 
+## text[GRID.text.242] 
+## text[GRID.text.243] 
+## text[GRID.text.244] 
+## text[GRID.text.245] 
+## text[GRID.text.246] 
+## text[GRID.text.247] 
+## text[GRID.text.248] 
+## text[GRID.text.249] 
+## text[GRID.text.250] 
+## text[GRID.text.251] 
+## text[GRID.text.252] 
+## text[GRID.text.253] 
+## text[GRID.text.254] 
+## text[GRID.text.255] 
+## lines[GRID.lines.256] 
+## text[GRID.text.257] 
+## text[GRID.text.258] 
+## lines[GRID.lines.259] 
+## text[GRID.text.260] 
+## text[GRID.text.261]</code></pre>
+<pre><code>## text[GRID.text.262] 
+## text[GRID.text.263] 
+## lines[GRID.lines.264] 
+## text[GRID.text.265] 
+## text[GRID.text.266] 
+## text[GRID.text.267] 
+## text[GRID.text.268] 
+## text[GRID.text.269] 
+## text[GRID.text.270] 
+## text[GRID.text.271] 
+## text[GRID.text.272] 
+## text[GRID.text.273] 
+## text[GRID.text.274] 
+## text[GRID.text.275] 
+## text[GRID.text.276] 
+## text[GRID.text.277] 
+## text[GRID.text.278] 
+## text[GRID.text.279] 
+## text[GRID.text.280] 
+## text[GRID.text.281] 
+## text[GRID.text.282] 
+## text[GRID.text.283] 
+## text[GRID.text.284] 
+## lines[GRID.lines.285] 
+## text[GRID.text.286] 
+## text[GRID.text.287] 
+## lines[GRID.lines.288] 
+## text[GRID.text.289] 
+## text[GRID.text.290]</code></pre>
+<pre><code>## text[GRID.text.291] 
+## text[GRID.text.292] 
+## lines[GRID.lines.293] 
+## text[GRID.text.294] 
+## text[GRID.text.295] 
+## text[GRID.text.296] 
+## text[GRID.text.297] 
+## text[GRID.text.298] 
+## text[GRID.text.299] 
+## text[GRID.text.300] 
+## text[GRID.text.301] 
+## text[GRID.text.302] 
+## text[GRID.text.303] 
+## text[GRID.text.304] 
+## text[GRID.text.305] 
+## text[GRID.text.306] 
+## text[GRID.text.307] 
+## text[GRID.text.308] 
+## text[GRID.text.309] 
+## text[GRID.text.310] 
+## text[GRID.text.311] 
+## text[GRID.text.312] 
+## text[GRID.text.313] 
+## lines[GRID.lines.314] 
+## text[GRID.text.315] 
+## text[GRID.text.316] 
+## lines[GRID.lines.317] 
+## text[GRID.text.318] 
+## text[GRID.text.319]</code></pre>
+<pre><code>## text[GRID.text.320] 
+## text[GRID.text.321] 
+## lines[GRID.lines.322] 
+## text[GRID.text.323] 
+## text[GRID.text.324] 
+## text[GRID.text.325] 
+## text[GRID.text.326] 
+## text[GRID.text.327] 
+## text[GRID.text.328] 
+## text[GRID.text.329] 
+## text[GRID.text.330] 
+## text[GRID.text.331] 
+## text[GRID.text.332] 
+## text[GRID.text.333] 
+## text[GRID.text.334] 
+## text[GRID.text.335] 
+## text[GRID.text.336] 
+## text[GRID.text.337] 
+## text[GRID.text.338] 
+## text[GRID.text.339] 
+## text[GRID.text.340] 
+## text[GRID.text.341] 
+## text[GRID.text.342] 
+## lines[GRID.lines.343] 
+## text[GRID.text.344] 
+## text[GRID.text.345] 
+## lines[GRID.lines.346] 
+## text[GRID.text.347] 
+## text[GRID.text.348]</code></pre>
+<pre><code>## text[GRID.text.349] 
+## text[GRID.text.350] 
+## lines[GRID.lines.351] 
+## text[GRID.text.352] 
+## text[GRID.text.353] 
+## text[GRID.text.354] 
+## text[GRID.text.355] 
+## text[GRID.text.356] 
+## text[GRID.text.357] 
+## text[GRID.text.358] 
+## text[GRID.text.359] 
+## text[GRID.text.360] 
+## text[GRID.text.361] 
+## text[GRID.text.362] 
+## text[GRID.text.363] 
+## text[GRID.text.364] 
+## text[GRID.text.365] 
+## text[GRID.text.366] 
+## text[GRID.text.367] 
+## text[GRID.text.368] 
+## text[GRID.text.369] 
+## text[GRID.text.370] 
+## text[GRID.text.371] 
+## lines[GRID.lines.372] 
+## text[GRID.text.373] 
+## text[GRID.text.374] 
+## lines[GRID.lines.375] 
+## text[GRID.text.376] 
+## text[GRID.text.377]</code></pre>
+<pre><code>## text[GRID.text.378] 
+## text[GRID.text.379] 
+## lines[GRID.lines.380] 
+## text[GRID.text.381] 
+## text[GRID.text.382] 
+## text[GRID.text.383] 
+## text[GRID.text.384] 
+## text[GRID.text.385] 
+## text[GRID.text.386] 
+## text[GRID.text.387] 
+## text[GRID.text.388] 
+## text[GRID.text.389] 
+## text[GRID.text.390] 
+## text[GRID.text.391] 
+## text[GRID.text.392] 
+## text[GRID.text.393] 
+## text[GRID.text.394] 
+## text[GRID.text.395] 
+## text[GRID.text.396] 
+## text[GRID.text.397] 
+## text[GRID.text.398] 
+## text[GRID.text.399] 
+## text[GRID.text.400] 
+## lines[GRID.lines.401] 
+## text[GRID.text.402] 
+## text[GRID.text.403] 
+## lines[GRID.lines.404] 
+## text[GRID.text.405] 
+## text[GRID.text.406]</code></pre>
+<pre><code>## text[GRID.text.407] 
+## text[GRID.text.408] 
+## lines[GRID.lines.409] 
+## text[GRID.text.410] 
+## text[GRID.text.411] 
+## text[GRID.text.412] 
+## text[GRID.text.413] 
+## text[GRID.text.414] 
+## text[GRID.text.415] 
+## text[GRID.text.416] 
+## text[GRID.text.417] 
+## text[GRID.text.418] 
+## text[GRID.text.419] 
+## text[GRID.text.420] 
+## text[GRID.text.421] 
+## text[GRID.text.422] 
+## text[GRID.text.423] 
+## text[GRID.text.424] 
+## text[GRID.text.425] 
+## text[GRID.text.426] 
+## text[GRID.text.427] 
+## text[GRID.text.428] 
+## text[GRID.text.429] 
+## lines[GRID.lines.430] 
+## text[GRID.text.431] 
+## text[GRID.text.432] 
+## lines[GRID.lines.433] 
+## text[GRID.text.434] 
+## text[GRID.text.435]</code></pre>
+<pre><code>## text[GRID.text.436] 
+## text[GRID.text.437] 
+## lines[GRID.lines.438] 
+## text[GRID.text.439] 
+## text[GRID.text.440] 
+## text[GRID.text.441] 
+## text[GRID.text.442] 
+## text[GRID.text.443] 
+## text[GRID.text.444] 
+## text[GRID.text.445] 
+## text[GRID.text.446] 
+## text[GRID.text.447] 
+## text[GRID.text.448] 
+## text[GRID.text.449] 
+## text[GRID.text.450] 
+## text[GRID.text.451] 
+## text[GRID.text.452] 
+## text[GRID.text.453] 
+## text[GRID.text.454] 
+## text[GRID.text.455] 
+## text[GRID.text.456] 
+## text[GRID.text.457] 
+## text[GRID.text.458] 
+## lines[GRID.lines.459] 
+## text[GRID.text.460] 
+## text[GRID.text.461] 
+## lines[GRID.lines.462] 
+## text[GRID.text.463] 
+## text[GRID.text.464]</code></pre>
+<pre><code>## text[GRID.text.465] 
+## text[GRID.text.466] 
+## lines[GRID.lines.467] 
+## text[GRID.text.468] 
+## text[GRID.text.469] 
+## text[GRID.text.470] 
+## text[GRID.text.471] 
+## text[GRID.text.472] 
+## text[GRID.text.473] 
+## text[GRID.text.474] 
+## text[GRID.text.475] 
+## text[GRID.text.476] 
+## text[GRID.text.477] 
+## text[GRID.text.478] 
+## text[GRID.text.479] 
+## text[GRID.text.480] 
+## text[GRID.text.481] 
+## text[GRID.text.482] 
+## text[GRID.text.483] 
+## text[GRID.text.484] 
+## text[GRID.text.485] 
+## text[GRID.text.486] 
+## text[GRID.text.487] 
+## lines[GRID.lines.488] 
+## text[GRID.text.489] 
+## text[GRID.text.490] 
+## lines[GRID.lines.491] 
+## text[GRID.text.492] 
+## text[GRID.text.493]</code></pre>
+<pre><code>## text[GRID.text.494] 
+## text[GRID.text.495] 
+## lines[GRID.lines.496] 
+## text[GRID.text.497] 
+## text[GRID.text.498] 
+## text[GRID.text.499] 
+## text[GRID.text.500] 
+## text[GRID.text.501] 
+## text[GRID.text.502] 
+## text[GRID.text.503] 
+## text[GRID.text.504] 
+## text[GRID.text.505] 
+## text[GRID.text.506] 
+## text[GRID.text.507] 
+## text[GRID.text.508] 
+## text[GRID.text.509] 
+## text[GRID.text.510] 
+## text[GRID.text.511] 
+## text[GRID.text.512] 
+## text[GRID.text.513] 
+## text[GRID.text.514] 
+## text[GRID.text.515] 
+## text[GRID.text.516] 
+## lines[GRID.lines.517] 
+## text[GRID.text.518] 
+## text[GRID.text.519] 
+## lines[GRID.lines.520] 
+## text[GRID.text.521] 
+## text[GRID.text.522]</code></pre>
+<pre><code>## text[GRID.text.523] 
+## text[GRID.text.524] 
+## lines[GRID.lines.525] 
+## text[GRID.text.526] 
+## text[GRID.text.527] 
+## text[GRID.text.528] 
+## text[GRID.text.529] 
+## text[GRID.text.530] 
+## text[GRID.text.531] 
+## text[GRID.text.532] 
+## text[GRID.text.533] 
+## text[GRID.text.534] 
+## text[GRID.text.535] 
+## text[GRID.text.536] 
+## text[GRID.text.537] 
+## text[GRID.text.538] 
+## text[GRID.text.539] 
+## text[GRID.text.540] 
+## text[GRID.text.541] 
+## text[GRID.text.542] 
+## text[GRID.text.543] 
+## text[GRID.text.544] 
+## text[GRID.text.545] 
+## lines[GRID.lines.546] 
+## text[GRID.text.547] 
+## text[GRID.text.548] 
+## lines[GRID.lines.549] 
+## text[GRID.text.550] 
+## text[GRID.text.551]</code></pre>
+<pre><code>## text[GRID.text.552] 
+## text[GRID.text.553] 
+## lines[GRID.lines.554] 
+## text[GRID.text.555] 
+## text[GRID.text.556] 
+## text[GRID.text.557] 
+## text[GRID.text.558] 
+## text[GRID.text.559] 
+## text[GRID.text.560] 
+## text[GRID.text.561] 
+## text[GRID.text.562] 
+## text[GRID.text.563] 
+## text[GRID.text.564] 
+## text[GRID.text.565] 
+## text[GRID.text.566] 
+## text[GRID.text.567] 
+## text[GRID.text.568] 
+## text[GRID.text.569] 
+## text[GRID.text.570] 
+## text[GRID.text.571] 
+## text[GRID.text.572] 
+## text[GRID.text.573] 
+## text[GRID.text.574] 
+## lines[GRID.lines.575] 
+## text[GRID.text.576] 
+## text[GRID.text.577] 
+## lines[GRID.lines.578] 
+## text[GRID.text.579] 
+## text[GRID.text.580]</code></pre>
+<pre><code>## text[GRID.text.581] 
+## text[GRID.text.582] 
+## lines[GRID.lines.583] 
+## text[GRID.text.584] 
+## text[GRID.text.585] 
+## text[GRID.text.586] 
+## text[GRID.text.587] 
+## text[GRID.text.588] 
+## text[GRID.text.589] 
+## text[GRID.text.590] 
+## text[GRID.text.591] 
+## text[GRID.text.592] 
+## text[GRID.text.593] 
+## text[GRID.text.594] 
+## text[GRID.text.595] 
+## text[GRID.text.596] 
+## text[GRID.text.597] 
+## text[GRID.text.598] 
+## text[GRID.text.599] 
+## text[GRID.text.600] 
+## text[GRID.text.601] 
+## text[GRID.text.602] 
+## text[GRID.text.603] 
+## lines[GRID.lines.604] 
+## text[GRID.text.605] 
+## text[GRID.text.606] 
+## lines[GRID.lines.607] 
+## text[GRID.text.608] 
+## text[GRID.text.609]</code></pre>
+<pre><code>## text[GRID.text.610] 
+## text[GRID.text.611] 
+## lines[GRID.lines.612] 
+## text[GRID.text.613] 
+## text[GRID.text.614] 
+## text[GRID.text.615] 
+## text[GRID.text.616] 
+## text[GRID.text.617] 
+## text[GRID.text.618] 
+## text[GRID.text.619] 
+## text[GRID.text.620] 
+## text[GRID.text.621] 
+## text[GRID.text.622] 
+## text[GRID.text.623] 
+## text[GRID.text.624] 
+## text[GRID.text.625] 
+## text[GRID.text.626] 
+## text[GRID.text.627] 
+## text[GRID.text.628] 
+## text[GRID.text.629] 
+## text[GRID.text.630] 
+## text[GRID.text.631] 
+## text[GRID.text.632] 
+## lines[GRID.lines.633] 
+## text[GRID.text.634] 
+## text[GRID.text.635] 
+## lines[GRID.lines.636] 
+## text[GRID.text.637] 
+## text[GRID.text.638]</code></pre>
+<pre><code>## text[GRID.text.639] 
+## text[GRID.text.640] 
+## lines[GRID.lines.641] 
+## text[GRID.text.642] 
+## text[GRID.text.643] 
+## text[GRID.text.644] 
+## text[GRID.text.645] 
+## text[GRID.text.646] 
+## text[GRID.text.647] 
+## text[GRID.text.648] 
+## text[GRID.text.649] 
+## text[GRID.text.650] 
+## text[GRID.text.651] 
+## text[GRID.text.652] 
+## text[GRID.text.653] 
+## text[GRID.text.654] 
+## text[GRID.text.655] 
+## text[GRID.text.656] 
+## text[GRID.text.657] 
+## text[GRID.text.658] 
+## text[GRID.text.659] 
+## text[GRID.text.660] 
+## text[GRID.text.661] 
+## lines[GRID.lines.662] 
+## text[GRID.text.663] 
+## text[GRID.text.664] 
+## lines[GRID.lines.665] 
+## text[GRID.text.666] 
+## text[GRID.text.667]</code></pre>
+<pre><code>## text[GRID.text.668] 
+## text[GRID.text.669] 
+## lines[GRID.lines.670] 
+## text[GRID.text.671] 
+## text[GRID.text.672] 
+## text[GRID.text.673] 
+## text[GRID.text.674] 
+## text[GRID.text.675] 
+## text[GRID.text.676] 
+## text[GRID.text.677] 
+## text[GRID.text.678] 
+## text[GRID.text.679] 
+## text[GRID.text.680] 
+## text[GRID.text.681] 
+## text[GRID.text.682] 
+## text[GRID.text.683] 
+## text[GRID.text.684] 
+## text[GRID.text.685] 
+## text[GRID.text.686] 
+## text[GRID.text.687] 
+## text[GRID.text.688] 
+## text[GRID.text.689] 
+## text[GRID.text.690] 
+## lines[GRID.lines.691] 
+## text[GRID.text.692] 
+## text[GRID.text.693] 
+## lines[GRID.lines.694] 
+## text[GRID.text.695] 
+## text[GRID.text.696]</code></pre>
 <pre class="r"><code>VendorPolicy&lt;-VendorRegime
 VendorPolicy$ATLpolicy&lt;-as.character(VendorRegime$USDATL)
 VendorPolicy$ATLpolicy[VendorPolicy$USDATL==&quot;CARTER&quot;]&lt;-&quot;CARTER\n pre-IFT&quot;
@@ -412,196 +1068,1065 @@ ATLpolicyDetails&lt;-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP3',
 VendorPolicy&lt;-join(VendorPolicy,ATLpolicyDetails,match=&quot;first&quot;)</code></pre>
 <pre><code>## Joining by: ATLpolicy</code></pre>
 <pre class="r"><code>VendorPolicy&lt;-subset(VendorPolicy,ATLpolicy!='BBP3') #Not enough to include</code></pre>
-<pre class="r"><code>VendorPolicycomponents&lt;-ddply(VendorPolicy, c(
-#                                          ,&quot;Vendor.Size.sum&quot;
-&quot;ParentID&quot;
-                                         ,&quot;SubCustomer.component&quot;
-                                         ,&quot;ATLpolicy&quot;
-,&quot;ParentID&quot;
-,&quot;JointVenture&quot;,&quot;UnrankedVendor&quot;)
-                         ,summarise
-                         ,Obligation.2014=sum(Obligation.2014)
-                         )
-attach(VendorPolicycomponents)
-VendorPolicycomponents&lt;-VendorPolicycomponents[order(ATLpolicy,SubCustomer.component,-Obligation.2014),]
-detach(VendorPolicycomponents)
-
-VendorPolicycomponents&lt;-ddply(VendorPolicycomponents, c(
-    &quot;SubCustomer.component&quot;,&quot;ATLpolicy&quot;,&quot;UnrankedVendor&quot;
+<pre class="r"><code>VendorPolicyComponents&lt;-ddply(VendorPolicy, c(
+    #                                          ,&quot;Vendor.Size.sum&quot;
+    &quot;ParentID&quot;
+    ,&quot;SubCustomer&quot;
+    ,&quot;SubCustomer.component&quot;
+    ,&quot;ATLpolicy&quot;
+    ,&quot;ParentID&quot;
+    ,&quot;JointVenture&quot;,&quot;UnrankedVendor&quot;)
+    ,summarise
+    ,Obligation.2014=sum(Obligation.2014)
     )
-                         ,transform
-                         ,VendorRank=rank(-Obligation.2014)
-                         )
+attach(VendorPolicyComponents)
+VendorPolicyComponents&lt;-VendorPolicyComponents[order(ATLpolicy,SubCustomer.component,-Obligation.2014),]
+detach(VendorPolicyComponents)
+
+VendorPolicyComponents&lt;-ddply(VendorPolicyComponents, c(
+    &quot;SubCustomer.component&quot;,&quot;SubCustomer&quot;,&quot;ATLpolicy&quot;,&quot;UnrankedVendor&quot;
+    )
+    ,transform
+    ,VendorRank=rank(-Obligation.2014)
+    )
 
 
 
-write.csv(VendorPolicycomponents,paste(&quot;Output\\Top_Vendor\\&quot;,
-                                  paste(&quot;DoD_components&quot;
-                                        ,&quot;Obligation_2014&quot;
-                                        ,&quot;Top_Vendors&quot;
-                                        ,&quot;ATLpolicy&quot;
-                                        ,sep=&quot;_&quot;
-                                        )
-                                  ,&quot;.csv&quot;,
-                                  sep=&quot;&quot;))
+write.csv(VendorPolicyComponents,paste(&quot;Output\\Top_Vendor\\&quot;,
+                                       paste(&quot;DoD_components&quot;
+                                             ,&quot;Obligation_2014&quot;
+                                             ,&quot;Top_Vendors&quot;
+                                             ,&quot;ATLpolicy&quot;
+                                             ,sep=&quot;_&quot;
+                                             )
+                                       ,&quot;.csv&quot;,
+                                       sep=&quot;&quot;))
 
-VendorPolicysummary&lt;-ddply(VendorPolicy, c(
+VendorPolicySummary&lt;-ddply(VendorPolicy, c(
     &quot;ParentID&quot;
     ,&quot;ATLpolicy&quot;
     ,&quot;ParentID&quot;
     ,&quot;JointVenture&quot;,&quot;UnrankedVendor&quot;)
-                         ,summarise
-                         ,Obligation.2014=sum(Obligation.2014)
-                         )
+    ,summarise
+    ,Obligation.2014=sum(Obligation.2014)
+    )
 
 
 
 
-attach(VendorPolicysummary)
-VendorPolicysummary&lt;-VendorPolicysummary[order(ATLpolicy,-Obligation.2014),]
-detach(VendorPolicysummary)
+attach(VendorPolicySummary)
+VendorPolicySummary&lt;-VendorPolicySummary[order(ATLpolicy,-Obligation.2014),]
+detach(VendorPolicySummary)
 
-VendorPolicysummary&lt;-ddply(VendorPolicysummary, c(
+VendorPolicySummary&lt;-ddply(VendorPolicySummary, c(
     &quot;ATLpolicy&quot;,&quot;UnrankedVendor&quot;
     )
-                         ,transform
-                         ,VendorRank=rank(-Obligation.2014)
-                         )
+    ,transform
+    ,VendorRank=rank(-Obligation.2014)
+    )
 
 
 
 
 
-write.csv(VendorPolicysummary,paste(&quot;Output\\Top_Vendor\\&quot;,
-                                  paste(&quot;DoD_summary&quot;
-                                        ,&quot;Obligation_2014&quot;
-                                        ,&quot;Top_Vendors&quot;
-                                        ,&quot;ATLpolicy&quot;
-                                        ,sep=&quot;_&quot;
-                                        )
-                                  ,&quot;.csv&quot;,
-                                  sep=&quot;&quot;))</code></pre>
-<pre class="r"><code># 
-# png(
-#     paste( &quot;Output\\Top_Vendor\\&quot;,
-#            paste(&quot;DoD_Summary&quot;
-#                  ,&quot;Obligation_2014&quot;
-#                  ,&quot;Vendor_Size_sum&quot;
-#                  ,&quot;ATLpolicy&quot;
-#                  ,&quot;Annual&quot;
-#                  ,sep=&quot;_&quot;
-#                  )
-#            ,&quot;.png&quot;
-#            , sep=&quot;&quot;
-#            )
-#     , type=&quot;cairo&quot;
-#     , width=7.5
-#     , height=3.5
-#     , units='in'
-#     , pointsize=12
-#     , res=150
-#     )
-# 
-# debug(CreateTopVendorListWrapper)
-# CreateTopVendorListWrapper(
-#     choice.layout
-#     ,which.layout
-#     ,&quot;Vendors&quot;
-#     ,&quot;Constant 2014 $ millions&quot;
-#     ,VendorPolicysummary#VAR.long.DF
-#     ,&quot;ParentID&quot;
-#     ,&quot;Obligation.2014&quot;
-#     ,10#VAR.top.count
-#     #,NA#VAR.year
-#     #,VAR.x.offset
-# )
-# VendorGraph&lt;-LatticePercentLineWrapper(
-#     VAR.name=&quot;Vendor Size&quot;
-#     ,&quot;&quot;#VAR.proper.name=&quot;&quot;#Overall DoD Vendor Size by Starting Regime&quot;
-#     ,VAR.X.label=&quot;Fiscal Year of Obligation&quot;
-#     ,VAR.Y.label=&quot;% of DoD Obligations&quot;
-#     ,VAR.Coloration=Coloration
-#     
-#     
-#     ,VAR.long.DF=VendorPolicy
-#     ,VAR.ncol=NA
-#     ,VAR.x.variable=&quot;Fiscal.Year&quot;
-#     ,VAR.y.variable=&quot;Obligation.2014&quot;
-#     ,VAR.y.series=    &quot;Vendor.Size.sum&quot;
-#     ,VAR.facet.primary=&quot;ATLpolicy&quot;
-#     ,VAR.facet.secondary=NA
-#     ,&quot;StartDate&quot;
-#     ,&quot;EndDate&quot;
-#     )
-# 
-# VendorGraph&lt;-VendorGraph+aes(size=y.variable)
-# # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-# VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
-# VendorGraph&lt;-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-#     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
-#     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
-# VendorGraph
-# print(VendorGraph)
-# #     VendorGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
-# while(!(dev.cur()[[1]]==1)){
-#     dev.off()
-#     }</code></pre>
-<pre class="r"><code># 
-# for (c in unique(VendorPolicy$SubCustomer)){    
-#     png(
-#         paste( &quot;Output\\Top_Vendor\\&quot;,c,&quot;\\&quot;,CleanFileName(paste(
-#             c
-#             ,&quot;Obligation_2014&quot;
-#             ,&quot;Vendor_Size_sum&quot;
-#             ,&quot;ATLpolicy&quot;
-#             ,&quot;6monthMovingAverage&quot;
-#             ,sep=&quot;_&quot;
-#             ))
-#             ,&quot;.png&quot;
-#             , sep=&quot;&quot;
-#             )
-#         , type=&quot;cairo&quot;
-#         , width=10
-#         , height=5
-#         , units='in'
-#         , pointsize=12
-#         , res=150
-#         )
-#     
-#     VendorGraph&lt;-LatticePercentLineWrapper(
-#         VAR.name=&quot;Vendor Size&quot;
-#         ,VAR.proper.name=&quot;&quot;#paste(c,&quot;Vendor Size by Starting Regime&quot;)
-#         ,VAR.X.label=&quot;Month of Obligation (6 Month Lagging Average)&quot;
-#         ,VAR.Y.label=paste(&quot;% of &quot;,c,&quot; Obligations&quot;)
-#         ,VAR.Coloration=Coloration
-#         
-#         
-#         ,VAR.long.DF=subset(VendorPolicy,SubCustomer==c)
-#         ,VAR.ncol=NA
-#         ,VAR.x.variable=&quot;SignedMonth&quot;
-#         ,VAR.y.variable=&quot;Obligation.2014&quot;
-#         ,VAR.y.series=    &quot;Vendor.Size.sum&quot;
-#         ,VAR.facet.primary=&quot;ATLpolicy&quot;
-#         ,VAR.facet.secondary=NA
-#         ,&quot;StartDate&quot;
-#         ,&quot;EndDate&quot;
-#         ,MovingAverage=6
-#         )
-#     
-#     VendorGraph&lt;-VendorGraph+aes(size=y.variable)+scale_size_continuous(name=&quot;Constant 2014 $ Obligated, Billions&quot;)
-#     # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-#     VendorGraph&lt;-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
-#     VendorGraph&lt;-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-#         theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
-#         scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
-#     VendorGraph
-#     print(VendorGraph)
-#     rm(VendorGraph)
-#     #     VendorGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
-#     while(!(dev.cur()[[1]]==1)){
-#         dev.off()
-#         }
-#     }</code></pre>
+write.csv(VendorPolicySummary,paste(&quot;Output\\Top_Vendor\\&quot;,
+                                    paste(&quot;DoD_summary&quot;
+                                          ,&quot;Obligation_2014&quot;
+                                          ,&quot;Top_Vendors&quot;
+                                          ,&quot;ATLpolicy&quot;
+                                          ,sep=&quot;_&quot;
+                                          )
+                                    ,&quot;.csv&quot;,
+                                    sep=&quot;&quot;))</code></pre>
+<pre class="r"><code>for (r in unique(VendorPolicySummary$ATLpolicy)){
+    
+    
+    new_page(paste(&quot;DoD_summary&quot;,&quot;ATLpolicy&quot;,r,&quot;Top10_Vendors&quot;,sep=&quot;_&quot;),
+             choice.layout,
+             which.layout,
+             &quot;Output\\Top_Vendor\\&quot;,
+             &quot;Defense&quot;,
+             &quot;Summary&quot;,
+             Layout)
+    
+    CreateTopVendorList(
+        VAR.choice.layout=choice.layout
+        ,VAR.which.layout=which.layout
+        ,VAR.long.DF=subset(VendorPolicySummary,ATLpolicy==r)
+        ,name.variable=&quot;ParentID&quot;
+        ,value.variable=&quot;Obligation.2014&quot;
+        ,VAR.row =1
+        ,VAR.col=1
+        ,VAR.top.count=10
+        ,VAR.year=NA
+        #,VAR.x.offset=0
+        ,name.label=&quot;Constant 2014 $ millions&quot;
+        ,rank.variable=&quot;VendorRank&quot;
+        )
+    
+    while(!(dev.cur()[[1]]==1)){
+        dev.off()
+        }
+    }</code></pre>
+<pre><code>## text[GRID.text.697] 
+## text[GRID.text.698] 
+## lines[GRID.lines.699] 
+## text[GRID.text.700] 
+## text[GRID.text.701] 
+## text[GRID.text.702] 
+## text[GRID.text.703] 
+## text[GRID.text.704] 
+## text[GRID.text.705] 
+## text[GRID.text.706] 
+## text[GRID.text.707] 
+## text[GRID.text.708] 
+## text[GRID.text.709] 
+## text[GRID.text.710] 
+## text[GRID.text.711] 
+## text[GRID.text.712] 
+## text[GRID.text.713] 
+## text[GRID.text.714] 
+## text[GRID.text.715] 
+## text[GRID.text.716] 
+## text[GRID.text.717] 
+## text[GRID.text.718] 
+## text[GRID.text.719] 
+## lines[GRID.lines.720] 
+## text[GRID.text.721] 
+## text[GRID.text.722] 
+## lines[GRID.lines.723] 
+## text[GRID.text.724] 
+## text[GRID.text.725]</code></pre>
+<pre><code>## text[GRID.text.726] 
+## text[GRID.text.727] 
+## lines[GRID.lines.728] 
+## text[GRID.text.729] 
+## text[GRID.text.730] 
+## text[GRID.text.731] 
+## text[GRID.text.732] 
+## text[GRID.text.733] 
+## text[GRID.text.734] 
+## text[GRID.text.735] 
+## text[GRID.text.736] 
+## text[GRID.text.737] 
+## text[GRID.text.738] 
+## text[GRID.text.739] 
+## text[GRID.text.740] 
+## text[GRID.text.741] 
+## text[GRID.text.742] 
+## text[GRID.text.743] 
+## text[GRID.text.744] 
+## text[GRID.text.745] 
+## text[GRID.text.746] 
+## text[GRID.text.747] 
+## text[GRID.text.748] 
+## lines[GRID.lines.749] 
+## text[GRID.text.750] 
+## text[GRID.text.751] 
+## lines[GRID.lines.752] 
+## text[GRID.text.753] 
+## text[GRID.text.754]</code></pre>
+<pre><code>## text[GRID.text.755] 
+## text[GRID.text.756] 
+## lines[GRID.lines.757] 
+## text[GRID.text.758] 
+## text[GRID.text.759] 
+## text[GRID.text.760] 
+## text[GRID.text.761] 
+## text[GRID.text.762] 
+## text[GRID.text.763] 
+## text[GRID.text.764] 
+## text[GRID.text.765] 
+## text[GRID.text.766] 
+## text[GRID.text.767] 
+## text[GRID.text.768] 
+## text[GRID.text.769] 
+## text[GRID.text.770] 
+## text[GRID.text.771] 
+## text[GRID.text.772] 
+## text[GRID.text.773] 
+## text[GRID.text.774] 
+## text[GRID.text.775] 
+## text[GRID.text.776] 
+## text[GRID.text.777] 
+## lines[GRID.lines.778] 
+## text[GRID.text.779] 
+## text[GRID.text.780] 
+## lines[GRID.lines.781] 
+## text[GRID.text.782] 
+## text[GRID.text.783]</code></pre>
+<pre><code>## text[GRID.text.784] 
+## text[GRID.text.785] 
+## lines[GRID.lines.786] 
+## text[GRID.text.787] 
+## text[GRID.text.788] 
+## text[GRID.text.789] 
+## text[GRID.text.790] 
+## text[GRID.text.791] 
+## text[GRID.text.792] 
+## text[GRID.text.793] 
+## text[GRID.text.794] 
+## text[GRID.text.795] 
+## text[GRID.text.796] 
+## text[GRID.text.797] 
+## text[GRID.text.798] 
+## text[GRID.text.799] 
+## text[GRID.text.800] 
+## text[GRID.text.801] 
+## text[GRID.text.802] 
+## text[GRID.text.803] 
+## text[GRID.text.804] 
+## text[GRID.text.805] 
+## text[GRID.text.806] 
+## lines[GRID.lines.807] 
+## text[GRID.text.808] 
+## text[GRID.text.809] 
+## lines[GRID.lines.810] 
+## text[GRID.text.811] 
+## text[GRID.text.812]</code></pre>
+<pre class="r"><code>for (c in unique(VendorPolicyComponents$SubCustomer)){    
+    
+    for (r in unique(VendorPolicyComponents$ATLpolicy)){        
+        new_page(paste(c,&quot;ATLpolicy&quot;,r,&quot;Top10_Vendors&quot;,sep=&quot;_&quot;),
+                 choice.layout,
+                 which.layout,
+                 paste(&quot;Output\\Top_Vendor&quot;,&quot;\\&quot;,c,&quot;\\&quot;,sep=&quot;&quot;),
+                 &quot;Defense&quot;,
+                 &quot;Summary&quot;,
+                 Layout)
+        
+        CreateTopVendorList(
+            VAR.choice.layout=choice.layout
+            ,VAR.which.layout=which.layout
+            ,VAR.long.DF=subset(VendorPolicyComponents,ATLpolicy==r&amp;SubCustomer==c)
+            ,name.variable=&quot;ParentID&quot;
+            ,value.variable=&quot;Obligation.2014&quot;
+            ,VAR.row =1
+            ,VAR.col=1
+            ,VAR.top.count=10
+            ,VAR.year=NA
+            #,VAR.x.offset=0
+            ,name.label=&quot;Constant 2014 $ millions&quot;
+            ,rank.variable=&quot;VendorRank&quot;
+            )
+        
+        while(!(dev.cur()[[1]]==1)){
+            dev.off()
+            }
+        }
+    }</code></pre>
+<pre><code>## text[GRID.text.813] 
+## text[GRID.text.814] 
+## lines[GRID.lines.815] 
+## text[GRID.text.816] 
+## text[GRID.text.817] 
+## text[GRID.text.818] 
+## text[GRID.text.819] 
+## text[GRID.text.820] 
+## text[GRID.text.821] 
+## text[GRID.text.822] 
+## text[GRID.text.823] 
+## text[GRID.text.824] 
+## text[GRID.text.825] 
+## text[GRID.text.826] 
+## text[GRID.text.827] 
+## text[GRID.text.828] 
+## text[GRID.text.829] 
+## text[GRID.text.830] 
+## text[GRID.text.831] 
+## text[GRID.text.832] 
+## text[GRID.text.833] 
+## text[GRID.text.834] 
+## text[GRID.text.835] 
+## lines[GRID.lines.836] 
+## text[GRID.text.837] 
+## text[GRID.text.838] 
+## lines[GRID.lines.839] 
+## text[GRID.text.840] 
+## text[GRID.text.841]</code></pre>
+<pre><code>## text[GRID.text.842] 
+## text[GRID.text.843] 
+## lines[GRID.lines.844] 
+## text[GRID.text.845] 
+## text[GRID.text.846] 
+## text[GRID.text.847] 
+## text[GRID.text.848] 
+## text[GRID.text.849] 
+## text[GRID.text.850] 
+## text[GRID.text.851] 
+## text[GRID.text.852] 
+## text[GRID.text.853] 
+## text[GRID.text.854] 
+## text[GRID.text.855] 
+## text[GRID.text.856] 
+## text[GRID.text.857] 
+## text[GRID.text.858] 
+## text[GRID.text.859] 
+## text[GRID.text.860] 
+## text[GRID.text.861] 
+## text[GRID.text.862] 
+## text[GRID.text.863] 
+## text[GRID.text.864] 
+## lines[GRID.lines.865] 
+## text[GRID.text.866] 
+## text[GRID.text.867] 
+## lines[GRID.lines.868] 
+## text[GRID.text.869] 
+## text[GRID.text.870]</code></pre>
+<pre><code>## text[GRID.text.871] 
+## text[GRID.text.872] 
+## lines[GRID.lines.873] 
+## text[GRID.text.874] 
+## text[GRID.text.875] 
+## text[GRID.text.876] 
+## text[GRID.text.877] 
+## text[GRID.text.878] 
+## text[GRID.text.879] 
+## text[GRID.text.880] 
+## text[GRID.text.881] 
+## text[GRID.text.882] 
+## text[GRID.text.883] 
+## text[GRID.text.884] 
+## text[GRID.text.885] 
+## text[GRID.text.886] 
+## text[GRID.text.887] 
+## text[GRID.text.888] 
+## text[GRID.text.889] 
+## text[GRID.text.890] 
+## text[GRID.text.891] 
+## text[GRID.text.892] 
+## text[GRID.text.893] 
+## lines[GRID.lines.894] 
+## text[GRID.text.895] 
+## text[GRID.text.896] 
+## lines[GRID.lines.897] 
+## text[GRID.text.898] 
+## text[GRID.text.899]</code></pre>
+<pre><code>## text[GRID.text.900] 
+## text[GRID.text.901] 
+## lines[GRID.lines.902] 
+## text[GRID.text.903] 
+## text[GRID.text.904] 
+## text[GRID.text.905] 
+## text[GRID.text.906] 
+## text[GRID.text.907] 
+## text[GRID.text.908] 
+## text[GRID.text.909] 
+## text[GRID.text.910] 
+## text[GRID.text.911] 
+## text[GRID.text.912] 
+## text[GRID.text.913] 
+## text[GRID.text.914] 
+## text[GRID.text.915] 
+## text[GRID.text.916] 
+## text[GRID.text.917] 
+## text[GRID.text.918] 
+## text[GRID.text.919] 
+## text[GRID.text.920] 
+## text[GRID.text.921] 
+## text[GRID.text.922] 
+## lines[GRID.lines.923] 
+## text[GRID.text.924] 
+## text[GRID.text.925] 
+## lines[GRID.lines.926] 
+## text[GRID.text.927] 
+## text[GRID.text.928]</code></pre>
+<pre><code>## text[GRID.text.929] 
+## text[GRID.text.930] 
+## lines[GRID.lines.931] 
+## text[GRID.text.932] 
+## text[GRID.text.933] 
+## text[GRID.text.934] 
+## text[GRID.text.935] 
+## text[GRID.text.936] 
+## text[GRID.text.937] 
+## text[GRID.text.938] 
+## text[GRID.text.939] 
+## text[GRID.text.940] 
+## text[GRID.text.941] 
+## text[GRID.text.942] 
+## text[GRID.text.943] 
+## text[GRID.text.944] 
+## text[GRID.text.945] 
+## text[GRID.text.946] 
+## text[GRID.text.947] 
+## text[GRID.text.948] 
+## text[GRID.text.949] 
+## text[GRID.text.950] 
+## text[GRID.text.951] 
+## lines[GRID.lines.952] 
+## text[GRID.text.953] 
+## text[GRID.text.954] 
+## lines[GRID.lines.955] 
+## text[GRID.text.956] 
+## text[GRID.text.957]</code></pre>
+<pre><code>## text[GRID.text.958] 
+## text[GRID.text.959] 
+## lines[GRID.lines.960] 
+## text[GRID.text.961] 
+## text[GRID.text.962] 
+## text[GRID.text.963] 
+## text[GRID.text.964] 
+## text[GRID.text.965] 
+## text[GRID.text.966] 
+## text[GRID.text.967] 
+## text[GRID.text.968] 
+## text[GRID.text.969] 
+## text[GRID.text.970] 
+## text[GRID.text.971] 
+## text[GRID.text.972] 
+## text[GRID.text.973] 
+## text[GRID.text.974] 
+## text[GRID.text.975] 
+## text[GRID.text.976] 
+## text[GRID.text.977] 
+## text[GRID.text.978] 
+## text[GRID.text.979] 
+## text[GRID.text.980] 
+## lines[GRID.lines.981] 
+## text[GRID.text.982] 
+## text[GRID.text.983] 
+## lines[GRID.lines.984] 
+## text[GRID.text.985] 
+## text[GRID.text.986]</code></pre>
+<pre><code>## text[GRID.text.987] 
+## text[GRID.text.988] 
+## lines[GRID.lines.989] 
+## text[GRID.text.990] 
+## text[GRID.text.991] 
+## text[GRID.text.992] 
+## text[GRID.text.993] 
+## text[GRID.text.994] 
+## text[GRID.text.995] 
+## text[GRID.text.996] 
+## text[GRID.text.997] 
+## text[GRID.text.998] 
+## text[GRID.text.999] 
+## text[GRID.text.1000] 
+## text[GRID.text.1001] 
+## text[GRID.text.1002] 
+## text[GRID.text.1003] 
+## text[GRID.text.1004] 
+## text[GRID.text.1005] 
+## text[GRID.text.1006] 
+## text[GRID.text.1007] 
+## text[GRID.text.1008] 
+## text[GRID.text.1009] 
+## lines[GRID.lines.1010] 
+## text[GRID.text.1011] 
+## text[GRID.text.1012] 
+## lines[GRID.lines.1013] 
+## text[GRID.text.1014] 
+## text[GRID.text.1015]</code></pre>
+<pre><code>## text[GRID.text.1016] 
+## text[GRID.text.1017] 
+## lines[GRID.lines.1018] 
+## text[GRID.text.1019] 
+## text[GRID.text.1020] 
+## text[GRID.text.1021] 
+## text[GRID.text.1022] 
+## text[GRID.text.1023] 
+## text[GRID.text.1024] 
+## text[GRID.text.1025] 
+## text[GRID.text.1026] 
+## text[GRID.text.1027] 
+## text[GRID.text.1028] 
+## text[GRID.text.1029] 
+## text[GRID.text.1030] 
+## text[GRID.text.1031] 
+## text[GRID.text.1032] 
+## text[GRID.text.1033] 
+## text[GRID.text.1034] 
+## text[GRID.text.1035] 
+## text[GRID.text.1036] 
+## text[GRID.text.1037] 
+## text[GRID.text.1038] 
+## lines[GRID.lines.1039] 
+## text[GRID.text.1040] 
+## text[GRID.text.1041] 
+## lines[GRID.lines.1042] 
+## text[GRID.text.1043] 
+## text[GRID.text.1044]</code></pre>
+<pre><code>## text[GRID.text.1045] 
+## text[GRID.text.1046] 
+## lines[GRID.lines.1047] 
+## text[GRID.text.1048] 
+## text[GRID.text.1049] 
+## text[GRID.text.1050] 
+## text[GRID.text.1051] 
+## text[GRID.text.1052] 
+## text[GRID.text.1053] 
+## text[GRID.text.1054] 
+## text[GRID.text.1055] 
+## text[GRID.text.1056] 
+## text[GRID.text.1057] 
+## text[GRID.text.1058] 
+## text[GRID.text.1059] 
+## text[GRID.text.1060] 
+## text[GRID.text.1061] 
+## text[GRID.text.1062] 
+## text[GRID.text.1063] 
+## text[GRID.text.1064] 
+## text[GRID.text.1065] 
+## text[GRID.text.1066] 
+## text[GRID.text.1067] 
+## lines[GRID.lines.1068] 
+## text[GRID.text.1069] 
+## text[GRID.text.1070] 
+## lines[GRID.lines.1071] 
+## text[GRID.text.1072] 
+## text[GRID.text.1073]</code></pre>
+<pre><code>## text[GRID.text.1074] 
+## text[GRID.text.1075] 
+## lines[GRID.lines.1076] 
+## text[GRID.text.1077] 
+## text[GRID.text.1078] 
+## text[GRID.text.1079] 
+## text[GRID.text.1080] 
+## text[GRID.text.1081] 
+## text[GRID.text.1082] 
+## text[GRID.text.1083] 
+## text[GRID.text.1084] 
+## text[GRID.text.1085] 
+## text[GRID.text.1086] 
+## text[GRID.text.1087] 
+## text[GRID.text.1088] 
+## text[GRID.text.1089] 
+## text[GRID.text.1090] 
+## text[GRID.text.1091] 
+## text[GRID.text.1092] 
+## text[GRID.text.1093] 
+## text[GRID.text.1094] 
+## text[GRID.text.1095] 
+## text[GRID.text.1096] 
+## lines[GRID.lines.1097] 
+## text[GRID.text.1098] 
+## text[GRID.text.1099] 
+## lines[GRID.lines.1100] 
+## text[GRID.text.1101] 
+## text[GRID.text.1102]</code></pre>
+<pre><code>## text[GRID.text.1103] 
+## text[GRID.text.1104] 
+## lines[GRID.lines.1105] 
+## text[GRID.text.1106] 
+## text[GRID.text.1107] 
+## text[GRID.text.1108] 
+## text[GRID.text.1109] 
+## text[GRID.text.1110] 
+## text[GRID.text.1111] 
+## text[GRID.text.1112] 
+## text[GRID.text.1113] 
+## text[GRID.text.1114] 
+## text[GRID.text.1115] 
+## text[GRID.text.1116] 
+## text[GRID.text.1117] 
+## text[GRID.text.1118] 
+## text[GRID.text.1119] 
+## text[GRID.text.1120] 
+## text[GRID.text.1121] 
+## text[GRID.text.1122] 
+## text[GRID.text.1123] 
+## text[GRID.text.1124] 
+## text[GRID.text.1125] 
+## lines[GRID.lines.1126] 
+## text[GRID.text.1127] 
+## text[GRID.text.1128] 
+## lines[GRID.lines.1129] 
+## text[GRID.text.1130] 
+## text[GRID.text.1131]</code></pre>
+<pre><code>## text[GRID.text.1132] 
+## text[GRID.text.1133] 
+## lines[GRID.lines.1134] 
+## text[GRID.text.1135] 
+## text[GRID.text.1136] 
+## text[GRID.text.1137] 
+## text[GRID.text.1138] 
+## text[GRID.text.1139] 
+## text[GRID.text.1140] 
+## text[GRID.text.1141] 
+## text[GRID.text.1142] 
+## text[GRID.text.1143] 
+## text[GRID.text.1144] 
+## text[GRID.text.1145] 
+## text[GRID.text.1146] 
+## text[GRID.text.1147] 
+## text[GRID.text.1148] 
+## text[GRID.text.1149] 
+## text[GRID.text.1150] 
+## text[GRID.text.1151] 
+## text[GRID.text.1152] 
+## text[GRID.text.1153] 
+## text[GRID.text.1154] 
+## lines[GRID.lines.1155] 
+## text[GRID.text.1156] 
+## text[GRID.text.1157] 
+## lines[GRID.lines.1158] 
+## text[GRID.text.1159] 
+## text[GRID.text.1160]</code></pre>
+<pre><code>## text[GRID.text.1161] 
+## text[GRID.text.1162] 
+## lines[GRID.lines.1163] 
+## text[GRID.text.1164] 
+## text[GRID.text.1165] 
+## text[GRID.text.1166] 
+## text[GRID.text.1167] 
+## text[GRID.text.1168] 
+## text[GRID.text.1169] 
+## text[GRID.text.1170] 
+## text[GRID.text.1171] 
+## text[GRID.text.1172] 
+## text[GRID.text.1173] 
+## text[GRID.text.1174] 
+## text[GRID.text.1175] 
+## text[GRID.text.1176] 
+## text[GRID.text.1177] 
+## text[GRID.text.1178] 
+## text[GRID.text.1179] 
+## text[GRID.text.1180] 
+## text[GRID.text.1181] 
+## text[GRID.text.1182] 
+## text[GRID.text.1183] 
+## lines[GRID.lines.1184] 
+## text[GRID.text.1185] 
+## text[GRID.text.1186] 
+## lines[GRID.lines.1187] 
+## text[GRID.text.1188] 
+## text[GRID.text.1189]</code></pre>
+<pre><code>## text[GRID.text.1190] 
+## text[GRID.text.1191] 
+## lines[GRID.lines.1192] 
+## text[GRID.text.1193] 
+## text[GRID.text.1194] 
+## text[GRID.text.1195] 
+## text[GRID.text.1196] 
+## text[GRID.text.1197] 
+## text[GRID.text.1198] 
+## text[GRID.text.1199] 
+## text[GRID.text.1200] 
+## text[GRID.text.1201] 
+## text[GRID.text.1202] 
+## text[GRID.text.1203] 
+## text[GRID.text.1204] 
+## text[GRID.text.1205] 
+## text[GRID.text.1206] 
+## text[GRID.text.1207] 
+## text[GRID.text.1208] 
+## text[GRID.text.1209] 
+## text[GRID.text.1210] 
+## text[GRID.text.1211] 
+## text[GRID.text.1212] 
+## lines[GRID.lines.1213] 
+## text[GRID.text.1214] 
+## text[GRID.text.1215] 
+## lines[GRID.lines.1216] 
+## text[GRID.text.1217] 
+## text[GRID.text.1218]</code></pre>
+<pre><code>## text[GRID.text.1219] 
+## text[GRID.text.1220] 
+## lines[GRID.lines.1221] 
+## text[GRID.text.1222] 
+## text[GRID.text.1223] 
+## text[GRID.text.1224] 
+## text[GRID.text.1225] 
+## text[GRID.text.1226] 
+## text[GRID.text.1227] 
+## text[GRID.text.1228] 
+## text[GRID.text.1229] 
+## text[GRID.text.1230] 
+## text[GRID.text.1231] 
+## text[GRID.text.1232] 
+## text[GRID.text.1233] 
+## text[GRID.text.1234] 
+## text[GRID.text.1235] 
+## text[GRID.text.1236] 
+## text[GRID.text.1237] 
+## text[GRID.text.1238] 
+## text[GRID.text.1239] 
+## text[GRID.text.1240] 
+## text[GRID.text.1241] 
+## lines[GRID.lines.1242] 
+## text[GRID.text.1243] 
+## text[GRID.text.1244] 
+## lines[GRID.lines.1245] 
+## text[GRID.text.1246] 
+## text[GRID.text.1247]</code></pre>
+<pre><code>## text[GRID.text.1248] 
+## text[GRID.text.1249] 
+## lines[GRID.lines.1250] 
+## text[GRID.text.1251] 
+## text[GRID.text.1252] 
+## text[GRID.text.1253] 
+## text[GRID.text.1254] 
+## text[GRID.text.1255] 
+## text[GRID.text.1256] 
+## text[GRID.text.1257] 
+## text[GRID.text.1258] 
+## text[GRID.text.1259] 
+## text[GRID.text.1260] 
+## text[GRID.text.1261] 
+## text[GRID.text.1262] 
+## text[GRID.text.1263] 
+## text[GRID.text.1264] 
+## text[GRID.text.1265] 
+## text[GRID.text.1266] 
+## text[GRID.text.1267] 
+## text[GRID.text.1268] 
+## text[GRID.text.1269] 
+## text[GRID.text.1270] 
+## lines[GRID.lines.1271] 
+## text[GRID.text.1272] 
+## text[GRID.text.1273] 
+## lines[GRID.lines.1274] 
+## text[GRID.text.1275] 
+## text[GRID.text.1276]</code></pre>
+<pre><code>## text[GRID.text.1277] 
+## text[GRID.text.1278] 
+## lines[GRID.lines.1279] 
+## text[GRID.text.1280] 
+## text[GRID.text.1281] 
+## text[GRID.text.1282] 
+## text[GRID.text.1283] 
+## text[GRID.text.1284] 
+## text[GRID.text.1285] 
+## text[GRID.text.1286] 
+## text[GRID.text.1287] 
+## text[GRID.text.1288] 
+## text[GRID.text.1289] 
+## text[GRID.text.1290] 
+## text[GRID.text.1291] 
+## text[GRID.text.1292] 
+## text[GRID.text.1293] 
+## text[GRID.text.1294] 
+## text[GRID.text.1295] 
+## text[GRID.text.1296] 
+## text[GRID.text.1297] 
+## text[GRID.text.1298] 
+## text[GRID.text.1299] 
+## lines[GRID.lines.1300] 
+## text[GRID.text.1301] 
+## text[GRID.text.1302] 
+## lines[GRID.lines.1303] 
+## text[GRID.text.1304] 
+## text[GRID.text.1305]</code></pre>
+<pre><code>## text[GRID.text.1306] 
+## text[GRID.text.1307] 
+## lines[GRID.lines.1308] 
+## text[GRID.text.1309] 
+## text[GRID.text.1310] 
+## text[GRID.text.1311] 
+## text[GRID.text.1312] 
+## text[GRID.text.1313] 
+## text[GRID.text.1314] 
+## text[GRID.text.1315] 
+## text[GRID.text.1316] 
+## text[GRID.text.1317] 
+## text[GRID.text.1318] 
+## text[GRID.text.1319] 
+## text[GRID.text.1320] 
+## text[GRID.text.1321] 
+## text[GRID.text.1322] 
+## text[GRID.text.1323] 
+## text[GRID.text.1324] 
+## text[GRID.text.1325] 
+## text[GRID.text.1326] 
+## text[GRID.text.1327] 
+## text[GRID.text.1328] 
+## lines[GRID.lines.1329] 
+## text[GRID.text.1330] 
+## text[GRID.text.1331] 
+## lines[GRID.lines.1332] 
+## text[GRID.text.1333] 
+## text[GRID.text.1334]</code></pre>
+<pre><code>## text[GRID.text.1335] 
+## text[GRID.text.1336] 
+## lines[GRID.lines.1337] 
+## text[GRID.text.1338] 
+## text[GRID.text.1339] 
+## text[GRID.text.1340] 
+## text[GRID.text.1341] 
+## text[GRID.text.1342] 
+## text[GRID.text.1343] 
+## text[GRID.text.1344] 
+## text[GRID.text.1345] 
+## text[GRID.text.1346] 
+## text[GRID.text.1347] 
+## text[GRID.text.1348] 
+## text[GRID.text.1349] 
+## text[GRID.text.1350] 
+## text[GRID.text.1351] 
+## text[GRID.text.1352] 
+## text[GRID.text.1353] 
+## text[GRID.text.1354] 
+## text[GRID.text.1355] 
+## text[GRID.text.1356] 
+## text[GRID.text.1357] 
+## lines[GRID.lines.1358] 
+## text[GRID.text.1359] 
+## text[GRID.text.1360] 
+## lines[GRID.lines.1361] 
+## text[GRID.text.1362] 
+## text[GRID.text.1363]</code></pre>
+<pre><code>## text[GRID.text.1364] 
+## text[GRID.text.1365] 
+## lines[GRID.lines.1366] 
+## text[GRID.text.1367] 
+## text[GRID.text.1368] 
+## text[GRID.text.1369] 
+## text[GRID.text.1370] 
+## text[GRID.text.1371] 
+## text[GRID.text.1372] 
+## text[GRID.text.1373] 
+## text[GRID.text.1374] 
+## text[GRID.text.1375] 
+## text[GRID.text.1376] 
+## text[GRID.text.1377] 
+## text[GRID.text.1378] 
+## text[GRID.text.1379] 
+## text[GRID.text.1380] 
+## text[GRID.text.1381] 
+## text[GRID.text.1382] 
+## text[GRID.text.1383] 
+## text[GRID.text.1384] 
+## text[GRID.text.1385] 
+## text[GRID.text.1386] 
+## lines[GRID.lines.1387] 
+## text[GRID.text.1388] 
+## text[GRID.text.1389] 
+## lines[GRID.lines.1390] 
+## text[GRID.text.1391] 
+## text[GRID.text.1392]</code></pre>
+<pre><code>## text[GRID.text.1393] 
+## text[GRID.text.1394] 
+## lines[GRID.lines.1395] 
+## text[GRID.text.1396] 
+## text[GRID.text.1397] 
+## text[GRID.text.1398] 
+## text[GRID.text.1399] 
+## text[GRID.text.1400] 
+## text[GRID.text.1401] 
+## text[GRID.text.1402] 
+## text[GRID.text.1403] 
+## text[GRID.text.1404] 
+## text[GRID.text.1405] 
+## text[GRID.text.1406] 
+## text[GRID.text.1407] 
+## text[GRID.text.1408] 
+## text[GRID.text.1409] 
+## text[GRID.text.1410] 
+## text[GRID.text.1411] 
+## text[GRID.text.1412] 
+## text[GRID.text.1413] 
+## text[GRID.text.1414] 
+## text[GRID.text.1415] 
+## lines[GRID.lines.1416] 
+## text[GRID.text.1417] 
+## text[GRID.text.1418] 
+## lines[GRID.lines.1419] 
+## text[GRID.text.1420] 
+## text[GRID.text.1421]</code></pre>
+<pre><code>## text[GRID.text.1422] 
+## text[GRID.text.1423] 
+## lines[GRID.lines.1424] 
+## text[GRID.text.1425] 
+## text[GRID.text.1426] 
+## text[GRID.text.1427] 
+## text[GRID.text.1428] 
+## text[GRID.text.1429] 
+## text[GRID.text.1430] 
+## text[GRID.text.1431] 
+## text[GRID.text.1432] 
+## text[GRID.text.1433] 
+## text[GRID.text.1434] 
+## text[GRID.text.1435] 
+## text[GRID.text.1436] 
+## text[GRID.text.1437] 
+## text[GRID.text.1438] 
+## text[GRID.text.1439] 
+## text[GRID.text.1440] 
+## text[GRID.text.1441] 
+## text[GRID.text.1442] 
+## text[GRID.text.1443] 
+## text[GRID.text.1444] 
+## lines[GRID.lines.1445] 
+## text[GRID.text.1446] 
+## text[GRID.text.1447] 
+## lines[GRID.lines.1448] 
+## text[GRID.text.1449] 
+## text[GRID.text.1450]</code></pre>
+<pre><code>## text[GRID.text.1451] 
+## text[GRID.text.1452] 
+## lines[GRID.lines.1453] 
+## text[GRID.text.1454] 
+## text[GRID.text.1455] 
+## text[GRID.text.1456] 
+## text[GRID.text.1457] 
+## text[GRID.text.1458] 
+## text[GRID.text.1459] 
+## text[GRID.text.1460] 
+## text[GRID.text.1461] 
+## text[GRID.text.1462] 
+## text[GRID.text.1463] 
+## text[GRID.text.1464] 
+## text[GRID.text.1465] 
+## text[GRID.text.1466] 
+## text[GRID.text.1467] 
+## text[GRID.text.1468] 
+## text[GRID.text.1469] 
+## text[GRID.text.1470] 
+## text[GRID.text.1471] 
+## text[GRID.text.1472] 
+## text[GRID.text.1473] 
+## lines[GRID.lines.1474] 
+## text[GRID.text.1475] 
+## text[GRID.text.1476] 
+## lines[GRID.lines.1477] 
+## text[GRID.text.1478] 
+## text[GRID.text.1479]</code></pre>
+<pre><code>## text[GRID.text.1480] 
+## text[GRID.text.1481] 
+## lines[GRID.lines.1482] 
+## text[GRID.text.1483] 
+## text[GRID.text.1484] 
+## text[GRID.text.1485] 
+## text[GRID.text.1486] 
+## text[GRID.text.1487] 
+## text[GRID.text.1488] 
+## text[GRID.text.1489] 
+## text[GRID.text.1490] 
+## text[GRID.text.1491] 
+## text[GRID.text.1492] 
+## text[GRID.text.1493] 
+## text[GRID.text.1494] 
+## text[GRID.text.1495] 
+## text[GRID.text.1496] 
+## text[GRID.text.1497] 
+## text[GRID.text.1498] 
+## text[GRID.text.1499] 
+## text[GRID.text.1500] 
+## text[GRID.text.1501] 
+## text[GRID.text.1502] 
+## lines[GRID.lines.1503] 
+## text[GRID.text.1504] 
+## text[GRID.text.1505] 
+## lines[GRID.lines.1506] 
+## text[GRID.text.1507] 
+## text[GRID.text.1508]</code></pre>
+<pre><code>## text[GRID.text.1509] 
+## text[GRID.text.1510] 
+## lines[GRID.lines.1511] 
+## text[GRID.text.1512] 
+## text[GRID.text.1513] 
+## text[GRID.text.1514] 
+## text[GRID.text.1515] 
+## text[GRID.text.1516] 
+## text[GRID.text.1517] 
+## text[GRID.text.1518] 
+## text[GRID.text.1519] 
+## text[GRID.text.1520] 
+## text[GRID.text.1521] 
+## text[GRID.text.1522] 
+## text[GRID.text.1523] 
+## text[GRID.text.1524] 
+## text[GRID.text.1525] 
+## text[GRID.text.1526] 
+## text[GRID.text.1527] 
+## text[GRID.text.1528] 
+## text[GRID.text.1529] 
+## text[GRID.text.1530] 
+## text[GRID.text.1531] 
+## lines[GRID.lines.1532] 
+## text[GRID.text.1533] 
+## text[GRID.text.1534] 
+## lines[GRID.lines.1535] 
+## text[GRID.text.1536] 
+## text[GRID.text.1537]</code></pre>
+<pre><code>## text[GRID.text.1538] 
+## text[GRID.text.1539] 
+## lines[GRID.lines.1540] 
+## text[GRID.text.1541] 
+## text[GRID.text.1542] 
+## text[GRID.text.1543] 
+## text[GRID.text.1544] 
+## text[GRID.text.1545] 
+## text[GRID.text.1546] 
+## text[GRID.text.1547] 
+## text[GRID.text.1548] 
+## text[GRID.text.1549] 
+## text[GRID.text.1550] 
+## text[GRID.text.1551] 
+## text[GRID.text.1552] 
+## text[GRID.text.1553] 
+## text[GRID.text.1554] 
+## text[GRID.text.1555] 
+## text[GRID.text.1556] 
+## text[GRID.text.1557] 
+## text[GRID.text.1558] 
+## text[GRID.text.1559] 
+## text[GRID.text.1560] 
+## lines[GRID.lines.1561] 
+## text[GRID.text.1562] 
+## text[GRID.text.1563] 
+## lines[GRID.lines.1564] 
+## text[GRID.text.1565] 
+## text[GRID.text.1566]</code></pre>
+<pre><code>## text[GRID.text.1567] 
+## text[GRID.text.1568] 
+## lines[GRID.lines.1569] 
+## text[GRID.text.1570] 
+## text[GRID.text.1571] 
+## text[GRID.text.1572] 
+## text[GRID.text.1573] 
+## text[GRID.text.1574] 
+## text[GRID.text.1575] 
+## text[GRID.text.1576] 
+## text[GRID.text.1577] 
+## text[GRID.text.1578] 
+## text[GRID.text.1579] 
+## text[GRID.text.1580] 
+## text[GRID.text.1581] 
+## text[GRID.text.1582] 
+## text[GRID.text.1583] 
+## text[GRID.text.1584] 
+## text[GRID.text.1585] 
+## text[GRID.text.1586] 
+## text[GRID.text.1587] 
+## text[GRID.text.1588] 
+## text[GRID.text.1589] 
+## lines[GRID.lines.1590] 
+## text[GRID.text.1591] 
+## text[GRID.text.1592] 
+## lines[GRID.lines.1593] 
+## text[GRID.text.1594] 
+## text[GRID.text.1595]</code></pre>
+<pre><code>## text[GRID.text.1596] 
+## text[GRID.text.1597] 
+## lines[GRID.lines.1598] 
+## text[GRID.text.1599] 
+## text[GRID.text.1600] 
+## text[GRID.text.1601] 
+## text[GRID.text.1602] 
+## text[GRID.text.1603] 
+## text[GRID.text.1604] 
+## text[GRID.text.1605] 
+## text[GRID.text.1606] 
+## text[GRID.text.1607] 
+## text[GRID.text.1608] 
+## text[GRID.text.1609] 
+## text[GRID.text.1610] 
+## text[GRID.text.1611] 
+## text[GRID.text.1612] 
+## text[GRID.text.1613] 
+## text[GRID.text.1614] 
+## text[GRID.text.1615] 
+## text[GRID.text.1616] 
+## text[GRID.text.1617] 
+## text[GRID.text.1618] 
+## lines[GRID.lines.1619] 
+## text[GRID.text.1620] 
+## text[GRID.text.1621] 
+## lines[GRID.lines.1622] 
+## text[GRID.text.1623] 
+## text[GRID.text.1624]</code></pre>
 
 
 </div>
