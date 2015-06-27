@@ -268,8 +268,12 @@ write.csv(VendorRegimeSummary,paste(&quot;Output\\Top_Vendor\\&quot;,
         ,VAR.top.count=10
         ,VAR.year=NA
         #,VAR.x.offset=0
-        ,name.label=&quot;Constant 2014 $ millions&quot;
         ,rank.variable=&quot;VendorRank&quot;
+        ,value.label=&quot;Constant 2014 $ millions&quot;
+        ,name.label=&quot;Vendors&quot;
+        ,total.label=r
+        
+        
         )
     
     while(!(dev.cur()[[1]]==1)){
@@ -385,8 +389,10 @@ write.csv(VendorRegimeSummary,paste(&quot;Output\\Top_Vendor\\&quot;,
             ,VAR.top.count=10
             ,VAR.year=NA
             #,VAR.x.offset=0
-            ,name.label=&quot;Constant 2014 $ millions&quot;
-            ,rank.variable=&quot;VendorRank&quot;
+        ,rank.variable=&quot;VendorRank&quot;
+        ,value.label=&quot;Constant 2014 $ millions&quot;
+        ,name.label=&quot;Vendors&quot;
+        ,total.label=paste(c,&quot;under&quot;,r)
             )
         
         while(!(dev.cur()[[1]]==1)){
@@ -1160,8 +1166,10 @@ write.csv(VendorPolicySummary,paste(&quot;Output\\Top_Vendor\\&quot;,
         ,VAR.top.count=10
         ,VAR.year=NA
         #,VAR.x.offset=0
-        ,name.label=&quot;Constant 2014 $ millions&quot;
         ,rank.variable=&quot;VendorRank&quot;
+        ,value.label=&quot;Constant 2014 $ millions&quot;
+        ,name.label=&quot;Vendors&quot;
+        ,total.label=r
         )
     
     while(!(dev.cur()[[1]]==1)){
@@ -1306,8 +1314,10 @@ write.csv(VendorPolicySummary,paste(&quot;Output\\Top_Vendor\\&quot;,
             ,VAR.top.count=10
             ,VAR.year=NA
             #,VAR.x.offset=0
-            ,name.label=&quot;Constant 2014 $ millions&quot;
             ,rank.variable=&quot;VendorRank&quot;
+        ,value.label=&quot;Constant 2014 $ millions&quot;
+        ,name.label=&quot;Vendors&quot;
+        ,total.label=paste(c,&quot;under&quot;,r)
             )
         
         while(!(dev.cur()[[1]]==1)){

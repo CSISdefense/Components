@@ -232,7 +232,7 @@ VendorRegimeSummary<-VendorRegimeSummary[order(USDATL,UnrankedVendor,-Obligation
 detach(VendorRegimeSummary)
 
 
-debug(CreateTopVendorList)
+
 write.csv(VendorRegimeSummary,paste("Output\\Top_Vendor\\",
                                     paste("DoD_summary"
                                           ,"Obligation_2014"
@@ -270,8 +270,12 @@ for (r in unique(VendorRegimeSummary$USDATL)){
         ,VAR.top.count=10
         ,VAR.year=NA
         #,VAR.x.offset=0
-        ,name.label="Constant 2014 $ millions"
         ,rank.variable="VendorRank"
+        ,value.label="Constant 2014 $ millions"
+        ,name.label="Vendors"
+        ,total.label=r
+        
+        
         )
     
     while(!(dev.cur()[[1]]==1)){
@@ -307,8 +311,10 @@ for (c in unique(VendorRegimeComponents$SubCustomer)){
             ,VAR.top.count=10
             ,VAR.year=NA
             #,VAR.x.offset=0
-            ,name.label="Constant 2014 $ millions"
-            ,rank.variable="VendorRank"
+        ,rank.variable="VendorRank"
+        ,value.label="Constant 2014 $ millions"
+        ,name.label="Vendors"
+        ,total.label=paste(c,"under",r)
             )
         
         while(!(dev.cur()[[1]]==1)){
@@ -494,8 +500,10 @@ for (r in unique(VendorPolicySummary$ATLpolicy)){
         ,VAR.top.count=10
         ,VAR.year=NA
         #,VAR.x.offset=0
-        ,name.label="Constant 2014 $ millions"
         ,rank.variable="VendorRank"
+        ,value.label="Constant 2014 $ millions"
+        ,name.label="Vendors"
+        ,total.label=r
         )
     
     while(!(dev.cur()[[1]]==1)){
@@ -531,8 +539,10 @@ for (c in unique(VendorPolicyComponents$SubCustomer)){
             ,VAR.top.count=10
             ,VAR.year=NA
             #,VAR.x.offset=0
-            ,name.label="Constant 2014 $ millions"
             ,rank.variable="VendorRank"
+        ,value.label="Constant 2014 $ millions"
+        ,name.label="Vendors"
+        ,total.label=paste(c,"under",r)
             )
         
         while(!(dev.cur()[[1]]==1)){
