@@ -16,8 +16,8 @@ require(plyr)
 require(lubridate)
 
 options(error=recover)
-Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
-# Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
+# Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
+Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
 # setwd("K:/Development/Components")
 source(paste(Path,"lookups.r",sep=""))
 source(paste(Path,"helper.r",sep=""))
@@ -38,7 +38,7 @@ You can also embed plots, for example:
 ```{r DateEntryAndProcessing, echo=FALSE}
 ## ("Data\\defense_summary_SP_CompetitionHistoryBucketSubCustomerRegime.csv", sep = """) Neither the computer nor myself can find this file in (K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\Data)
 
-VehicleRegime  <- read.csv(
+RawRegime  <- read.csv(
     unz("data\\Defense_Summary_SP_CompetitionVehicleHistoryBucketSubCustomerRegime.zip",
         "Defense_Summary_SP_CompetitionVehicleHistoryBucketSubCustomerRegime.csv"),
 #     "Data\\defense_summary_SP_CompetitionHistoryBucketSubCustomerRegime.csv",
@@ -47,11 +47,11 @@ VehicleRegime  <- read.csv(
     stringsAsFactors = TRUE
     )
 
-VehicleRegime<-apply_lookups(Path,VehicleRegime)
-names(VehicleRegime)
-str(VehicleRegime)
-VehicleRegime$USDATL<-factor(VehicleRegime$USDATL,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","KENDALL" ),ordered=TRUE )
-VehicleRegime<-subset(VehicleRegime,USDATL %in% c("YOUNG","CARTER","KENDALL"))
+RawRegime<-apply_lookups(Path,RawRegime)
+names(RawRegime)
+str(RawRegime)
+RawRegime$USDATL<-factor(RawRegime$USDATL,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","KENDALL" ),ordered=TRUE )
+RawRegime<-subset(RawRegime,USDATL %in% c("YOUNG","CARTER","KENDALL"))
 
 
 Coloration<-read.csv(
@@ -70,30 +70,40 @@ Coloration<-ddply(Coloration
                   )
 
 # debug(LatticePercentLineWrapper)
-VehicleRegime$Graph<-TRUE
+RawRegime$Graph<-TRUE
 
-VehicleRegime$SignedQuarter<-as.Date(paste(as.numeric(format(VehicleRegime$SignedMonth, "%Y"))+
-                                                  floor(as.numeric(format(VehicleRegime$SignedMonth,"%m"))/10),
-    (floor((as.numeric(format(VehicleRegime$SignedMonth, "%m"))-1)/3)*3+4) %% 12,
+RawRegime$SignedQuarter<-as.Date(paste(as.numeric(format(RawRegime$SignedMonth, "%Y"))+
+                                                  floor(as.numeric(format(RawRegime$SignedMonth,"%m"))/10),
+    (floor((as.numeric(format(RawRegime$SignedMonth, "%m"))-1)/3)*3+4) %% 12,
     1
       ,sep="-"),"%Y-%m-%d")-1
 
-VehicleRegime$SubCustomer.component<-droplevels(VehicleRegime$SubCustomer.component)
-VehicleRegime$SubCustomer.component<-factor(VehicleRegime$SubCustomer.component,
+RawRegime$SubCustomer.component<-droplevels(RawRegime$SubCustomer.component)
+RawRegime$SubCustomer.component<-factor(RawRegime$SubCustomer.component,
                                                levels=c("Army","Navy","Air Force","DLA",
                                                         "MDA","MilitaryHealth","Additional DoD Components"),
                                                labels=c("Army","Navy","Air Force","DLA",
                                                         "MDA","Military\nHealth","Additional\nDoD\nComponents"),
                                                ordered=TRUE)
+
+
+#Add quarters
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(10:12)] <- "Q1" 
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(1:3)] <- "Q2" 
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(4:6)] <- "Q3" 
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(7:9)] <- "Q4" 
+RawRegime$Quarter<-factor(RawRegime$Quarter,
+                                     levels=c("Q1","Q2","Q3","Q4"),
+                                     ordered=TRUE)
                                                                                                
 ```
 
 
 ```{r VehicleATLregime}
-ATLregimeFYear<-aggregate(VehicleRegime$Obligation.2014
-                          , by=list(VehicleRegime$Fiscal.Year,
-                                    #                                                   VehicleRegime$SubCustomer.component,
-                                    VehicleRegime$USDATL)
+ATLregimeFYear<-aggregate(RawRegime$Obligation.2014
+                          , by=list(RawRegime$Fiscal.Year,
+                                    #                                                   RawRegime$SubCustomer.component,
+                                    RawRegime$USDATL)
                           ,FUN = "sum"
                           ,na.rm =TRUE
                           )
@@ -101,7 +111,7 @@ ATLregimeFYear<-aggregate(VehicleRegime$Obligation.2014
 names(ATLregimeFYear)<-c("Fiscal.Year","USDATL","AnnualRegimeObligations")
 
 
-VehicleUSDATL<-subset(VehicleRegime,join(VehicleRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
+USDATL<-subset(RawRegime,join(RawRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
 
 
 ATLregimeDetails<-data.frame(USDATL= 'GANSLER+',
@@ -124,7 +134,7 @@ ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'CARTER',
                                                     EndDate=as.Date('2011/11/02',format='%Y/%m/%d')))
 ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
                                                     StartDate=as.Date('2011/11/03',format='%Y/%m/%d'),
-                                                    EndDate=max(VehicleRegime$SignedQuarter)))
+                                                    EndDate=max(RawRegime$SignedQuarter)))
 
 
 ATLregimeDetails$StartFiscalYear<-ymd(paste(year(ATLregimeDetails$StartDate)+
@@ -132,19 +142,19 @@ ATLregimeDetails$StartFiscalYear<-ymd(paste(year(ATLregimeDetails$StartDate)+
                                             ,"-10-1",sep=""))
 
 
-VehicleUSDATL<-join(VehicleUSDATL,ATLregimeDetails,match="first")
+USDATL<-join(USDATL,ATLregimeDetails,match="first")
 
-VehicleUSDATL$Fiscal.Year[VehicleUSDATL$Fiscal.Year>VehicleUSDATL$EndDate&
-                                      VehicleUSDATL$SignedMonth<=VehicleUSDATL$EndDate]<-
-    VehicleUSDATL$EndDate[VehicleUSDATL$Fiscal.Year>VehicleUSDATL$EndDate&
-                                      VehicleUSDATL$SignedMonth<=VehicleUSDATL$EndDate]
+USDATL$Fiscal.Year[USDATL$Fiscal.Year>USDATL$EndDate&
+                                      USDATL$SignedMonth<=USDATL$EndDate]<-
+    USDATL$EndDate[USDATL$Fiscal.Year>USDATL$EndDate&
+                                      USDATL$SignedMonth<=USDATL$EndDate]
 
-VehicleUSDATL$Fiscal.Year[VehicleUSDATL$Fiscal.Year<VehicleUSDATL$StartDate]<-
-    VehicleUSDATL$StartDate[VehicleUSDATL$Fiscal.Year<VehicleUSDATL$StartDate]
+USDATL$Fiscal.Year[USDATL$Fiscal.Year<USDATL$StartDate]<-
+    USDATL$StartDate[USDATL$Fiscal.Year<USDATL$StartDate]
 
 ```
 
-```{r VehicleUSDATLmonthlyComponents}        
+```{r USDATLmonthlyComponents}        
     
 png(
     paste( "Output\\Vehicle\\",paste("DoD_components"
@@ -173,7 +183,7 @@ VehicleGraph<-LatticePercentLineWrapper(
     ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
     ,Coloration
-    ,VehicleUSDATL
+    ,USDATL
     ,NULL
     ,"SignedMonth"
     ,"Obligation.2014"
@@ -202,7 +212,7 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r VehicleUSDATLannualComponents}        
+```{r USDATLannualComponents}        
 
 png(
     paste( "Output\\Vehicle\\",paste("DoD_components"
@@ -231,7 +241,7 @@ VehicleGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,VehicleUSDATL
+    ,USDATL
     ,NULL
     ,"Fiscal.Year"
     ,"Obligation.2014"
@@ -261,14 +271,14 @@ while(!(dev.cur()[[1]]==1)){
 
 
 ```{r VehicleATLpolicy}
-VehiclePolicy<-VehicleRegime
-VehiclePolicy$ATLpolicy<-as.character(VehicleRegime$USDATL)
-VehiclePolicy$ATLpolicy[VehiclePolicy$USDATL=="CARTER"]<-"CARTER pre-Task\n& Delivery Comp."
-VehiclePolicy$ATLpolicy[VehiclePolicy$DeliveryCompetition==1]<-"Task &\nDelivery Comp."
-VehiclePolicy$ATLpolicy[VehiclePolicy$Section863FY09==1]<-"Impl. of\n863-09"
-VehiclePolicy$ATLpolicy[VehiclePolicy$BBP3==1]<-"BBP3"
+Policy<-RawRegime
+Policy$ATLpolicy<-as.character(RawRegime$USDATL)
+Policy$ATLpolicy[Policy$USDATL=="CARTER"]<-"CARTER pre-Task\n& Delivery Comp."
+Policy$ATLpolicy[Policy$DeliveryCompetition==1]<-"Task &\nDelivery Comp."
+Policy$ATLpolicy[Policy$Section863FY09==1]<-"Impl. of\n863-09"
+Policy$ATLpolicy[Policy$BBP3==1]<-"BBP3"
 
-VehiclePolicy$ATLpolicy<-factor(VehiclePolicy$ATLpolicy,levels=c("GANSLER+",
+Policy$ATLpolicy<-factor(Policy$ATLpolicy,levels=c("GANSLER+",
                                                                  "ALDRIDGE",
                                                                  "WYNNE",
                                                                  "KRIEG",
@@ -321,28 +331,28 @@ ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= "Impl. of\n863-09
 #                                                     EndDate=as.Date('2014/09/18',format='%Y/%m/%d')))
 ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP3',
                                                     StartDate=as.Date('2014/09/19',format='%Y/%m/%d'),
-                                                    EndDate=max(VehicleRegime$SignedQuarter)))
+                                                    EndDate=max(RawRegime$SignedQuarter)))
 
 
 ATLpolicyDetails$StartFiscalYear<-ymd(paste(year(ATLpolicyDetails$StartDate)+
                                                 ifelse(month(ATLpolicyDetails$StartDate)<10,-1,0)
                                             ,"-10-1",sep=""))
 
-VehiclePolicy<-join(VehiclePolicy,ATLpolicyDetails,match="first")
-VehiclePolicy<-subset(VehiclePolicy,ATLpolicy!='BBP3') #Not enough to include
+Policy<-join(Policy,ATLpolicyDetails,match="first")
+Policy<-subset(Policy,ATLpolicy!='BBP3') #Not enough to include
 
-VehiclePolicy$Fiscal.Year[VehiclePolicy$Fiscal.Year>VehiclePolicy$EndDate&
-                                      VehiclePolicy$SignedMonth<=VehiclePolicy$EndDate]<-
-    VehiclePolicy$EndDate[VehiclePolicy$Fiscal.Year>VehiclePolicy$EndDate&
-                                      VehiclePolicy$SignedMonth<=VehiclePolicy$EndDate]
-VehiclePolicy$SignedFiscal.Year[VehiclePolicy$SignedFiscal.Year<VehiclePolicy$StartDate]<-
-    VehiclePolicy$StartDate[VehiclePolicy$SignedFiscal.Year<VehiclePolicy$StartDate]
+Policy$Fiscal.Year[Policy$Fiscal.Year>Policy$EndDate&
+                                      Policy$SignedMonth<=Policy$EndDate]<-
+    Policy$EndDate[Policy$Fiscal.Year>Policy$EndDate&
+                                      Policy$SignedMonth<=Policy$EndDate]
+Policy$SignedFiscal.Year[Policy$SignedFiscal.Year<Policy$StartDate]<-
+    Policy$StartDate[Policy$SignedFiscal.Year<Policy$StartDate]
 
 
 
 ```
 
-```{r VehiclePolicyMonthlyComponents}        
+```{r PolicyMonthlyComponents}        
 
 png(
     paste( "Output\\Vehicle\\",paste("DoD_components"
@@ -370,7 +380,7 @@ VehicleGraph<-LatticePercentLineWrapper(
     ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
     ,Coloration
-    ,VehiclePolicy
+    ,Policy
     ,NULL
     ,"SignedMonth"
     ,"Obligation.2014"
@@ -398,7 +408,7 @@ while(!(dev.cur()[[1]]==1)){
 ```
 
 
-```{r VehiclePolicyAnnualComponents}
+```{r PolicyAnnualComponents}
 
 png(
     paste( "Output\\Vehicle\\",
@@ -427,7 +437,7 @@ VehicleGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,VehiclePolicy
+    ,Policy
     ,NULL
     ,"Fiscal.Year"
     ,"Obligation.2014"
@@ -454,7 +464,7 @@ while(!(dev.cur()[[1]]==1)){
 
 ```
 
-```{r VehiclePolicyMonthlySummary}
+```{r PolicyMonthlySummary}
 
 
 png(
@@ -486,7 +496,7 @@ VehicleGraph<-LatticePercentLineWrapper(
     ,VAR.Coloration=Coloration
     
     
-    ,VAR.long.DF=VehiclePolicy
+    ,VAR.long.DF=Policy
     ,VAR.ncol=NA
     ,VAR.x.variable="SignedMonth"
     ,VAR.y.variable="Obligation.2014"
@@ -516,7 +526,7 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r VehiclePolicyAnnualSummary}
+```{r PolicyAnnualSummary}
 
 
 png(
@@ -548,7 +558,7 @@ VehicleGraph<-LatticePercentLineWrapper(
     ,VAR.Coloration=Coloration
     
     
-    ,VAR.long.DF=VehiclePolicy
+    ,VAR.long.DF=Policy
     ,VAR.ncol=NA
     ,VAR.x.variable="Fiscal.Year"
     ,VAR.y.variable="Obligation.2014"
@@ -577,9 +587,9 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r VehiclePolicyMonthlyComponentSolitary}
+```{r PolicyMonthlyComponentSolitary}
 
-for (c in unique(VehiclePolicy$SubCustomer)){    
+for (c in unique(Policy$SubCustomer)){    
     png(
         paste( "Output\\Vehicle\\",c,"\\",paste(
             c
@@ -608,7 +618,7 @@ for (c in unique(VehiclePolicy$SubCustomer)){
         ,VAR.Coloration=Coloration
         
         
-        ,VAR.long.DF=subset(VehiclePolicy,SubCustomer==c)
+        ,VAR.long.DF=subset(Policy,SubCustomer==c)
         ,VAR.ncol=NA
         ,VAR.x.variable="SignedMonth"
         ,VAR.y.variable="Obligation.2014"
@@ -639,9 +649,9 @@ for (c in unique(VehiclePolicy$SubCustomer)){
 ```
 
 
-```{r VehiclePolicyAnnualComponentSolitary}
+```{r PolicyAnnualComponentSolitary}
 
-for (c in unique(VehiclePolicy$SubCustomer)){    
+for (c in unique(Policy$SubCustomer)){    
     png(
         paste("Output\\Vehicle\\",c,"\\",
               paste(
@@ -671,7 +681,7 @@ for (c in unique(VehiclePolicy$SubCustomer)){
         ,VAR.Coloration=Coloration
         
         
-        ,VAR.long.DF=subset(VehiclePolicy,SubCustomer==c)
+        ,VAR.long.DF=subset(Policy,SubCustomer==c)
         ,VAR.ncol=NA
         ,VAR.x.variable="Fiscal.Year"
         ,VAR.y.variable="Obligation.2014"
@@ -703,8 +713,14 @@ for (c in unique(VehiclePolicy$SubCustomer)){
 
 ```{r PrepareHorseTail}
 
-VehiclePolicy$SinceFirstFiscalYear<-as.numeric(as.duration(
-    ymd(VehiclePolicy$SignedMonth)-VehiclePolicy$StartFiscalYear)
+Policy$SinceFirstFiscalYear<-as.numeric(as.duration(
+    ymd(Policy$SignedMonth)-Policy$StartFiscalYear)
+    /dyears(1)
+    )
+
+
+USDATL$SinceFirstFiscalYear<-as.numeric(as.duration(
+    ymd(USDATL$SignedMonth)-USDATL$StartFiscalYear)
     /dyears(1)
     )
 
@@ -715,11 +731,11 @@ HorseTailYears<-6
 
 
 
-```{r VehiclePolicySeriesHorseTailSummary}
+```{r PolicySeriesHorseTailSummary}
 
-OldGraph<-VehiclePolicy$Graph
+OldGraph<-Policy$Graph
 
-for (s in unique(VehiclePolicy$Vehicle.sum)){    
+for (s in unique(Policy$Vehicle.sum)){    
     png(
         paste( "Output\\Vehicle\\",
                paste(
@@ -743,8 +759,8 @@ for (s in unique(VehiclePolicy$Vehicle.sum)){
         , res=150
         )
     
-    VehiclePolicy$Graph[VehiclePolicy$Vehicle.sum!=s]<-FALSE
-    VehiclePolicy$Graph[VehiclePolicy$Vehicle.sum==s]<-TRUE
+    Policy$Graph[Policy$Vehicle.sum!=s]<-FALSE
+    Policy$Graph[Policy$Vehicle.sum==s]<-TRUE
     
     VehicleGraph<-LatticePercentLineWrapper(
         VAR.name="Contract Vehicle"
@@ -754,7 +770,7 @@ for (s in unique(VehiclePolicy$Vehicle.sum)){
         ,VAR.Coloration=Coloration
         , HorseTail=TRUE
         
-        ,VAR.long.DF=VehiclePolicy
+        ,VAR.long.DF=Policy
         ,VAR.ncol=1
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
@@ -785,16 +801,16 @@ for (s in unique(VehiclePolicy$Vehicle.sum)){
         }
     }
 
-VehiclePolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
-```{r VehiclePolicySeriesHorseTailComponents}
+```{r PolicySeriesHorseTailComponents}
 
-OldGraph<-VehiclePolicy$Graph
+OldGraph<-Policy$Graph
 
-for (s in unique(VehiclePolicy$Vehicle.sum)){    
+for (s in unique(Policy$Vehicle.sum)){    
     png(
         paste( "Output\\Vehicle\\",
                paste(
@@ -818,8 +834,8 @@ for (s in unique(VehiclePolicy$Vehicle.sum)){
         , res=150
         )
     
-    VehiclePolicy$Graph[VehiclePolicy$Vehicle.sum!=s]<-FALSE
-    VehiclePolicy$Graph[VehiclePolicy$Vehicle.sum==s]<-TRUE
+    Policy$Graph[Policy$Vehicle.sum!=s]<-FALSE
+    Policy$Graph[Policy$Vehicle.sum==s]<-TRUE
     
     VehicleGraph<-LatticePercentLineWrapper(
         VAR.name="Contract Vehicle"
@@ -829,7 +845,7 @@ for (s in unique(VehiclePolicy$Vehicle.sum)){
         ,VAR.Coloration=Coloration
         , HorseTail=TRUE
         
-        ,VAR.long.DF=VehiclePolicy
+        ,VAR.long.DF=Policy
         ,VAR.ncol=1
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
@@ -859,17 +875,17 @@ for (s in unique(VehiclePolicy$Vehicle.sum)){
         }
     }
 
-VehiclePolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
-```{r VehiclePolicySeriesSpendingBarSummary}
+```{r PolicySeriesSpendingBarSummary}
 
 
-OldGraph<-VehiclePolicy$Graph
+OldGraph<-Policy$Graph
 
-for (s in unique(VehiclePolicy$Vehicle.sum)){    
+for (s in unique(Policy$Vehicle.sum)){    
     png(
         paste( "Output\\Vehicle\\",
                paste(
@@ -893,8 +909,8 @@ for (s in unique(VehiclePolicy$Vehicle.sum)){
         , res=150
         )
     
-    VehiclePolicy$Graph[VehiclePolicy$Vehicle.sum!=s]<-FALSE
-    VehiclePolicy$Graph[VehiclePolicy$Vehicle.sum==s]<-TRUE
+    Policy$Graph[Policy$Vehicle.sum!=s]<-FALSE
+    Policy$Graph[Policy$Vehicle.sum==s]<-TRUE
     
     VehicleGraph<-LatticePlotWrapper(
         VAR.name="Contract Vehicle"
@@ -902,7 +918,7 @@ for (s in unique(VehiclePolicy$Vehicle.sum)){
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(s,"Constant 2014 $ Obligated, Billions")
         ,VAR.Coloration=Coloration
-        ,VAR.long.DF=VehiclePolicy
+        ,VAR.long.DF=Policy
         ,VAR.ncol=1
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
@@ -934,18 +950,18 @@ for (s in unique(VehiclePolicy$Vehicle.sum)){
         }
     }
 
-VehiclePolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
 
-```{r VehiclePolicySeriesHorseTailComponentSolitary}
+```{r PolicySeriesHorseTailComponentSolitary}
 
-OldGraph<-VehiclePolicy$Graph
-for (c in unique(VehiclePolicy$SubCustomer)){ 
-    VehicleSubCustomer<-subset(VehiclePolicy,SubCustomer==c)
-    for (s in unique(VehiclePolicy$Vehicle.sum)){    
+OldGraph<-Policy$Graph
+for (c in unique(Policy$SubCustomer)){ 
+    VehicleSubCustomer<-subset(Policy,SubCustomer==c)
+    for (s in unique(Policy$Vehicle.sum)){    
         VehicleSubCustomer$Graph[VehicleSubCustomer$Vehicle.sum!=s]<-FALSE
         VehicleSubCustomer$Graph[VehicleSubCustomer$Vehicle.sum==s]<-TRUE
         if(any(VehicleSubCustomer$Graph==TRUE)){
@@ -1013,19 +1029,19 @@ for (c in unique(VehiclePolicy$SubCustomer)){
             }
         }
     }
-VehiclePolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
 
 
-```{r VehiclePolicySeriesSpendingBarComponentSolitary}
+```{r PolicySeriesSpendingBarComponentSolitary}
 
-OldGraph<-VehiclePolicy$Graph
-for (c in unique(VehiclePolicy$SubCustomer)){ 
-    VehicleSubCustomer<-subset(VehiclePolicy,SubCustomer==c)
-    for (s in unique(VehiclePolicy$Vehicle.sum)){    
+OldGraph<-Policy$Graph
+for (c in unique(Policy$SubCustomer)){ 
+    VehicleSubCustomer<-subset(Policy,SubCustomer==c)
+    for (s in unique(Policy$Vehicle.sum)){    
         VehicleSubCustomer$Graph[VehicleSubCustomer$Vehicle.sum!=s]<-FALSE
         VehicleSubCustomer$Graph[VehicleSubCustomer$Vehicle.sum==s]<-TRUE
         if(any(VehicleSubCustomer$Graph==TRUE)){
@@ -1093,74 +1109,12 @@ for (c in unique(VehiclePolicy$SubCustomer)){
 
         }
     }
-VehiclePolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
-```{r VehiclePolicyAnnualComponentSolitaryOld}
-# for (s in unique(VehiclePolicy$SubCustomer)){    
-#     png(
-#         paste("Output\\Vehicle\\", 
-#               paste(s
-#                      ,"Obligation_2014"
-#                      ,"Vehicle_sum"
-#                      ,"ATLpolicy"
-#                      ,"Annual"
-#                      ,sep="_"
-#                      )
-#                ,".png"
-#                , sep=""
-#                )
-#         , type="cairo"
-#         , width=10
-#         , height=5
-#         , units='in'
-#         , pointsize=12
-#         , res=150
-#         )
-#     
-#     VehicleGraph<-LatticePercentLineWrapper(
-#         VAR.name="Contract Vehicle"
-#         ,VAR.proper.name=""#paste(s,"Contract Vehicle by Starting Regime")
-#         ,VAR.X.label="Fiscal Year of Obligation"
-#         ,VAR.Y.label="% of Component Obligations"
-#         ,VAR.Coloration=Coloration
-#         
-#         
-#         ,VAR.long.DF=subset(VehiclePolicy,SubCustomer==s)
-#         ,VAR.ncol=4
-#         ,VAR.x.variable="Fiscal.Year"
-#         ,VAR.y.variable="Obligation.2014"
-#         ,VAR.y.series=    "Vehicle.sum"
-#         ,VAR.facet.primary="ATLpolicy"
-#         ,VAR.facet.secondary=NA
-#         ,"StartDate"
-#         ,"EndDate"
-#         )
-#     VehicleGraph<-VehicleGraph+aes(size=y.variable)+scale_size_continuous(name="Constant 2014 $ Obligated, Billions")
-#     # VehicleGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-#     VehicleGraph<-VehicleGraph+geom_rect(aes(xmin=StartDate
-#                                        , xmax=EndDate
-#                                        , ymin=-Inf
-#                                        , ymax=Inf
-#                                        , size = 0),color="red",alpha=0,size=1)
-#     VehicleGraph<-VehicleGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
-#         theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
-#         scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
-#     VehicleGraph
-#     print(VehicleGraph)
-#     rm(VehicleGraph)
-#     #     VehicleGraph+scale_fill_manual(values = alpha(c("red","blue"), .3))
-#     while(!(dev.cur()[[1]]==1)){
-#         dev.off()
-#         }
-#     }
-
-```
-
-
-```{r VehiclePolicyAnnualEffective}
+```{r PolicyAnnualEffective}
 png(
     paste( "Output\\Vehicle\\", 
            paste("DoD_components"
@@ -1190,7 +1144,7 @@ VehicleGraph<-LatticePercentLineWrapper(
     ,Coloration
 
 
-    ,VehiclePolicy
+    ,Policy
     ,NULL
     ,"Fiscal.Year"
     ,"Obligation.2014"
@@ -1228,12 +1182,16 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 
 
 
+
+
+
 ```{r DataTables}
 
 #Annual
-VehicleRegimeTable<-ddply(VehicleRegime, 
+USDATLTable<-ddply(USDATL, 
                          .(
                              Fiscal.Year,
+                             SinceFirstFiscalYear,
                              Vehicle.sum,
                              SubCustomer.component,
                              USDATL
@@ -1242,7 +1200,7 @@ VehicleRegimeTable<-ddply(VehicleRegime,
                          Obligation.2014=sum(Obligation.2014)
                          )
 
-write.csv(VehicleRegimeTable,paste("Output\\Vehicle\\",
+write.csv(USDATLTable,paste("Output\\Vehicle\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"Vehicle_sum"
@@ -1254,11 +1212,15 @@ write.csv(VehicleRegimeTable,paste("Output\\Vehicle\\",
                                   sep=""))
 
 
-#Monthly
 
-VehicleRegimeTable<-ddply(VehicleRegime, 
+#Monthly
+USDATLTable<-ddply(USDATL, 
                          .(
                              SignedMonth,
+                             SignedQuarter,
+                             Quarter,
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
                              Vehicle.sum,
                              SubCustomer.component,
                              USDATL
@@ -1268,8 +1230,8 @@ VehicleRegimeTable<-ddply(VehicleRegime,
                          )
 
 
-VehicleRegimeTable<-ddply(VehicleRegimeTable, 
-                         .(Vehicle.sum,
+USDATLTable<-ddply(USDATLTable, 
+                         .( Vehicle.sum,
                            SubCustomer.component,
                            USDATL),
                          .fun=TransformFilter,
@@ -1279,7 +1241,8 @@ VehicleRegimeTable<-ddply(VehicleRegimeTable,
                          )
 
 
-write.csv(VehicleRegimeTable,paste("Output\\Vehicle\\",
+
+write.csv(USDATLTable,paste("Output\\Vehicle\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"Vehicle_sum"
@@ -1291,8 +1254,43 @@ write.csv(VehicleRegimeTable,paste("Output\\Vehicle\\",
                                   sep=""))
 
 
+
+
+#Quarterly
+USDATLTable<-ddply(USDATLTable, 
+                         .(  SignedQuarter,
+                             Quarter,
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
+                             Vehicle.sum,
+                             SubCustomer.component,
+                             USDATL
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014),
+                         MovingAverage=sum(MovingAverage)
+                         )
+
+
+write.csv(USDATLTable,paste("Output\\Vehicle\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Vehicle_sum"
+                                        ,"USDATL"
+                                        ,"Quarterly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+
+
+
+
 #Annual
-VehiclePolicyTable<-ddply(VehiclePolicy, c("Fiscal.Year"
+PolicyTable<-ddply(Policy, c("Fiscal.Year"
+                                             ,"SinceFirstFiscalYear"
                                          ,"Vehicle.sum"
                                          ,"SubCustomer.component"
                                          ,"ATLpolicy")
@@ -1301,7 +1299,7 @@ VehiclePolicyTable<-ddply(VehiclePolicy, c("Fiscal.Year"
                          )
 
 
-write.csv(VehiclePolicyTable,paste("Output\\Vehicle\\",
+write.csv(PolicyTable,paste("Output\\Vehicle\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"Vehicle_sum"
@@ -1315,7 +1313,11 @@ write.csv(VehiclePolicyTable,paste("Output\\Vehicle\\",
 
 #Monthly
 
-VehiclePolicyTable<-ddply(VehiclePolicy, c("SignedMonth"
+PolicyTable<-ddply(Policy, c("SignedMonth"
+                                             ,"SignedQuarter"
+                                             ,"Quarter"
+                                             ,"Fiscal.Year"
+                                             ,"SinceFirstFiscalYear"
                                          ,"Vehicle.sum"
                                          ,"SubCustomer.component"
                                          ,"ATLpolicy")
@@ -1323,8 +1325,8 @@ VehiclePolicyTable<-ddply(VehiclePolicy, c("SignedMonth"
                          ,Obligation.2014=sum(Obligation.2014)
                          )
 
-VehiclePolicyTable<-ddply(VehiclePolicyTable, 
-                         .(Vehicle.sum,
+PolicyTable<-ddply(PolicyTable, 
+                         .( Vehicle.sum,
                            SubCustomer.component,
                            ATLpolicy),
                          .fun=TransformFilter,
@@ -1334,12 +1336,40 @@ VehiclePolicyTable<-ddply(VehiclePolicyTable,
                          )
 
 
-write.csv(VehiclePolicyTable,paste("Output\\Vehicle\\",
+write.csv(PolicyTable,paste("Output\\Vehicle\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"Vehicle_sum"
                                         ,"ATLpolicy"
                                         ,"Monthly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+#Quarterly
+PolicyTable<-ddply(PolicyTable, 
+                         .(  SignedQuarter,
+                             Quarter,
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
+                             Vehicle.sum,
+                             SubCustomer.component,
+                             ATLpolicy
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014),
+                         MovingAverage=sum(MovingAverage)
+                         )
+
+
+write.csv(PolicyTable,paste("Output\\Vehicle\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Vehicle_sum"
+                                        ,"ATLpolicy"
+                                        ,"Quarterly"
                                         ,sep="_"
                                         )
                                   ,".csv",

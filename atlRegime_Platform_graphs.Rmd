@@ -58,7 +58,7 @@ You can also embed plots, for example:
 zipfile<-unz("Data\\Defense_Summary_SP_FundingMechanismHistoryBucketPlatformSubCustomerRegime.zip",
         "Defense_Summary_SP_FundingMechanismHistoryBucketPlatformSubCustomerRegime.csv")
 
-PlatformRegime  <- read.csv(
+RawRegime  <- read.csv(
     zipfile,
     header = TRUE, sep = ",", dec = ".", strip.white = TRUE, 
     na.strings = c("NULL","NA",""),
@@ -68,23 +68,23 @@ PlatformRegime  <- read.csv(
 
 
 
-PlatformRegime<-apply_lookups(Path,PlatformRegime)
-names(PlatformRegime)
-str(PlatformRegime)
-PlatformRegime$USDATL<-factor(PlatformRegime$USDATL,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","KENDALL" ),ordered=TRUE )
-PlatformRegime<-subset(PlatformRegime,USDATL %in% c("YOUNG","CARTER","KENDALL"))
+RawRegime<-apply_lookups(Path,RawRegime)
+names(RawRegime)
+str(RawRegime)
+RawRegime$USDATL<-factor(RawRegime$USDATL,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","KENDALL" ),ordered=TRUE )
+RawRegime<-subset(RawRegime,USDATL %in% c("YOUNG","CARTER","KENDALL"))
 
-PlatformRegime$Graph<-TRUE
+RawRegime$Graph<-TRUE
 
-PlatformRegime$SignedQuarter<-as.Date(
-    paste(as.numeric(format(PlatformRegime$SignedMonth, "%Y"))+
-              floor(as.numeric(format(PlatformRegime$SignedMonth,"%m"))/10),
-          (floor((as.numeric(format(PlatformRegime$SignedMonth, "%m"))-1)/3)*3+4) %% 12,
+RawRegime$SignedQuarter<-as.Date(
+    paste(as.numeric(format(RawRegime$SignedMonth, "%Y"))+
+              floor(as.numeric(format(RawRegime$SignedMonth,"%m"))/10),
+          (floor((as.numeric(format(RawRegime$SignedMonth, "%m"))-1)/3)*3+4) %% 12,
           1
           ,sep="-"),"%Y-%m-%d")-1
 
-PlatformRegime$SubCustomer.component<-droplevels(PlatformRegime$SubCustomer.component)
-PlatformRegime$SubCustomer.component<-factor(PlatformRegime$SubCustomer.component,
+RawRegime$SubCustomer.component<-droplevels(RawRegime$SubCustomer.component)
+RawRegime$SubCustomer.component<-factor(RawRegime$SubCustomer.component,
                                            levels=c("Army","Navy","Air Force","DLA",
                                                     "MDA","MilitaryHealth",
                                                     "Additional DoD Components"),
@@ -93,20 +93,29 @@ PlatformRegime$SubCustomer.component<-factor(PlatformRegime$SubCustomer.componen
                                                     "Additional\nDoD\nComponents"),
                                            ordered=TRUE)
 
+#Add quarters
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(10:12)] <- "Q1" 
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(1:3)] <- "Q2" 
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(4:6)] <- "Q3" 
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(7:9)] <- "Q4" 
+RawRegime$Quarter<-factor(RawRegime$Quarter,
+                                     levels=c("Q1","Q2","Q3","Q4"),
+                                     ordered=TRUE)
+
 ```
 
 
 ```{r PlatformATLregime}
-ATLregimeFYear<-aggregate(PlatformRegime$Obligation.2014
-                          , by=list(PlatformRegime$Fiscal.Year,
-                                    #                                                   PlatformRegime$SubCustomer.component,
-                                    PlatformRegime$USDATL)
+ATLregimeFYear<-aggregate(RawRegime$Obligation.2014
+                          , by=list(RawRegime$Fiscal.Year,
+                                    #                                                   RawRegime$SubCustomer.component,
+                                    RawRegime$USDATL)
                           ,FUN = "sum"
                           ,na.rm =TRUE
                           )
 
 names(ATLregimeFYear)<-c("Fiscal.Year","USDATL","AnnualRegimeObligations")
-PlatformUSDATL<-subset(PlatformRegime,join(PlatformRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
+USDATL<-subset(RawRegime,join(RawRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
 
 
 ATLregimeDetails<-data.frame(USDATL= 'GANSLER+',
@@ -129,7 +138,7 @@ ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'CARTER',
                                                     EndDate=as.Date('2011/11/02',format='%Y/%m/%d')))
 ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
                                                     StartDate=as.Date('2011/11/03',format='%Y/%m/%d'),
-                                                    EndDate=max(PlatformRegime$SignedQuarter)))
+                                                    EndDate=max(RawRegime$SignedQuarter)))
 
 
 
@@ -139,23 +148,23 @@ ATLregimeDetails$StartFiscalYear<-ymd(paste(year(ATLregimeDetails$StartDate)+
 
 
 
-PlatformUSDATL<-join(PlatformUSDATL,ATLregimeDetails,match="first")
+USDATL<-join(USDATL,ATLregimeDetails,match="first")
 
 
-PlatformUSDATL$Fiscal.Year[PlatformUSDATL$Fiscal.Year>PlatformUSDATL$EndDate&
-                             PlatformUSDATL$SignedMonth<=PlatformUSDATL$EndDate]<-
-    PlatformUSDATL$EndDate[PlatformUSDATL$Fiscal.Year>PlatformUSDATL$EndDate&
-                             PlatformUSDATL$SignedMonth<=PlatformUSDATL$EndDate]
+USDATL$Fiscal.Year[USDATL$Fiscal.Year>USDATL$EndDate&
+                             USDATL$SignedMonth<=USDATL$EndDate]<-
+    USDATL$EndDate[USDATL$Fiscal.Year>USDATL$EndDate&
+                             USDATL$SignedMonth<=USDATL$EndDate]
 
-PlatformUSDATL$Fiscal.Year[PlatformUSDATL$Fiscal.Year<PlatformUSDATL$StartDate]<-
-    PlatformUSDATL$StartDate[PlatformUSDATL$Fiscal.Year<PlatformUSDATL$StartDate]
+USDATL$Fiscal.Year[USDATL$Fiscal.Year<USDATL$StartDate]<-
+    USDATL$StartDate[USDATL$Fiscal.Year<USDATL$StartDate]
 
 
 ```
 
 
 
-```{r PlatformUSDATLmonthlyComponents}        
+```{r USDATLmonthlyComponents}        
 
 png(
     paste( "Output\\Platform\\",paste("DoD_components"
@@ -184,7 +193,7 @@ PlatformGraph<-LatticePercentLineWrapper(
     ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
     ,Coloration
-    ,PlatformUSDATL
+    ,USDATL
     ,NULL
     ,"SignedMonth"
     ,"Obligation.2014"
@@ -213,7 +222,7 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r PlatformUSDATLannualComponents}        
+```{r USDATLannualComponents}        
 
 png(
     paste( "Output\\Platform\\",paste("DoD_components"
@@ -242,7 +251,7 @@ PlatformGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,PlatformUSDATL
+    ,USDATL
     ,NULL
     ,"Fiscal.Year"
     ,"Obligation.2014"
@@ -271,23 +280,23 @@ while(!(dev.cur()[[1]]==1)){
 
 
 ```{r PlatformATLpolicy}
-PlatformPolicy<-PlatformRegime
-PlatformPolicy$ATLpolicy<-as.character(PlatformRegime$USDATL)
-PlatformPolicy$ATLpolicy[PlatformPolicy$USDATL=="CARTER"]<-"CARTER\npre-BBP"
-PlatformPolicy$ATLpolicy[PlatformPolicy$BBP1==1]<-"BBP1"
-PlatformPolicy$ATLpolicy[PlatformPolicy$ServicesRestriction==1]<-"Section 808\nFY12 NDAA\nImplem."
+Policy<-RawRegime
+Policy$ATLpolicy<-as.character(RawRegime$USDATL)
+Policy$ATLpolicy[Policy$USDATL=="CARTER"]<-"CARTER\npre-BBP"
+Policy$ATLpolicy[Policy$BBP1==1]<-"BBP1"
+Policy$ATLpolicy[Policy$ServicesRestriction==1]<-"Section 808\nFY12 NDAA\nImplem."
 
-# PlatformPolicy$ATLpolicy[PlatformPolicy$ITFsmallBusiness==1]<-"Small Business\nTask Force"
-# PlatformPolicy$ATLpolicy[PlatformPolicy$BBP2==1]<-"BBP2"
+# Policy$ATLpolicy[Policy$ITFsmallBusiness==1]<-"Small Business\nTask Force"
+# Policy$ATLpolicy[Policy$BBP2==1]<-"BBP2"
 
-PlatformPolicy$ATLpolicy[PlatformPolicy$BBP3==1]<-"BBP3"
+Policy$ATLpolicy[Policy$BBP3==1]<-"BBP3"
 
-PlatformPolicy$ATLpolicy<-factor(PlatformPolicy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER\npre-BBP","BBP1","Section 808\nFY12 NDAA\nImplem.","BBP3" ),ordered=TRUE )
+Policy$ATLpolicy<-factor(Policy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER\npre-BBP","BBP1","Section 808\nFY12 NDAA\nImplem.","BBP3" ),ordered=TRUE )
 # 
-# ATLpolicyFYear<-aggregate(PlatformPolicy$Obligation.2014
-#                           , by=list(PlatformPolicy$Fiscal.Year,
-#                                     #                                                   PlatformRegime$SubCustomer.component,
-#                                     PlatformPolicy$ATLpolicy)
+# ATLpolicyFYear<-aggregate(Policy$Obligation.2014
+#                           , by=list(Policy$Fiscal.Year,
+#                                     #                                                   RawRegime$SubCustomer.component,
+#                                     Policy$ATLpolicy)
 #                           ,FUN = "sum"
 #                           ,na.rm =TRUE
 #                           )
@@ -295,7 +304,7 @@ PlatformPolicy$ATLpolicy<-factor(PlatformPolicy$ATLpolicy,levels=c("GANSLER+","A
 # 
 # 
 # names(ATLpolicyFYear)<-c("Fiscal.Year","ATLpolicy","AnnualPolicyObligations")
-# PlatformPolicy<-subset(PlatformPolicy,join(PlatformPolicy,ATLpolicyFYear)$AnnualPolicyObligations>=50)
+# Policy<-subset(Policy,join(Policy,ATLpolicyFYear)$AnnualPolicyObligations>=50)
 # 
 
 ATLpolicyDetails<-data.frame(ATLpolicy= 'GANSLER+',
@@ -335,7 +344,7 @@ ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'Section 808\nFY1
 
 ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP3',
                                                     StartDate=as.Date('2014/09/19',format='%Y/%m/%d'),
-                                                    EndDate=max(PlatformRegime$SignedQuarter)))
+                                                    EndDate=max(RawRegime$SignedQuarter)))
 
 
 
@@ -346,18 +355,18 @@ ATLpolicyDetails$StartFiscalYear<-ymd(
           ,"-10-1",sep=""))
 
 
-PlatformPolicy<-join(PlatformPolicy,ATLpolicyDetails,match="first")
+Policy<-join(Policy,ATLpolicyDetails,match="first")
 
-PlatformPolicy<-subset(PlatformPolicy,ATLpolicy!='BBP3') #Not enough to include
+Policy<-subset(Policy,ATLpolicy!='BBP3') #Not enough to include
 
-PlatformPolicy$Fiscal.Year[PlatformPolicy$Fiscal.Year>PlatformPolicy$EndDate&
-                             PlatformPolicy$SignedMonth<=PlatformPolicy$EndDate]<-
-    PlatformPolicy$EndDate[PlatformPolicy$Fiscal.Year>PlatformPolicy$EndDate&
-                             PlatformPolicy$SignedMonth<=PlatformPolicy$EndDate]
+Policy$Fiscal.Year[Policy$Fiscal.Year>Policy$EndDate&
+                             Policy$SignedMonth<=Policy$EndDate]<-
+    Policy$EndDate[Policy$Fiscal.Year>Policy$EndDate&
+                             Policy$SignedMonth<=Policy$EndDate]
 
 ```
 
-```{r PlatformPolicyMonthlyComponents}        
+```{r PolicyMonthlyComponents}        
 
 png(
     paste( "Output\\Platform\\",paste("DoD_components"
@@ -385,7 +394,7 @@ PlatformGraph<-LatticePercentLineWrapper(
     ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
     ,Coloration
-    ,PlatformPolicy
+    ,Policy
     ,NULL
     ,"SignedMonth"
     ,"Obligation.2014"
@@ -413,7 +422,7 @@ while(!(dev.cur()[[1]]==1)){
 ```
 
 
-```{r PlatformPolicyAnnualComponents}
+```{r PolicyAnnualComponents}
 
 png(
     paste( "Output\\Platform\\",
@@ -442,7 +451,7 @@ PlatformGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,PlatformPolicy
+    ,Policy
     ,NULL
     ,"Fiscal.Year"
     ,"Obligation.2014"
@@ -469,7 +478,7 @@ while(!(dev.cur()[[1]]==1)){
 
 ```
 
-```{r PlatformPolicyMonthlySummary}
+```{r PolicyMonthlySummary}
 
 
 png(
@@ -501,7 +510,7 @@ PlatformGraph<-LatticePercentLineWrapper(
     ,VAR.Coloration=Coloration
     
     
-    ,VAR.long.DF=PlatformPolicy
+    ,VAR.long.DF=Policy
     ,VAR.ncol=NA
     ,VAR.x.variable="SignedMonth"
     ,VAR.y.variable="Obligation.2014"
@@ -531,7 +540,7 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r PlatformPolicyAnnualSummary}
+```{r PolicyAnnualSummary}
 
 
 png(
@@ -563,7 +572,7 @@ PlatformGraph<-LatticePercentLineWrapper(
     ,VAR.Coloration=Coloration
     
     
-    ,VAR.long.DF=PlatformPolicy
+    ,VAR.long.DF=Policy
     ,VAR.ncol=NA
     ,VAR.x.variable="Fiscal.Year"
     ,VAR.y.variable="Obligation.2014"
@@ -592,9 +601,9 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r PlatformPolicyMonthlyComponentSolitary}
+```{r PolicyMonthlyComponentSolitary}
 
-for (c in unique(PlatformPolicy$SubCustomer)){    
+for (c in unique(Policy$SubCustomer)){    
     png(
         paste( "Output\\Platform\\",c,"\\",CleanFileName(paste(
             c
@@ -623,7 +632,7 @@ for (c in unique(PlatformPolicy$SubCustomer)){
         ,VAR.Coloration=Coloration
         
         
-        ,VAR.long.DF=subset(PlatformPolicy,SubCustomer==c)
+        ,VAR.long.DF=subset(Policy,SubCustomer==c)
         ,VAR.ncol=NA
         ,VAR.x.variable="SignedMonth"
         ,VAR.y.variable="Obligation.2014"
@@ -654,9 +663,9 @@ for (c in unique(PlatformPolicy$SubCustomer)){
 ```
 
 
-```{r PlatformPolicyAnnualComponentSolitary}
+```{r PolicyAnnualComponentSolitary}
 
-for (c in unique(PlatformPolicy$SubCustomer)){    
+for (c in unique(Policy$SubCustomer)){    
     png(
         paste("Output\\Platform\\",c,"\\",
               CleanFileName(paste(
@@ -686,7 +695,7 @@ for (c in unique(PlatformPolicy$SubCustomer)){
         ,VAR.Coloration=Coloration
         
         
-        ,VAR.long.DF=subset(PlatformPolicy,SubCustomer==c)
+        ,VAR.long.DF=subset(Policy,SubCustomer==c)
         ,VAR.ncol=NA
         ,VAR.x.variable="Fiscal.Year"
         ,VAR.y.variable="Obligation.2014"
@@ -717,8 +726,13 @@ for (c in unique(PlatformPolicy$SubCustomer)){
 
 
 ```{r PrepareHorseTail}
-PlatformPolicy$SinceFirstFiscalYear<-as.numeric(as.duration(
-    ymd(PlatformPolicy$SignedMonth)-PlatformPolicy$StartFiscalYear)
+Policy$SinceFirstFiscalYear<-as.numeric(as.duration(
+    ymd(Policy$SignedMonth)-Policy$StartFiscalYear)
+    /dyears(1)
+    )
+
+USDATL$SinceFirstFiscalYear<-as.numeric(as.duration(
+    ymd(USDATL$SignedMonth)-USDATL$StartFiscalYear)
     /dyears(1)
     )
 
@@ -729,11 +743,11 @@ HorseTailYears<-6
 
 
 
-```{r PlatformPolicySeriesHorseTailSummary}
+```{r PolicySeriesHorseTailSummary}
 
-OldGraph<-PlatformPolicy$Graph
+OldGraph<-Policy$Graph
 
-for (s in unique(PlatformPolicy$ PlatformPortfolio.AnD)){    
+for (s in unique(Policy$ PlatformPortfolio.AnD)){    
     png(
         paste( "Output\\Platform\\",
                CleanFileName(paste(
@@ -757,8 +771,8 @@ for (s in unique(PlatformPolicy$ PlatformPortfolio.AnD)){
         , res=150
         )
     
-    PlatformPolicy$Graph[PlatformPolicy$ PlatformPortfolio.AnD!=s]<-FALSE
-    PlatformPolicy$Graph[PlatformPolicy$ PlatformPortfolio.AnD==s]<-TRUE
+    Policy$Graph[Policy$ PlatformPortfolio.AnD!=s]<-FALSE
+    Policy$Graph[Policy$ PlatformPortfolio.AnD==s]<-TRUE
     
     PlatformGraph<-LatticePercentLineWrapper(
         VAR.name="Platform Portfolio"
@@ -768,7 +782,7 @@ for (s in unique(PlatformPolicy$ PlatformPortfolio.AnD)){
         ,VAR.Coloration=Coloration
         , HorseTail=TRUE
         
-        ,VAR.long.DF=PlatformPolicy
+        ,VAR.long.DF=Policy
         ,VAR.ncol=1
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
@@ -799,16 +813,16 @@ for (s in unique(PlatformPolicy$ PlatformPortfolio.AnD)){
         }
     }
 
-PlatformPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
-```{r PlatformPolicySeriesHorseTailComponents}
+```{r PolicySeriesHorseTailComponents}
 
-OldGraph<-PlatformPolicy$Graph
+OldGraph<-Policy$Graph
 
-for (s in unique(PlatformPolicy$ PlatformPortfolio.AnD)){    
+for (s in unique(Policy$ PlatformPortfolio.AnD)){    
     png(
         paste( "Output\\Platform\\",
                CleanFileName(paste(
@@ -832,8 +846,8 @@ for (s in unique(PlatformPolicy$ PlatformPortfolio.AnD)){
         , res=150
         )
     
-    PlatformPolicy$Graph[PlatformPolicy$ PlatformPortfolio.AnD!=s]<-FALSE
-    PlatformPolicy$Graph[PlatformPolicy$ PlatformPortfolio.AnD==s]<-TRUE
+    Policy$Graph[Policy$ PlatformPortfolio.AnD!=s]<-FALSE
+    Policy$Graph[Policy$ PlatformPortfolio.AnD==s]<-TRUE
     
     PlatformGraph<-LatticePercentLineWrapper(
         VAR.name="Platform Portfolio"
@@ -843,7 +857,7 @@ for (s in unique(PlatformPolicy$ PlatformPortfolio.AnD)){
         ,VAR.Coloration=Coloration
         , HorseTail=TRUE
         
-        ,VAR.long.DF=PlatformPolicy
+        ,VAR.long.DF=Policy
         ,VAR.ncol=1
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
@@ -873,17 +887,17 @@ for (s in unique(PlatformPolicy$ PlatformPortfolio.AnD)){
         }
     }
 
-PlatformPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
-```{r PlatformPolicySeriesSpendingBarSummary}
+```{r PolicySeriesSpendingBarSummary}
 
 
-OldGraph<-PlatformPolicy$Graph
+OldGraph<-Policy$Graph
 
-for (s in unique(PlatformPolicy$ PlatformPortfolio.AnD)){    
+for (s in unique(Policy$ PlatformPortfolio.AnD)){    
     png(
         paste( "Output\\Platform\\",
                CleanFileName(paste(
@@ -907,8 +921,8 @@ for (s in unique(PlatformPolicy$ PlatformPortfolio.AnD)){
         , res=150
         )
     
-    PlatformPolicy$Graph[PlatformPolicy$ PlatformPortfolio.AnD!=s]<-FALSE
-    PlatformPolicy$Graph[PlatformPolicy$ PlatformPortfolio.AnD==s]<-TRUE
+    Policy$Graph[Policy$ PlatformPortfolio.AnD!=s]<-FALSE
+    Policy$Graph[Policy$ PlatformPortfolio.AnD==s]<-TRUE
     
     PlatformGraph<-LatticePlotWrapper(
         VAR.name="Platform Portfolio"
@@ -916,7 +930,7 @@ for (s in unique(PlatformPolicy$ PlatformPortfolio.AnD)){
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(s,"Constant 2014 $ Obligated, Billions")
         ,VAR.Coloration=Coloration
-        ,VAR.long.DF=PlatformPolicy
+        ,VAR.long.DF=Policy
         ,VAR.ncol=1
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
@@ -948,18 +962,18 @@ for (s in unique(PlatformPolicy$ PlatformPortfolio.AnD)){
         }
     }
 
-PlatformPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
 
-```{r PlatformPolicySeriesHorseTailComponentSolitary}
+```{r PolicySeriesHorseTailComponentSolitary}
 
-OldGraph<-PlatformPolicy$Graph
-for (c in unique(PlatformPolicy$SubCustomer)){ 
-    PlatformSubCustomer<-subset(PlatformPolicy,SubCustomer==c)
-    for (s in unique(PlatformPolicy$ PlatformPortfolio.AnD)){    
+OldGraph<-Policy$Graph
+for (c in unique(Policy$SubCustomer)){ 
+    PlatformSubCustomer<-subset(Policy,SubCustomer==c)
+    for (s in unique(Policy$ PlatformPortfolio.AnD)){    
         PlatformSubCustomer$Graph[PlatformSubCustomer$PlatformPortfolio.AnD!=s]<-FALSE
         PlatformSubCustomer$Graph[PlatformSubCustomer$PlatformPortfolio.AnD==s]<-TRUE
         if(any(PlatformSubCustomer$Graph==TRUE)){
@@ -1028,19 +1042,19 @@ for (c in unique(PlatformPolicy$SubCustomer)){
             }
         }
     }
-PlatformPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
 
 
-```{r PlatformPolicySeriesSpendingBarComponentSolitary}
+```{r PolicySeriesSpendingBarComponentSolitary}
 
-OldGraph<-PlatformPolicy$Graph
-for (c in unique(PlatformPolicy$SubCustomer)){ 
-    PlatformSubCustomer<-subset(PlatformPolicy,SubCustomer==c)
-    for (s in unique(PlatformPolicy$ PlatformPortfolio.AnD)){    
+OldGraph<-Policy$Graph
+for (c in unique(Policy$SubCustomer)){ 
+    PlatformSubCustomer<-subset(Policy,SubCustomer==c)
+    for (s in unique(Policy$ PlatformPortfolio.AnD)){    
         PlatformSubCustomer$Graph[PlatformSubCustomer$ PlatformPortfolio.AnD!=s]<-FALSE
         PlatformSubCustomer$Graph[PlatformSubCustomer$ PlatformPortfolio.AnD==s]<-TRUE
         if(any(PlatformSubCustomer$Graph==TRUE)){
@@ -1108,7 +1122,7 @@ for (c in unique(PlatformPolicy$SubCustomer)){
 
         }
     }
-PlatformPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
@@ -1116,9 +1130,10 @@ PlatformPolicy$Graph<-OldGraph
 ```{r DataTables}
 
 #Annual
-PlatformRegimeTable<-ddply(PlatformRegime, 
+USDATLTable<-ddply(USDATL, 
                          .(
                              Fiscal.Year,
+                             SinceFirstFiscalYear,
                              PlatformPortfolio.AnD ,
                              SubCustomer.component,
                              USDATL
@@ -1127,7 +1142,7 @@ PlatformRegimeTable<-ddply(PlatformRegime,
                          Obligation.2014=sum(Obligation.2014)
                          )
 
-write.csv(PlatformRegimeTable,paste("Output\\Platform\\",
+write.csv(USDATLTable,paste("Output\\Platform\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"Platform_sum"
@@ -1139,11 +1154,15 @@ write.csv(PlatformRegimeTable,paste("Output\\Platform\\",
                                   sep=""))
 
 
-#Monthly
 
-PlatformRegimeTable<-ddply(PlatformRegime, 
+#Monthly
+USDATLTable<-ddply(USDATL, 
                          .(
                              SignedMonth,
+                             SignedQuarter,
+                             Quarter,
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
                              PlatformPortfolio.AnD ,
                              SubCustomer.component,
                              USDATL
@@ -1153,7 +1172,7 @@ PlatformRegimeTable<-ddply(PlatformRegime,
                          )
 
 
-PlatformRegimeTable<-ddply(PlatformRegimeTable, 
+USDATLTable<-ddply(USDATLTable, 
                          .( PlatformPortfolio.AnD,
                            SubCustomer.component,
                            USDATL),
@@ -1164,7 +1183,8 @@ PlatformRegimeTable<-ddply(PlatformRegimeTable,
                          )
 
 
-write.csv(PlatformRegimeTable,paste("Output\\Platform\\",
+
+write.csv(USDATLTable,paste("Output\\Platform\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"Platform_sum"
@@ -1176,8 +1196,43 @@ write.csv(PlatformRegimeTable,paste("Output\\Platform\\",
                                   sep=""))
 
 
+
+
+#Quarterly
+USDATLTable<-ddply(USDATLTable, 
+                         .(  SignedQuarter,
+                             Quarter,
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
+                             PlatformPortfolio.AnD ,
+                             SubCustomer.component,
+                             USDATL
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014),
+                         MovingAverage=sum(MovingAverage)
+                         )
+
+
+write.csv(USDATLTable,paste("Output\\Platform\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Platform_sum"
+                                        ,"USDATL"
+                                        ,"Quarterly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+
+
+
+
 #Annual
-PlatformPolicyTable<-ddply(PlatformPolicy, c("Fiscal.Year"
+PolicyTable<-ddply(Policy, c("Fiscal.Year"
+                                             ,"SinceFirstFiscalYear"
                                          ,"PlatformPortfolio.AnD"
                                          ,"SubCustomer.component"
                                          ,"ATLpolicy")
@@ -1186,7 +1241,7 @@ PlatformPolicyTable<-ddply(PlatformPolicy, c("Fiscal.Year"
                          )
 
 
-write.csv(PlatformPolicyTable,paste("Output\\Platform\\",
+write.csv(PolicyTable,paste("Output\\Platform\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"Platform_sum"
@@ -1200,7 +1255,11 @@ write.csv(PlatformPolicyTable,paste("Output\\Platform\\",
 
 #Monthly
 
-PlatformPolicyTable<-ddply(PlatformPolicy, c("SignedMonth"
+PolicyTable<-ddply(Policy, c("SignedMonth"
+                                             ,"SignedQuarter"
+                                             ,"Quarter"
+                                             ,"Fiscal.Year"
+                                             ,"SinceFirstFiscalYear"
                                          ,"PlatformPortfolio.AnD"
                                          ,"SubCustomer.component"
                                          ,"ATLpolicy")
@@ -1208,7 +1267,7 @@ PlatformPolicyTable<-ddply(PlatformPolicy, c("SignedMonth"
                          ,Obligation.2014=sum(Obligation.2014)
                          )
 
-PlatformPolicyTable<-ddply(PlatformPolicyTable, 
+PolicyTable<-ddply(PolicyTable, 
                          .( PlatformPortfolio.AnD,
                            SubCustomer.component,
                            ATLpolicy),
@@ -1219,12 +1278,40 @@ PlatformPolicyTable<-ddply(PlatformPolicyTable,
                          )
 
 
-write.csv(PlatformPolicyTable,paste("Output\\Platform\\",
+write.csv(PolicyTable,paste("Output\\Platform\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"Platform_sum"
                                         ,"ATLpolicy"
                                         ,"Monthly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+#Quarterly
+PolicyTable<-ddply(PolicyTable, 
+                         .(  SignedQuarter,
+                             Quarter,
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
+                             PlatformPortfolio.AnD ,
+                             SubCustomer.component,
+                             ATLpolicy
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014),
+                         MovingAverage=sum(MovingAverage)
+                         )
+
+
+write.csv(PolicyTable,paste("Output\\Platform\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Platform_sum"
+                                        ,"ATLpolicy"
+                                        ,"Quarterly"
                                         ,sep="_"
                                         )
                                   ,".csv",

@@ -15,10 +15,10 @@ require(stringr)
 require(plyr)
 require(lubridate)
 options(error=recover)
-setwd("K:\\Development\\Components")
+# setwd("K:\\Development\\Components")
 # setwd("C:\\Users\\Greg Sanders\\Documents\\Development\\Components")
-Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
-# Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
+# Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
+Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
 source(paste(Path,"lookups.r",sep=""))
 source(paste(Path,"helper.r",sep=""))
 
@@ -57,7 +57,7 @@ You can also embed plots, for example:
 zipfile<-unz("Data\\Defense_Summary_SP_FundingMechanismHistoryBucketPSRSubCustomerRegime.zip",
         "Defense_Summary_SP_FundingMechanismHistoryBucketPSRSubCustomerRegime.csv")
 
-PSRRegime  <- read.csv(
+RawRegime  <- read.csv(
     "Data//Defense_Summary_SP_FundingMechanismHistoryBucketPlatformSubCustomerRegime.csv",
     header = TRUE, sep = ",", dec = ".", strip.white = TRUE, 
     na.strings = c("NULL","NA",""),
@@ -65,24 +65,24 @@ PSRRegime  <- read.csv(
     )
 
 
-PSRRegime<-apply_lookups(Path,PSRRegime)
-PSRRegime<-subset(PSRRegime,ServicesCategory.sum=="Services (Non-R&D)")
+RawRegime<-apply_lookups(Path,RawRegime)
+RawRegime<-subset(RawRegime,ServicesCategory.sum=="Services (Non-R&D)")
 
-str(PSRRegime)
-PSRRegime$USDATL<-factor(PSRRegime$USDATL,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","KENDALL" ),ordered=TRUE )
-PSRRegime<-subset(PSRRegime,USDATL %in% c("YOUNG","CARTER","KENDALL"))
+str(RawRegime)
+RawRegime$USDATL<-factor(RawRegime$USDATL,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","KENDALL" ),ordered=TRUE )
+RawRegime<-subset(RawRegime,USDATL %in% c("YOUNG","CARTER","KENDALL"))
 
-PSRRegime$Graph<-TRUE
+RawRegime$Graph<-TRUE
 
-PSRRegime$SignedQuarter<-as.Date(
-    paste(as.numeric(format(PSRRegime$SignedMonth, "%Y"))+
-              floor(as.numeric(format(PSRRegime$SignedMonth,"%m"))/10),
-          (floor((as.numeric(format(PSRRegime$SignedMonth, "%m"))-1)/3)*3+4) %% 12,
+RawRegime$SignedQuarter<-as.Date(
+    paste(as.numeric(format(RawRegime$SignedMonth, "%Y"))+
+              floor(as.numeric(format(RawRegime$SignedMonth,"%m"))/10),
+          (floor((as.numeric(format(RawRegime$SignedMonth, "%m"))-1)/3)*3+4) %% 12,
           1
           ,sep="-"),"%Y-%m-%d")-1
 
-PSRRegime$SubCustomer.component<-droplevels(PSRRegime$SubCustomer.component)
-PSRRegime$SubCustomer.component<-factor(PSRRegime$SubCustomer.component,
+RawRegime$SubCustomer.component<-droplevels(RawRegime$SubCustomer.component)
+RawRegime$SubCustomer.component<-factor(RawRegime$SubCustomer.component,
                                            levels=c("Army","Navy","Air Force","DLA",
                                                     "MDA","MilitaryHealth",
                                                     "Additional DoD Components"),
@@ -91,20 +91,30 @@ PSRRegime$SubCustomer.component<-factor(PSRRegime$SubCustomer.component,
                                                     "Additional\nDoD\nComponents"),
                                            ordered=TRUE)
 
+
+#Add quarters
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(10:12)] <- "Q1" 
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(1:3)] <- "Q2" 
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(4:6)] <- "Q3" 
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(7:9)] <- "Q4" 
+RawRegime$Quarter<-factor(RawRegime$Quarter,
+                                     levels=c("Q1","Q2","Q3","Q4"),
+                                     ordered=TRUE)
+
 ```
 
 
 ```{r PSRATLregime}
-ATLregimeFYear<-aggregate(PSRRegime$Obligation.2014
-                          , by=list(PSRRegime$Fiscal.Year,
-                                    #                                                   PSRRegime$SubCustomer.component,
-                                    PSRRegime$USDATL)
+ATLregimeFYear<-aggregate(RawRegime$Obligation.2014
+                          , by=list(RawRegime$Fiscal.Year,
+                                    #                                                   RawRegime$SubCustomer.component,
+                                    RawRegime$USDATL)
                           ,FUN = "sum"
                           ,na.rm =TRUE
                           )
 
 names(ATLregimeFYear)<-c("Fiscal.Year","USDATL","AnnualRegimeObligations")
-PSRUSDATL<-subset(PSRRegime,join(PSRRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
+PSRUSDATL<-subset(RawRegime,join(RawRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
 
 
 ATLregimeDetails<-data.frame(USDATL= 'GANSLER+',
@@ -127,7 +137,7 @@ ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'CARTER',
                                                     EndDate=as.Date('2011/11/02',format='%Y/%m/%d')))
 ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
                                                     StartDate=as.Date('2011/11/03',format='%Y/%m/%d'),
-                                                    EndDate=max(PSRRegime$SignedQuarter)))
+                                                    EndDate=max(RawRegime$SignedQuarter)))
 
 
 
@@ -269,24 +279,23 @@ while(!(dev.cur()[[1]]==1)){
 
 
 ```{r PSRATLpolicy}
-rm(PSRUSDATL)
-PSRPolicy<-PSRRegime
-PSRPolicy$ATLpolicy<-as.character(PSRRegime$USDATL)
-PSRPolicy$ATLpolicy[PSRPolicy$USDATL=="CARTER"]<-"CARTER pre-\nSection 808"
-PSRPolicy$ATLpolicy[PSRPolicy$BBP1==1]<-"BBP1"
-PSRPolicy$ATLpolicy[PSRPolicy$ServicesRestriction==1]<-"Section 808\nFY12 NDAA\nImplem."
+Policy<-RawRegime
+Policy$ATLpolicy<-as.character(RawRegime$USDATL)
+Policy$ATLpolicy[Policy$USDATL=="CARTER"]<-"CARTER pre-\nSection 808"
+Policy$ATLpolicy[Policy$BBP1==1]<-"BBP1"
+Policy$ATLpolicy[Policy$ServicesRestriction==1]<-"Section 808\nFY12 NDAA\nImplem."
 
-# PSRPolicy$ATLpolicy[PSRPolicy$ITFsmallBusiness==1]<-"Small Business\nTask Force"
-# PSRPolicy$ATLpolicy[PSRPolicy$BBP2==1]<-"BBP2"
+# Policy$ATLpolicy[Policy$ITFsmallBusiness==1]<-"Small Business\nTask Force"
+# Policy$ATLpolicy[Policy$BBP2==1]<-"BBP2"
 
-PSRPolicy$ATLpolicy[PSRPolicy$BBP3==1]<-"BBP3"
+Policy$ATLpolicy[Policy$BBP3==1]<-"BBP3"
 
-PSRPolicy$ATLpolicy<-factor(PSRPolicy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER\npre-BBP","BBP1","Section 808\nFY12 NDAA\nImplem.","BBP3" ),ordered=TRUE )
+Policy$ATLpolicy<-factor(Policy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER\npre-BBP","BBP1","Section 808\nFY12 NDAA\nImplem.","BBP3" ),ordered=TRUE )
 # 
-# ATLpolicyFYear<-aggregate(PSRPolicy$Obligation.2014
-#                           , by=list(PSRPolicy$Fiscal.Year,
-#                                     #                                                   PSRRegime$SubCustomer.component,
-#                                     PSRPolicy$ATLpolicy)
+# ATLpolicyFYear<-aggregate(Policy$Obligation.2014
+#                           , by=list(Policy$Fiscal.Year,
+#                                     #                                                   RawRegime$SubCustomer.component,
+#                                     Policy$ATLpolicy)
 #                           ,FUN = "sum"
 #                           ,na.rm =TRUE
 #                           )
@@ -294,7 +303,7 @@ PSRPolicy$ATLpolicy<-factor(PSRPolicy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","
 # 
 # 
 # names(ATLpolicyFYear)<-c("Fiscal.Year","ATLpolicy","AnnualPolicyObligations")
-# PSRPolicy<-subset(PSRPolicy,join(PSRPolicy,ATLpolicyFYear)$AnnualPolicyObligations>=50)
+# Policy<-subset(Policy,join(Policy,ATLpolicyFYear)$AnnualPolicyObligations>=50)
 # 
 
 ATLpolicyDetails<-data.frame(ATLpolicy= 'GANSLER+',
@@ -334,7 +343,7 @@ ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'Section 808\nFY1
 
 ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP3',
                                                     StartDate=as.Date('2014/09/19',format='%Y/%m/%d'),
-                                                    EndDate=max(PSRRegime$SignedQuarter)))
+                                                    EndDate=max(RawRegime$SignedQuarter)))
 
 
 
@@ -345,18 +354,18 @@ ATLpolicyDetails$StartFiscalYear<-ymd(
           ,"-10-1",sep=""))
 
 
-PSRPolicy<-join(PSRPolicy,ATLpolicyDetails,match="first")
+Policy<-join(Policy,ATLpolicyDetails,match="first")
 
-PSRPolicy<-subset(PSRPolicy,ATLpolicy!='BBP3') #Not enough to include
+Policy<-subset(Policy,ATLpolicy!='BBP3') #Not enough to include
 
-PSRPolicy$Fiscal.Year[PSRPolicy$Fiscal.Year>PSRPolicy$EndDate&
-                             PSRPolicy$SignedMonth<=PSRPolicy$EndDate]<-
-    PSRPolicy$EndDate[PSRPolicy$Fiscal.Year>PSRPolicy$EndDate&
-                             PSRPolicy$SignedMonth<=PSRPolicy$EndDate]
+Policy$Fiscal.Year[Policy$Fiscal.Year>Policy$EndDate&
+                             Policy$SignedMonth<=Policy$EndDate]<-
+    Policy$EndDate[Policy$Fiscal.Year>Policy$EndDate&
+                             Policy$SignedMonth<=Policy$EndDate]
 
 ```
 
-```{r PSRPolicyMonthlyComponents}        
+```{r PolicyMonthlyComponents}        
 
 png(
     paste( "Output\\PSR_services\\",paste("DoD_components"
@@ -384,7 +393,7 @@ PSRGraph<-LatticePercentLineWrapper(
     ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
     ,Coloration
-    ,PSRPolicy
+    ,Policy
     ,NULL
     ,"SignedMonth"
     ,"Obligation.2014"
@@ -412,7 +421,7 @@ while(!(dev.cur()[[1]]==1)){
 ```
 
 
-```{r PSRPolicyAnnualComponents}
+```{r PolicyAnnualComponents}
 
 png(
     paste( "Output\\PSR_services\\",
@@ -441,7 +450,7 @@ PSRGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,PSRPolicy
+    ,Policy
     ,NULL
     ,"Fiscal.Year"
     ,"Obligation.2014"
@@ -468,7 +477,7 @@ while(!(dev.cur()[[1]]==1)){
 
 ```
 
-```{r PSRPolicyMonthlySummary}
+```{r PolicyMonthlySummary}
 
 
 png(
@@ -500,7 +509,7 @@ PSRGraph<-LatticePercentLineWrapper(
     ,VAR.Coloration=Coloration
     
     
-    ,VAR.long.DF=PSRPolicy
+    ,VAR.long.DF=Policy
     ,VAR.ncol=NA
     ,VAR.x.variable="SignedMonth"
     ,VAR.y.variable="Obligation.2014"
@@ -530,7 +539,7 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r PSRPolicyAnnualSummary}
+```{r PolicyAnnualSummary}
 
 
 png(
@@ -562,7 +571,7 @@ PSRGraph<-LatticePercentLineWrapper(
     ,VAR.Coloration=Coloration
     
     
-    ,VAR.long.DF=PSRPolicy
+    ,VAR.long.DF=Policy
     ,VAR.ncol=NA
     ,VAR.x.variable="Fiscal.Year"
     ,VAR.y.variable="Obligation.2014"
@@ -591,9 +600,9 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r PSRPolicyMonthlyComponentSolitary}
+```{r PolicyMonthlyComponentSolitary}
 
-for (c in unique(PSRPolicy$SubCustomer)){    
+for (c in unique(Policy$SubCustomer)){    
     png(
         paste( "Output\\PSR_services\\",c,"\\",CleanFileName(paste(
             c
@@ -622,7 +631,7 @@ for (c in unique(PSRPolicy$SubCustomer)){
         ,VAR.Coloration=Coloration
         
         
-        ,VAR.long.DF=subset(PSRPolicy,SubCustomer==c)
+        ,VAR.long.DF=subset(Policy,SubCustomer==c)
         ,VAR.ncol=NA
         ,VAR.x.variable="SignedMonth"
         ,VAR.y.variable="Obligation.2014"
@@ -653,9 +662,9 @@ for (c in unique(PSRPolicy$SubCustomer)){
 ```
 
 
-```{r PSRPolicyAnnualComponentSolitary}
+```{r PolicyAnnualComponentSolitary}
 
-for (c in unique(PSRPolicy$SubCustomer)){    
+for (c in unique(Policy$SubCustomer)){    
     png(
         paste("Output\\PSR_services\\",c,"\\",
               CleanFileName(paste(
@@ -685,7 +694,7 @@ for (c in unique(PSRPolicy$SubCustomer)){
         ,VAR.Coloration=Coloration
         
         
-        ,VAR.long.DF=subset(PSRPolicy,SubCustomer==c)
+        ,VAR.long.DF=subset(Policy,SubCustomer==c)
         ,VAR.ncol=NA
         ,VAR.x.variable="Fiscal.Year"
         ,VAR.y.variable="Obligation.2014"
@@ -716,8 +725,13 @@ for (c in unique(PSRPolicy$SubCustomer)){
 
 
 ```{r PrepareHorseTail}
-PSRPolicy$SinceFirstFiscalYear<-as.numeric(as.duration(
-    ymd(PSRPolicy$SignedMonth)-PSRPolicy$StartFiscalYear)
+Policy$SinceFirstFiscalYear<-as.numeric(as.duration(
+    ymd(Policy$SignedMonth)-Policy$StartFiscalYear)
+    /dyears(1)
+    )
+
+PSRUSDATL$SinceFirstFiscalYear<-as.numeric(as.duration(
+    ymd(PSRUSDATL$SignedMonth)-PSRUSDATL$StartFiscalYear)
     /dyears(1)
     )
 
@@ -728,11 +742,11 @@ HorseTailYears<-6
 
 
 
-```{r PSRPolicySeriesHorseTailSummary}
+```{r PolicySeriesHorseTailSummary}
 
-OldGraph<-PSRPolicy$Graph
+OldGraph<-Policy$Graph
 
-for (s in unique(PSRPolicy$ ProductOrServiceArea)){    
+for (s in unique(Policy$ ProductOrServiceArea)){    
     png(
         paste( "Output\\PSR_services\\",
                CleanFileName(paste(
@@ -756,8 +770,8 @@ for (s in unique(PSRPolicy$ ProductOrServiceArea)){
         , res=150
         )
     
-    PSRPolicy$Graph[PSRPolicy$ ProductOrServiceArea!=s]<-FALSE
-    PSRPolicy$Graph[PSRPolicy$ ProductOrServiceArea==s]<-TRUE
+    Policy$Graph[Policy$ ProductOrServiceArea!=s]<-FALSE
+    Policy$Graph[Policy$ ProductOrServiceArea==s]<-TRUE
     
     PSRGraph<-LatticePercentLineWrapper(
         VAR.name="Product Area"
@@ -767,7 +781,7 @@ for (s in unique(PSRPolicy$ ProductOrServiceArea)){
         ,VAR.Coloration=Coloration
         , HorseTail=TRUE
         
-        ,VAR.long.DF=PSRPolicy
+        ,VAR.long.DF=Policy
         ,VAR.ncol=1
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
@@ -798,16 +812,16 @@ for (s in unique(PSRPolicy$ ProductOrServiceArea)){
         }
     }
 
-PSRPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
-```{r PSRPolicySeriesHorseTailComponents}
+```{r PolicySeriesHorseTailComponents}
 
-OldGraph<-PSRPolicy$Graph
+OldGraph<-Policy$Graph
 
-for (s in unique(PSRPolicy$ ProductOrServiceArea)){    
+for (s in unique(Policy$ ProductOrServiceArea)){    
     png(
         paste( "Output\\PSR_services\\",
                CleanFileName(paste(
@@ -831,8 +845,8 @@ for (s in unique(PSRPolicy$ ProductOrServiceArea)){
         , res=150
         )
     
-    PSRPolicy$Graph[PSRPolicy$ ProductOrServiceArea!=s]<-FALSE
-    PSRPolicy$Graph[PSRPolicy$ ProductOrServiceArea==s]<-TRUE
+    Policy$Graph[Policy$ ProductOrServiceArea!=s]<-FALSE
+    Policy$Graph[Policy$ ProductOrServiceArea==s]<-TRUE
     
     PSRGraph<-LatticePercentLineWrapper(
         VAR.name="Product Area"
@@ -842,7 +856,7 @@ for (s in unique(PSRPolicy$ ProductOrServiceArea)){
         ,VAR.Coloration=Coloration
         , HorseTail=TRUE
         
-        ,VAR.long.DF=PSRPolicy
+        ,VAR.long.DF=Policy
         ,VAR.ncol=1
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
@@ -872,17 +886,17 @@ for (s in unique(PSRPolicy$ ProductOrServiceArea)){
         }
     }
 
-PSRPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
-```{r PSRPolicySeriesSpendingBarSummary}
+```{r PolicySeriesSpendingBarSummary}
 
 
-OldGraph<-PSRPolicy$Graph
+OldGraph<-Policy$Graph
 
-for (s in unique(PSRPolicy$ ProductOrServiceArea)){    
+for (s in unique(Policy$ ProductOrServiceArea)){    
     png(
         paste( "Output\\PSR_services\\",
                CleanFileName(paste(
@@ -906,8 +920,8 @@ for (s in unique(PSRPolicy$ ProductOrServiceArea)){
         , res=150
         )
     
-    PSRPolicy$Graph[PSRPolicy$ ProductOrServiceArea!=s]<-FALSE
-    PSRPolicy$Graph[PSRPolicy$ ProductOrServiceArea==s]<-TRUE
+    Policy$Graph[Policy$ ProductOrServiceArea!=s]<-FALSE
+    Policy$Graph[Policy$ ProductOrServiceArea==s]<-TRUE
     
     PSRGraph<-LatticePlotWrapper(
         VAR.name="Product Area"
@@ -915,7 +929,7 @@ for (s in unique(PSRPolicy$ ProductOrServiceArea)){
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(s,"Constant 2014 $ Obligated, Billions")
         ,VAR.Coloration=Coloration
-        ,VAR.long.DF=PSRPolicy
+        ,VAR.long.DF=Policy
         ,VAR.ncol=1
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
@@ -947,18 +961,18 @@ for (s in unique(PSRPolicy$ ProductOrServiceArea)){
         }
     }
 
-PSRPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
 
-```{r PSRPolicySeriesHorseTailComponentSolitary}
+```{r PolicySeriesHorseTailComponentSolitary}
 
-OldGraph<-PSRPolicy$Graph
-for (c in unique(PSRPolicy$SubCustomer)){ 
-    PSRSubCustomer<-subset(PSRPolicy,SubCustomer==c)
-    for (s in unique(PSRPolicy$ ProductOrServiceArea)){    
+OldGraph<-Policy$Graph
+for (c in unique(Policy$SubCustomer)){ 
+    PSRSubCustomer<-subset(Policy,SubCustomer==c)
+    for (s in unique(Policy$ ProductOrServiceArea)){    
         PSRSubCustomer$Graph[PSRSubCustomer$ ProductOrServiceArea!=s]<-FALSE
         PSRSubCustomer$Graph[PSRSubCustomer$ ProductOrServiceArea==s]<-TRUE
         if(any(PSRSubCustomer$Graph==TRUE)){
@@ -1027,19 +1041,19 @@ for (c in unique(PSRPolicy$SubCustomer)){
             }
         }
     }
-PSRPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
 
 
-```{r PSRPolicySeriesSpendingBarComponentSolitary}
+```{r PolicySeriesSpendingBarComponentSolitary}
 
-OldGraph<-PSRPolicy$Graph
-for (c in unique(PSRPolicy$SubCustomer)){ 
-    PSRSubCustomer<-subset(PSRPolicy,SubCustomer==c)
-    for (s in unique(PSRPolicy$ ProductOrServiceArea)){    
+OldGraph<-Policy$Graph
+for (c in unique(Policy$SubCustomer)){ 
+    PSRSubCustomer<-subset(Policy,SubCustomer==c)
+    for (s in unique(Policy$ ProductOrServiceArea)){    
         PSRSubCustomer$Graph[PSRSubCustomer$ ProductOrServiceArea!=s]<-FALSE
         PSRSubCustomer$Graph[PSRSubCustomer$ ProductOrServiceArea==s]<-TRUE
         if(any(PSRSubCustomer$Graph==TRUE)){
@@ -1108,18 +1122,22 @@ for (c in unique(PSRPolicy$SubCustomer)){
 
         }
     }
-PSRPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
+
+
+
 
 
 ```{r DataTables}
 
 #Annual
-PSRRegimeTable<-ddply(PSRRegime, 
+USDATLTable<-ddply(USDATL, 
                          .(
                              Fiscal.Year,
-                             ProductOrServiceArea,
+                             SinceFirstFiscalYear,
+                             ProductOrServiceArea ,
                              SubCustomer.component,
                              USDATL
                              ),
@@ -1127,7 +1145,7 @@ PSRRegimeTable<-ddply(PSRRegime,
                          Obligation.2014=sum(Obligation.2014)
                          )
 
-write.csv(PSRRegimeTable,paste("Output\\PSR_services\\",
+write.csv(USDATLTable,paste("Output\\PSR_services\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"PSR_services"
@@ -1139,12 +1157,16 @@ write.csv(PSRRegimeTable,paste("Output\\PSR_services\\",
                                   sep=""))
 
 
-#Monthly
 
-PSRRegimeTable<-ddply(PSRRegime, 
+#Monthly
+USDATLTable<-ddply(USDATL, 
                          .(
                              SignedMonth,
-                             ProductOrServiceArea,
+                             SignedQuarter,
+                             Quarter,
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
+                             ProductOrServiceArea ,
                              SubCustomer.component,
                              USDATL
                              ),
@@ -1153,7 +1175,7 @@ PSRRegimeTable<-ddply(PSRRegime,
                          )
 
 
-PSRRegimeTable<-ddply(PSRRegimeTable, 
+USDATLTable<-ddply(USDATLTable, 
                          .( ProductOrServiceArea,
                            SubCustomer.component,
                            USDATL),
@@ -1164,7 +1186,8 @@ PSRRegimeTable<-ddply(PSRRegimeTable,
                          )
 
 
-write.csv(PSRRegimeTable,paste("Output\\PSR_services\\",
+
+write.csv(USDATLTable,paste("Output\\PSR_services\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"PSR_services"
@@ -1175,9 +1198,44 @@ write.csv(PSRRegimeTable,paste("Output\\PSR_services\\",
                                   ,".csv",
                                   sep=""))
 
-rm(PSRRegimeTable)
+
+
+
+#Quarterly
+USDATLTable<-ddply(USDATLTable, 
+                         .(  SignedQuarter,
+                             Quarter,
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
+                             ProductOrServiceArea ,
+                             SubCustomer.component,
+                             USDATL
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014),
+                         MovingAverage=sum(MovingAverage)
+                         )
+
+
+write.csv(USDATLTable,paste("Output\\PSR_services\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"PSR_services"
+                                        ,"USDATL"
+                                        ,"Quarterly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+
+
+
+
 #Annual
-PSRPolicyTable<-ddply(PSRPolicy, c("Fiscal.Year"
+PolicyTable<-ddply(Policy, c("Fiscal.Year"
+                                             ,"SinceFirstFiscalYear"
                                          ,"ProductOrServiceArea"
                                          ,"SubCustomer.component"
                                          ,"ATLpolicy")
@@ -1186,7 +1244,7 @@ PSRPolicyTable<-ddply(PSRPolicy, c("Fiscal.Year"
                          )
 
 
-write.csv(PSRPolicyTable,paste("Output\\PSR_services\\",
+write.csv(PolicyTable,paste("Output\\PSR_services\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"PSR_services"
@@ -1200,7 +1258,11 @@ write.csv(PSRPolicyTable,paste("Output\\PSR_services\\",
 
 #Monthly
 
-PSRPolicyTable<-ddply(PSRPolicy, c("SignedMonth"
+PolicyTable<-ddply(Policy, c("SignedMonth"
+                                             ,"SignedQuarter"
+                                             ,"Quarter"
+                                             ,"Fiscal.Year"
+                                             ,"SinceFirstFiscalYear"
                                          ,"ProductOrServiceArea"
                                          ,"SubCustomer.component"
                                          ,"ATLpolicy")
@@ -1208,7 +1270,7 @@ PSRPolicyTable<-ddply(PSRPolicy, c("SignedMonth"
                          ,Obligation.2014=sum(Obligation.2014)
                          )
 
-PSRPolicyTable<-ddply(PSRPolicyTable, 
+PolicyTable<-ddply(PolicyTable, 
                          .( ProductOrServiceArea,
                            SubCustomer.component,
                            ATLpolicy),
@@ -1219,7 +1281,7 @@ PSRPolicyTable<-ddply(PSRPolicyTable,
                          )
 
 
-write.csv(PSRPolicyTable,paste("Output\\PSR_services\\",
+write.csv(PolicyTable,paste("Output\\PSR_services\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"PSR_services"
@@ -1229,6 +1291,34 @@ write.csv(PSRPolicyTable,paste("Output\\PSR_services\\",
                                         )
                                   ,".csv",
                                   sep=""))
-rm(PSRPolicyTable)
+
+
+#Quarterly
+PolicyTable<-ddply(PolicyTable, 
+                         .(  SignedQuarter,
+                             Quarter,
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
+                             ProductOrServiceArea ,
+                             SubCustomer.component,
+                             ATLpolicy
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014),
+                         MovingAverage=sum(MovingAverage)
+                         )
+
+
+write.csv(PolicyTable,paste("Output\\PSR_services\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"PSR_services"
+                                        ,"ATLpolicy"
+                                        ,"Quarterly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
 
 ```

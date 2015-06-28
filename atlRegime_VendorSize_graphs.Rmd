@@ -54,30 +54,30 @@ You can also embed plots, for example:
 
 
 ```{r DateEntryAndProcessing, echo=FALSE}
-VendorRegime  <- read.csv(
+RawRegime  <- read.csv(
     paste("data\\Defense_Vendor_SP_VendorSizeHistoryBucketSubCustomerRegime.csv", sep = ""),
     header = TRUE, sep = ",", dec = ".", strip.white = TRUE, 
     na.strings = c("NULL","NA",""),
     stringsAsFactors = TRUE
     )
 
-VendorRegime<-apply_lookups(Path,VendorRegime)
-names(VendorRegime)
-str(VendorRegime)
-VendorRegime$USDATL<-factor(VendorRegime$USDATL,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","KENDALL" ),ordered=TRUE )
-VendorRegime<-subset(VendorRegime,USDATL %in% c("YOUNG","CARTER","KENDALL"))
+RawRegime<-apply_lookups(Path,RawRegime)
+names(RawRegime)
+str(RawRegime)
+RawRegime$USDATL<-factor(RawRegime$USDATL,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","KENDALL" ),ordered=TRUE )
+RawRegime<-subset(RawRegime,USDATL %in% c("YOUNG","CARTER","KENDALL"))
 
-VendorRegime$Graph<-TRUE
+RawRegime$Graph<-TRUE
 
-VendorRegime$SignedQuarter<-as.Date(
-    paste(as.numeric(format(VendorRegime$SignedMonth, "%Y"))+
-              floor(as.numeric(format(VendorRegime$SignedMonth,"%m"))/10),
-          (floor((as.numeric(format(VendorRegime$SignedMonth, "%m"))-1)/3)*3+4) %% 12,
+RawRegime$SignedQuarter<-as.Date(
+    paste(as.numeric(format(RawRegime$SignedMonth, "%Y"))+
+              floor(as.numeric(format(RawRegime$SignedMonth,"%m"))/10),
+          (floor((as.numeric(format(RawRegime$SignedMonth, "%m"))-1)/3)*3+4) %% 12,
           1
           ,sep="-"),"%Y-%m-%d")-1
 
-VendorRegime$SubCustomer.component<-droplevels(VendorRegime$SubCustomer.component)
-VendorRegime$SubCustomer.component<-factor(VendorRegime$SubCustomer.component,
+RawRegime$SubCustomer.component<-droplevels(RawRegime$SubCustomer.component)
+RawRegime$SubCustomer.component<-factor(RawRegime$SubCustomer.component,
                                            levels=c("Army","Navy","Air Force","DLA",
                                                     "MDA","MilitaryHealth",
                                                     "Additional DoD Components"),
@@ -86,20 +86,29 @@ VendorRegime$SubCustomer.component<-factor(VendorRegime$SubCustomer.component,
                                                     "Additional\nDoD\nComponents"),
                                            ordered=TRUE)
 
+#Add quarters
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(10:12)] <- "Q1" 
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(1:3)] <- "Q2" 
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(4:6)] <- "Q3" 
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(7:9)] <- "Q4" 
+RawRegime$Quarter<-factor(RawRegime$Quarter,
+                                     levels=c("Q1","Q2","Q3","Q4"),
+                                     ordered=TRUE)
+
 ```
 
 
 ```{r VendorATLregime}
-ATLregimeFYear<-aggregate(VendorRegime$Obligation.2014
-                          , by=list(VendorRegime$Fiscal.Year,
-                                    #                                                   VendorRegime$SubCustomer.component,
-                                    VendorRegime$USDATL)
+ATLregimeFYear<-aggregate(RawRegime$Obligation.2014
+                          , by=list(RawRegime$Fiscal.Year,
+                                    #                                                   RawRegime$SubCustomer.component,
+                                    RawRegime$USDATL)
                           ,FUN = "sum"
                           ,na.rm =TRUE
                           )
 
 names(ATLregimeFYear)<-c("Fiscal.Year","USDATL","AnnualRegimeObligations")
-VendorUSDATL<-subset(VendorRegime,join(VendorRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
+USDATL<-subset(RawRegime,join(RawRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
 
 
 ATLregimeDetails<-data.frame(USDATL= 'GANSLER+',
@@ -122,7 +131,7 @@ ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'CARTER',
                                                     EndDate=as.Date('2011/11/02',format='%Y/%m/%d')))
 ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
                                                     StartDate=as.Date('2011/11/03',format='%Y/%m/%d'),
-                                                    EndDate=max(VendorRegime$SignedQuarter)))
+                                                    EndDate=max(RawRegime$SignedQuarter)))
 
 
 
@@ -132,23 +141,23 @@ ATLregimeDetails$StartFiscalYear<-ymd(paste(year(ATLregimeDetails$StartDate)+
 
 
 
-VendorUSDATL<-join(VendorUSDATL,ATLregimeDetails,match="first")
+USDATL<-join(USDATL,ATLregimeDetails,match="first")
 
 
-VendorUSDATL$Fiscal.Year[VendorUSDATL$Fiscal.Year>VendorUSDATL$EndDate&
-                             VendorUSDATL$SignedMonth<=VendorUSDATL$EndDate]<-
-    VendorUSDATL$EndDate[VendorUSDATL$Fiscal.Year>VendorUSDATL$EndDate&
-                             VendorUSDATL$SignedMonth<=VendorUSDATL$EndDate]
+USDATL$Fiscal.Year[USDATL$Fiscal.Year>USDATL$EndDate&
+                             USDATL$SignedMonth<=USDATL$EndDate]<-
+    USDATL$EndDate[USDATL$Fiscal.Year>USDATL$EndDate&
+                             USDATL$SignedMonth<=USDATL$EndDate]
 
-VendorUSDATL$Fiscal.Year[VendorUSDATL$Fiscal.Year<VendorUSDATL$StartDate]<-
-    VendorUSDATL$StartDate[VendorUSDATL$Fiscal.Year<VendorUSDATL$StartDate]
+USDATL$Fiscal.Year[USDATL$Fiscal.Year<USDATL$StartDate]<-
+    USDATL$StartDate[USDATL$Fiscal.Year<USDATL$StartDate]
 
 
 ```
 
 
 
-```{r VendorUSDATLmonthlyComponents}        
+```{r USDATLmonthlyComponents}        
 
 png(
     paste( "Output\\Vendor_Size\\",paste("DoD_components"
@@ -177,7 +186,7 @@ VendorGraph<-LatticePercentLineWrapper(
     ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
     ,Coloration
-    ,VendorUSDATL
+    ,USDATL
     ,NULL
     ,"SignedMonth"
     ,"Obligation.2014"
@@ -206,7 +215,7 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r VendorUSDATLannualComponents}        
+```{r USDATLannualComponents}        
 
 png(
     paste( "Output\\Vendor_Size\\",paste("DoD_components"
@@ -235,7 +244,7 @@ VendorGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,VendorUSDATL
+    ,USDATL
     ,NULL
     ,"Fiscal.Year"
     ,"Obligation.2014"
@@ -264,19 +273,19 @@ while(!(dev.cur()[[1]]==1)){
 
 
 ```{r VendorATLpolicy}
-VendorPolicy<-VendorRegime
-VendorPolicy$ATLpolicy<-as.character(VendorRegime$USDATL)
-VendorPolicy$ATLpolicy[VendorPolicy$USDATL=="CARTER"]<-"CARTER\n pre-IFT"
-VendorPolicy$ATLpolicy[VendorPolicy$ITFsmallBusiness==1]<-"Small Business\nTask Force"
-VendorPolicy$ATLpolicy[VendorPolicy$BBP2==1]<-"BBP2"
-VendorPolicy$ATLpolicy[VendorPolicy$BBP3==1]<-"BBP3"
+Policy<-RawRegime
+Policy$ATLpolicy<-as.character(RawRegime$USDATL)
+Policy$ATLpolicy[Policy$USDATL=="CARTER"]<-"CARTER\n pre-IFT"
+Policy$ATLpolicy[Policy$ITFsmallBusiness==1]<-"Small Business\nTask Force"
+Policy$ATLpolicy[Policy$BBP2==1]<-"BBP2"
+Policy$ATLpolicy[Policy$BBP3==1]<-"BBP3"
 
-VendorPolicy$ATLpolicy<-factor(VendorPolicy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER\n pre-IFT","Small Business\nTask Force","BBP2","BBP3" ),ordered=TRUE )
+Policy$ATLpolicy<-factor(Policy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER\n pre-IFT","Small Business\nTask Force","BBP2","BBP3" ),ordered=TRUE )
 # 
-# ATLpolicyFYear<-aggregate(VendorPolicy$Obligation.2014
-#                           , by=list(VendorPolicy$Fiscal.Year,
-#                                     #                                                   VendorRegime$SubCustomer.component,
-#                                     VendorPolicy$ATLpolicy)
+# ATLpolicyFYear<-aggregate(Policy$Obligation.2014
+#                           , by=list(Policy$Fiscal.Year,
+#                                     #                                                   RawRegime$SubCustomer.component,
+#                                     Policy$ATLpolicy)
 #                           ,FUN = "sum"
 #                           ,na.rm =TRUE
 #                           )
@@ -284,7 +293,7 @@ VendorPolicy$ATLpolicy<-factor(VendorPolicy$ATLpolicy,levels=c("GANSLER+","ALDRI
 # 
 # 
 # names(ATLpolicyFYear)<-c("Fiscal.Year","ATLpolicy","AnnualPolicyObligations")
-# VendorPolicy<-subset(VendorPolicy,join(VendorPolicy,ATLpolicyFYear)$AnnualPolicyObligations>=50)
+# Policy<-subset(Policy,join(Policy,ATLpolicyFYear)$AnnualPolicyObligations>=50)
 # 
 
 ATLpolicyDetails<-data.frame(ATLpolicy= 'GANSLER+',
@@ -320,7 +329,7 @@ ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP2',
                                                     EndDate=as.Date('2014/09/18',format='%Y/%m/%d')))
 ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP3',
                                                     StartDate=as.Date('2014/09/19',format='%Y/%m/%d'),
-                                                    EndDate=max(VendorRegime$SignedQuarter)))
+                                                    EndDate=max(RawRegime$SignedQuarter)))
 
 
 
@@ -331,18 +340,18 @@ ATLpolicyDetails$StartFiscalYear<-ymd(
           ,"-10-1",sep=""))
 
 
-VendorPolicy<-join(VendorPolicy,ATLpolicyDetails,match="first")
+Policy<-join(Policy,ATLpolicyDetails,match="first")
 
-VendorPolicy<-subset(VendorPolicy,ATLpolicy!='BBP3') #Not enough to include
+Policy<-subset(Policy,ATLpolicy!='BBP3') #Not enough to include
 
-VendorPolicy$Fiscal.Year[VendorPolicy$Fiscal.Year>VendorPolicy$EndDate&
-                             VendorPolicy$SignedMonth<=VendorPolicy$EndDate]<-
-    VendorPolicy$EndDate[VendorPolicy$Fiscal.Year>VendorPolicy$EndDate&
-                             VendorPolicy$SignedMonth<=VendorPolicy$EndDate]
+Policy$Fiscal.Year[Policy$Fiscal.Year>Policy$EndDate&
+                             Policy$SignedMonth<=Policy$EndDate]<-
+    Policy$EndDate[Policy$Fiscal.Year>Policy$EndDate&
+                             Policy$SignedMonth<=Policy$EndDate]
 
 ```
 
-```{r VendorPolicyMonthlyComponents}        
+```{r PolicyMonthlyComponents}        
 
 png(
     paste( "Output\\Vendor_Size\\",paste("DoD_components"
@@ -370,7 +379,7 @@ VendorGraph<-LatticePercentLineWrapper(
     ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
     ,Coloration
-    ,VendorPolicy
+    ,Policy
     ,NULL
     ,"SignedMonth"
     ,"Obligation.2014"
@@ -398,7 +407,7 @@ while(!(dev.cur()[[1]]==1)){
 ```
 
 
-```{r VendorPolicyAnnualComponents}
+```{r PolicyAnnualComponents}
 
 png(
     paste( "Output\\Vendor_Size\\",
@@ -427,7 +436,7 @@ VendorGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,VendorPolicy
+    ,Policy
     ,NULL
     ,"Fiscal.Year"
     ,"Obligation.2014"
@@ -454,7 +463,7 @@ while(!(dev.cur()[[1]]==1)){
 
 ```
 
-```{r VendorPolicyMonthlySummary}
+```{r PolicyMonthlySummary}
 
 
 png(
@@ -486,7 +495,7 @@ VendorGraph<-LatticePercentLineWrapper(
     ,VAR.Coloration=Coloration
     
     
-    ,VAR.long.DF=VendorPolicy
+    ,VAR.long.DF=Policy
     ,VAR.ncol=NA
     ,VAR.x.variable="SignedMonth"
     ,VAR.y.variable="Obligation.2014"
@@ -516,7 +525,7 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r VendorPolicyAnnualSummary}
+```{r PolicyAnnualSummary}
 
 
 png(
@@ -548,7 +557,7 @@ VendorGraph<-LatticePercentLineWrapper(
     ,VAR.Coloration=Coloration
     
     
-    ,VAR.long.DF=VendorPolicy
+    ,VAR.long.DF=Policy
     ,VAR.ncol=NA
     ,VAR.x.variable="Fiscal.Year"
     ,VAR.y.variable="Obligation.2014"
@@ -577,9 +586,9 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r VendorPolicyMonthlyComponentSolitary}
+```{r PolicyMonthlyComponentSolitary}
 
-for (c in unique(VendorPolicy$SubCustomer)){    
+for (c in unique(Policy$SubCustomer)){    
     png(
         paste( "Output\\Vendor_Size\\",c,"\\",CleanFileName(paste(
             c
@@ -608,7 +617,7 @@ for (c in unique(VendorPolicy$SubCustomer)){
         ,VAR.Coloration=Coloration
         
         
-        ,VAR.long.DF=subset(VendorPolicy,SubCustomer==c)
+        ,VAR.long.DF=subset(Policy,SubCustomer==c)
         ,VAR.ncol=NA
         ,VAR.x.variable="SignedMonth"
         ,VAR.y.variable="Obligation.2014"
@@ -639,9 +648,9 @@ for (c in unique(VendorPolicy$SubCustomer)){
 ```
 
 
-```{r VendorPolicyAnnualComponentSolitary}
+```{r PolicyAnnualComponentSolitary}
 
-for (c in unique(VendorPolicy$SubCustomer)){    
+for (c in unique(Policy$SubCustomer)){    
     png(
         paste("Output\\Vendor_Size\\",c,"\\",
               CleanFileName(paste(
@@ -671,7 +680,7 @@ for (c in unique(VendorPolicy$SubCustomer)){
         ,VAR.Coloration=Coloration
         
         
-        ,VAR.long.DF=subset(VendorPolicy,SubCustomer==c)
+        ,VAR.long.DF=subset(Policy,SubCustomer==c)
         ,VAR.ncol=NA
         ,VAR.x.variable="Fiscal.Year"
         ,VAR.y.variable="Obligation.2014"
@@ -702,8 +711,14 @@ for (c in unique(VendorPolicy$SubCustomer)){
 
 
 ```{r PrepareHorseTail}
-VendorPolicy$SinceFirstFiscalYear<-as.numeric(as.duration(
-    ymd(VendorPolicy$SignedMonth)-VendorPolicy$StartFiscalYear)
+Policy$SinceFirstFiscalYear<-as.numeric(as.duration(
+    ymd(Policy$SignedMonth)-Policy$StartFiscalYear)
+    /dyears(1)
+    )
+
+
+USDATL$SinceFirstFiscalYear<-as.numeric(as.duration(
+    ymd(USDATL$SignedMonth)-USDATL$StartFiscalYear)
     /dyears(1)
     )
 
@@ -714,11 +729,11 @@ HorseTailYears<-6
 
 
 
-```{r VendorPolicySeriesHorseTailSummary}
+```{r PolicySeriesHorseTailSummary}
 
-OldGraph<-VendorPolicy$Graph
+OldGraph<-Policy$Graph
 
-for (s in unique(VendorPolicy$Vendor.Size.sum)){    
+for (s in unique(Policy$Vendor.Size.sum)){    
     png(
         paste( "Output\\Vendor_Size\\",
                CleanFileName(paste(
@@ -742,8 +757,8 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
         , res=150
         )
     
-    VendorPolicy$Graph[VendorPolicy$Vendor.Size.sum!=s]<-FALSE
-    VendorPolicy$Graph[VendorPolicy$Vendor.Size.sum==s]<-TRUE
+    Policy$Graph[Policy$Vendor.Size.sum!=s]<-FALSE
+    Policy$Graph[Policy$Vendor.Size.sum==s]<-TRUE
     
     VendorGraph<-LatticePercentLineWrapper(
         VAR.name="Vendor Size"
@@ -753,7 +768,7 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
         ,VAR.Coloration=Coloration
         , HorseTail=TRUE
         
-        ,VAR.long.DF=VendorPolicy
+        ,VAR.long.DF=Policy
         ,VAR.ncol=1
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
@@ -784,16 +799,16 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
         }
     }
 
-VendorPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
-```{r VendorPolicySeriesHorseTailComponents}
+```{r PolicySeriesHorseTailComponents}
 
-OldGraph<-VendorPolicy$Graph
+OldGraph<-Policy$Graph
 
-for (s in unique(VendorPolicy$Vendor.Size.sum)){    
+for (s in unique(Policy$Vendor.Size.sum)){    
     png(
         paste( "Output\\Vendor_Size\\",
                CleanFileName(paste(
@@ -817,8 +832,8 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
         , res=150
         )
     
-    VendorPolicy$Graph[VendorPolicy$Vendor.Size.sum!=s]<-FALSE
-    VendorPolicy$Graph[VendorPolicy$Vendor.Size.sum==s]<-TRUE
+    Policy$Graph[Policy$Vendor.Size.sum!=s]<-FALSE
+    Policy$Graph[Policy$Vendor.Size.sum==s]<-TRUE
     
     VendorGraph<-LatticePercentLineWrapper(
         VAR.name="Vendor Size"
@@ -828,7 +843,7 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
         ,VAR.Coloration=Coloration
         , HorseTail=TRUE
         
-        ,VAR.long.DF=VendorPolicy
+        ,VAR.long.DF=Policy
         ,VAR.ncol=1
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
@@ -858,17 +873,17 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
         }
     }
 
-VendorPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
-```{r VendorPolicySeriesSpendingBarSummary}
+```{r PolicySeriesSpendingBarSummary}
 
 
-OldGraph<-VendorPolicy$Graph
+OldGraph<-Policy$Graph
 
-for (s in unique(VendorPolicy$Vendor.Size.sum)){    
+for (s in unique(Policy$Vendor.Size.sum)){    
     png(
         paste( "Output\\Vendor_Size\\",
                CleanFileName(paste(
@@ -892,8 +907,8 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
         , res=150
         )
     
-    VendorPolicy$Graph[VendorPolicy$Vendor.Size.sum!=s]<-FALSE
-    VendorPolicy$Graph[VendorPolicy$Vendor.Size.sum==s]<-TRUE
+    Policy$Graph[Policy$Vendor.Size.sum!=s]<-FALSE
+    Policy$Graph[Policy$Vendor.Size.sum==s]<-TRUE
     
     VendorGraph<-LatticePlotWrapper(
         VAR.name="Vendor Size"
@@ -901,7 +916,7 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(s,"Constant 2014 $ Obligated, Billions")
         ,VAR.Coloration=Coloration
-        ,VAR.long.DF=VendorPolicy
+        ,VAR.long.DF=Policy
         ,VAR.ncol=1
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
@@ -932,18 +947,18 @@ for (s in unique(VendorPolicy$Vendor.Size.sum)){
         }
     }
 
-VendorPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
 
-```{r VendorPolicySeriesHorseTailComponentSolitary}
+```{r PolicySeriesHorseTailComponentSolitary}
 
-OldGraph<-VendorPolicy$Graph
-for (c in unique(VendorPolicy$SubCustomer)){ 
-    VendorSubCustomer<-subset(VendorPolicy,SubCustomer==c)
-    for (s in unique(VendorPolicy$Vendor.Size.sum)){    
+OldGraph<-Policy$Graph
+for (c in unique(Policy$SubCustomer)){ 
+    VendorSubCustomer<-subset(Policy,SubCustomer==c)
+    for (s in unique(Policy$Vendor.Size.sum)){    
         VendorSubCustomer$Graph[VendorSubCustomer$Vendor.Size.sum!=s]<-FALSE
         VendorSubCustomer$Graph[VendorSubCustomer$Vendor.Size.sum==s]<-TRUE
         if(any(VendorSubCustomer$Graph==TRUE)){
@@ -1011,19 +1026,19 @@ for (c in unique(VendorPolicy$SubCustomer)){
             }
         }
     }
-VendorPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
 
 
-```{r VendorPolicySeriesSpendingBarComponentSolitary}
+```{r PolicySeriesSpendingBarComponentSolitary}
 
-OldGraph<-VendorPolicy$Graph
-for (c in unique(VendorPolicy$SubCustomer)){ 
-    VendorSubCustomer<-subset(VendorPolicy,SubCustomer==c)
-    for (s in unique(VendorPolicy$Vendor.Size.sum)){    
+OldGraph<-Policy$Graph
+for (c in unique(Policy$SubCustomer)){ 
+    VendorSubCustomer<-subset(Policy,SubCustomer==c)
+    for (s in unique(Policy$Vendor.Size.sum)){    
         VendorSubCustomer$Graph[VendorSubCustomer$Vendor.Size.sum!=s]<-FALSE
         VendorSubCustomer$Graph[VendorSubCustomer$Vendor.Size.sum==s]<-TRUE
         if(any(VendorSubCustomer$Graph==TRUE)){
@@ -1091,7 +1106,7 @@ for (c in unique(VendorPolicy$SubCustomer)){
 
         }
     }
-VendorPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
@@ -1099,7 +1114,7 @@ VendorPolicy$Graph<-OldGraph
 ```{r DataTables}
 
 #Annual
-VendorRegimeTable<-ddply(VendorRegime, 
+RawRegimeTable<-ddply(RawRegime, 
                          .(
                              Fiscal.Year,
                              Vendor.Size.sum,
@@ -1110,7 +1125,7 @@ VendorRegimeTable<-ddply(VendorRegime,
                          Obligation.2014=sum(Obligation.2014)
                          )
 
-write.csv(VendorRegimeTable,paste("Output\\Vendor_Size\\",
+write.csv(RawRegimeTable,paste("Output\\Vendor_Size\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"Vendor_Size_sum"
@@ -1124,7 +1139,7 @@ write.csv(VendorRegimeTable,paste("Output\\Vendor_Size\\",
 
 #Monthly
 
-VendorRegimeTable<-ddply(VendorRegime, 
+RawRegimeTable<-ddply(RawRegime, 
                          .(
                              SignedMonth,
                              Vendor.Size.sum,
@@ -1136,7 +1151,7 @@ VendorRegimeTable<-ddply(VendorRegime,
                          )
 
 
-VendorRegimeTable<-ddply(VendorRegimeTable, 
+RawRegimeTable<-ddply(RawRegimeTable, 
                          .(Vendor.Size.sum,
                            SubCustomer.component,
                            USDATL),
@@ -1147,7 +1162,7 @@ VendorRegimeTable<-ddply(VendorRegimeTable,
                          )
 
 
-write.csv(VendorRegimeTable,paste("Output\\Vendor_Size\\",
+write.csv(RawRegimeTable,paste("Output\\Vendor_Size\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"Vendor_Size_sum"
@@ -1160,7 +1175,7 @@ write.csv(VendorRegimeTable,paste("Output\\Vendor_Size\\",
 
 
 #Annual
-VendorPolicyTable<-ddply(VendorPolicy, c("Fiscal.Year"
+PolicyTable<-ddply(Policy, c("Fiscal.Year"
                                          ,"Vendor.Size.sum"
                                          ,"SubCustomer.component"
                                          ,"ATLpolicy")
@@ -1169,7 +1184,7 @@ VendorPolicyTable<-ddply(VendorPolicy, c("Fiscal.Year"
                          )
 
 
-write.csv(VendorPolicyTable,paste("Output\\Vendor_Size\\",
+write.csv(PolicyTable,paste("Output\\Vendor_Size\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"Vendor_Size_sum"
@@ -1183,7 +1198,7 @@ write.csv(VendorPolicyTable,paste("Output\\Vendor_Size\\",
 
 #Monthly
 
-VendorPolicyTable<-ddply(VendorPolicy, c("SignedMonth"
+PolicyTable<-ddply(Policy, c("SignedMonth"
                                          ,"Vendor.Size.sum"
                                          ,"SubCustomer.component"
                                          ,"ATLpolicy")
@@ -1191,7 +1206,7 @@ VendorPolicyTable<-ddply(VendorPolicy, c("SignedMonth"
                          ,Obligation.2014=sum(Obligation.2014)
                          )
 
-VendorPolicyTable<-ddply(VendorPolicyTable, 
+PolicyTable<-ddply(PolicyTable, 
                          .(Vendor.Size.sum,
                            SubCustomer.component,
                            ATLpolicy),
@@ -1202,12 +1217,206 @@ VendorPolicyTable<-ddply(VendorPolicyTable,
                          )
 
 
-write.csv(VendorPolicyTable,paste("Output\\Vendor_Size\\",
+write.csv(PolicyTable,paste("Output\\Vendor_Size\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"Vendor_Size_sum"
                                         ,"ATLpolicy"
                                         ,"Monthly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+```
+
+
+```{r DataTables}
+
+#Annual
+USDATLTable<-ddply(USDATL, 
+                         .(
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
+                             Vendor.Size.sum,
+                             SubCustomer.component,
+                             USDATL
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014)
+                         )
+
+write.csv(USDATLTable,paste("Output\\Vendor_Size\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Vendor_Size"
+                                        ,"USDATL"
+                                        ,"Annual"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+
+#Monthly
+USDATLTable<-ddply(USDATL, 
+                         .(
+                             SignedMonth,
+                             SignedQuarter,
+                             Quarter,
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
+                             Vendor.Size.sum,
+                             SubCustomer.component,
+                             USDATL
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014)
+                         )
+
+
+USDATLTable<-ddply(USDATLTable, 
+                         .( Vendor.Size.sum,
+                           SubCustomer.component,
+                           USDATL),
+                         .fun=TransformFilter,
+                         MovingAverage=3,
+                         MovingSides=1,
+                         Source="Obligation.2014"
+                         )
+
+
+
+write.csv(USDATLTable,paste("Output\\Vendor_Size\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Vendor_Size"
+                                        ,"USDATL"
+                                        ,"Monthly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+
+
+#Quarterly
+USDATLTable<-ddply(USDATLTable, 
+                         .(  SignedQuarter,
+                             Quarter,
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
+                             Vendor.Size.sum,
+                             SubCustomer.component,
+                             USDATL
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014),
+                         MovingAverage=sum(MovingAverage)
+                         )
+
+
+write.csv(USDATLTable,paste("Output\\Vendor_Size\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Vendor_Size"
+                                        ,"USDATL"
+                                        ,"Quarterly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+
+
+
+
+#Annual
+PolicyTable<-ddply(Policy, c("Fiscal.Year"
+                                             ,"SinceFirstFiscalYear"
+                                         ,"Vendor.Size.sum"
+                                         ,"SubCustomer.component"
+                                         ,"ATLpolicy")
+                         ,summarise
+                         ,Obligation.2014=sum(Obligation.2014)
+                         )
+
+
+write.csv(PolicyTable,paste("Output\\Vendor_Size\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Vendor_Size"
+                                        ,"ATLpolicy"
+                                        ,"Annual"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+#Monthly
+
+PolicyTable<-ddply(Policy, c("SignedMonth"
+                                             ,"SignedQuarter"
+                                             ,"Quarter"
+                                             ,"Fiscal.Year"
+                                             ,"SinceFirstFiscalYear"
+                                         ,"Vendor.Size.sum"
+                                         ,"SubCustomer.component"
+                                         ,"ATLpolicy")
+                         ,summarise
+                         ,Obligation.2014=sum(Obligation.2014)
+                         )
+
+PolicyTable<-ddply(PolicyTable, 
+                         .( Vendor.Size.sum,
+                           SubCustomer.component,
+                           ATLpolicy),
+                         .fun=TransformFilter,
+                         MovingAverage=3,
+                         MovingSides=1,
+                         Source="Obligation.2014"
+                         )
+
+
+write.csv(PolicyTable,paste("Output\\Vendor_Size\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Vendor_Size"
+                                        ,"ATLpolicy"
+                                        ,"Monthly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+#Quarterly
+PolicyTable<-ddply(PolicyTable, 
+                         .(  SignedQuarter,
+                             Quarter,
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
+                             Vendor.Size.sum,
+                             SubCustomer.component,
+                             ATLpolicy
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014),
+                         MovingAverage=sum(MovingAverage)
+                         )
+
+
+write.csv(PolicyTable,paste("Output\\Vendor_Size\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Vendor_Size"
+                                        ,"ATLpolicy"
+                                        ,"Quarterly"
                                         ,sep="_"
                                         )
                                   ,".csv",

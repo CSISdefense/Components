@@ -38,7 +38,7 @@ You can also embed plots, for example:
 ```{r DateEntryAndProcessing, echo=FALSE}
 ## ("Data\\defense_summary_SP_CompetitionHistoryBucketSubCustomerRegime.csv", sep = """) Neither the computer nor myself can find this file in (K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\Data)
 
-CompRegime  <- read.csv(
+RawRegime  <- read.csv(
     unz("Data\\Defense_Summary_SP_CompetitionVehicleHistoryBucketSubCustomerRegime.zip",
         "Defense_Summary_SP_CompetitionVehicleHistoryBucketSubCustomerRegime.csv"),
 #     "Data\\defense_summary_SP_CompetitionHistoryBucketSubCustomerRegime.csv",
@@ -47,11 +47,11 @@ CompRegime  <- read.csv(
     stringsAsFactors = TRUE
     )
 
-CompRegime<-apply_lookups(Path,CompRegime)
-names(CompRegime)
-str(CompRegime)
-CompRegime$USDATL<-factor(CompRegime$USDATL,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","KENDALL" ),ordered=TRUE )
-CompRegime<-subset(CompRegime,USDATL %in% c("YOUNG","CARTER","KENDALL"))
+RawRegime<-apply_lookups(Path,RawRegime)
+names(RawRegime)
+str(RawRegime)
+RawRegime$USDATL<-factor(RawRegime$USDATL,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER","KENDALL" ),ordered=TRUE )
+RawRegime<-subset(RawRegime,USDATL %in% c("YOUNG","CARTER","KENDALL"))
 
 
 Coloration<-read.csv(
@@ -70,30 +70,39 @@ Coloration<-ddply(Coloration
                   )
 
 # debug(LatticePercentLineWrapper)
-CompRegime$Graph<-TRUE
+RawRegime$Graph<-TRUE
 
-CompRegime$SignedQuarter<-as.Date(paste(as.numeric(format(CompRegime$SignedMonth, "%Y"))+
-                                                  floor(as.numeric(format(CompRegime$SignedMonth,"%m"))/10),
-    (floor((as.numeric(format(CompRegime$SignedMonth, "%m"))-1)/3)*3+4) %% 12,
+RawRegime$SignedQuarter<-as.Date(paste(as.numeric(format(RawRegime$SignedMonth, "%Y"))+
+                                                  floor(as.numeric(format(RawRegime$SignedMonth,"%m"))/10),
+    (floor((as.numeric(format(RawRegime$SignedMonth, "%m"))-1)/3)*3+4) %% 12,
     1
       ,sep="-"),"%Y-%m-%d")-1
 
-CompRegime$SubCustomer.component<-droplevels(CompRegime$SubCustomer.component)
-CompRegime$SubCustomer.component<-factor(CompRegime$SubCustomer.component,
+RawRegime$SubCustomer.component<-droplevels(RawRegime$SubCustomer.component)
+RawRegime$SubCustomer.component<-factor(RawRegime$SubCustomer.component,
                                                levels=c("Army","Navy","Air Force","DLA",
                                                         "MDA","MilitaryHealth","Additional DoD Components"),
                                                labels=c("Army","Navy","Air Force","DLA",
                                                         "MDA","Military\nHealth","Additional\nDoD\nComponents"),
                                                ordered=TRUE)
-                                                                                               
+                                              
+#Add quarters
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(10:12)] <- "Q1" 
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(1:3)] <- "Q2" 
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(4:6)] <- "Q3" 
+RawRegime$Quarter[month(RawRegime$SignedMonth) %in% c(7:9)] <- "Q4" 
+RawRegime$Quarter<-factor(RawRegime$Quarter,
+                                     levels=c("Q1","Q2","Q3","Q4"),
+                                     ordered=TRUE)
+
 ```
 
 
 ```{r CompATLregime}
-ATLregimeFYear<-aggregate(CompRegime$Obligation.2014
-                          , by=list(CompRegime$Fiscal.Year,
-                                    #                                                   CompRegime$SubCustomer.component,
-                                    CompRegime$USDATL)
+ATLregimeFYear<-aggregate(RawRegime$Obligation.2014
+                          , by=list(RawRegime$Fiscal.Year,
+                                    #                                                   RawRegime$SubCustomer.component,
+                                    RawRegime$USDATL)
                           ,FUN = "sum"
                           ,na.rm =TRUE
                           )
@@ -101,7 +110,7 @@ ATLregimeFYear<-aggregate(CompRegime$Obligation.2014
 names(ATLregimeFYear)<-c("Fiscal.Year","USDATL","AnnualRegimeObligations")
 
 
-CompUSDATL<-subset(CompRegime,join(CompRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
+USDATL<-subset(RawRegime,join(RawRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
 
 
 ATLregimeDetails<-data.frame(USDATL= 'GANSLER+',
@@ -124,7 +133,7 @@ ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'CARTER',
                                                     EndDate=as.Date('2011/11/02',format='%Y/%m/%d')))
 ATLregimeDetails<-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
                                                     StartDate=as.Date('2011/11/03',format='%Y/%m/%d'),
-                                                    EndDate=max(CompRegime$SignedQuarter)))
+                                                    EndDate=max(RawRegime$SignedQuarter)))
 
 
 ATLregimeDetails$StartFiscalYear<-ymd(paste(year(ATLregimeDetails$StartDate)+
@@ -132,19 +141,19 @@ ATLregimeDetails$StartFiscalYear<-ymd(paste(year(ATLregimeDetails$StartDate)+
                                             ,"-10-1",sep=""))
 
 
-CompUSDATL<-join(CompUSDATL,ATLregimeDetails,match="first")
+USDATL<-join(USDATL,ATLregimeDetails,match="first")
 
-CompUSDATL$Fiscal.Year[CompUSDATL$Fiscal.Year>CompUSDATL$EndDate&
-                                      CompUSDATL$SignedMonth<=CompUSDATL$EndDate]<-
-    CompUSDATL$EndDate[CompUSDATL$Fiscal.Year>CompUSDATL$EndDate&
-                                      CompUSDATL$SignedMonth<=CompUSDATL$EndDate]
+USDATL$Fiscal.Year[USDATL$Fiscal.Year>USDATL$EndDate&
+                                      USDATL$SignedMonth<=USDATL$EndDate]<-
+    USDATL$EndDate[USDATL$Fiscal.Year>USDATL$EndDate&
+                                      USDATL$SignedMonth<=USDATL$EndDate]
 
-CompUSDATL$Fiscal.Year[CompUSDATL$Fiscal.Year<CompUSDATL$StartDate]<-
-    CompUSDATL$StartDate[CompUSDATL$Fiscal.Year<CompUSDATL$StartDate]
+USDATL$Fiscal.Year[USDATL$Fiscal.Year<USDATL$StartDate]<-
+    USDATL$StartDate[USDATL$Fiscal.Year<USDATL$StartDate]
 
 ```
 
-```{r CompUSDATLmonthlyComponents}        
+```{r USDATLmonthlyComponents}        
     
 png(
     paste( "Output\\Competition\\",paste("DoD_components"
@@ -173,7 +182,7 @@ CompGraph<-LatticePercentLineWrapper(
     ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
     ,Coloration
-    ,CompUSDATL
+    ,USDATL
     ,NULL
     ,"SignedMonth"
     ,"Obligation.2014"
@@ -202,7 +211,7 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r CompUSDATLannualComponents}        
+```{r USDATLannualComponents}        
 
 png(
     paste( "Output\\Competition\\",paste("DoD_components"
@@ -231,7 +240,7 @@ CompGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,CompUSDATL
+    ,USDATL
     ,NULL
     ,"Fiscal.Year"
     ,"Obligation.2014"
@@ -260,7 +269,7 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r CompUSDATLAnnual}        
+```{r USDATLAnnual}        
 
 # 
 # png(
@@ -293,7 +302,7 @@ while(!(dev.cur()[[1]]==1)){
 #     ,Coloration
 # 
 # 
-#     ,CompUSDATL
+#     ,USDATL
 #     ,NULL
 #     ,"Fiscal.Year"
 #     ,"Obligation.2014"
@@ -322,7 +331,7 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r CompUSDATLAnnualComponentsEffective}        
+```{r USDATLAnnualComponentsEffective}        
 png(
     paste( "Output\\Competition\\", 
            paste("DoD_components"
@@ -353,7 +362,7 @@ CompGraph<-LatticePercentLineWrapper(
     ,Coloration
 
 
-    ,CompUSDATL
+    ,USDATL
     ,NULL
     ,"Fiscal.Year"
     ,"Obligation.2014"
@@ -411,7 +420,7 @@ CompGraph<-LatticePercentLineWrapper(
     ,VAR.Coloration=Coloration
 
 
-    ,VAR.long.DF=CompUSDATL
+    ,VAR.long.DF=USDATL
     ,VAR.ncol=1
     ,VAR.x.variable="Fiscal.Year"
     ,VAR.y.variable="Obligation.2014"
@@ -434,19 +443,19 @@ CompGraph
 ```
 
 ```{r CompATLpolicy}
-CompPolicy<-CompRegime
-CompPolicy$ATLpolicy<-as.character(CompRegime$USDATL)
-CompPolicy$ATLpolicy[CompPolicy$USDATL=="CARTER"]<-"CARTER\npre-BBP"
-CompPolicy$ATLpolicy[CompPolicy$BBP1==1]<-"BBP1"
-CompPolicy$ATLpolicy[CompPolicy$BBP2==1]<-"BBP2"
-CompPolicy$ATLpolicy[CompPolicy$BBP3==1]<-"BBP3"
+Policy<-RawRegime
+Policy$ATLpolicy<-as.character(RawRegime$USDATL)
+Policy$ATLpolicy[Policy$USDATL=="CARTER"]<-"CARTER\npre-BBP"
+Policy$ATLpolicy[Policy$BBP1==1]<-"BBP1"
+Policy$ATLpolicy[Policy$BBP2==1]<-"BBP2"
+Policy$ATLpolicy[Policy$BBP3==1]<-"BBP3"
 
-CompPolicy$ATLpolicy<-factor(CompPolicy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER\npre-BBP","BBP1","BBP2","BBP3" ),ordered=TRUE )
+Policy$ATLpolicy<-factor(Policy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE","WYNNE","KRIEG","YOUNG", "CARTER\npre-BBP","BBP1","BBP2","BBP3" ),ordered=TRUE )
 # 
-# ATLpolicyFYear<-aggregate(CompPolicy$Obligation.2014
-#                           , by=list(CompPolicy$Fiscal.Year,
-#                                     #                                                   CompRegime$SubCustomer.component,
-#                                     CompPolicy$ATLpolicy)
+# ATLpolicyFYear<-aggregate(Policy$Obligation.2014
+#                           , by=list(Policy$Fiscal.Year,
+#                                     #                                                   RawRegime$SubCustomer.component,
+#                                     Policy$ATLpolicy)
 #                           ,FUN = "sum"
 #                           ,na.rm =TRUE
 #                           )
@@ -454,7 +463,7 @@ CompPolicy$ATLpolicy<-factor(CompPolicy$ATLpolicy,levels=c("GANSLER+","ALDRIDGE"
 # 
 # 
 # names(ATLpolicyFYear)<-c("Fiscal.Year","ATLpolicy","AnnualPolicyObligations")
-# CompPolicy<-subset(CompPolicy,join(CompPolicy,ATLpolicyFYear)$AnnualPolicyObligations>=50)
+# Policy<-subset(Policy,join(Policy,ATLpolicyFYear)$AnnualPolicyObligations>=50)
 # 
 
 ATLpolicyDetails<-data.frame(ATLpolicy= 'GANSLER+',
@@ -486,34 +495,34 @@ ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP2',
                                                     EndDate=as.Date('2014/09/18',format='%Y/%m/%d')))
 ATLpolicyDetails<-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP3',
                                                     StartDate=as.Date('2014/09/19',format='%Y/%m/%d'),
-                                                    EndDate=max(CompRegime$SignedQuarter)))
+                                                    EndDate=max(RawRegime$SignedQuarter)))
 
 
 ATLpolicyDetails$StartFiscalYear<-ymd(paste(year(ATLpolicyDetails$StartDate)+
                                                 ifelse(month(ATLpolicyDetails$StartDate)<10,-1,0)
                                             ,"-10-1",sep=""))
 
-CompPolicy<-join(CompPolicy,ATLpolicyDetails,match="first")
-CompPolicy<-subset(CompPolicy,ATLpolicy!='BBP3') #Not enough to include
-CompPolicy$SignedSemiAnnual[CompPolicy$SignedSemiAnnual>CompPolicy$EndDate&
-                                      CompPolicy$SignedMonth<=CompPolicy$EndDate]<-
-    CompPolicy$EndDate[CompPolicy$SignedSemiAnnual>CompPolicy$EndDate&
-                                      CompPolicy$SignedMonth<=CompPolicy$EndDate]
-CompPolicy$SignedSemiAnnual[CompPolicy$SignedSemiAnnual<CompPolicy$StartDate]<-
-    CompPolicy$StartDate[CompPolicy$SignedSemiAnnual<CompPolicy$StartDate]
+Policy<-join(Policy,ATLpolicyDetails,match="first")
+Policy<-subset(Policy,ATLpolicy!='BBP3') #Not enough to include
+Policy$SignedSemiAnnual[Policy$SignedSemiAnnual>Policy$EndDate&
+                                      Policy$SignedMonth<=Policy$EndDate]<-
+    Policy$EndDate[Policy$SignedSemiAnnual>Policy$EndDate&
+                                      Policy$SignedMonth<=Policy$EndDate]
+Policy$SignedSemiAnnual[Policy$SignedSemiAnnual<Policy$StartDate]<-
+    Policy$StartDate[Policy$SignedSemiAnnual<Policy$StartDate]
 
-CompPolicy$Fiscal.Year[CompPolicy$Fiscal.Year>CompPolicy$EndDate&
-                                      CompPolicy$SignedMonth<=CompPolicy$EndDate]<-
-    CompPolicy$EndDate[CompPolicy$Fiscal.Year>CompPolicy$EndDate&
-                                      CompPolicy$SignedMonth<=CompPolicy$EndDate]
-CompPolicy$SignedFiscal.Year[CompPolicy$SignedFiscal.Year<CompPolicy$StartDate]<-
-    CompPolicy$StartDate[CompPolicy$SignedFiscal.Year<CompPolicy$StartDate]
+Policy$Fiscal.Year[Policy$Fiscal.Year>Policy$EndDate&
+                                      Policy$SignedMonth<=Policy$EndDate]<-
+    Policy$EndDate[Policy$Fiscal.Year>Policy$EndDate&
+                                      Policy$SignedMonth<=Policy$EndDate]
+Policy$SignedFiscal.Year[Policy$SignedFiscal.Year<Policy$StartDate]<-
+    Policy$StartDate[Policy$SignedFiscal.Year<Policy$StartDate]
 
 
 
 ```
 
-```{r CompPolicyMonthlyComponents}        
+```{r PolicyMonthlyComponents}        
 
 png(
     paste( "Output\\Competition\\",paste("DoD_components"
@@ -541,7 +550,7 @@ CompGraph<-LatticePercentLineWrapper(
     ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
     ,Coloration
-    ,CompPolicy
+    ,Policy
     ,NULL
     ,"SignedMonth"
     ,"Obligation.2014"
@@ -569,7 +578,7 @@ while(!(dev.cur()[[1]]==1)){
 ```
 
 
-```{r CompPolicyAnnualComponents}
+```{r PolicyAnnualComponents}
 
 png(
     paste( "Output\\Competition\\",
@@ -598,7 +607,7 @@ CompGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,CompPolicy
+    ,Policy
     ,NULL
     ,"Fiscal.Year"
     ,"Obligation.2014"
@@ -625,7 +634,7 @@ while(!(dev.cur()[[1]]==1)){
 
 ```
 
-```{r CompPolicyMonthlySummary}
+```{r PolicyMonthlySummary}
 
 
 png(
@@ -657,7 +666,7 @@ CompGraph<-LatticePercentLineWrapper(
     ,VAR.Coloration=Coloration
     
     
-    ,VAR.long.DF=CompPolicy
+    ,VAR.long.DF=Policy
     ,VAR.ncol=NA
     ,VAR.x.variable="SignedMonth"
     ,VAR.y.variable="Obligation.2014"
@@ -687,7 +696,7 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r CompPolicyAnnualSummary}
+```{r PolicyAnnualSummary}
 
 
 png(
@@ -719,7 +728,7 @@ CompGraph<-LatticePercentLineWrapper(
     ,VAR.Coloration=Coloration
     
     
-    ,VAR.long.DF=CompPolicy
+    ,VAR.long.DF=Policy
     ,VAR.ncol=NA
     ,VAR.x.variable="Fiscal.Year"
     ,VAR.y.variable="Obligation.2014"
@@ -748,9 +757,9 @@ while(!(dev.cur()[[1]]==1)){
 
 
 
-```{r CompPolicyMonthlyComponentSolitary}
+```{r PolicyMonthlyComponentSolitary}
 
-for (c in unique(CompPolicy$SubCustomer)){    
+for (c in unique(Policy$SubCustomer)){    
     png(
         paste( "Output\\Competition\\",c,"\\",paste(
             c
@@ -779,7 +788,7 @@ for (c in unique(CompPolicy$SubCustomer)){
         ,VAR.Coloration=Coloration
         
         
-        ,VAR.long.DF=subset(CompPolicy,SubCustomer==c)
+        ,VAR.long.DF=subset(Policy,SubCustomer==c)
         ,VAR.ncol=NA
         ,VAR.x.variable="SignedMonth"
         ,VAR.y.variable="Obligation.2014"
@@ -810,9 +819,9 @@ for (c in unique(CompPolicy$SubCustomer)){
 ```
 
 
-```{r CompPolicyAnnualComponentSolitary}
+```{r PolicyAnnualComponentSolitary}
 
-for (c in unique(CompPolicy$SubCustomer)){    
+for (c in unique(Policy$SubCustomer)){    
     png(
         paste("Output\\Competition\\",c,"\\",
               paste(
@@ -842,7 +851,7 @@ for (c in unique(CompPolicy$SubCustomer)){
         ,VAR.Coloration=Coloration
         
         
-        ,VAR.long.DF=subset(CompPolicy,SubCustomer==c)
+        ,VAR.long.DF=subset(Policy,SubCustomer==c)
         ,VAR.ncol=NA
         ,VAR.x.variable="Fiscal.Year"
         ,VAR.y.variable="Obligation.2014"
@@ -874,8 +883,14 @@ for (c in unique(CompPolicy$SubCustomer)){
 
 ```{r PrepareHorseTail}
 
-CompPolicy$SinceFirstFiscalYear<-as.numeric(as.duration(
-    ymd(CompPolicy$SignedMonth)-CompPolicy$StartFiscalYear)
+Policy$SinceFirstFiscalYear<-as.numeric(as.duration(
+    ymd(Policy$SignedMonth)-Policy$StartFiscalYear)
+    /dyears(1)
+    )
+
+
+USDATL$SinceFirstFiscalYear<-as.numeric(as.duration(
+    ymd(USDATL$SignedMonth)-USDATL$StartFiscalYear)
     /dyears(1)
     )
 
@@ -886,11 +901,11 @@ HorseTailYears<-6
 
 
 
-```{r CompPolicySeriesHorseTailSummary}
+```{r PolicySeriesHorseTailSummary}
 
-OldGraph<-CompPolicy$Graph
+OldGraph<-Policy$Graph
 
-for (s in unique(CompPolicy$Competition.effective.only)){    
+for (s in unique(Policy$Competition.effective.only)){    
     png(
         paste( "Output\\Competition\\",
                paste(
@@ -914,8 +929,8 @@ for (s in unique(CompPolicy$Competition.effective.only)){
         , res=150
         )
     
-    CompPolicy$Graph[CompPolicy$Competition.effective.only!=s]<-FALSE
-    CompPolicy$Graph[CompPolicy$Competition.effective.only==s]<-TRUE
+    Policy$Graph[Policy$Competition.effective.only!=s]<-FALSE
+    Policy$Graph[Policy$Competition.effective.only==s]<-TRUE
     
     CompGraph<-LatticePercentLineWrapper(
         VAR.name="Competition"
@@ -925,7 +940,7 @@ for (s in unique(CompPolicy$Competition.effective.only)){
         ,VAR.Coloration=Coloration
         , HorseTail=TRUE
         
-        ,VAR.long.DF=CompPolicy
+        ,VAR.long.DF=Policy
         ,VAR.ncol=1
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
@@ -956,16 +971,16 @@ for (s in unique(CompPolicy$Competition.effective.only)){
         }
     }
 
-CompPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
-```{r CompPolicySeriesHorseTailComponents}
+```{r PolicySeriesHorseTailComponents}
 
-OldGraph<-CompPolicy$Graph
+OldGraph<-Policy$Graph
 
-for (s in unique(CompPolicy$Competition.effective.only)){    
+for (s in unique(Policy$Competition.effective.only)){    
     png(
         paste( "Output\\Competition\\",
                paste(
@@ -989,8 +1004,8 @@ for (s in unique(CompPolicy$Competition.effective.only)){
         , res=150
         )
     
-    CompPolicy$Graph[CompPolicy$Competition.effective.only!=s]<-FALSE
-    CompPolicy$Graph[CompPolicy$Competition.effective.only==s]<-TRUE
+    Policy$Graph[Policy$Competition.effective.only!=s]<-FALSE
+    Policy$Graph[Policy$Competition.effective.only==s]<-TRUE
     
     CompGraph<-LatticePercentLineWrapper(
         VAR.name="Competition"
@@ -1000,7 +1015,7 @@ for (s in unique(CompPolicy$Competition.effective.only)){
         ,VAR.Coloration=Coloration
         , HorseTail=TRUE
         
-        ,VAR.long.DF=CompPolicy
+        ,VAR.long.DF=Policy
         ,VAR.ncol=1
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
@@ -1030,17 +1045,17 @@ for (s in unique(CompPolicy$Competition.effective.only)){
         }
     }
 
-CompPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
-```{r CompPolicySeriesSpendingBarSummary}
+```{r PolicySeriesSpendingBarSummary}
 
 
-OldGraph<-CompPolicy$Graph
+OldGraph<-Policy$Graph
 
-for (s in unique(CompPolicy$Competition.effective.only)){    
+for (s in unique(Policy$Competition.effective.only)){    
     png(
         paste( "Output\\Competition\\",
                paste(
@@ -1064,8 +1079,8 @@ for (s in unique(CompPolicy$Competition.effective.only)){
         , res=150
         )
     
-    CompPolicy$Graph[CompPolicy$Competition.effective.only!=s]<-FALSE
-    CompPolicy$Graph[CompPolicy$Competition.effective.only==s]<-TRUE
+    Policy$Graph[Policy$Competition.effective.only!=s]<-FALSE
+    Policy$Graph[Policy$Competition.effective.only==s]<-TRUE
     
     CompGraph<-LatticePlotWrapper(
         VAR.name="Competition"
@@ -1073,7 +1088,7 @@ for (s in unique(CompPolicy$Competition.effective.only)){
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(s,"Constant 2014 $ Obligated, Billions")
         ,VAR.Coloration=Coloration
-        ,VAR.long.DF=CompPolicy
+        ,VAR.long.DF=Policy
         ,VAR.ncol=1
         ,VAR.x.variable="SinceFirstFiscalYear"#SignedMonth
         ,VAR.y.variable="Obligation.2014"
@@ -1104,18 +1119,18 @@ for (s in unique(CompPolicy$Competition.effective.only)){
         }
     }
 
-CompPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
 
-```{r CompPolicySeriesHorseTailComponentSolitary}
+```{r PolicySeriesHorseTailComponentSolitary}
 
-OldGraph<-CompPolicy$Graph
-for (c in unique(CompPolicy$SubCustomer)){ 
-    CompSubCustomer<-subset(CompPolicy,SubCustomer==c)
-    for (s in unique(CompPolicy$Competition.effective.only)){    
+OldGraph<-Policy$Graph
+for (c in unique(Policy$SubCustomer)){ 
+    CompSubCustomer<-subset(Policy,SubCustomer==c)
+    for (s in unique(Policy$Competition.effective.only)){    
         CompSubCustomer$Graph[CompSubCustomer$Competition.effective.only!=s]<-FALSE
         CompSubCustomer$Graph[CompSubCustomer$Competition.effective.only==s]<-TRUE
         if(any(CompSubCustomer$Graph==TRUE)){
@@ -1183,19 +1198,19 @@ for (c in unique(CompPolicy$SubCustomer)){
             }
         }
     }
-CompPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
 
 
-```{r CompPolicySeriesSpendingBarComponentSolitary}
+```{r PolicySeriesSpendingBarComponentSolitary}
 
-OldGraph<-CompPolicy$Graph
-for (c in unique(CompPolicy$SubCustomer)){ 
-    CompSubCustomer<-subset(CompPolicy,SubCustomer==c)
-    for (s in unique(CompPolicy$Competition.effective.only)){    
+OldGraph<-Policy$Graph
+for (c in unique(Policy$SubCustomer)){ 
+    CompSubCustomer<-subset(Policy,SubCustomer==c)
+    for (s in unique(Policy$Competition.effective.only)){    
         CompSubCustomer$Graph[CompSubCustomer$Competition.effective.only!=s]<-FALSE
         CompSubCustomer$Graph[CompSubCustomer$Competition.effective.only==s]<-TRUE
         if(any(CompSubCustomer$Graph==TRUE)){
@@ -1263,12 +1278,12 @@ for (c in unique(CompPolicy$SubCustomer)){
 
         }
     }
-CompPolicy$Graph<-OldGraph
+Policy$Graph<-OldGraph
 
 ```
 
 
-```{r CompPolicyAnnualComponentsOld}
+```{r PolicyAnnualComponentsOld}
 # 
 # 
 # png(
@@ -1300,7 +1315,7 @@ CompPolicy$Graph<-OldGraph
 #     ,Coloration
 # 
 # 
-#     ,CompPolicy
+#     ,Policy
 #     ,NULL
 #     ,"Fiscal.Year"
 #     ,"Obligation.2014"
@@ -1329,7 +1344,7 @@ CompPolicy$Graph<-OldGraph
 
 
 
-```{r CompPolicyAnnualSummaryOld}
+```{r PolicyAnnualSummaryOld}
 
 # 
 # 
@@ -1361,7 +1376,7 @@ CompPolicy$Graph<-OldGraph
 #     ,VAR.Coloration=Coloration
 # 
 # 
-#     ,VAR.long.DF=CompPolicy
+#     ,VAR.long.DF=Policy
 #     ,VAR.ncol=4
 #     ,VAR.x.variable="Fiscal.Year"
 #     ,VAR.y.variable="Obligation.2014"
@@ -1394,8 +1409,8 @@ CompPolicy$Graph<-OldGraph
 ```
 
 
-```{r CompPolicyAnnualComponentSolitaryOld}
-# for (s in unique(CompPolicy$SubCustomer)){    
+```{r PolicyAnnualComponentSolitaryOld}
+# for (s in unique(Policy$SubCustomer)){    
 #     png(
 #         paste("Output\\Competition\\", 
 #               paste(s
@@ -1424,7 +1439,7 @@ CompPolicy$Graph<-OldGraph
 #         ,VAR.Coloration=Coloration
 #         
 #         
-#         ,VAR.long.DF=subset(CompPolicy,SubCustomer==s)
+#         ,VAR.long.DF=subset(Policy,SubCustomer==s)
 #         ,VAR.ncol=4
 #         ,VAR.x.variable="Fiscal.Year"
 #         ,VAR.y.variable="Obligation.2014"
@@ -1456,7 +1471,7 @@ CompPolicy$Graph<-OldGraph
 ```
 
 
-```{r CompPolicyAnnualEffective}
+```{r PolicyAnnualEffective}
 png(
     paste( "Output\\Competition\\", 
            paste("DoD_components"
@@ -1486,7 +1501,7 @@ CompGraph<-LatticePercentLineWrapper(
     ,Coloration
 
 
-    ,CompPolicy
+    ,Policy
     ,NULL
     ,"Fiscal.Year"
     ,"Obligation.2014"
@@ -1527,7 +1542,7 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 ```{r DataTables}
 
 #Annual
-CompRegimeTable<-ddply(CompRegime, 
+RawRegimeTable<-ddply(RawRegime, 
                          .(
                              Fiscal.Year,
                              Competition.sum,
@@ -1538,7 +1553,7 @@ CompRegimeTable<-ddply(CompRegime,
                          Obligation.2014=sum(Obligation.2014)
                          )
 
-write.csv(CompRegimeTable,paste("Output\\Competition\\",
+write.csv(RawRegimeTable,paste("Output\\Competition\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"Competition_sum"
@@ -1552,7 +1567,7 @@ write.csv(CompRegimeTable,paste("Output\\Competition\\",
 
 #Monthly
 
-CompRegimeTable<-ddply(CompRegime, 
+RawRegimeTable<-ddply(RawRegime, 
                          .(
                              SignedMonth,
                              Competition.sum,
@@ -1564,7 +1579,7 @@ CompRegimeTable<-ddply(CompRegime,
                          )
 
 
-CompRegimeTable<-ddply(CompRegimeTable, 
+RawRegimeTable<-ddply(RawRegimeTable, 
                          .(Competition.sum,
                            SubCustomer.component,
                            USDATL),
@@ -1575,7 +1590,7 @@ CompRegimeTable<-ddply(CompRegimeTable,
                          )
 
 
-write.csv(CompRegimeTable,paste("Output\\Competition\\",
+write.csv(RawRegimeTable,paste("Output\\Competition\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"Competition_sum"
@@ -1588,7 +1603,7 @@ write.csv(CompRegimeTable,paste("Output\\Competition\\",
 
 
 #Annual
-CompPolicyTable<-ddply(CompPolicy, c("Fiscal.Year"
+PolicyTable<-ddply(Policy, c("Fiscal.Year"
                                          ,"Competition.sum"
                                          ,"SubCustomer.component"
                                          ,"ATLpolicy")
@@ -1597,7 +1612,7 @@ CompPolicyTable<-ddply(CompPolicy, c("Fiscal.Year"
                          )
 
 
-write.csv(CompPolicyTable,paste("Output\\Competition\\",
+write.csv(PolicyTable,paste("Output\\Competition\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"Competition_sum"
@@ -1611,7 +1626,7 @@ write.csv(CompPolicyTable,paste("Output\\Competition\\",
 
 #Monthly
 
-CompPolicyTable<-ddply(CompPolicy, c("SignedMonth"
+PolicyTable<-ddply(Policy, c("SignedMonth"
                                          ,"Competition.sum"
                                          ,"SubCustomer.component"
                                          ,"ATLpolicy")
@@ -1619,7 +1634,7 @@ CompPolicyTable<-ddply(CompPolicy, c("SignedMonth"
                          ,Obligation.2014=sum(Obligation.2014)
                          )
 
-CompPolicyTable<-ddply(CompPolicyTable, 
+PolicyTable<-ddply(PolicyTable, 
                          .(Competition.sum,
                            SubCustomer.component,
                            ATLpolicy),
@@ -1630,12 +1645,206 @@ CompPolicyTable<-ddply(CompPolicyTable,
                          )
 
 
-write.csv(CompPolicyTable,paste("Output\\Competition\\",
+write.csv(PolicyTable,paste("Output\\Competition\\",
                                   paste("DoD_components"
                                         ,"Obligation_2014"
                                         ,"Competition_sum"
                                         ,"ATLpolicy"
                                         ,"Monthly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+```
+
+
+```{r DataTables}
+
+#Annual
+USDATLTable<-ddply(USDATL, 
+                         .(
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
+                             Competition.sum,
+                             SubCustomer.component,
+                             USDATL
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014)
+                         )
+
+write.csv(USDATLTable,paste("Output\\Competition\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Competition_sum"
+                                        ,"USDATL"
+                                        ,"Annual"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+
+#Monthly
+USDATLTable<-ddply(USDATL, 
+                         .(
+                             SignedMonth,
+                             SignedQuarter,
+                             Quarter,
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
+                             Competition.sum,
+                             SubCustomer.component,
+                             USDATL
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014)
+                         )
+
+
+USDATLTable<-ddply(USDATLTable, 
+                         .( Competition.sum,
+                           SubCustomer.component,
+                           USDATL),
+                         .fun=TransformFilter,
+                         MovingAverage=3,
+                         MovingSides=1,
+                         Source="Obligation.2014"
+                         )
+
+
+
+write.csv(USDATLTable,paste("Output\\Competition\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Competition_sum"
+                                        ,"USDATL"
+                                        ,"Monthly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+
+
+#Quarterly
+USDATLTable<-ddply(USDATLTable, 
+                         .(  SignedQuarter,
+                             Quarter,
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
+                             Competition.sum,
+                             SubCustomer.component,
+                             USDATL
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014),
+                         MovingAverage=sum(MovingAverage)
+                         )
+
+
+write.csv(USDATLTable,paste("Output\\Competition\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Competition_sum"
+                                        ,"USDATL"
+                                        ,"Quarterly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+
+
+
+
+#Annual
+PolicyTable<-ddply(Policy, c("Fiscal.Year"
+                                             ,"SinceFirstFiscalYear"
+                                         ,"Competition.sum"
+                                         ,"SubCustomer.component"
+                                         ,"ATLpolicy")
+                         ,summarise
+                         ,Obligation.2014=sum(Obligation.2014)
+                         )
+
+
+write.csv(PolicyTable,paste("Output\\Competition\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Competition_sum"
+                                        ,"ATLpolicy"
+                                        ,"Annual"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+#Monthly
+
+PolicyTable<-ddply(Policy, c("SignedMonth"
+                                             ,"SignedQuarter"
+                                             ,"Quarter"
+                                             ,"Fiscal.Year"
+                                             ,"SinceFirstFiscalYear"
+                                         ,"Competition.sum"
+                                         ,"SubCustomer.component"
+                                         ,"ATLpolicy")
+                         ,summarise
+                         ,Obligation.2014=sum(Obligation.2014)
+                         )
+
+PolicyTable<-ddply(PolicyTable, 
+                         .( Competition.sum,
+                           SubCustomer.component,
+                           ATLpolicy),
+                         .fun=TransformFilter,
+                         MovingAverage=3,
+                         MovingSides=1,
+                         Source="Obligation.2014"
+                         )
+
+
+write.csv(PolicyTable,paste("Output\\Competition\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Competition_sum"
+                                        ,"ATLpolicy"
+                                        ,"Monthly"
+                                        ,sep="_"
+                                        )
+                                  ,".csv",
+                                  sep=""))
+
+
+#Quarterly
+PolicyTable<-ddply(PolicyTable, 
+                         .(  SignedQuarter,
+                             Quarter,
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
+                             Competition.sum,
+                             SubCustomer.component,
+                             ATLpolicy
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014),
+                         MovingAverage=sum(MovingAverage)
+                         )
+
+
+write.csv(PolicyTable,paste("Output\\Competition\\",
+                                  paste("DoD_components"
+                                        ,"Obligation_2014"
+                                        ,"Competition_sum"
+                                        ,"ATLpolicy"
+                                        ,"Quarterly"
                                         ,sep="_"
                                         )
                                   ,".csv",
