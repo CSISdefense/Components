@@ -16,8 +16,8 @@ require(plyr)
 require(lubridate)
 
 options(error=recover)
-Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
-# Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
+# Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
+Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
 # setwd("K:/Development/Components")
 source(paste(Path,"lookups.r",sep=""))
 source(paste(Path,"helper.r",sep=""))
@@ -1537,129 +1537,6 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 
 
 
-
-
-```{r DataTables}
-
-#Annual
-RawRegimeTable<-ddply(RawRegime, 
-                         .(
-                             Fiscal.Year,
-                             Competition.sum,
-                             SubCustomer.component,
-                             USDATL
-                             ),
-                         summarize,
-                         Obligation.2014=sum(Obligation.2014)
-                         )
-
-write.csv(RawRegimeTable,paste("Output\\Competition\\",
-                                  paste("DoD_components"
-                                        ,"Obligation_2014"
-                                        ,"Competition_sum"
-                                        ,"USDATL"
-                                        ,"Annual"
-                                        ,sep="_"
-                                        )
-                                  ,".csv",
-                                  sep=""))
-
-
-#Monthly
-
-RawRegimeTable<-ddply(RawRegime, 
-                         .(
-                             SignedMonth,
-                             Competition.sum,
-                             SubCustomer.component,
-                             USDATL
-                             ),
-                         summarize,
-                         Obligation.2014=sum(Obligation.2014)
-                         )
-
-
-RawRegimeTable<-ddply(RawRegimeTable, 
-                         .(Competition.sum,
-                           SubCustomer.component,
-                           USDATL),
-                         .fun=TransformFilter,
-                         MovingAverage=3,
-                         MovingSides=1,
-                         Source="Obligation.2014"
-                         )
-
-
-write.csv(RawRegimeTable,paste("Output\\Competition\\",
-                                  paste("DoD_components"
-                                        ,"Obligation_2014"
-                                        ,"Competition_sum"
-                                        ,"USDATL"
-                                        ,"Monthly"
-                                        ,sep="_"
-                                        )
-                                  ,".csv",
-                                  sep=""))
-
-
-#Annual
-PolicyTable<-ddply(Policy, c("Fiscal.Year"
-                                         ,"Competition.sum"
-                                         ,"SubCustomer.component"
-                                         ,"ATLpolicy")
-                         ,summarise
-                         ,Obligation.2014=sum(Obligation.2014)
-                         )
-
-
-write.csv(PolicyTable,paste("Output\\Competition\\",
-                                  paste("DoD_components"
-                                        ,"Obligation_2014"
-                                        ,"Competition_sum"
-                                        ,"ATLpolicy"
-                                        ,"Annual"
-                                        ,sep="_"
-                                        )
-                                  ,".csv",
-                                  sep=""))
-
-
-#Monthly
-
-PolicyTable<-ddply(Policy, c("SignedMonth"
-                                         ,"Competition.sum"
-                                         ,"SubCustomer.component"
-                                         ,"ATLpolicy")
-                         ,summarise
-                         ,Obligation.2014=sum(Obligation.2014)
-                         )
-
-PolicyTable<-ddply(PolicyTable, 
-                         .(Competition.sum,
-                           SubCustomer.component,
-                           ATLpolicy),
-                         .fun=TransformFilter,
-                         MovingAverage=3,
-                         MovingSides=1,
-                         Source="Obligation.2014"
-                         )
-
-
-write.csv(PolicyTable,paste("Output\\Competition\\",
-                                  paste("DoD_components"
-                                        ,"Obligation_2014"
-                                        ,"Competition_sum"
-                                        ,"ATLpolicy"
-                                        ,"Monthly"
-                                        ,sep="_"
-                                        )
-                                  ,".csv",
-                                  sep=""))
-
-
-```
-
-
 ```{r DataTables}
 
 #Annual
@@ -1668,6 +1545,7 @@ USDATLTable<-ddply(USDATL,
                              Fiscal.Year,
                              SinceFirstFiscalYear,
                              Competition.sum,
+                             Competition.effective.only,
                              SubCustomer.component,
                              USDATL
                              ),
@@ -1697,6 +1575,7 @@ USDATLTable<-ddply(USDATL,
                              Fiscal.Year,
                              SinceFirstFiscalYear,
                              Competition.sum,
+                             Competition.effective.only,
                              SubCustomer.component,
                              USDATL
                              ),
@@ -1707,6 +1586,7 @@ USDATLTable<-ddply(USDATL,
 
 USDATLTable<-ddply(USDATLTable, 
                          .( Competition.sum,
+                            Competition.effective.only,
                            SubCustomer.component,
                            USDATL),
                          .fun=TransformFilter,
@@ -1738,6 +1618,7 @@ USDATLTable<-ddply(USDATLTable,
                              Fiscal.Year,
                              SinceFirstFiscalYear,
                              Competition.sum,
+                             Competition.effective.only,
                              SubCustomer.component,
                              USDATL
                              ),
@@ -1767,6 +1648,7 @@ write.csv(USDATLTable,paste("Output\\Competition\\",
 PolicyTable<-ddply(Policy, c("Fiscal.Year"
                                              ,"SinceFirstFiscalYear"
                                          ,"Competition.sum"
+                             ,"Competition.effective.only"
                                          ,"SubCustomer.component"
                                          ,"ATLpolicy")
                          ,summarise
@@ -1794,6 +1676,7 @@ PolicyTable<-ddply(Policy, c("SignedMonth"
                                              ,"Fiscal.Year"
                                              ,"SinceFirstFiscalYear"
                                          ,"Competition.sum"
+                             ,"Competition.effective.only"
                                          ,"SubCustomer.component"
                                          ,"ATLpolicy")
                          ,summarise
@@ -1802,6 +1685,7 @@ PolicyTable<-ddply(Policy, c("SignedMonth"
 
 PolicyTable<-ddply(PolicyTable, 
                          .( Competition.sum,
+                            Competition.effective.only,
                            SubCustomer.component,
                            ATLpolicy),
                          .fun=TransformFilter,
@@ -1830,6 +1714,7 @@ PolicyTable<-ddply(PolicyTable,
                              Fiscal.Year,
                              SinceFirstFiscalYear,
                              Competition.sum,
+                             Competition.effective.only,
                              SubCustomer.component,
                              ATLpolicy
                              ),
