@@ -15,7 +15,7 @@ require(stringr)
 require(plyr)
 require(lubridate)
 options(error=recover)
-# setwd("K:\\Development\\Components")
+setwd("K:\\Development\\Components")
 # setwd("C:\\Users\\Greg Sanders\\Documents\\Development\\Components")
 Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
 # Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
@@ -1109,128 +1109,6 @@ for (c in unique(Policy$SubCustomer)){
 Policy$Graph<-OldGraph
 
 ```
-
-
-```{r DataTables}
-
-#Annual
-RawRegimeTable<-ddply(RawRegime, 
-                         .(
-                             Fiscal.Year,
-                             Vendor.Size.sum,
-                             SubCustomer.component,
-                             USDATL
-                             ),
-                         summarize,
-                         Obligation.2014=sum(Obligation.2014)
-                         )
-
-write.csv(RawRegimeTable,paste("Output\\Vendor_Size\\",
-                                  paste("DoD_components"
-                                        ,"Obligation_2014"
-                                        ,"Vendor_Size_sum"
-                                        ,"USDATL"
-                                        ,"Annual"
-                                        ,sep="_"
-                                        )
-                                  ,".csv",
-                                  sep=""))
-
-
-#Monthly
-
-RawRegimeTable<-ddply(RawRegime, 
-                         .(
-                             SignedMonth,
-                             Vendor.Size.sum,
-                             SubCustomer.component,
-                             USDATL
-                             ),
-                         summarize,
-                         Obligation.2014=sum(Obligation.2014)
-                         )
-
-
-RawRegimeTable<-ddply(RawRegimeTable, 
-                         .(Vendor.Size.sum,
-                           SubCustomer.component,
-                           USDATL),
-                         .fun=TransformFilter,
-                         MovingAverage=3,
-                         MovingSides=1,
-                         Source="Obligation.2014"
-                         )
-
-
-write.csv(RawRegimeTable,paste("Output\\Vendor_Size\\",
-                                  paste("DoD_components"
-                                        ,"Obligation_2014"
-                                        ,"Vendor_Size_sum"
-                                        ,"USDATL"
-                                        ,"Monthly"
-                                        ,sep="_"
-                                        )
-                                  ,".csv",
-                                  sep=""))
-
-
-#Annual
-PolicyTable<-ddply(Policy, c("Fiscal.Year"
-                                         ,"Vendor.Size.sum"
-                                         ,"SubCustomer.component"
-                                         ,"ATLpolicy")
-                         ,summarise
-                         ,Obligation.2014=sum(Obligation.2014)
-                         )
-
-
-write.csv(PolicyTable,paste("Output\\Vendor_Size\\",
-                                  paste("DoD_components"
-                                        ,"Obligation_2014"
-                                        ,"Vendor_Size_sum"
-                                        ,"ATLpolicy"
-                                        ,"Annual"
-                                        ,sep="_"
-                                        )
-                                  ,".csv",
-                                  sep=""))
-
-
-#Monthly
-
-PolicyTable<-ddply(Policy, c("SignedMonth"
-                                         ,"Vendor.Size.sum"
-                                         ,"SubCustomer.component"
-                                         ,"ATLpolicy")
-                         ,summarise
-                         ,Obligation.2014=sum(Obligation.2014)
-                         )
-
-PolicyTable<-ddply(PolicyTable, 
-                         .(Vendor.Size.sum,
-                           SubCustomer.component,
-                           ATLpolicy),
-                         .fun=TransformFilter,
-                         MovingAverage=3,
-                         MovingSides=1,
-                         Source="Obligation.2014"
-                         )
-
-
-write.csv(PolicyTable,paste("Output\\Vendor_Size\\",
-                                  paste("DoD_components"
-                                        ,"Obligation_2014"
-                                        ,"Vendor_Size_sum"
-                                        ,"ATLpolicy"
-                                        ,"Monthly"
-                                        ,sep="_"
-                                        )
-                                  ,".csv",
-                                  sep=""))
-
-
-```
-
 
 ```{r DataTables}
 
