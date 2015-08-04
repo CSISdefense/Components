@@ -15,10 +15,10 @@ require(stringr)
 require(plyr)
 require(lubridate)
 options(error=recover)
-# setwd("K:\\Development\\Components")
-setwd("C:\\Users\\Greg Sanders\\Documents\\Development\\Components")
-# Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
-Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
+setwd("K:\\Development\\Components")
+# setwd("C:\\Users\\Greg Sanders\\Documents\\Development\\Components")
+Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
+# Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
 source(paste(Path,"lookups.r",sep=""))
 source(paste(Path,"helper.r",sep=""))
 
@@ -486,10 +486,10 @@ png(
     , res=150
     )
 
-debug(LatticePercentLineWrapper)
+# undebug(LatticePercentLineWrapper)
 VendorGraph<-LatticePercentLineWrapper(
     VAR.color.legend.label="Vendor Size"
-    ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
+    ,""#VAR.main.label=""#Overall DoD Vendor Size by Starting Regime"
     ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
     ,VAR.Y.label="% of DoD Obligations"
     ,VAR.Coloration=Coloration
@@ -551,7 +551,7 @@ png(
 
 VendorGraph<-LatticePercentLineWrapper(
     VAR.color.legend.label="Vendor Size"
-    ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
+    ,""#VAR.main.label=""#Overall DoD Vendor Size by Starting Regime"
     ,VAR.X.label="Fiscal Year of Obligation"
     ,VAR.Y.label="% of DoD Obligations"
     ,VAR.Coloration=Coloration
@@ -611,7 +611,7 @@ for (c in unique(Policy$SubCustomer)){
     
     VendorGraph<-LatticePercentLineWrapper(
         VAR.color.legend.label="Vendor Size"
-        ,VAR.proper.name=""#paste(c,"Vendor Size by Starting Regime")
+        ,VAR.main.label=""#paste(c,"Vendor Size by Starting Regime")
         ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
         ,VAR.Y.label=paste("% of ",c," Obligations")
         ,VAR.Coloration=Coloration
@@ -674,7 +674,7 @@ for (c in unique(Policy$SubCustomer)){
     
     VendorGraph<-LatticePercentLineWrapper(
         VAR.color.legend.label="Vendor Size"
-        ,VAR.proper.name=""#paste(c,"Vendor Size by Starting Regime")
+        ,VAR.main.label=""#paste(c,"Vendor Size by Starting Regime")
         ,VAR.X.label="Fiscal Year of Obligation"
         ,VAR.Y.label=paste("% of ",c," Obligations")
         ,VAR.Coloration=Coloration
@@ -762,7 +762,7 @@ for (s in unique(Policy$Vendor.Size.sum)){
     
     VendorGraph<-LatticePercentLineWrapper(
         VAR.color.legend.label="Vendor Size"
-        ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
+        ,""#VAR.main.label=""#Overall DoD Vendor Size by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label="% of DoD Obligations"
         ,VAR.Coloration=Coloration
@@ -837,7 +837,7 @@ for (s in unique(Policy$Vendor.Size.sum)){
     
     VendorGraph<-LatticePercentLineWrapper(
         VAR.color.legend.label="Vendor Size"
-        ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
+        ,""#VAR.main.label=""#Overall DoD Vendor Size by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label="% of Component Obligations"
         ,VAR.Coloration=Coloration
@@ -912,7 +912,7 @@ for (s in unique(Policy$Vendor.Size.sum)){
     
     VendorGraph<-LatticePlotWrapper(
         VAR.color.legend.label="Vendor Size"
-        ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
+        ,""#VAR.main.label=""#Overall DoD Vendor Size by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(s,"Constant 2014 $ Obligated, Billions")
         ,VAR.Coloration=Coloration
@@ -988,7 +988,7 @@ for (c in unique(Policy$SubCustomer)){
             
             VendorGraph<-LatticePercentLineWrapper(
                 VAR.color.legend.label="Vendor Size"
-                ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
+                ,""#VAR.main.label=""#Overall DoD Vendor Size by Starting Regime"
                 ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
                 ,VAR.Y.label=paste("% of",c,"Obligations")
                 ,VAR.Coloration=Coloration
@@ -1067,7 +1067,7 @@ for (c in unique(Policy$SubCustomer)){
     
     VendorGraph<-LatticePlotWrapper(
         VAR.color.legend.label="Vendor Size"
-        ,""#VAR.proper.name=""#Overall DoD Vendor Size by Starting Regime"
+        ,""#VAR.main.label=""#Overall DoD Vendor Size by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(c,s,"Constant 2014 $ Obligated, Billions")
         ,VAR.Coloration=Coloration
