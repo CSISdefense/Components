@@ -88,9 +88,6 @@ RawRegime$SubCustomer.component<-factor(RawRegime$SubCustomer.component,
                                            levels=c("Army","Navy","Air Force","DLA",
                                                     "MDA","MilitaryHealth",
                                                     "Additional DoD Components"),
-                                           labels=c("Army","Navy","Air Force","DLA",
-                                                    "MDA","Military\nHealth",
-                                                    "Additional\nDoD\nComponents"),
                                            ordered=TRUE)
 
 #Add quarters
@@ -503,8 +500,8 @@ png(
 
 
 PlatformGraph<-LatticePercentLineWrapper(
-    VAR.name="Platform Portfolio"
-    ,""#VAR.proper.name=""#Overall DoD Platform Portfolio by Starting Regime"
+    VAR.color.legend.label="Platform Portfolio"
+    ,""#VAR.main.label=""#Overall DoD Platform Portfolio by Starting Regime"
     ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
     ,VAR.Y.label="% of DoD Obligations"
     ,VAR.Coloration=Coloration
@@ -565,8 +562,8 @@ png(
 
 
 PlatformGraph<-LatticePercentLineWrapper(
-    VAR.name="Platform Portfolio"
-    ,""#VAR.proper.name=""#Overall DoD Platform Portfolio by Starting Regime"
+    VAR.color.legend.label="Platform Portfolio"
+    ,""#VAR.main.label=""#Overall DoD Platform Portfolio by Starting Regime"
     ,VAR.X.label="Fiscal Year of Obligation"
     ,VAR.Y.label="% of DoD Obligations"
     ,VAR.Coloration=Coloration
@@ -625,8 +622,8 @@ for (c in unique(Policy$SubCustomer)){
         )
     
     PlatformGraph<-LatticePercentLineWrapper(
-        VAR.name="Platform Portfolio"
-        ,VAR.proper.name=""#paste(c,"Platform Portfolio by Starting Regime")
+        VAR.color.legend.label="Platform Portfolio"
+        ,VAR.main.label=""#paste(c,"Platform Portfolio by Starting Regime")
         ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
         ,VAR.Y.label=paste("% of ",c," Obligations")
         ,VAR.Coloration=Coloration
@@ -688,8 +685,8 @@ for (c in unique(Policy$SubCustomer)){
         )
     
     PlatformGraph<-LatticePercentLineWrapper(
-        VAR.name="Platform Portfolio"
-        ,VAR.proper.name=""#paste(c,"Platform Portfolio by Starting Regime")
+        VAR.color.legend.label="Platform Portfolio"
+        ,VAR.main.label=""#paste(c,"Platform Portfolio by Starting Regime")
         ,VAR.X.label="Fiscal Year of Obligation"
         ,VAR.Y.label=paste("% of ",c," Obligations")
         ,VAR.Coloration=Coloration
@@ -775,8 +772,8 @@ for (s in unique(Policy$ PlatformPortfolio.AnD)){
     Policy$Graph[Policy$ PlatformPortfolio.AnD==s]<-TRUE
     
     PlatformGraph<-LatticePercentLineWrapper(
-        VAR.name="Platform Portfolio"
-        ,""#VAR.proper.name=""#Overall DoD Platform Portfolio by Starting Regime"
+        VAR.color.legend.label="Platform Portfolio"
+        ,""#VAR.main.label=""#Overall DoD Platform Portfolio by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label="% of DoD Obligations"
         ,VAR.Coloration=Coloration
@@ -802,7 +799,7 @@ for (s in unique(Policy$ PlatformPortfolio.AnD)){
     # PlatformGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # PlatformGraph<-PlatformGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
     PlatformGraph<-PlatformGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))
 #     +
     #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     PlatformGraph
@@ -850,8 +847,8 @@ for (s in unique(Policy$ PlatformPortfolio.AnD)){
     Policy$Graph[Policy$ PlatformPortfolio.AnD==s]<-TRUE
     
     PlatformGraph<-LatticePercentLineWrapper(
-        VAR.name="Platform Portfolio"
-        ,""#VAR.proper.name=""#Overall DoD Platform Portfolio by Starting Regime"
+        VAR.color.legend.label="Platform Portfolio"
+        ,""#VAR.main.label=""#Overall DoD Platform Portfolio by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label="% of Component Obligations"
         ,VAR.Coloration=Coloration
@@ -877,7 +874,7 @@ for (s in unique(Policy$ PlatformPortfolio.AnD)){
     # PlatformGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # PlatformGraph<-PlatformGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
     PlatformGraph<-PlatformGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))
     #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     PlatformGraph
     print(PlatformGraph)
@@ -925,8 +922,8 @@ for (s in unique(Policy$ PlatformPortfolio.AnD)){
     Policy$Graph[Policy$ PlatformPortfolio.AnD==s]<-TRUE
     
     PlatformGraph<-LatticePlotWrapper(
-        VAR.name="Platform Portfolio"
-        ,""#VAR.proper.name=""#Overall DoD Platform Portfolio by Starting Regime"
+        VAR.color.legend.label="Platform Portfolio"
+        ,""#VAR.main.label=""#Overall DoD Platform Portfolio by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(s,"Constant 2014 $ Obligated, Billions")
         ,VAR.Coloration=Coloration
@@ -1002,8 +999,8 @@ for (c in unique(Policy$SubCustomer)){
             
             
             PlatformGraph<-LatticePercentLineWrapper(
-                VAR.name="Platform Portfolio"
-                ,""#VAR.proper.name=""#Overall DoD Platform Portfolio by Starting Regime"
+                VAR.color.legend.label="Platform Portfolio"
+                ,""#VAR.main.label=""#Overall DoD Platform Portfolio by Starting Regime"
                 ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
                 ,VAR.Y.label=paste("% of",c,"Obligations")
                 ,VAR.Coloration=Coloration
@@ -1030,7 +1027,7 @@ for (c in unique(Policy$SubCustomer)){
             # PlatformGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
             # PlatformGraph<-PlatformGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
             # PlatformGraph<-PlatformGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-            #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+            #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))+
             #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
             PlatformGraph
             print(PlatformGraph)
@@ -1082,8 +1079,8 @@ for (c in unique(Policy$SubCustomer)){
         )
     
     PlatformGraph<-LatticePlotWrapper(
-        VAR.name="Platform Portfolio"
-        ,""#VAR.proper.name=""#Overall DoD Platform Portfolio by Starting Regime"
+        VAR.color.legend.label="Platform Portfolio"
+        ,""#VAR.main.label=""#Overall DoD Platform Portfolio by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(c,s,"Constant 2014 $ Obligated, Billions")
         ,VAR.Coloration=Coloration

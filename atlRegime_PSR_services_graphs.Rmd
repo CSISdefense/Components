@@ -502,8 +502,8 @@ png(
 
 
 PSRGraph<-LatticePercentLineWrapper(
-    VAR.name="Product Area"
-    ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+    VAR.color.legend.label="Product Area"
+    ,""#VAR.main.label=""#Overall DoD Produce/Service/R&D by Starting Regime"
     ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
     ,VAR.Y.label="% of DoD Obligations"
     ,VAR.Coloration=Coloration
@@ -564,8 +564,8 @@ png(
 
 
 PSRGraph<-LatticePercentLineWrapper(
-    VAR.name="Product Area"
-    ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+    VAR.color.legend.label="Product Area"
+    ,""#VAR.main.label=""#Overall DoD Produce/Service/R&D by Starting Regime"
     ,VAR.X.label="Fiscal Year of Obligation"
     ,VAR.Y.label="% of DoD Obligations"
     ,VAR.Coloration=Coloration
@@ -624,8 +624,8 @@ for (c in unique(Policy$SubCustomer)){
         )
     
     PSRGraph<-LatticePercentLineWrapper(
-        VAR.name="Product Area"
-        ,VAR.proper.name=""#paste(c,"Produce/Service/R&D by Starting Regime")
+        VAR.color.legend.label="Product Area"
+        ,VAR.main.label=""#paste(c,"Produce/Service/R&D by Starting Regime")
         ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
         ,VAR.Y.label=paste("% of ",c," Obligations")
         ,VAR.Coloration=Coloration
@@ -687,8 +687,8 @@ for (c in unique(Policy$SubCustomer)){
         )
     
     PSRGraph<-LatticePercentLineWrapper(
-        VAR.name="Product Area"
-        ,VAR.proper.name=""#paste(c,"Produce/Service/R&D by Starting Regime")
+        VAR.color.legend.label="Product Area"
+        ,VAR.main.label=""#paste(c,"Produce/Service/R&D by Starting Regime")
         ,VAR.X.label="Fiscal Year of Obligation"
         ,VAR.Y.label=paste("% of ",c," Obligations")
         ,VAR.Coloration=Coloration
@@ -774,8 +774,8 @@ for (s in unique(Policy$ ProductOrServiceArea)){
     Policy$Graph[Policy$ ProductOrServiceArea==s]<-TRUE
     
     PSRGraph<-LatticePercentLineWrapper(
-        VAR.name="Product Area"
-        ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+        VAR.color.legend.label="Product Area"
+        ,""#VAR.main.label=""#Overall DoD Produce/Service/R&D by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label="% of DoD Obligations"
         ,VAR.Coloration=Coloration
@@ -801,7 +801,7 @@ for (s in unique(Policy$ ProductOrServiceArea)){
     # PSRGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # PSRGraph<-PSRGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
     PSRGraph<-PSRGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))
 #     +
     #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     PSRGraph
@@ -849,8 +849,8 @@ for (s in unique(Policy$ ProductOrServiceArea)){
     Policy$Graph[Policy$ ProductOrServiceArea==s]<-TRUE
     
     PSRGraph<-LatticePercentLineWrapper(
-        VAR.name="Product Area"
-        ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+        VAR.color.legend.label="Product Area"
+        ,""#VAR.main.label=""#Overall DoD Produce/Service/R&D by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label="% of Component Obligations"
         ,VAR.Coloration=Coloration
@@ -876,7 +876,7 @@ for (s in unique(Policy$ ProductOrServiceArea)){
     # PSRGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # PSRGraph<-PSRGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
     PSRGraph<-PSRGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))
     #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     PSRGraph
     print(PSRGraph)
@@ -924,8 +924,8 @@ for (s in unique(Policy$ ProductOrServiceArea)){
     Policy$Graph[Policy$ ProductOrServiceArea==s]<-TRUE
     
     PSRGraph<-LatticePlotWrapper(
-        VAR.name="Product Area"
-        ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+        VAR.color.legend.label="Product Area"
+        ,""#VAR.main.label=""#Overall DoD Produce/Service/R&D by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(s,"Constant 2014 $ Obligated, Billions")
         ,VAR.Coloration=Coloration
@@ -1001,8 +1001,8 @@ for (c in unique(Policy$SubCustomer)){
             
             
             PSRGraph<-LatticePercentLineWrapper(
-                VAR.name="Product Area"
-                ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+                VAR.color.legend.label="Product Area"
+                ,""#VAR.main.label=""#Overall DoD Produce/Service/R&D by Starting Regime"
                 ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
                 ,VAR.Y.label=paste("% of",c,"Obligations")
                 ,VAR.Coloration=Coloration
@@ -1029,7 +1029,7 @@ for (c in unique(Policy$SubCustomer)){
             # PSRGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
             # PSRGraph<-PSRGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
             # PSRGraph<-PSRGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-            #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+            #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))+
             #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
             PSRGraph
             print(PSRGraph)
@@ -1081,8 +1081,8 @@ for (c in unique(Policy$SubCustomer)){
         )
     
     PSRGraph<-LatticePlotWrapper(
-        VAR.name="Product Area"
-        ,""#VAR.proper.name=""#Overall DoD Produce/Service/R&D by Starting Regime"
+        VAR.color.legend.label="Product Area"
+        ,""#VAR.main.label=""#Overall DoD Produce/Service/R&D by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(c,s,"Constant 2014 $ Obligated, Billions")
         ,VAR.Coloration=Coloration

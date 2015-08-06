@@ -81,8 +81,6 @@ RawRegime$SubCustomer.component<-droplevels(RawRegime$SubCustomer.component)
 RawRegime$SubCustomer.component<-factor(RawRegime$SubCustomer.component,
                                                levels=c("Army","Navy","Air Force","DLA",
                                                         "MDA","MilitaryHealth","Additional DoD Components"),
-                                               labels=c("Army","Navy","Air Force","DLA",
-                                                        "MDA","Military\nHealth","Additional\nDoD\nComponents"),
                                                ordered=TRUE)
 
 
@@ -489,8 +487,8 @@ png(
 
 
 PricingGraph<-LatticePercentLineWrapper(
-    VAR.name="Pricing Mechanism"
-    ,""#VAR.proper.name=""#Overall DoD Pricing Mechanism by Starting Regime"
+    VAR.color.legend.label="Pricing Mechanism"
+    ,""#VAR.main.label=""#Overall DoD Pricing Mechanism by Starting Regime"
     ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
     ,VAR.Y.label="% of DoD Obligations"
     ,VAR.Coloration=Coloration
@@ -551,8 +549,8 @@ png(
 
 
 PricingGraph<-LatticePercentLineWrapper(
-    VAR.name="Pricing Mechanism"
-    ,""#VAR.proper.name=""#Overall DoD Pricing Mechanism by Starting Regime"
+    VAR.color.legend.label="Pricing Mechanism"
+    ,""#VAR.main.label=""#Overall DoD Pricing Mechanism by Starting Regime"
     ,VAR.X.label="Fiscal Year of Obligation"
     ,VAR.Y.label="% of DoD Obligations"
     ,VAR.Coloration=Coloration
@@ -612,8 +610,8 @@ for (c in unique(Policy$SubCustomer)){
         )
     
     PricingGraph<-LatticePercentLineWrapper(
-        VAR.name="Pricing Mechanism"
-        ,VAR.proper.name=""#paste(c,"Pricing Mechanism by Starting Regime")
+        VAR.color.legend.label="Pricing Mechanism"
+        ,VAR.main.label=""#paste(c,"Pricing Mechanism by Starting Regime")
         ,VAR.X.label="Month of Obligation (6 Month Lagging Average)"
         ,VAR.Y.label=paste("% of ",c," Obligations")
         ,VAR.Coloration=Coloration
@@ -675,8 +673,8 @@ for (c in unique(Policy$SubCustomer)){
         )
     
     PricingGraph<-LatticePercentLineWrapper(
-        VAR.name="Pricing Mechanism"
-        ,VAR.proper.name=""#paste(c,"Pricing Mechanism by Starting Regime")
+        VAR.color.legend.label="Pricing Mechanism"
+        ,VAR.main.label=""#paste(c,"Pricing Mechanism by Starting Regime")
         ,VAR.X.label="Fiscal Year of Obligation"
         ,VAR.Y.label=paste("% of ",c," Obligations")
         ,VAR.Coloration=Coloration
@@ -763,8 +761,8 @@ for (s in unique(Policy$Pricing.Mechanism.sum)){
     Policy$Graph[Policy$Pricing.Mechanism.sum==s]<-TRUE
     
     PricingGraph<-LatticePercentLineWrapper(
-        VAR.name="Pricing Mechanism"
-        ,""#VAR.proper.name=""#Overall DoD Pricing Mechanism by Starting Regime"
+        VAR.color.legend.label="Pricing Mechanism"
+        ,""#VAR.main.label=""#Overall DoD Pricing Mechanism by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label="% of DoD Obligations"
         ,VAR.Coloration=Coloration
@@ -790,7 +788,7 @@ for (s in unique(Policy$Pricing.Mechanism.sum)){
     # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
     PricingGraph<-PricingGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))
 #     +
     #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     PricingGraph
@@ -838,8 +836,8 @@ for (s in unique(Policy$Pricing.Mechanism.sum)){
     Policy$Graph[Policy$Pricing.Mechanism.sum==s]<-TRUE
     
     PricingGraph<-LatticePercentLineWrapper(
-        VAR.name="Pricing Mechanism"
-        ,""#VAR.proper.name=""#Overall DoD Pricing Mechanism by Starting Regime"
+        VAR.color.legend.label="Pricing Mechanism"
+        ,""#VAR.main.label=""#Overall DoD Pricing Mechanism by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label="% of Component Obligations"
         ,VAR.Coloration=Coloration
@@ -865,7 +863,7 @@ for (s in unique(Policy$Pricing.Mechanism.sum)){
     # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
     PricingGraph<-PricingGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))
     #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     PricingGraph
     print(PricingGraph)
@@ -913,8 +911,8 @@ for (s in unique(Policy$Pricing.Mechanism.sum)){
     Policy$Graph[Policy$Pricing.Mechanism.sum==s]<-TRUE
     
     PricingGraph<-LatticePlotWrapper(
-        VAR.name="Pricing Mechanism"
-        ,""#VAR.proper.name=""#Overall DoD Pricing Mechanism by Starting Regime"
+        VAR.color.legend.label="Pricing Mechanism"
+        ,""#VAR.main.label=""#Overall DoD Pricing Mechanism by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(s,"Constant 2014 $ Obligated, Billions")
         ,VAR.Coloration=Coloration
@@ -939,7 +937,7 @@ for (s in unique(Policy$Pricing.Mechanism.sum)){
     # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
     # PricingGraph<-PricingGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-    #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))+
     #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     PricingGraph
     print(PricingGraph)
@@ -989,8 +987,8 @@ for (c in unique(Policy$SubCustomer)){
             
             
             PricingGraph<-LatticePercentLineWrapper(
-                VAR.name="Pricing Mechanism"
-                ,""#VAR.proper.name=""#Overall DoD Pricing Mechanism by Starting Regime"
+                VAR.color.legend.label="Pricing Mechanism"
+                ,""#VAR.main.label=""#Overall DoD Pricing Mechanism by Starting Regime"
                 ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
                 ,VAR.Y.label=paste("% of",c,"Obligations")
                 ,VAR.Coloration=Coloration
@@ -1017,7 +1015,7 @@ for (c in unique(Policy$SubCustomer)){
             # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
             # PricingGraph<-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
             # PricingGraph<-PricingGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-            #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+            #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))+
             #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
             PricingGraph
             print(PricingGraph)
@@ -1068,8 +1066,8 @@ for (c in unique(Policy$SubCustomer)){
         )
     
     PricingGraph<-LatticePlotWrapper(
-        VAR.name="Pricing Mechanism"
-        ,""#VAR.proper.name=""#Overall DoD Pricing Mechanism by Starting Regime"
+        VAR.color.legend.label="Pricing Mechanism"
+        ,""#VAR.main.label=""#Overall DoD Pricing Mechanism by Starting Regime"
         ,VAR.X.label="Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)"
         ,VAR.Y.label=paste(c,s,"Constant 2014 $ Obligated, Billions")
         ,VAR.Coloration=Coloration
