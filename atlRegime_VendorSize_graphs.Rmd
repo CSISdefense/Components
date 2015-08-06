@@ -202,7 +202,7 @@ VendorGraph<-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
 VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
 VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year")) 
 VendorGraph
 print(VendorGraph)
@@ -259,7 +259,7 @@ VendorGraph<-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
 VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
 VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
 VendorGraph
 print(VendorGraph)
@@ -395,7 +395,7 @@ VendorGraph<-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
 VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
 VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
 VendorGraph
 print(VendorGraph)
@@ -451,7 +451,7 @@ VendorGraph<-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
 VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
 VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
 VendorGraph
 print(VendorGraph)
@@ -511,7 +511,7 @@ VendorGraph<-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
 VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
 VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
 VendorGraph
 print(VendorGraph)
@@ -572,7 +572,7 @@ VendorGraph<-VendorGraph+aes(size=y.variable)
 # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
 VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
 VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))+
     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
 VendorGraph
 print(VendorGraph)
@@ -633,7 +633,7 @@ for (c in unique(Policy$SubCustomer)){
     # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
     VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))+
         scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     VendorGraph
     print(VendorGraph)
@@ -695,7 +695,7 @@ for (c in unique(Policy$SubCustomer)){
     # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
     VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))+
         scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     VendorGraph
     print(VendorGraph)
@@ -864,7 +864,7 @@ for (s in unique(Policy$Vendor.Size.sum)){
     # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
     VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))
+        theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))
     #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     VendorGraph
     print(VendorGraph)
@@ -938,7 +938,7 @@ for (s in unique(Policy$Vendor.Size.sum)){
     # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
     # VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-    #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))+
     #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     VendorGraph
     print(VendorGraph)
@@ -1016,7 +1016,7 @@ for (c in unique(Policy$SubCustomer)){
             # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
             # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
             # VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-            #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+            #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))+
             #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
             VendorGraph
             print(VendorGraph)
@@ -1095,7 +1095,7 @@ for (c in unique(Policy$SubCustomer)){
     # VendorGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # VendorGraph<-VendorGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
     # VendorGraph<-VendorGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-    #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
+    #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))+
     #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     VendorGraph
     print(VendorGraph)
