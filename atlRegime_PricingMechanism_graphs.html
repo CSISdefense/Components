@@ -86,76 +86,113 @@ img {
 <p>You can also embed plots, for example:</p>
 <pre><code>## Joining by: Customer, SubCustomer
 ## Joining by: ProductOrServiceArea
+## Joining by: PlatformPortfolio
 ## Joining by: Pricing.Mechanism
 ## Joining by: Fiscal.Year</code></pre>
-<pre><code>## Warning in apply_lookups(Path, PricingRegime): NaNs produced</code></pre>
-<pre><code>##  [1] &quot;Fiscal.Year&quot;                     &quot;Pricing.Mechanism&quot;              
-##  [3] &quot;ProductOrServiceArea&quot;            &quot;Customer&quot;                       
-##  [5] &quot;SubCustomer&quot;                     &quot;SignedMonth&quot;                    
-##  [7] &quot;Query_Run&quot;                       &quot;USDATL&quot;                         
-##  [9] &quot;BBP1&quot;                            &quot;WSARAreg&quot;                       
-## [11] &quot;BBP2&quot;                            &quot;BBP3&quot;                           
-## [13] &quot;Action.Obligation&quot;               &quot;SumOfnumberOfActions&quot;           
-## [15] &quot;SubCustomer.sum&quot;                 &quot;SubCustomer.detail&quot;             
-## [17] &quot;SubCustomer.component&quot;           &quot;Subcustomer.Obsolete&quot;           
-## [19] &quot;ServicesCategory.detail&quot;         &quot;ServicesCategory.sum&quot;           
-## [21] &quot;ProductsCategory.detail&quot;         &quot;ProductOrServiceArea.DLA&quot;       
-## [23] &quot;ProductOrServicesCategory.Graph&quot; &quot;Pricing.Mechanism.Code&quot;         
-## [25] &quot;Pricing.Mechanism.detail&quot;        &quot;Pricing.Mechanism.sum&quot;          
-## [27] &quot;Pricing.Mechanism.hypothesis&quot;    &quot;Pricing.Mechanism.Incentive&quot;    
-## [29] &quot;Pricing.Mechanism.Correlation&quot;   &quot;IsCostBased&quot;                    
-## [31] &quot;IsFixedPrice&quot;                    &quot;IsIncentive&quot;                    
-## [33] &quot;Deflator.2013&quot;                   &quot;Deflator.2012&quot;                  
-## [35] &quot;Deflator.2011&quot;                   &quot;Deflator.2005&quot;                  
-## [37] &quot;Deflator.2014&quot;                   &quot;Obligation.2013&quot;                
-## [39] &quot;Obligation.2014&quot;                 &quot;LogOfAction.Obligation&quot;         
-## [41] &quot;Graph&quot;</code></pre>
-<pre><code>## 'data.frame':    171204 obs. of  41 variables:
-##  $ Fiscal.Year                    : Date, format: &quot;1988-09-30&quot; &quot;1988-09-30&quot; ...
-##  $ Pricing.Mechanism              : Factor w/ 18 levels &quot;Combination (two or more)&quot;,..: 7 9 4 7 17 7 9 12 13 4 ...
-##  $ ProductOrServiceArea           : Factor w/ 9 levels &quot;ERS&quot;,&quot;FRS&amp;C&quot;,..: 4 7 8 1 2 4 1 1 1 2 ...
-##  $ Customer                       : Factor w/ 1 level &quot;Defense&quot;: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ SubCustomer                    : Factor w/ 8 levels &quot;Air Force&quot;,&quot;Army&quot;,..: 2 6 6 2 2 2 6 6 6 6 ...
-##  $ SignedMonth                    : Date, format: NA NA ...
-##  $ Query_Run                      : Factor w/ 1 level &quot;2015-03-23 17:27:04.920&quot;: 1 1 1 1 1 1 1 1 1 1 ...
-##  $ USDATL                         : Factor w/ 7 levels &quot;ALDRIDGE&quot;,&quot;CARTER&quot;,..: NA NA NA NA NA NA NA NA NA NA ...
-##  $ BBP1                           : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ WSARAreg                       : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ BBP2                           : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ BBP3                           : int  0 0 0 0 0 0 0 0 0 0 ...
-##  $ Action.Obligation              : num  34000 152000 311000 538000 30000 ...
-##  $ SumOfnumberOfActions           : int  NA NA NA NA NA NA NA NA NA NA ...
-##  $ SubCustomer.sum                : Factor w/ 83 levels &quot;AFRICAN DEVELOPMENT FOUNDATION&quot;,..: 6 58 58 6 6 6 58 58 58 58 ...
-##  $ SubCustomer.detail             : Factor w/ 84 levels &quot;AFRICAN DEVELOPMENT FOUNDATION&quot;,..: 6 59 59 6 6 6 59 59 59 59 ...
-##  $ SubCustomer.component          : Factor w/ 86 levels &quot;Additional DoD Components&quot;,..: 7 62 62 7 7 7 62 62 62 62 ...
-##  $ Subcustomer.Obsolete           : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
-##  $ ServicesCategory.detail        : Factor w/ 11 levels &quot;All Services&quot;,..: 5 8 9 2 3 5 2 2 2 3 ...
-##  $ ServicesCategory.sum           : Factor w/ 5 levels &quot;All Services&quot;,..: 4 2 3 4 4 4 4 4 4 4 ...
-##  $ ProductsCategory.detail        : Factor w/ 16 levels &quot;Aircraft&quot;,&quot;All Services&quot;,..: 14 11 12 14 14 14 14 14 14 14 ...
-##  $ ProductOrServiceArea.DLA       : Factor w/ 17 levels &quot;Aircraft&quot;,&quot;All Services&quot;,..: 9 14 12 12 6 9 12 12 12 6 ...
-##  $ ProductOrServicesCategory.Graph: logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
-##  $ Pricing.Mechanism.Code         : Factor w/ 23 levels &quot;#N/A&quot;,&quot;*&quot;,&quot;0&quot;,..: 9 11 19 9 22 9 11 10 23 19 ...
-##  $ Pricing.Mechanism.detail       : Factor w/ 8 levels &quot;Combination&quot;,..: 4 5 2 4 7 4 5 5 7 2 ...
-##  $ Pricing.Mechanism.sum          : Factor w/ 6 levels &quot;Combination&quot;,..: 3 3 2 3 5 3 3 3 5 2 ...
-##  $ Pricing.Mechanism.hypothesis   : Factor w/ 4 levels &quot;Cost+&quot;,&quot;Fixed&quot;,..: 2 2 1 2 3 2 2 2 3 1 ...
-##  $ Pricing.Mechanism.Incentive    : Factor w/ 4 levels &quot;&quot;,&quot;FALSE&quot;,&quot;TRUE&quot;,..: 2 3 1 2 2 2 3 2 2 1 ...
-##  $ Pricing.Mechanism.Correlation  : Factor w/ 3 levels &quot;Fixed&quot;,&quot;Other&quot;,..: 1 1 2 1 2 1 1 1 2 2 ...
-##  $ IsCostBased                    : int  NA 1 NA NA 1 NA 1 1 1 NA ...
-##  $ IsFixedPrice                   : Factor w/ 3 levels &quot;Fixed Price&quot;,..: 3 2 3 3 2 3 2 2 2 3 ...
-##  $ IsIncentive                    : int  NA 1 NA NA 1 NA 1 1 1 NA ...
-##  $ Deflator.2013                  : num  50 50 50 50 50 50 50 50 50 50 ...
-##  $ Deflator.2012                  : num  50 50 50 50 50 50 50 50 50 50 ...
-##  $ Deflator.2011                  : num  50 50 50 50 50 50 50 50 50 50 ...
-##  $ Deflator.2005                  : num  50 50 50 50 50 50 50 50 50 50 ...
-##  $ Deflator.2014                  : num  NA NA NA NA NA NA NA NA NA NA ...
-##  $ Obligation.2013                : num  6.80e-07 3.04e-06 6.22e-06 1.08e-05 6.00e-07 ...
-##  $ Obligation.2014                : num  NA NA NA NA NA NA NA NA NA NA ...
-##  $ LogOfAction.Obligation         : num  4.53 5.18 5.49 5.73 4.48 ...
-##  $ Graph                          : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...</code></pre>
-<pre class="r"><code>ATLregimeFYear&lt;-aggregate(PricingRegime$Obligation.2014
-                          , by=list(PricingRegime$Fiscal.Year,
-                                    #                                                   PricingRegime$SubCustomer.component,
-                                    PricingRegime$USDATL)
+<pre><code>## Warning in apply_lookups(Path, RawRegime): NaNs produced</code></pre>
+<pre><code>##  [1] &quot;Fiscal.Year&quot;                        
+##  [2] &quot;Pricing.Mechanism&quot;                  
+##  [3] &quot;PlatformPortfolio&quot;                  
+##  [4] &quot;ProductOrServiceArea&quot;               
+##  [5] &quot;Customer&quot;                           
+##  [6] &quot;SubCustomer&quot;                        
+##  [7] &quot;SignedMonth&quot;                        
+##  [8] &quot;Query_Run&quot;                          
+##  [9] &quot;USDATL&quot;                             
+## [10] &quot;BBP1&quot;                               
+## [11] &quot;WSARAreg&quot;                           
+## [12] &quot;BBP2&quot;                               
+## [13] &quot;BBP3&quot;                               
+## [14] &quot;ServicesRestriction&quot;                
+## [15] &quot;Action.Obligation&quot;                  
+## [16] &quot;SumOfnumberOfActions&quot;               
+## [17] &quot;SubCustomer.sum&quot;                    
+## [18] &quot;SubCustomer.detail&quot;                 
+## [19] &quot;SubCustomer.component&quot;              
+## [20] &quot;Subcustomer.Obsolete&quot;               
+## [21] &quot;ServicesCategory.detail&quot;            
+## [22] &quot;ServicesCategory.sum&quot;               
+## [23] &quot;ProductsCategory.detail&quot;            
+## [24] &quot;ProductOrServiceArea.DLA&quot;           
+## [25] &quot;ProductOrServicesCategory.Graph&quot;    
+## [26] &quot;PlatformPortfolio.sum&quot;              
+## [27] &quot;PlatformPortfolio.AnD&quot;              
+## [28] &quot;Platform.page&quot;                      
+## [29] &quot;Platform.Labeled&quot;                   
+## [30] &quot;Pricing.Mechanism.Code&quot;             
+## [31] &quot;Pricing.Mechanism.detail&quot;           
+## [32] &quot;Pricing.Mechanism.sum&quot;              
+## [33] &quot;Pricing.Mechanism.hypothesis&quot;       
+## [34] &quot;Pricing.Mechanism.Fee&quot;              
+## [35] &quot;Pricing.Mechanism.Incentive&quot;        
+## [36] &quot;Pricing.Mechanism.Correlation&quot;      
+## [37] &quot;IsCostBased&quot;                        
+## [38] &quot;IsFixedPrice&quot;                       
+## [39] &quot;IsIncentive&quot;                        
+## [40] &quot;Pricing.Mechanism.hypothesis.detail&quot;
+## [41] &quot;Deflator.2013&quot;                      
+## [42] &quot;Deflator.2012&quot;                      
+## [43] &quot;Deflator.2011&quot;                      
+## [44] &quot;Deflator.2005&quot;                      
+## [45] &quot;Deflator.2014&quot;                      
+## [46] &quot;Obligation.2013&quot;                    
+## [47] &quot;Obligation.2014&quot;                    
+## [48] &quot;LogOfAction.Obligation&quot;             
+## [49] &quot;Graph&quot;</code></pre>
+<pre><code>## 'data.frame':    444364 obs. of  49 variables:
+##  $ Fiscal.Year                        : Date, format: &quot;1988-09-30&quot; &quot;1988-09-30&quot; ...
+##  $ Pricing.Mechanism                  : Factor w/ 18 levels &quot;Combination (two or more)&quot;,..: 18 7 7 7 18 7 7 7 4 7 ...
+##  $ PlatformPortfolio                  : Factor w/ 12 levels &quot;Aircraft and Drones&quot;,..: 1 2 2 3 1 5 3 9 9 6 ...
+##  $ ProductOrServiceArea               : Factor w/ 17 levels &quot;Aircraft&quot;,&quot;Clothing &amp; Subsistence&quot;,..: 1 1 3 6 4 1 4 4 5 7 ...
+##  $ Customer                           : Factor w/ 1 level &quot;Defense&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ SubCustomer                        : Factor w/ 8 levels &quot;Air Force&quot;,&quot;Army&quot;,..: 6 6 6 6 2 6 6 6 6 6 ...
+##  $ SignedMonth                        : Date, format: NA NA ...
+##  $ Query_Run                          : Factor w/ 1 level &quot;2015-06-22 23:35:42.880&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+##  $ USDATL                             : Factor w/ 7 levels &quot;ALDRIDGE&quot;,&quot;CARTER&quot;,..: NA NA NA NA NA NA NA NA NA NA ...
+##  $ BBP1                               : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ WSARAreg                           : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ BBP2                               : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ BBP3                               : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ ServicesRestriction                : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ Action.Obligation                  : num  53000 -167000 846000 661000 63000 ...
+##  $ SumOfnumberOfActions               : int  NA NA NA NA NA NA NA NA NA NA ...
+##  $ SubCustomer.sum                    : Factor w/ 83 levels &quot;AFRICAN DEVELOPMENT FOUNDATION&quot;,..: 58 58 58 58 6 58 58 58 58 58 ...
+##  $ SubCustomer.detail                 : Factor w/ 84 levels &quot;AFRICAN DEVELOPMENT FOUNDATION&quot;,..: 59 59 59 59 6 59 59 59 59 59 ...
+##  $ SubCustomer.component              : Factor w/ 86 levels &quot;Additional DoD Components&quot;,..: 62 62 62 62 7 62 62 62 62 62 ...
+##  $ Subcustomer.Obsolete               : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+##  $ ServicesCategory.detail            : Factor w/ 11 levels &quot;All Services&quot;,..: 8 8 8 3 8 8 8 8 2 4 ...
+##  $ ServicesCategory.sum               : Factor w/ 5 levels &quot;All Services&quot;,..: 2 2 2 4 2 2 2 2 4 2 ...
+##  $ ProductsCategory.detail            : Factor w/ 16 levels &quot;Aircraft&quot;,&quot;All Services&quot;,..: 1 1 4 14 5 1 5 5 14 6 ...
+##  $ ProductOrServiceArea.DLA           : Factor w/ 17 levels &quot;Aircraft&quot;,&quot;All Services&quot;,..: 1 1 4 6 5 1 5 5 12 7 ...
+##  $ ProductOrServicesCategory.Graph    : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
+##  $ PlatformPortfolio.sum              : Factor w/ 9 levels &quot;Aircraft and Drones&quot;,..: 1 2 2 3 1 5 3 7 7 6 ...
+##  $ PlatformPortfolio.AnD              : Factor w/ 11 levels &quot;Aircraft and Drones&quot;,..: 1 2 2 3 1 5 3 9 9 6 ...
+##  $ Platform.page                      : Factor w/ 2 levels &quot;Major Weapons&quot;,..: 1 2 2 2 1 1 2 1 1 2 ...
+##  $ Platform.Labeled                   : logi  TRUE TRUE TRUE TRUE TRUE TRUE ...
+##  $ Pricing.Mechanism.Code             : Factor w/ 23 levels &quot;#N/A&quot;,&quot;*&quot;,&quot;0&quot;,..: 2 9 9 9 2 9 9 9 19 9 ...
+##  $ Pricing.Mechanism.detail           : Factor w/ 8 levels &quot;Combination&quot;,..: 8 4 4 4 8 4 4 4 2 4 ...
+##  $ Pricing.Mechanism.sum              : Factor w/ 6 levels &quot;Combination&quot;,..: 6 3 3 3 6 3 3 3 2 3 ...
+##  $ Pricing.Mechanism.hypothesis       : Factor w/ 4 levels &quot;Cost+&quot;,&quot;Fixed&quot;,..: 4 2 2 2 4 2 2 2 1 2 ...
+##  $ Pricing.Mechanism.Fee              : Factor w/ 8 levels &quot;Award&quot;,&quot;EPA&quot;,..: 8 6 6 6 8 6 6 6 3 6 ...
+##  $ Pricing.Mechanism.Incentive        : Factor w/ 4 levels &quot;&quot;,&quot;FALSE&quot;,&quot;TRUE&quot;,..: 4 2 2 2 4 2 2 2 1 2 ...
+##  $ Pricing.Mechanism.Correlation      : Factor w/ 3 levels &quot;Fixed&quot;,&quot;Other&quot;,..: 3 1 1 1 3 1 1 1 2 1 ...
+##  $ IsCostBased                        : int  NA NA NA NA NA NA NA NA NA NA ...
+##  $ IsFixedPrice                       : Factor w/ 3 levels &quot;Fixed Price&quot;,..: 3 3 3 3 3 3 3 3 3 3 ...
+##  $ IsIncentive                        : int  NA NA NA NA NA NA NA NA NA NA ...
+##  $ Pricing.Mechanism.hypothesis.detail: Factor w/ 5 levels &quot;Cost+&quot;,&quot;Fixed&quot;,..: 5 2 2 2 5 2 2 2 1 2 ...
+##  $ Deflator.2013                      : num  50 50 50 50 50 50 50 50 50 50 ...
+##  $ Deflator.2012                      : num  50 50 50 50 50 50 50 50 50 50 ...
+##  $ Deflator.2011                      : num  50 50 50 50 50 50 50 50 50 50 ...
+##  $ Deflator.2005                      : num  50 50 50 50 50 50 50 50 50 50 ...
+##  $ Deflator.2014                      : num  NA NA NA NA NA NA NA NA NA NA ...
+##  $ Obligation.2013                    : num  1.06e-06 -3.34e-06 1.69e-05 1.32e-05 1.26e-06 ...
+##  $ Obligation.2014                    : num  NA NA NA NA NA NA NA NA NA NA ...
+##  $ LogOfAction.Obligation             : num  4.72 NaN 5.93 5.82 4.8 ...
+##  $ Graph                              : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...</code></pre>
+<pre class="r"><code>ATLregimeFYear&lt;-aggregate(RawRegime$Obligation.2014
+                          , by=list(RawRegime$Fiscal.Year,
+                                    #                                                   RawRegime$SubCustomer.component,
+                                    RawRegime$USDATL)
                           ,FUN = &quot;sum&quot;
                           ,na.rm =TRUE
                           )
@@ -163,7 +200,7 @@ img {
 
 
 names(ATLregimeFYear)&lt;-c(&quot;Fiscal.Year&quot;,&quot;USDATL&quot;,&quot;AnnualRegimeObligations&quot;)
-PricingUSDATL&lt;-subset(PricingRegime,join(PricingRegime,ATLregimeFYear)$AnnualRegimeObligations&gt;=50)</code></pre>
+USDATL&lt;-subset(RawRegime,join(RawRegime,ATLregimeFYear)$AnnualRegimeObligations&gt;=50)</code></pre>
 <pre><code>## Joining by: Fiscal.Year, USDATL</code></pre>
 <pre class="r"><code>ATLregimeDetails&lt;-data.frame(USDATL= 'GANSLER+',
                              StartDate=as.Date('1997/11/10',format='%Y/%m/%d'),
@@ -185,14 +222,14 @@ ATLregimeDetails&lt;-rbind(ATLregimeDetails,data.frame(USDATL= 'CARTER',
                                                     EndDate=as.Date('2011/11/02',format='%Y/%m/%d')))
 ATLregimeDetails&lt;-rbind(ATLregimeDetails,data.frame(USDATL= 'KENDALL' ,
                                                     StartDate=as.Date('2011/11/03',format='%Y/%m/%d'),
-                                                    EndDate=max(PricingRegime$SignedQuarter)))
+                                                    EndDate=max(RawRegime$SignedQuarter)))
 
 ATLregimeDetails$StartFiscalYear&lt;-ymd(paste(year(ATLregimeDetails$StartDate)+
                                                 ifelse(month(ATLregimeDetails$StartDate)&lt;10,-1,0)
                                             ,&quot;-10-1&quot;,sep=&quot;&quot;))
 
 
-PricingUSDATL&lt;-join(PricingUSDATL,ATLregimeDetails,match=&quot;first&quot;)</code></pre>
+USDATL&lt;-join(USDATL,ATLregimeDetails,match=&quot;first&quot;)</code></pre>
 <pre><code>## Joining by: USDATL</code></pre>
 <pre class="r"><code>png(
     paste( &quot;Output\\Pricing_Mechanism\\&quot;,paste(&quot;DoD_components&quot;
@@ -221,7 +258,7 @@ PricingGraph&lt;-LatticePercentLineWrapper(
     ,&quot;Month of Obligation (6 Month Lagging Average)&quot;
     ,&quot;% of Component Obligations&quot;
     ,Coloration
-    ,PricingUSDATL
+    ,USDATL
     ,NULL
     ,&quot;SignedMonth&quot;
     ,&quot;Obligation.2014&quot;
@@ -357,7 +394,7 @@ PricingGraph&lt;-LatticePercentLineWrapper(
     ,&quot;Fiscal Year of Obligation&quot;
     ,&quot;% of Component Obligations&quot;
     ,Coloration
-    ,PricingUSDATL
+    ,USDATL
     ,NULL
     ,&quot;Fiscal.Year&quot;
     ,&quot;Obligation.2014&quot;
@@ -381,20 +418,20 @@ print(PricingGraph)
 while(!(dev.cur()[[1]]==1)){
     dev.off()
     }</code></pre>
-<pre class="r"><code>PricingPolicy&lt;-PricingRegime
-PricingPolicy$ATLpolicy&lt;-as.character(PricingRegime$USDATL)
-PricingPolicy$ATLpolicy[PricingPolicy$BBP1==1]&lt;-&quot;CARTER+BBP1&quot;
-PricingPolicy$ATLpolicy[PricingPolicy$USDATL==&quot;CARTER&quot;]&lt;-&quot;CARTER\npre-2009 NDAA\nSec. 864 Impl.&quot;
-PricingPolicy$ATLpolicy[PricingPolicy$WSARAreg==1]&lt;-&quot;2009 NDAA\nSec. 864 Impl.&quot;
-PricingPolicy$ATLpolicy[PricingPolicy$BBP2==1]&lt;-&quot;BBP2&quot;
-PricingPolicy$ATLpolicy[PricingPolicy$BBP3==1]&lt;-&quot;BBP3&quot;
+<pre class="r"><code>Policy&lt;-RawRegime
+Policy$ATLpolicy&lt;-as.character(RawRegime$USDATL)
+Policy$ATLpolicy[Policy$BBP1==1]&lt;-&quot;CARTER+BBP1&quot;
+Policy$ATLpolicy[Policy$USDATL==&quot;CARTER&quot;]&lt;-&quot;CARTER\npre-2009 NDAA\nSec. 864 Impl.&quot;
+Policy$ATLpolicy[Policy$WSARAreg==1]&lt;-&quot;2009 NDAA\nSec. 864 Impl.&quot;
+Policy$ATLpolicy[Policy$BBP2==1]&lt;-&quot;BBP2&quot;
+Policy$ATLpolicy[Policy$BBP3==1]&lt;-&quot;BBP3&quot;
 
-PricingPolicy$ATLpolicy&lt;-factor(PricingPolicy$ATLpolicy,levels=c(&quot;GANSLER+&quot;,&quot;ALDRIDGE&quot;,&quot;WYNNE&quot;,&quot;KRIEG&quot;,&quot;YOUNG&quot;, &quot;CARTER\npre-2009 NDAA\nSec. 864 Impl.&quot;,&quot;2009 NDAA\nSec. 864 Impl.&quot;,&quot;BBP2&quot;,&quot;BBP3&quot; ),ordered=TRUE )
+Policy$ATLpolicy&lt;-factor(Policy$ATLpolicy,levels=c(&quot;GANSLER+&quot;,&quot;ALDRIDGE&quot;,&quot;WYNNE&quot;,&quot;KRIEG&quot;,&quot;YOUNG&quot;, &quot;CARTER\npre-2009 NDAA\nSec. 864 Impl.&quot;,&quot;2009 NDAA\nSec. 864 Impl.&quot;,&quot;BBP2&quot;,&quot;BBP3&quot; ),ordered=TRUE )
 # 
-# ATLpolicyFYear&lt;-aggregate(PricingPolicy$Obligation.2014
-#                           , by=list(PricingPolicy$Fiscal.Year,
-#                                     #                                                   PricingRegime$SubCustomer.component,
-#                                     PricingPolicy$ATLpolicy)
+# ATLpolicyFYear&lt;-aggregate(Policy$Obligation.2014
+#                           , by=list(Policy$Fiscal.Year,
+#                                     #                                                   RawRegime$SubCustomer.component,
+#                                     Policy$ATLpolicy)
 #                           ,FUN = &quot;sum&quot;
 #                           ,na.rm =TRUE
 #                           )
@@ -402,7 +439,7 @@ PricingPolicy$ATLpolicy&lt;-factor(PricingPolicy$ATLpolicy,levels=c(&quot;GANSLE
 # 
 # 
 # names(ATLpolicyFYear)&lt;-c(&quot;Fiscal.Year&quot;,&quot;ATLpolicy&quot;,&quot;AnnualPolicyObligations&quot;)
-# PricingPolicy&lt;-subset(PricingPolicy,join(PricingPolicy,ATLpolicyFYear)$AnnualPolicyObligations&gt;=50)
+# Policy&lt;-subset(Policy,join(Policy,ATLpolicyFYear)$AnnualPolicyObligations&gt;=50)
 # 
 
 ATLpolicyDetails&lt;-data.frame(ATLpolicy= 'GANSLER+',
@@ -437,7 +474,7 @@ ATLpolicyDetails&lt;-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP2',
                                                     EndDate=as.Date('2014/09/18',format='%Y/%m/%d')))
 ATLpolicyDetails&lt;-rbind(ATLpolicyDetails,data.frame(ATLpolicy= 'BBP3',
                                                     StartDate=as.Date('2014/09/19',format='%Y/%m/%d'),
-                                                    EndDate=max(PricingRegime$SignedQuarter)))
+                                                    EndDate=max(RawRegime$SignedQuarter)))
 
 
 ATLpolicyDetails$StartFiscalYear&lt;-ymd(
@@ -446,22 +483,22 @@ ATLpolicyDetails$StartFiscalYear&lt;-ymd(
           ,&quot;-10-1&quot;,sep=&quot;&quot;))
 
 
-PricingPolicy&lt;-join(PricingPolicy,ATLpolicyDetails,match=&quot;first&quot;)</code></pre>
+Policy&lt;-join(Policy,ATLpolicyDetails,match=&quot;first&quot;)</code></pre>
 <pre><code>## Joining by: ATLpolicy</code></pre>
-<pre class="r"><code>PricingPolicy&lt;-subset(PricingPolicy,ATLpolicy!='BBP3') #Not enough to include
+<pre class="r"><code>Policy&lt;-subset(Policy,ATLpolicy!='BBP3') #Not enough to include
 
-PricingPolicy$Fiscal.Year[PricingPolicy$Fiscal.Year&gt;PricingPolicy$EndDate&amp;
-                                      PricingPolicy$SignedMonth&lt;=PricingPolicy$EndDate]&lt;-
-    PricingPolicy$EndDate[PricingPolicy$Fiscal.Year&gt;PricingPolicy$EndDate&amp;
-                                      PricingPolicy$SignedMonth&lt;=PricingPolicy$EndDate]
-PricingPolicy$SignedFiscal.Year[PricingPolicy$SignedFiscal.Year&lt;PricingPolicy$StartDate]&lt;-
-    PricingPolicy$StartDate[PricingPolicy$SignedFiscal.Year&lt;PricingPolicy$StartDate]
+Policy$Fiscal.Year[Policy$Fiscal.Year&gt;Policy$EndDate&amp;
+                                      Policy$SignedMonth&lt;=Policy$EndDate]&lt;-
+    Policy$EndDate[Policy$Fiscal.Year&gt;Policy$EndDate&amp;
+                                      Policy$SignedMonth&lt;=Policy$EndDate]
+Policy$SignedFiscal.Year[Policy$SignedFiscal.Year&lt;Policy$StartDate]&lt;-
+    Policy$StartDate[Policy$SignedFiscal.Year&lt;Policy$StartDate]
 
 # library(lubridate)
-PricingPolicy$SignedFiscal.Year&lt;-PricingPolicy$SignedFiscal.Year
+Policy$SignedFiscal.Year&lt;-Policy$SignedFiscal.Year
 
-# c(as.date(PricingPolicy$SignedFiscal.Year),
-# seq.Date( as.date(str(PricingPolicy$SignedFiscal.Year)), length=2, by='3 months' )
+# c(as.date(Policy$SignedFiscal.Year),
+# seq.Date( as.date(str(Policy$SignedFiscal.Year)), length=2, by='3 months' )
 # )</code></pre>
 <pre class="r"><code>png(
     paste( &quot;Output\\Pricing_Mechanism\\&quot;,paste(&quot;DoD_components&quot;
@@ -489,7 +526,7 @@ PricingGraph&lt;-LatticePercentLineWrapper(
     ,&quot;Month of Obligation (6 Month Lagging Average)&quot;
     ,&quot;% of Component Obligations&quot;
     ,Coloration
-    ,PricingPolicy
+    ,Policy
     ,NULL
     ,&quot;SignedMonth&quot;
     ,&quot;Obligation.2014&quot;
@@ -653,7 +690,7 @@ PricingGraph&lt;-LatticePercentLineWrapper(
     ,&quot;Fiscal Year of Obligation&quot;
     ,&quot;% of Component Obligations&quot;
     ,Coloration
-    ,PricingPolicy
+    ,Policy
     ,NULL
     ,&quot;Fiscal.Year&quot;
     ,&quot;Obligation.2014&quot;
@@ -699,14 +736,14 @@ while(!(dev.cur()[[1]]==1)){
 
 
 PricingGraph&lt;-LatticePercentLineWrapper(
-    VAR.name=&quot;Pricing Mechanism&quot;
-    ,&quot;&quot;#VAR.proper.name=&quot;&quot;#Overall DoD Pricing Mechanism by Starting Regime&quot;
+    VAR.color.legend.label=&quot;Pricing Mechanism&quot;
+    ,&quot;&quot;#VAR.main.label=&quot;&quot;#Overall DoD Pricing Mechanism by Starting Regime&quot;
     ,VAR.X.label=&quot;Month of Obligation (6 Month Lagging Average)&quot;
     ,VAR.Y.label=&quot;% of DoD Obligations&quot;
     ,VAR.Coloration=Coloration
     
     
-    ,VAR.long.DF=PricingPolicy
+    ,VAR.long.DF=Policy
     ,VAR.ncol=NA
     ,VAR.x.variable=&quot;SignedMonth&quot;
     ,VAR.y.variable=&quot;Obligation.2014&quot;
@@ -769,14 +806,14 @@ while(!(dev.cur()[[1]]==1)){
 
 
 PricingGraph&lt;-LatticePercentLineWrapper(
-    VAR.name=&quot;Pricing Mechanism&quot;
-    ,&quot;&quot;#VAR.proper.name=&quot;&quot;#Overall DoD Pricing Mechanism by Starting Regime&quot;
+    VAR.color.legend.label=&quot;Pricing Mechanism&quot;
+    ,&quot;&quot;#VAR.main.label=&quot;&quot;#Overall DoD Pricing Mechanism by Starting Regime&quot;
     ,VAR.X.label=&quot;Fiscal Year of Obligation&quot;
     ,VAR.Y.label=&quot;% of DoD Obligations&quot;
     ,VAR.Coloration=Coloration
     
     
-    ,VAR.long.DF=PricingPolicy
+    ,VAR.long.DF=Policy
     ,VAR.ncol=NA
     ,VAR.x.variable=&quot;Fiscal.Year&quot;
     ,VAR.y.variable=&quot;Obligation.2014&quot;
@@ -800,7 +837,7 @@ print(PricingGraph)
 while(!(dev.cur()[[1]]==1)){
     dev.off()
     }</code></pre>
-<pre class="r"><code>for (c in unique(PricingPolicy$SubCustomer)){    
+<pre class="r"><code>for (c in unique(Policy$SubCustomer)){    
     png(
         paste( &quot;Output\\Pricing_Mechanism\\&quot;,c,&quot;\\&quot;,CleanFileName(
             paste(
@@ -823,14 +860,14 @@ while(!(dev.cur()[[1]]==1)){
         )
     
     PricingGraph&lt;-LatticePercentLineWrapper(
-        VAR.name=&quot;Pricing Mechanism&quot;
-        ,VAR.proper.name=&quot;&quot;#paste(c,&quot;Pricing Mechanism by Starting Regime&quot;)
+        VAR.color.legend.label=&quot;Pricing Mechanism&quot;
+        ,VAR.main.label=&quot;&quot;#paste(c,&quot;Pricing Mechanism by Starting Regime&quot;)
         ,VAR.X.label=&quot;Month of Obligation (6 Month Lagging Average)&quot;
         ,VAR.Y.label=paste(&quot;% of &quot;,c,&quot; Obligations&quot;)
         ,VAR.Coloration=Coloration
         
         
-        ,VAR.long.DF=subset(PricingPolicy,SubCustomer==c)
+        ,VAR.long.DF=subset(Policy,SubCustomer==c)
         ,VAR.ncol=NA
         ,VAR.x.variable=&quot;SignedMonth&quot;
         ,VAR.y.variable=&quot;Obligation.2014&quot;
@@ -884,15 +921,6 @@ while(!(dev.cur()[[1]]==1)){
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 25 rows containing missing
 ## values (geom_path).</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 24 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 12 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 21 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 17 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 30 rows containing missing
 ## values (geom_path).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 29 rows containing missing
@@ -919,7 +947,16 @@ while(!(dev.cur()[[1]]==1)){
 ## values (geom_path).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 13 rows containing missing
 ## values (geom_path).</code></pre>
-<pre class="r"><code>for (c in unique(PricingPolicy$SubCustomer)){    
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 24 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 12 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 21 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 17 rows containing missing
+## values (geom_path).</code></pre>
+<pre class="r"><code>for (c in unique(Policy$SubCustomer)){    
     png(
         paste(&quot;Output\\Pricing_Mechanism\\&quot;,c,&quot;\\&quot;,
              CleanFileName( paste(
@@ -942,14 +979,14 @@ while(!(dev.cur()[[1]]==1)){
         )
     
     PricingGraph&lt;-LatticePercentLineWrapper(
-        VAR.name=&quot;Pricing Mechanism&quot;
-        ,VAR.proper.name=&quot;&quot;#paste(c,&quot;Pricing Mechanism by Starting Regime&quot;)
+        VAR.color.legend.label=&quot;Pricing Mechanism&quot;
+        ,VAR.main.label=&quot;&quot;#paste(c,&quot;Pricing Mechanism by Starting Regime&quot;)
         ,VAR.X.label=&quot;Fiscal Year of Obligation&quot;
         ,VAR.Y.label=paste(&quot;% of &quot;,c,&quot; Obligations&quot;)
         ,VAR.Coloration=Coloration
         
         
-        ,VAR.long.DF=subset(PricingPolicy,SubCustomer==c)
+        ,VAR.long.DF=subset(Policy,SubCustomer==c)
         ,VAR.ncol=NA
         ,VAR.x.variable=&quot;Fiscal.Year&quot;
         ,VAR.y.variable=&quot;Obligation.2014&quot;
@@ -981,15 +1018,21 @@ while(!(dev.cur()[[1]]==1)){
 ## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
 ## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.
 ## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre class="r"><code>PricingPolicy$SinceFirstFiscalYear&lt;-as.numeric(as.duration(
-    ymd(PricingPolicy$SignedMonth)-PricingPolicy$StartFiscalYear)
+<pre class="r"><code>Policy$SinceFirstFiscalYear&lt;-as.numeric(as.duration(
+    ymd(Policy$SignedMonth)-Policy$StartFiscalYear)
+    /dyears(1)
+    )
+
+
+USDATL$SinceFirstFiscalYear&lt;-as.numeric(as.duration(
+    ymd(USDATL$SignedMonth)-USDATL$StartFiscalYear)
     /dyears(1)
     )
 
 HorseTailYears&lt;-6</code></pre>
-<pre class="r"><code>OldGraph&lt;-PricingPolicy$Graph
+<pre class="r"><code>OldGraph&lt;-Policy$Graph
 
-for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){    
+for (s in unique(Policy$Pricing.Mechanism.sum)){    
     png(
         paste( &quot;Output\\Pricing_Mechanism\\&quot;,
                CleanFileName(paste(
@@ -1013,18 +1056,18 @@ for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){
         , res=150
         )
     
-    PricingPolicy$Graph[PricingPolicy$Pricing.Mechanism.sum!=s]&lt;-FALSE
-    PricingPolicy$Graph[PricingPolicy$Pricing.Mechanism.sum==s]&lt;-TRUE
+    Policy$Graph[Policy$Pricing.Mechanism.sum!=s]&lt;-FALSE
+    Policy$Graph[Policy$Pricing.Mechanism.sum==s]&lt;-TRUE
     
     PricingGraph&lt;-LatticePercentLineWrapper(
-        VAR.name=&quot;Pricing Mechanism&quot;
-        ,&quot;&quot;#VAR.proper.name=&quot;&quot;#Overall DoD Pricing Mechanism by Starting Regime&quot;
+        VAR.color.legend.label=&quot;Pricing Mechanism&quot;
+        ,&quot;&quot;#VAR.main.label=&quot;&quot;#Overall DoD Pricing Mechanism by Starting Regime&quot;
         ,VAR.X.label=&quot;Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)&quot;
         ,VAR.Y.label=&quot;% of DoD Obligations&quot;
         ,VAR.Coloration=Coloration
         , HorseTail=TRUE
         
-        ,VAR.long.DF=PricingPolicy
+        ,VAR.long.DF=Policy
         ,VAR.ncol=1
         ,VAR.x.variable=&quot;SinceFirstFiscalYear&quot;#SignedMonth
         ,VAR.y.variable=&quot;Obligation.2014&quot;
@@ -1039,12 +1082,12 @@ for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){
     
     # PricingGraph&lt;-PricingGraph+aes(size=y.variable)
     
-    PricingGraph&lt;-PricingGraph+scale_x_continuous(breaks=c(1:HorseTailYears),limits=c(1,HorseTailYears))
+    PricingGraph&lt;-PricingGraph+scale_x_continuous(breaks=c(0:HorseTailYears),limits=c(0,HorseTailYears))
     
     # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # PricingGraph&lt;-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
     PricingGraph&lt;-PricingGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-        theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))
+        theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction=&quot;vertical&quot;)+guides(color=guide_legend(ncol=2))
 #     +
     #     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
     PricingGraph
@@ -1055,27 +1098,27 @@ for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){
         }
     }</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
 ## values (geom_path).</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
 ## values (geom_path).</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
 ## values (geom_path).</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 35 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 31 rows containing missing
 ## values (geom_path).</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
 ## values (geom_path).</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 23 rows containing missing
 ## values (geom_path).</code></pre>
-<pre class="r"><code>PricingPolicy$Graph&lt;-OldGraph</code></pre>
-<pre class="r"><code>OldGraph&lt;-PricingPolicy$Graph
+<pre class="r"><code>Policy$Graph&lt;-OldGraph</code></pre>
+<pre class="r"><code>OldGraph&lt;-Policy$Graph
 
-for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){    
+for (s in unique(Policy$Pricing.Mechanism.sum)){    
     png(
         paste( &quot;Output\\Pricing_Mechanism\\&quot;,
                CleanFileName(paste(
@@ -1099,18 +1142,18 @@ for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){
         , res=150
         )
     
-    PricingPolicy$Graph[PricingPolicy$Pricing.Mechanism.sum!=s]&lt;-FALSE
-    PricingPolicy$Graph[PricingPolicy$Pricing.Mechanism.sum==s]&lt;-TRUE
+    Policy$Graph[Policy$Pricing.Mechanism.sum!=s]&lt;-FALSE
+    Policy$Graph[Policy$Pricing.Mechanism.sum==s]&lt;-TRUE
     
     PricingGraph&lt;-LatticePercentLineWrapper(
-        VAR.name=&quot;Pricing Mechanism&quot;
-        ,&quot;&quot;#VAR.proper.name=&quot;&quot;#Overall DoD Pricing Mechanism by Starting Regime&quot;
+        VAR.color.legend.label=&quot;Pricing Mechanism&quot;
+        ,&quot;&quot;#VAR.main.label=&quot;&quot;#Overall DoD Pricing Mechanism by Starting Regime&quot;
         ,VAR.X.label=&quot;Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)&quot;
         ,VAR.Y.label=&quot;% of Component Obligations&quot;
         ,VAR.Coloration=Coloration
         , HorseTail=TRUE
         
-        ,VAR.long.DF=PricingPolicy
+        ,VAR.long.DF=Policy
         ,VAR.ncol=1
         ,VAR.x.variable=&quot;SinceFirstFiscalYear&quot;#SignedMonth
         ,VAR.y.variable=&quot;Obligation.2014&quot;
@@ -1124,13 +1167,13 @@ for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){
         )
     
     # PricingGraph&lt;-PricingGraph+aes(size=y.variable)
-    PricingGraph&lt;-PricingGraph+scale_x_continuous(breaks=c(1:HorseTailYears),
-                                                limits=c(1,HorseTailYears))
+    PricingGraph&lt;-PricingGraph+scale_x_continuous(breaks=c(0:HorseTailYears),
+                                                limits=c(0,HorseTailYears))
     
     # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # PricingGraph&lt;-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
     PricingGraph&lt;-PricingGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-        theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))
+        theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction=&quot;vertical&quot;)+guides(color=guide_legend(ncol=2))
     #     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
     PricingGraph
     print(PricingGraph)
@@ -1140,93 +1183,93 @@ for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){
         }
     }</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
 ## values (geom_path).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 32 rows containing missing
 ## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 32 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 16 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 34 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 13 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 32 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 32 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 20 rows containing missing
+## values (geom_path).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 30 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
 ## values (geom_path).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 12 rows containing missing
 ## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 45 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 48 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 49 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 50 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 28 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 49 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 15 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
 ## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 32 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 32 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 36 rows containing missing
+## values (geom_path).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
 ## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 14 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 35 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 34 rows containing missing
 ## values (geom_path).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 34 rows containing missing
 ## values (geom_path).</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 41 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 29 rows containing missing
 ## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 30 rows containing missing
 ## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 15 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 28 rows containing missing
 ## values (geom_path).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 8 rows containing missing values
 ## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 30 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 32 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 9 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 8 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 32 rows containing missing
+## values (geom_path).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
 ## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 44 rows containing missing
-## values (geom_path).</code></pre>
 <pre><code>## Scale for 'y' is already present. Adding another scale for 'y', which will replace the existing scale.</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
 ## (geom_path).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 21 rows containing missing
 ## values (geom_path).</code></pre>
-<pre class="r"><code>PricingPolicy$Graph&lt;-OldGraph</code></pre>
-<pre class="r"><code>OldGraph&lt;-PricingPolicy$Graph
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
+## (geom_path).</code></pre>
+<pre class="r"><code>Policy$Graph&lt;-OldGraph</code></pre>
+<pre class="r"><code>OldGraph&lt;-Policy$Graph
 
-for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){    
+for (s in unique(Policy$Pricing.Mechanism.sum)){    
     png(
         paste( &quot;Output\\Pricing_Mechanism\\&quot;,
                CleanFileName(paste(
@@ -1250,16 +1293,16 @@ for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){
         , res=150
         )
     
-    PricingPolicy$Graph[PricingPolicy$Pricing.Mechanism.sum!=s]&lt;-FALSE
-    PricingPolicy$Graph[PricingPolicy$Pricing.Mechanism.sum==s]&lt;-TRUE
+    Policy$Graph[Policy$Pricing.Mechanism.sum!=s]&lt;-FALSE
+    Policy$Graph[Policy$Pricing.Mechanism.sum==s]&lt;-TRUE
     
     PricingGraph&lt;-LatticePlotWrapper(
-        VAR.name=&quot;Pricing Mechanism&quot;
-        ,&quot;&quot;#VAR.proper.name=&quot;&quot;#Overall DoD Pricing Mechanism by Starting Regime&quot;
+        VAR.color.legend.label=&quot;Pricing Mechanism&quot;
+        ,&quot;&quot;#VAR.main.label=&quot;&quot;#Overall DoD Pricing Mechanism by Starting Regime&quot;
         ,VAR.X.label=&quot;Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)&quot;
         ,VAR.Y.label=paste(s,&quot;Constant 2014 $ Obligated, Billions&quot;)
         ,VAR.Coloration=Coloration
-        ,VAR.long.DF=PricingPolicy
+        ,VAR.long.DF=Policy
         ,VAR.ncol=1
         ,VAR.x.variable=&quot;SinceFirstFiscalYear&quot;#SignedMonth
         ,VAR.y.variable=&quot;Obligation.2014&quot;
@@ -1274,13 +1317,13 @@ for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){
     PricingGraph&lt;-PricingGraph+geom_bar(width=1/12,stat=&quot;identity&quot;,position=&quot;dodge&quot;)
     # PricingGraph&lt;-PricingGraph+aes(size=y.variable)
     
-    PricingGraph&lt;-PricingGraph+scale_x_continuous(breaks=c(1:HorseTailYears),
-                                                limits=c(1,HorseTailYears))
+    PricingGraph&lt;-PricingGraph+scale_x_continuous(breaks=c(0:HorseTailYears),
+                                                limits=c(0,HorseTailYears))
     
     # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # PricingGraph&lt;-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
     # PricingGraph&lt;-PricingGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-    #     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
+    #     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction=&quot;vertical&quot;)+guides(color=guide_legend(ncol=2))+
     #     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
     PricingGraph
     print(PricingGraph)
@@ -1289,13 +1332,13 @@ for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){
         dev.off()
         }
     }</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
@@ -1305,13 +1348,13 @@ for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
@@ -1321,13 +1364,13 @@ for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
@@ -1337,9 +1380,9 @@ for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
@@ -1349,23 +1392,24 @@ for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (geom_text).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (geom_text).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (geom_text).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
@@ -1393,11 +1437,11 @@ for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){
 ## (geom_text).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (geom_text).</code></pre>
-<pre class="r"><code>PricingPolicy$Graph&lt;-OldGraph</code></pre>
-<pre class="r"><code>OldGraph&lt;-PricingPolicy$Graph
-for (c in unique(PricingPolicy$SubCustomer)){ 
-    PricingSubCustomer&lt;-subset(PricingPolicy,SubCustomer==c)
-    for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){    
+<pre class="r"><code>Policy$Graph&lt;-OldGraph</code></pre>
+<pre class="r"><code>OldGraph&lt;-Policy$Graph
+for (c in unique(Policy$SubCustomer)){ 
+    PricingSubCustomer&lt;-subset(Policy,SubCustomer==c)
+    for (s in unique(Policy$Pricing.Mechanism.sum)){    
         PricingSubCustomer$Graph[PricingSubCustomer$Pricing.Mechanism.sum!=s]&lt;-FALSE
         PricingSubCustomer$Graph[PricingSubCustomer$Pricing.Mechanism.sum==s]&lt;-TRUE
         if(any(PricingSubCustomer$Graph==TRUE)){
@@ -1426,8 +1470,8 @@ for (c in unique(PricingPolicy$SubCustomer)){
             
             
             PricingGraph&lt;-LatticePercentLineWrapper(
-                VAR.name=&quot;Pricing Mechanism&quot;
-                ,&quot;&quot;#VAR.proper.name=&quot;&quot;#Overall DoD Pricing Mechanism by Starting Regime&quot;
+                VAR.color.legend.label=&quot;Pricing Mechanism&quot;
+                ,&quot;&quot;#VAR.main.label=&quot;&quot;#Overall DoD Pricing Mechanism by Starting Regime&quot;
                 ,VAR.X.label=&quot;Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)&quot;
                 ,VAR.Y.label=paste(&quot;% of&quot;,c,&quot;Obligations&quot;)
                 ,VAR.Coloration=Coloration
@@ -1448,13 +1492,13 @@ for (c in unique(PricingPolicy$SubCustomer)){
             
             # PricingGraph&lt;-PricingGraph+aes(size=y.variable)
             
-            PricingGraph&lt;-PricingGraph+scale_x_continuous(breaks=c(1:HorseTailYears)
-                                                        ,limits=c(1,HorseTailYears))
+            PricingGraph&lt;-PricingGraph+scale_x_continuous(breaks=c(0:HorseTailYears)
+                                                        ,limits=c(0,HorseTailYears))
             
             # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
             # PricingGraph&lt;-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
             # PricingGraph&lt;-PricingGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
-            #     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
+                PricingGraph&lt;-PricingGraph+theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1),legend.box='horizontal',legend.direction=&quot;vertical&quot;)+guides(color=guide_legend(ncol=2))
             #     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
             PricingGraph
             print(PricingGraph)
@@ -1465,89 +1509,89 @@ for (c in unique(PricingPolicy$SubCustomer)){
             }
         }
     }</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 41 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (geom_path).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 32 rows containing missing
 ## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 48 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 32 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 32 rows containing missing
 ## values (geom_path).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 28 rows containing missing
 ## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 14 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
 ## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 15 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
 ## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 29 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 16 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 20 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 36 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 8 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 9 rows containing missing values
+## (geom_path).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
 ## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 12 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 32 rows containing missing
 ## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 50 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 32 rows containing missing
 ## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 15 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 35 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 21 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 45 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 46 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 34 rows containing missing
-## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 44 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 32 rows containing missing
 ## values (geom_path).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 30 rows containing missing
 ## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 49 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 32 rows containing missing
 ## values (geom_path).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 49 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 21 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 34 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 34 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 30 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 32 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 30 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 33 rows containing missing
 ## values (geom_path).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 3 rows containing missing values
 ## (geom_path).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 8 rows containing missing values
 ## (geom_path).</code></pre>
-<pre class="r"><code>PricingPolicy$Graph&lt;-OldGraph</code></pre>
-<pre class="r"><code>OldGraph&lt;-PricingPolicy$Graph
-for (c in unique(PricingPolicy$SubCustomer)){ 
-    PricingSubCustomer&lt;-subset(PricingPolicy,SubCustomer==c)
-    for (s in unique(PricingPolicy$Pricing.Mechanism.sum)){    
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 13 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 12 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 34 rows containing missing
+## values (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
+## (geom_path).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+## (geom_path).</code></pre>
+<pre class="r"><code>Policy$Graph&lt;-OldGraph</code></pre>
+<pre class="r"><code>OldGraph&lt;-Policy$Graph
+for (c in unique(Policy$SubCustomer)){ 
+    PricingSubCustomer&lt;-subset(Policy,SubCustomer==c)
+    for (s in unique(Policy$Pricing.Mechanism.sum)){    
         PricingSubCustomer$Graph[PricingSubCustomer$Pricing.Mechanism.sum!=s]&lt;-FALSE
         PricingSubCustomer$Graph[PricingSubCustomer$Pricing.Mechanism.sum==s]&lt;-TRUE
         if(any(PricingSubCustomer$Graph==TRUE)){
@@ -1575,8 +1619,8 @@ for (c in unique(PricingPolicy$SubCustomer)){
         )
     
     PricingGraph&lt;-LatticePlotWrapper(
-        VAR.name=&quot;Pricing Mechanism&quot;
-        ,&quot;&quot;#VAR.proper.name=&quot;&quot;#Overall DoD Pricing Mechanism by Starting Regime&quot;
+        VAR.color.legend.label=&quot;Pricing Mechanism&quot;
+        ,&quot;&quot;#VAR.main.label=&quot;&quot;#Overall DoD Pricing Mechanism by Starting Regime&quot;
         ,VAR.X.label=&quot;Years Since Start of Regime's First Fiscal Year\n(3 Month Lagging Average)&quot;
         ,VAR.Y.label=paste(c,s,&quot;Constant 2014 $ Obligated, Billions&quot;)
         ,VAR.Coloration=Coloration
@@ -1597,8 +1641,8 @@ for (c in unique(PricingPolicy$SubCustomer)){
     PricingGraph&lt;-PricingGraph+geom_bar(width=1/12,stat=&quot;identity&quot;,position=&quot;dodge&quot;)
     # PricingGraph&lt;-PricingGraph+aes(size=y.variable)
     
-    PricingGraph&lt;-PricingGraph+scale_x_continuous(breaks=c(1:HorseTailYears)
-                                                ,limits=c(1,HorseTailYears))
+    PricingGraph&lt;-PricingGraph+scale_x_continuous(breaks=c(0:HorseTailYears)
+                                                ,limits=c(0,HorseTailYears))
     
     # PricingGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # PricingGraph&lt;-PricingGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
@@ -1615,13 +1659,13 @@ for (c in unique(PricingPolicy$SubCustomer)){
 
         }
     }</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
@@ -1631,30 +1675,30 @@ for (c in unique(PricingPolicy$SubCustomer)){
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
+## values (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
-## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
@@ -1664,24 +1708,24 @@ for (c in unique(PricingPolicy$SubCustomer)){
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 22 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 21 rows containing missing
 ## values (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
@@ -1693,13 +1737,13 @@ for (c in unique(PricingPolicy$SubCustomer)){
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
@@ -1709,13 +1753,13 @@ for (c in unique(PricingPolicy$SubCustomer)){
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
@@ -1725,13 +1769,13 @@ for (c in unique(PricingPolicy$SubCustomer)){
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
@@ -1741,25 +1785,26 @@ for (c in unique(PricingPolicy$SubCustomer)){
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
@@ -1771,85 +1816,67 @@ for (c in unique(PricingPolicy$SubCustomer)){
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 11 rows containing missing
-## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
-## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 9 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 8 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_stack requires constant width:
 ## output may be incorrect</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 5 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_stack requires constant width:
-## output may be incorrect</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_stack requires constant width:
-## output may be incorrect</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 5 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_stack requires constant width:
-## output may be incorrect</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_stack requires constant width:
 ## output may be incorrect</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_stack requires constant width:
 ## output may be incorrect</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 10 rows containing missing
+## values (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
+## values (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 5 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_stack requires constant width:
@@ -1862,47 +1889,6 @@ for (c in unique(PricingPolicy$SubCustomer)){
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_stack requires constant width:
-## output may be incorrect</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_stack requires constant width:
-## output may be incorrect</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
-## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
@@ -1913,8 +1899,16 @@ for (c in unique(PricingPolicy$SubCustomer)){
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_stack requires constant width:
 ## output may be incorrect</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_stack requires constant width:
+## output may be incorrect</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_stack requires constant width:
+## output may be incorrect</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
@@ -1925,70 +1919,11 @@ for (c in unique(PricingPolicy$SubCustomer)){
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
+## values (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_stack requires constant width:
-## output may be incorrect</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
-## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
-## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
-## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
-## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
@@ -1996,15 +1931,65 @@ for (c in unique(PricingPolicy$SubCustomer)){
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
+## values (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
+## values (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
+## values (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
@@ -2023,15 +2008,31 @@ for (c in unique(PricingPolicy$SubCustomer)){
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
+## values (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 5 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
@@ -2041,13 +2042,13 @@ for (c in unique(PricingPolicy$SubCustomer)){
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
@@ -2057,25 +2058,9 @@ for (c in unique(PricingPolicy$SubCustomer)){
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
-## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 1 rows containing missing values
@@ -2088,13 +2073,30 @@ for (c in unique(PricingPolicy$SubCustomer)){
 <pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
 ## values (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 5 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
+## values (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
@@ -2117,29 +2119,13 @@ for (c in unique(PricingPolicy$SubCustomer)){
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 25 rows containing missing
 ## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
-## x intervals</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 27 rows containing missing
-## values (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 5 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 7 rows containing missing values
-## (position_stack).</code></pre>
-<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
 ## (position_stack).</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
@@ -2173,11 +2159,79 @@ for (c in unique(PricingPolicy$SubCustomer)){
 ## x intervals</code></pre>
 <pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
 ## x intervals</code></pre>
-<pre class="r"><code>PricingPolicy$Graph&lt;-OldGraph</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_stack requires constant width:
+## output may be incorrect</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_stack requires constant width:
+## output may be incorrect</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 6 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_stack requires constant width:
+## output may be incorrect</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_stack requires constant width:
+## output may be incorrect</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
+## values (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Stacking not well defined when ymin != 0</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 4 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_stack requires constant width:
+## output may be incorrect</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): Removed 2 rows containing missing values
+## (position_stack).</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre><code>## Warning in loop_apply(n, do.ply): position_dodge requires non-overlapping
+## x intervals</code></pre>
+<pre class="r"><code>Policy$Graph&lt;-OldGraph</code></pre>
 <pre class="r"><code>#Annual
-PricingRegimeTable&lt;-ddply(PricingRegime, 
+USDATLTable&lt;-ddply(USDATL, 
                          .(
                              Fiscal.Year,
+                             SinceFirstFiscalYear,
                              Pricing.Mechanism.sum,
                              SubCustomer.component,
                              USDATL
@@ -2186,10 +2240,10 @@ PricingRegimeTable&lt;-ddply(PricingRegime,
                          Obligation.2014=sum(Obligation.2014)
                          )
 
-write.csv(PricingRegimeTable,paste(&quot;Output\\Pricing_Mechanism\\&quot;,
+write.csv(USDATLTable,paste(&quot;Output\\Pricing_Mechanism\\&quot;,
                                   paste(&quot;DoD_components&quot;
                                         ,&quot;Obligation_2014&quot;
-                                        ,&quot;Pricing_Mechanism_sum&quot;
+                                        ,&quot;Pricing_Mechanism&quot;
                                         ,&quot;USDATL&quot;
                                         ,&quot;Annual&quot;
                                         ,sep=&quot;_&quot;
@@ -2198,11 +2252,15 @@ write.csv(PricingRegimeTable,paste(&quot;Output\\Pricing_Mechanism\\&quot;,
                                   sep=&quot;&quot;))
 
 
-#Monthly
 
-PricingRegimeTable&lt;-ddply(PricingRegime, 
+#Monthly
+USDATLTable&lt;-ddply(USDATL, 
                          .(
                              SignedMonth,
+                             SignedQuarter,
+                             Quarter,
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
                              Pricing.Mechanism.sum,
                              SubCustomer.component,
                              USDATL
@@ -2212,8 +2270,8 @@ PricingRegimeTable&lt;-ddply(PricingRegime,
                          )
 
 
-PricingRegimeTable&lt;-ddply(PricingRegimeTable, 
-                         .(Pricing.Mechanism.sum,
+USDATLTable&lt;-ddply(USDATLTable, 
+                         .( Pricing.Mechanism.sum,
                            SubCustomer.component,
                            USDATL),
                          .fun=TransformFilter,
@@ -2223,10 +2281,11 @@ PricingRegimeTable&lt;-ddply(PricingRegimeTable,
                          )
 
 
-write.csv(PricingRegimeTable,paste(&quot;Output\\Pricing_Mechanism\\&quot;,
+
+write.csv(USDATLTable,paste(&quot;Output\\Pricing_Mechanism\\&quot;,
                                   paste(&quot;DoD_components&quot;
                                         ,&quot;Obligation_2014&quot;
-                                        ,&quot;Pricing_Mechanism_sum&quot;
+                                        ,&quot;Pricing_Mechanism&quot;
                                         ,&quot;USDATL&quot;
                                         ,&quot;Monthly&quot;
                                         ,sep=&quot;_&quot;
@@ -2235,8 +2294,43 @@ write.csv(PricingRegimeTable,paste(&quot;Output\\Pricing_Mechanism\\&quot;,
                                   sep=&quot;&quot;))
 
 
+
+
+#Quarterly
+USDATLTable&lt;-ddply(USDATLTable, 
+                         .(  SignedQuarter,
+                             Quarter,
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
+                             Pricing.Mechanism.sum,
+                             SubCustomer.component,
+                             USDATL
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014),
+                         MovingAverage=sum(MovingAverage)
+                         )
+
+
+write.csv(USDATLTable,paste(&quot;Output\\Pricing_Mechanism\\&quot;,
+                                  paste(&quot;DoD_components&quot;
+                                        ,&quot;Obligation_2014&quot;
+                                        ,&quot;Pricing_Mechanism&quot;
+                                        ,&quot;USDATL&quot;
+                                        ,&quot;Quarterly&quot;
+                                        ,sep=&quot;_&quot;
+                                        )
+                                  ,&quot;.csv&quot;,
+                                  sep=&quot;&quot;))
+
+
+
+
+
+
 #Annual
-PricingPolicyTable&lt;-ddply(PricingPolicy, c(&quot;Fiscal.Year&quot;
+PolicyTable&lt;-ddply(Policy, c(&quot;Fiscal.Year&quot;
+                                             ,&quot;SinceFirstFiscalYear&quot;
                                          ,&quot;Pricing.Mechanism.sum&quot;
                                          ,&quot;SubCustomer.component&quot;
                                          ,&quot;ATLpolicy&quot;)
@@ -2245,10 +2339,10 @@ PricingPolicyTable&lt;-ddply(PricingPolicy, c(&quot;Fiscal.Year&quot;
                          )
 
 
-write.csv(PricingPolicyTable,paste(&quot;Output\\Pricing_Mechanism\\&quot;,
+write.csv(PolicyTable,paste(&quot;Output\\Pricing_Mechanism\\&quot;,
                                   paste(&quot;DoD_components&quot;
                                         ,&quot;Obligation_2014&quot;
-                                        ,&quot;Pricing_Mechanism_sum&quot;
+                                        ,&quot;Pricing_Mechanism&quot;
                                         ,&quot;ATLpolicy&quot;
                                         ,&quot;Annual&quot;
                                         ,sep=&quot;_&quot;
@@ -2259,7 +2353,11 @@ write.csv(PricingPolicyTable,paste(&quot;Output\\Pricing_Mechanism\\&quot;,
 
 #Monthly
 
-PricingPolicyTable&lt;-ddply(PricingPolicy, c(&quot;SignedMonth&quot;
+PolicyTable&lt;-ddply(Policy, c(&quot;SignedMonth&quot;
+                                             ,&quot;SignedQuarter&quot;
+                                             ,&quot;Quarter&quot;
+                                             ,&quot;Fiscal.Year&quot;
+                                             ,&quot;SinceFirstFiscalYear&quot;
                                          ,&quot;Pricing.Mechanism.sum&quot;
                                          ,&quot;SubCustomer.component&quot;
                                          ,&quot;ATLpolicy&quot;)
@@ -2267,8 +2365,8 @@ PricingPolicyTable&lt;-ddply(PricingPolicy, c(&quot;SignedMonth&quot;
                          ,Obligation.2014=sum(Obligation.2014)
                          )
 
-PricingPolicyTable&lt;-ddply(PricingPolicyTable, 
-                         .(Pricing.Mechanism.sum,
+PolicyTable&lt;-ddply(PolicyTable, 
+                         .( Pricing.Mechanism.sum,
                            SubCustomer.component,
                            ATLpolicy),
                          .fun=TransformFilter,
@@ -2278,303 +2376,44 @@ PricingPolicyTable&lt;-ddply(PricingPolicyTable,
                          )
 
 
-write.csv(PricingPolicyTable,paste(&quot;Output\\Pricing_Mechanism\\&quot;,
+write.csv(PolicyTable,paste(&quot;Output\\Pricing_Mechanism\\&quot;,
                                   paste(&quot;DoD_components&quot;
                                         ,&quot;Obligation_2014&quot;
-                                        ,&quot;Pricing_Mechanism_sum&quot;
+                                        ,&quot;Pricing_Mechanism&quot;
                                         ,&quot;ATLpolicy&quot;
                                         ,&quot;Monthly&quot;
                                         ,sep=&quot;_&quot;
                                         )
                                   ,&quot;.csv&quot;,
-                                  sep=&quot;&quot;))</code></pre>
-<pre class="r"><code># 
-# png(
-#     paste(&quot;Output//Pricing_Mechanism//&quot;,
-#           paste(&quot;DoD_components&quot;
-#                  ,&quot;Obligation_2014&quot;
-#                  ,&quot;Pricing_Mechanism_sum&quot;
-#                  ,&quot;ATLpolicy&quot;
-#                  ,&quot;Annual&quot;
-#                  ,sep=&quot;_&quot;
-#                  )
-#            ,&quot;.png&quot;
-#            , sep=&quot;&quot;
-#            )
-#     , type=&quot;cairo&quot;
-#     , width=7.5
-#     , height=10
-#     , units='in'
-#     , pointsize=12
-#     , res=150
-#     )
-# 
-# 
-# FixedGraph&lt;-LatticePercentLineWrapper(
-#     &quot;Pricing Mechanism&quot;
-#     ,&quot;Pricing Mechanism by DoD Component and Starting Regime&quot;
-#     ,&quot;Fiscal Year of Obligation&quot;
-#     ,&quot;% of Component Obligations&quot;
-#     ,Coloration
-# 
-#     ,PricingPolicy
-#     ,NULL
-#     ,&quot;Fiscal.Year&quot;
-#     ,&quot;Obligation.2014&quot;
-#     ,&quot;Pricing.Mechanism.sum&quot;
-#     ,&quot;SubCustomer.component&quot;
-#     ,&quot;ATLpolicy&quot;
-#     ,&quot;StartDate&quot;
-#     ,&quot;EndDate&quot;
-#     )
-# 
-# FixedGraph&lt;-FixedGraph+aes(size=y.variable)
-# # FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-#     FixedGraph&lt;-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
-# FixedGraph&lt;-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
-#     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
-#     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
-# FixedGraph
-#     print(FixedGraph)
-# #     FixedGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
-# while(!(dev.cur()[[1]]==1)){
-#     dev.off()
-#     }
-# </code></pre>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the code chunk to prevent printing of the R code that generated the plot.</p>
-<pre class="r"><code># PricingPolicy$Fiscal.Year[PricingPolicy$Fiscal.Year&gt;PricingPolicy$EndDate&amp;
-#                                       PricingPolicy$SignedMonth&lt;=PricingPolicy$EndDate]&lt;-
-#     PricingPolicy$EndDate[PricingPolicy$Fiscal.Year&gt;PricingPolicy$EndDate&amp;
-#                                       PricingPolicy$SignedMonth&lt;=PricingPolicy$EndDate]
-# PricingPolicy$SignedFiscal.Year[PricingPolicy$SignedFiscal.Year&lt;PricingPolicy$StartDate]&lt;-
-#     PricingPolicy$StartDate[PricingPolicy$SignedFiscal.Year&lt;PricingPolicy$StartDate]
-# 
-# 
-# png(
-#     paste(&quot;Output//Pricing_Mechanism//&quot;,
-#           paste(&quot;DoD_Summary&quot;
-#                  ,&quot;Obligation_2014&quot;
-#                  ,&quot;Pricing_Mechanism_sum&quot;
-#                  ,&quot;ATLpolicy&quot;
-#                  ,&quot;Annual&quot;
-#                  ,sep=&quot;_&quot;
-#                  )
-#            ,&quot;.png&quot;
-#            , sep=&quot;&quot;
-#            )
-#     , type=&quot;cairo&quot;
-#     , width=7.5
-#     , height=3.5
-#     , units='in'
-#     , pointsize=12
-#     , res=150
-#     )
-#     
-#     
-# FixedGraph&lt;-LatticePercentLineWrapper(
-#     VAR.name=&quot;Pricing Mechanism&quot;
-#     ,VAR.proper.name=&quot;Overall Pricing Mechanism by DoD Component and Starting Regime&quot;
-#     ,VAR.X.label=&quot;Fiscal Year of Obligation&quot;
-#     ,VAR.Y.label=&quot;% of Component Obligations&quot;
-#     ,VAR.Coloration=Coloration
-# 
-# 
-#     ,VAR.long.DF=  PricingPolicy
-#     ,VAR.ncol=4
-#     ,VAR.x.variable=&quot;Fiscal.Year&quot;
-#     ,VAR.y.variable=&quot;Obligation.2014&quot;
-#     ,VAR.y.series=    &quot;Pricing.Mechanism.sum&quot;
-#      ,VAR.facet.primary=&quot;ATLpolicy&quot;
-#     ,VAR.facet.secondary=NA
-#     ,&quot;StartDate&quot;
-#     ,&quot;EndDate&quot;
-#     )
-# 
-# FixedGraph&lt;-FixedGraph+aes(size=y.variable)
-# # FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-#     FixedGraph&lt;-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
-# FixedGraph&lt;-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
-#     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
-#     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
-# FixedGraph
-#     print(FixedGraph)
-# #     FixedGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
-# while(!(dev.cur()[[1]]==1)){
-#     dev.off()
-#     }
+                                  sep=&quot;&quot;))
 
-# 
-# 
-# FixedGraph&lt;-LatticePercentLineWrapper(
-#     VAR.name=&quot;Pricing Mechanism&quot;
-#     ,VAR.proper.name=&quot;Pricing Mechanism by DoD Component and Starting Regime&quot;
-#     ,VAR.X.label=&quot;Fiscal Year of Obligation&quot;
-#     ,VAR.Y.label=&quot;% of Component Obligations&quot;
-#     ,VAR.Coloration=Coloration
-# 
-# 
-#     ,VAR.long.DF=PricingPolicy
-#     ,VAR.ncol=1
-#     ,VAR.x.variable=&quot;Fiscal.Year&quot;
-#     ,VAR.y.variable=&quot;Obligation.2014&quot;
-#     ,VAR.y.series=&quot;Pricing Mechanism.effective.only&quot;
-#      ,VAR.facet.primary=&quot;ATLpolicy&quot;
-#     ,VAR.facet.secondary=NA
-#     ,&quot;StartDate&quot;
-#     ,&quot;EndDate&quot;
-#     )
-# 
-# # FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-#     FixedGraph&lt;-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
-# FixedGraph&lt;-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
-#     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
-#     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
-# FixedGraph
-#     print(FixedGraph)
-# 
-# 
-# 
-# 
-# FixedGraph&lt;-LatticePercentLineWrapper(
-#     VAR.name=&quot;Pricing Mechanism&quot;
-#     ,VAR.proper.name=&quot;Pricing Mechanism by DoD Component and Starting Regime&quot;
-#     ,VAR.X.label=&quot;Fiscal Year of Obligation&quot;
-#     ,VAR.Y.label=&quot;% of Component Obligations&quot;
-#     ,VAR.Coloration=Coloration
-# 
-# 
-#     ,VAR.long.DF=PricingPolicy
-#     ,VAR.ncol=1
-#     ,VAR.x.variable=&quot;Fiscal.Year&quot;
-#     ,VAR.y.variable=&quot;Obligation.2014&quot;
-#     ,VAR.y.series=&quot;Competition.effective.only&quot;
-#      ,VAR.facet.primary=&quot;Competition.effective.only&quot;
-#     ,VAR.facet.secondary=&quot;ATLpolicy&quot;
-#     ,&quot;StartDate&quot;
-#     ,&quot;EndDate&quot;
-#     )
-# 
-# # FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-#     FixedGraph&lt;-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
-# FixedGraph&lt;-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
-#     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
-#     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
-# FixedGraph
-# </code></pre>
-<pre class="r"><code># for (s in unique(PricingPolicy$SubCustomer)){    
-#     png(
-#         paste(&quot;Output//Pricing_Mechanism//&quot;,
-#               paste(s
-#                      ,&quot;Obligation_2014&quot;
-#                      ,&quot;Pricing_Mechanism_sum&quot;
-#                      ,&quot;ATLpolicy&quot;
-#                      ,&quot;Annual&quot;
-#                      ,sep=&quot;_&quot;
-#                      )
-#                ,&quot;.png&quot;
-#                , sep=&quot;&quot;
-#                )
-#         , type=&quot;cairo&quot;
-#         , width=10
-#         , height=5
-#         , units='in'
-#         , pointsize=12
-#         , res=150
-#         )
-#     
-#     FixedGraph&lt;-LatticePercentLineWrapper(
-#         VAR.name=&quot;Pricing Mechanism&quot;
-#         ,VAR.proper.name=&quot;&quot;#paste(s,&quot;Pricing Mechanism by Starting Regime&quot;)
-#         ,VAR.X.label=&quot;Fiscal Year of Obligation&quot;
-#         ,VAR.Y.label=&quot;% of Component Obligations&quot;
-#         ,VAR.Coloration=Coloration
-#         
-#         
-#         ,VAR.long.DF=subset(PricingPolicy,SubCustomer==s)
-#         ,VAR.ncol=4
-#         ,VAR.x.variable=&quot;Fiscal.Year&quot;
-#         ,VAR.y.variable=&quot;Obligation.2014&quot;
-#         ,VAR.y.series=    &quot;Pricing.Mechanism.sum&quot;
-#         ,VAR.facet.primary=&quot;ATLpolicy&quot;
-#         ,VAR.facet.secondary=NA
-#         ,&quot;StartDate&quot;
-#         ,&quot;EndDate&quot;
-#         )
-#     
-#     FixedGraph&lt;-FixedGraph+aes(size=y.variable)+scale_size_continuous(name=&quot;Constant 2014 $ Obligated, Billions&quot;)
-#     # FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-#     FixedGraph&lt;-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
-#     FixedGraph&lt;-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
-#         theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
-#         scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
-#     FixedGraph
-#     print(FixedGraph)
-#     rm(FixedGraph)
-#     #     FixedGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
-#     while(!(dev.cur()[[1]]==1)){
-#         dev.off()
-#         }
-#     }</code></pre>
-<pre class="r"><code># PricingUSDATL$Fiscal.Year[PricingUSDATL$Fiscal.Year&gt;PricingUSDATL$EndDate&amp;
-#                                       PricingUSDATL$SignedMonth&lt;=PricingUSDATL$EndDate]&lt;-
-#     PricingUSDATL$EndDate[PricingUSDATL$Fiscal.Year&gt;PricingUSDATL$EndDate&amp;
-#                                       PricingUSDATL$SignedMonth&lt;=PricingUSDATL$EndDate]
-# 
-# PricingUSDATL$Fiscal.Year[PricingUSDATL$Fiscal.Year&lt;PricingUSDATL$StartDate]&lt;-
-#     PricingUSDATL$StartDate[PricingUSDATL$Fiscal.Year&lt;PricingUSDATL$StartDate]
-# 
-# 
-# png(
-#     paste(&quot;Output//Pricing_Mechanism//&quot;,
-#           paste(&quot;DoD_components&quot;
-#                  ,&quot;Obligation_2014&quot;
-#                  ,&quot;Pricing_Mechanism_sum&quot;
-#                  ,&quot;USDATL&quot;
-#                  ,&quot;Annual&quot;
-#                  ,sep=&quot;_&quot;
-#                  )
-#            ,&quot;.png&quot;
-#            , sep=&quot;&quot;
-#            )
-#     , type=&quot;cairo&quot;
-#     , width=7.5
-#     , height=10
-#     , units='in'
-#     , pointsize=12
-#     , res=150
-#     )
-# 
-# # debug(LatticePercentLineWrapper)
-# 
-# FixedGraph&lt;-LatticePercentLineWrapper(
-#     &quot;Pricing Mechanism&quot;
-#     ,&quot;Pricing Mechanism by DoD Component and Starting Regime&quot;
-#     ,&quot;Fiscal Year of Obligation&quot;
-#     ,&quot;% of Component Obligations&quot;
-#     ,Coloration
-#     ,PricingUSDATL
-#     ,NULL
-#     ,&quot;Fiscal.Year&quot;
-#     ,&quot;Obligation.2014&quot;
-#     ,&quot;Pricing.Mechanism.sum&quot;
-#     ,&quot;SubCustomer.component&quot;
-#     ,&quot;USDATL&quot;
-#     ,&quot;StartDate&quot;
-#     ,&quot;EndDate&quot;
-#     )
-# 
-# FixedGraph&lt;-FixedGraph+aes(size=y.variable)
-# # FixedGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
-#     FixedGraph&lt;-FixedGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color=&quot;red&quot;,alpha=0,size=1)
-# FixedGraph&lt;-FixedGraph+scale_y_continuous(limits=c(0,1),labels = percent_format())+
-#     theme(legend.position=&quot;bottom&quot;,axis.text.x = element_text(angle = 90, hjust = 1))+
-#     scale_x_date(labels=date_format(&quot;'%y&quot;),breaks=date_breaks(&quot;year&quot;))
-# FixedGraph
-#     print(FixedGraph)
-# #     FixedGraph+scale_fill_manual(values = alpha(c(&quot;red&quot;,&quot;blue&quot;), .3))
-# while(!(dev.cur()[[1]]==1)){
-#     dev.off()
-#     }</code></pre>
+
+#Quarterly
+PolicyTable&lt;-ddply(PolicyTable, 
+                         .(  SignedQuarter,
+                             Quarter,
+                             Fiscal.Year,
+                             SinceFirstFiscalYear,
+                             Pricing.Mechanism.sum,
+                             SubCustomer.component,
+                             ATLpolicy
+                             ),
+                         summarize,
+                         Obligation.2014=sum(Obligation.2014),
+                         MovingAverage=sum(MovingAverage)
+                         )
+
+
+write.csv(PolicyTable,paste(&quot;Output\\Pricing_Mechanism\\&quot;,
+                                  paste(&quot;DoD_components&quot;
+                                        ,&quot;Obligation_2014&quot;
+                                        ,&quot;Pricing_Mechanism&quot;
+                                        ,&quot;ATLpolicy&quot;
+                                        ,&quot;Quarterly&quot;
+                                        ,sep=&quot;_&quot;
+                                        )
+                                  ,&quot;.csv&quot;,
+                                  sep=&quot;&quot;))</code></pre>
 
 
 </div>

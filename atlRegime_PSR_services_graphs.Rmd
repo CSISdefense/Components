@@ -17,8 +17,8 @@ require(lubridate)
 options(error=recover)
 # setwd("K:\\Development\\Components")
 # setwd("C:\\Users\\Greg Sanders\\Documents\\Development\\Components")
-# Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
-Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
+Path<-"K:\\2007-01 PROFESSIONAL SERVICES\\R scripts and data\\"
+# Path<-"C:\\Users\\Greg Sanders\\SkyDrive\\Documents\\R Scripts and Data SkyDrive\\"
 source(paste(Path,"lookups.r",sep=""))
 source(paste(Path,"helper.r",sep=""))
 
@@ -86,9 +86,7 @@ RawRegime$SubCustomer.component<-factor(RawRegime$SubCustomer.component,
                                            levels=c("Army","Navy","Air Force","DLA",
                                                     "MDA","MilitaryHealth",
                                                     "Additional DoD Components"),
-                                           labels=c("Army","Navy","Air Force","DLA",
-                                                    "MDA","Military\nHealth",
-                                                    "Additional\nDoD\nComponents"),
+                                          
                                            ordered=TRUE)
 
 
@@ -114,7 +112,7 @@ ATLregimeFYear<-aggregate(RawRegime$Obligation.2014
                           )
 
 names(ATLregimeFYear)<-c("Fiscal.Year","USDATL","AnnualRegimeObligations")
-PSRUSDATL<-subset(RawRegime,join(RawRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
+USDATL<-subset(RawRegime,join(RawRegime,ATLregimeFYear)$AnnualRegimeObligations>=50)
 
 
 ATLregimeDetails<-data.frame(USDATL= 'GANSLER+',
@@ -147,16 +145,16 @@ ATLregimeDetails$StartFiscalYear<-ymd(paste(year(ATLregimeDetails$StartDate)+
 
 
 
-PSRUSDATL<-join(PSRUSDATL,ATLregimeDetails,match="first")
+USDATL<-join(USDATL,ATLregimeDetails,match="first")
 
 
-PSRUSDATL$Fiscal.Year[PSRUSDATL$Fiscal.Year>PSRUSDATL$EndDate&
-                             PSRUSDATL$SignedMonth<=PSRUSDATL$EndDate]<-
-    PSRUSDATL$EndDate[PSRUSDATL$Fiscal.Year>PSRUSDATL$EndDate&
-                             PSRUSDATL$SignedMonth<=PSRUSDATL$EndDate]
+USDATL$Fiscal.Year[USDATL$Fiscal.Year>USDATL$EndDate&
+                             USDATL$SignedMonth<=USDATL$EndDate]<-
+    USDATL$EndDate[USDATL$Fiscal.Year>USDATL$EndDate&
+                             USDATL$SignedMonth<=USDATL$EndDate]
 
-PSRUSDATL$Fiscal.Year[PSRUSDATL$Fiscal.Year<PSRUSDATL$StartDate]<-
-    PSRUSDATL$StartDate[PSRUSDATL$Fiscal.Year<PSRUSDATL$StartDate]
+USDATL$Fiscal.Year[USDATL$Fiscal.Year<USDATL$StartDate]<-
+    USDATL$StartDate[USDATL$Fiscal.Year<USDATL$StartDate]
 
 
 ```
@@ -192,7 +190,7 @@ PSRGraph<-LatticePercentLineWrapper(
     ,"Month of Obligation (6 Month Lagging Average)"
     ,"% of Component Obligations"
     ,Coloration
-    ,PSRUSDATL
+    ,USDATL
     ,NULL
     ,"SignedMonth"
     ,"Obligation.2014"
@@ -250,7 +248,7 @@ PSRGraph<-LatticePercentLineWrapper(
     ,"Fiscal Year of Obligation"
     ,"% of Component Obligations"
     ,Coloration
-    ,PSRUSDATL
+    ,USDATL
     ,NULL
     ,"Fiscal.Year"
     ,"Obligation.2014"
@@ -730,8 +728,8 @@ Policy$SinceFirstFiscalYear<-as.numeric(as.duration(
     /dyears(1)
     )
 
-PSRUSDATL$SinceFirstFiscalYear<-as.numeric(as.duration(
-    ymd(PSRUSDATL$SignedMonth)-PSRUSDATL$StartFiscalYear)
+USDATL$SinceFirstFiscalYear<-as.numeric(as.duration(
+    ymd(USDATL$SignedMonth)-USDATL$StartFiscalYear)
     /dyears(1)
     )
 
@@ -1109,6 +1107,8 @@ for (c in unique(Policy$SubCustomer)){
     # PSRGraph+geom_vline(aes(xintercept=as.numeric(StartDate)))+geom_vline(aes(xintercept=as.numeric(EndDate)))
     # PSRGraph<-PSRGraph+geom_rect(aes(xmin=StartDate, xmax=EndDate, ymin=-Inf, ymax=Inf),color="red",alpha=0,size=1)
     # PSRGraph<-PSRGraph+coord_cartesian(ylim=c(0, 1))+scale_y_continuous(labels = percent_format())+
+            PSRGraph<-PSRGraph+theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1),
+                            legend.box='horizontal',legend.direction="vertical")+guides(color=guide_legend(ncol=2))
     #     theme(legend.position="bottom",axis.text.x = element_text(angle = 90, hjust = 1))+
     #     scale_x_date(labels=date_format("'%y"),breaks=date_breaks("year"))
     PSRGraph
