@@ -1,2 +1,3 @@
 *.RData
 sh.exe.stackdump
+.Rhistory
